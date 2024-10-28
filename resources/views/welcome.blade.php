@@ -11,7 +11,7 @@
     <nav class="navbar">
     <div class="container" >
         <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-        <a class="navbar-brand" href='#'>Taller Costura</a>
+        <a class="navbar-brand">Taller Costura</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,10 +42,10 @@
 <button type="button" class="btn btn-outline-light" style="width: 250px; height:60px;">CLICK</button>
 </div>
 
-    <div class="container d-flex justify-content-center align-items-center vh-100 position-relative">
+    <div class="container d-flex justify-content-center align-items-center vh-100 position-relative p-5">
         <div class="historia position-relative">
            
-            <h1 class="text-black text-center p-4" style="font-size: 23px;">
+            <h1 class="text-black text-center p-2" style="font-size: 20px;">
              " Nuestra Historia "<br>
               Nuestro Taller comenzó desde que yo era muy pequeña 
               ya que siempre me llamo la atención las máquinas y
@@ -88,25 +88,27 @@
 
       </div>
 
-      <div class="ubi">
+
          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1463.6995365253426!2d-103.42184426333861!3d25.50248785713555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdc71e733911b%3A0x527c06e10d583e86!2sJos%C3%A9%20Carrillo%20Machado%20388%2C%20Amp%20Santiago%20Ram%C3%ADrez%20II%2C%2027390%20Torre%C3%B3n%2C%20Coah.!5e0!3m2!1ses-419!2smx!4v1730126331717!5m2!1ses-419!2smx" 
-         width="1520" 
-         height="450"
+        width="100%" 
+        height="500"
          referrerpolicy="no-referrer-when-downgrade">
         </iframe>
 
-      </div>
       <div class="footer">
         <p>Taller Costura 2022</p>
       </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
 
 <style>
    .navbar {
+    
         background-color: black;
     }
 
@@ -179,8 +181,8 @@
 .carousel {
     margin: 0 auto; 
 }
+
 .footer {
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
