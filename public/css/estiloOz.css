@@ -87,14 +87,14 @@ h1.Titulo2{
     width: 280px;
     background-color: #8A226F;
     border: solid 2px;
-    border-color: #C6E1F1;
-    color: #C6E1F1;
+    border-color: #FFCDD4;
+    color: #FFCDD4;
     text-align: center; /* Asegura que el texto esté centrado */
     padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
 }
 
 .btn-agregprenda:hover{
-    background-color: #C6E1F1;
+    background-color: #FFCDD4;
     border-color: #8A226F;
     color:#8A226F;
 }
@@ -111,4 +111,41 @@ a:visited {
 a:hover,
 a:active {
     color: black; /* Color cuando pasas el cursor o haces clic */
+}
+
+.modal-header{
+    background-color: #F99AAA;
+}
+
+.modal-body{
+    background-color: #FFCDD4;
+}
+
+h1.Titulomodal{
+    color: #FFE0E6;
+    font-style: italic;
+}
+
+.h3-modal{
+    color: #BE5A8C;
+}
+
+.btn-modal-sub {
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 40px;
+    width: 280px;
+    background-color: #BE5A8C;
+    border: solid 2px;
+    border-color: #F99AAA;
+    color: #FFCDD4;
+    text-align: center; /* Asegura que el texto esté centrado */
+    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+}
+
+.btn-modal-sub:hover{
+    background-color: #F99AAA;
+    color: #b9437e;
 }
