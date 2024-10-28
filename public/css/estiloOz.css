@@ -59,17 +59,46 @@ h1.Titulo2{
     width: 250px;
     padding-top: 20px;
     background-color: #F6B2DB;
+    border: solid 2px;
+    border-color: #BE5A8C ;
+    text-align: center;
+    padding: 0%;
 }
 
 .btn-gest:hover{
     background-color: #BE5A8C;
+    border-color: #F6B2DB;
+    color:#F6B2DB;
 }
 
-.p-btn{
+.p-btn {
+    margin: 0; /* Elimina cualquier margen adicional en el párrafo */
     font-style: italic;
     font-size: 25px;
+    text-align: center;
 }
 
+.btn-agregprenda {
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 40px;
+    width: 280px;
+    background-color: #8A226F;
+    border: solid 2px;
+    border-color: #C6E1F1;
+    color: #C6E1F1;
+    text-align: center; /* Asegura que el texto esté centrado */
+    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+}
+
+.btn-agregprenda:hover{
+    background-color: #C6E1F1;
+    border-color: #8A226F;
+    color:#8A226F;
+}
+ 
 a {
     color: black; /* Color de texto en estado normal */
     text-decoration: none; /* Sin subrayado */
