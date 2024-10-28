@@ -1,0 +1,85 @@
+
+h1.Titulo1{
+    color: #E57D90;
+    font-size: 50px;
+}
+
+h1.Titulo2{
+    color: #E57D90;
+    font-style: italic;
+}
+
+.row{
+    text-align: center;
+}
+
+.container2{
+    height: 100vh;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+
+}
+
+.cuadradito{
+    height: 30vh;
+    width: 100%;
+    background-color: #FFCDD4;
+    margin: auto;
+    border-radius: 20%;
+    border: solid 2px;
+    border-color: #BE5A8C;
+}
+
+.cuadradito-solo{
+    height: 30vh;
+    width: 50%;
+    background-color: #FFCDD4;
+    margin: auto;
+    border-radius: 20%;
+    border: solid 2px;
+    border-color: #BE5A8C;
+}
+
+.btn-div{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 90%;
+}
+
+.btn-gest{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 250px;
+    padding-top: 20px;
+    background-color: #F6B2DB;
+}
+
+.btn-gest:hover{
+    background-color: #BE5A8C;
+}
+
+.p-btn{
+    font-style: italic;
+    font-size: 25px;
+}
+
+a {
+    color: black; /* Color de texto en estado normal */
+    text-decoration: none; /* Sin subrayado */
+}
+
+a:visited {
+    color: black; /* Color después de hacer clic */
+}
+
+a:hover,
+a:active {
+    color: black; /* Color cuando pasas el cursor o haces clic */
+}
