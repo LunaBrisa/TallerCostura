@@ -149,3 +149,8 @@ h1.Titulomodal{
     background-color: #F99AAA;
     color: #b9437e;
 }
+
+.div-cards{
+    margin: auto;
+    width: 200%;
+}

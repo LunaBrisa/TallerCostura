@@ -11,7 +11,7 @@
 <nav class="navbar">
     <div class="container" >
         <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-        <a class="navbar-brand" href="#">Taller Costura</a>
+        <a class="navbar-brand" href="/">Taller Costura</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +52,7 @@
                 <div class="modal-content">
                     <!-- HEADER -->
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Agregar Prenda</h1>
+                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Agregar Tipo de Prenda</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <!-- BODY -->
@@ -72,6 +72,21 @@
             </div>
             </div>
         </div>
+    </div><br>  
+    
+    <div class="row">
+    @foreach ($MisTiposPrenda AS $TipoPrendita)
+    <div class="col col-md-4 mb-4">
+        <div class="card" style="width: 18rem;">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+        </div>
+     @endforeach
     </div>
 
     <div class="row">
