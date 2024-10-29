@@ -78,6 +78,13 @@ h1.Titulo2{
     text-align: center;
 }
 
+.p-btn-agg {
+    margin: 0; /* Elimina cualquier margen adicional en el párrafo */
+    font-style: italic;
+    font-size: 18px;
+    text-align: center;
+}
+
 .btn-agregprenda {
     margin: auto;
     display: flex;
@@ -113,7 +120,7 @@ a:active {
     color: black; /* Color cuando pasas el cursor o haces clic */
 }
 
-.modal-header{
+.modal-header,.modal-footer{
     background-color: #F99AAA;
 }
 
@@ -150,7 +157,33 @@ h1.Titulomodal{
     color: #b9437e;
 }
 
-.div-cards{
-    margin: auto;
-    width: 200%;
+.card-reg{
+    background-color: #E4BCD4;
+    border: solid 2px;
+    border-color: #BE5A8C;
+}
+
+.card-title{
+    color: #8A226F;
+}
+
+.btn-intemodal {
+    margin: 0 4px;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 40px;
+    width: 100px;
+    background-color: #8A226F;
+    border: solid 2px;
+    border-color: #FFCDD4;
+    color: #FFCDD4;
+    text-align: center; /* Asegura que el texto esté centrado */
+    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+}
+
+.btn-intemodal:hover{
+    background-color: #FFCDD4;
+    border-color: #8A226F;
+    color:#8A226F;
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="{{asset('css/estiloOz.css')}}">
-    <title>Document</title>
+    <title>Gestion Tipos de Prenda</title>
 </head>
 <body>
 <nav class="navbar">
@@ -44,7 +44,7 @@
         <div class="col" style="padding-top: 43px;">
             <div class="btn-div">
                 <button type="button" class="btn btn-agregprenda" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <p class="p-btn">Agregar Nueva Prenda</p>
+                  <p class="p-btn-agg">Agregar Nuevo Tipo de Prenda</p>
                 </button>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -58,7 +58,8 @@
                   <!-- BODY -->
                   <div class="modal-body">
                     <div class="conteform">
-                        <form action="" method="post">
+                    <form action="/agg/tipoprenda" method="post">
+                            @csrf
                             <label for="tipoprendita"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                             <input type="text" name="tipoprendita" class="form-control"><br>
                             <div class="btn-div">
@@ -77,14 +78,36 @@
     <div class="row">
     @foreach ($MisTiposPrenda AS $TipoPrendita)
     <div class="col col-md-4 mb-4">
-        <div class="card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
+        <div class="card card-reg" style="width: 18rem;">
+              <img src="{{ asset('images/ejemplillo.png') }}" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5><br>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalElim">
+                  Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="ModalElim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tipo de Prenda</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h5 class="h3-modal">Esta seguro de que quiere eliminar este tipo de prenda?</h5>
+                        <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}" alt="">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
+                        <a href="/elim/tipo-prenda/{{$TipoPrendita -> id_tp}}"><button class="btn btn-intemodal">Eliminar</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+        </div>
         </div>
      @endforeach
     </div>
