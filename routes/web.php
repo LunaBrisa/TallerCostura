@@ -4,6 +4,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ControladorTipoPrenda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\TiposTelaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,8 @@ Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPre
 Route::post('/agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
 
 Route::post('/agg/color', [ColorController::class, 'saveColor']);
+
+Route::get('/gestion/tipos-telas', [TiposTelaController::class, 'getTiposTela']);
 
 Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');

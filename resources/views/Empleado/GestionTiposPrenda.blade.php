@@ -83,12 +83,12 @@
               <div class="card-body">
                 <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5><br>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalElim">
+                <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalElim{{$TipoPrendita->id_tp}}">
                   Eliminar
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="ModalElim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ModalElim{{$TipoPrendita->id_tp}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -96,12 +96,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <h5 class="h3-modal">Esta seguro de que quiere eliminar este tipo de prenda?</h5>
+                        <h5 class="h3-modal">Esta seguro de que quiere eliminar este tipo de prenda? <br> Esta accion
+                          eliminara tambien las prendas asociadas a este tipo de prenda.
+                        </h5>
                         <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}" alt="">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="/elim/tipo-prenda/{{$TipoPrendita -> id_tp}}"><button class="btn btn-intemodal">Eliminar</button></a>
+                        <a href="/elim/tipo-prenda/{{$TipoPrendita->id_tp}}"><button class="btn btn-intemodal">Eliminar</button></a>
                       </div>
                     </div>
                   </div>
