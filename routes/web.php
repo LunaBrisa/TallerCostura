@@ -22,3 +22,7 @@ Route::post('/agg/color', [ColorController::class, 'saveColor']);
 
 Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
+Route::get('/Pcatalogo', function () {
+    return view('Cliente.PcatalogoView');
+});
+
