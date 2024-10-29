@@ -9,12 +9,6 @@
     body {
         font-family: Arial, sans-serif;
     }
-    header {
-        background-color: #D91E7F;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-    }
     table {
         width: 100%;
         border-collapse: collapse;
@@ -31,20 +25,58 @@
     .text-blue-500 {
         color: #3490dc;
     }
+    .navbar {
+        background-color: black;
+    }
+
+    .navbar a {
+        color: white;
+    }
+
+    .navbar a:hover {
+        color: lightgray;
+    }
+
+    .navbar-toggler-icon {
+        filter: invert(1);
+    }
     </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-pink-500 text-white p-4 text-center">
-        <h1 class="text-lg font-bold">Dashboard de Pedidos</h1>
-        <nav class="bg-gray-200 p-2 flex justify-center space-x-4">
-            <!--<a href=" route('dashboard.pedidos') }}" class="text-pink-600">Pedidos</a>-->
-            <a href="" class="text-pink-600">Producción</a>
-            <a href="" class="text-pink-600">Insumos</a>
-            <a href="" class="text-pink-600">Servicios</a>
-            <a href="" class="text-pink-600">Clientes</a>
-            <a href="" class="text-pink-600">Finanzas</a>
+        <nav class="navbar">
+            <div class="container" >
+                <img src="{{ asset('images/logo.png') }}" width="155" height="85">
+                <a class="navbar-brand" href="#">Taller Costura</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-pink-600">Pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="text-pink-600">Producción</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="text-pink-600">Insumos</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-pink-600">Servicios</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-pink-600">Clientes</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-pink-600">Finanzas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-    </header>
     
     
     <div class="container mx-auto p-4">
@@ -52,26 +84,37 @@
             <thead class="bg-gray-200">
                 <tr>
                     <th class="p-2">#Orden</th>
+                    <th class="p-2">Usuario</th>
+                    <th class="p-2">Empleado</th>
                     <th class="p-2">Fecha de Orden</th>
                     <th class="p-2">Fecha de Entrega</th>
-                    <th class="p-2">Estado</th>
+                    <th class="p-2">Anticipo</th>
+                    <th class="p-2">Subtotal</th>
+                    <th class="p-2">Total</th>
                     <th class="p-2">Detalles</th>
                 </tr>
             </thead>
             <tbody>
-              <!--  foreach ($pedidos as $pedido)-->
+                @foreach ($pedidos as $pedido)
                     <tr class="border-b">
-                        <td class="p-2 text-center">1<!--{ $pedido->id }}--></td>
-                        <td class="p-2 text-center">22/02/04<!--{ $pedido->fecha_pedido }}--></td>
-                        <td class="p-2 text-center">22/02/05<!--{ $pedido->fecha_entrega }}--></td>
-                        <td class="p-2 text-center">Entregado<!--{ $pedido->estado }}--></td>
+                        <td class="p-2 text-center">{{ $pedido->id_pedido }}</td>
+                        <td class="p-2 text-center">{{ $pedido->id_usuario }}</td>
+                        <td class="p-2 text-center">{{ $pedido->id_empleado }}</td>
+                        <td class="p-2 text-center">{{ $pedido->fecha_pedido }}</td>
+                        <td class="p-2 text-center">{{ $pedido->fecha_entrega }}</td>
+                        <td class="p-2 text-center">{{ $pedido->anticipo }}</td>
+                        <td class="p-2 text-center">{{ $pedido->subtotal }}</td>
+                        <td class="p-2 text-center">{{ $pedido->total }}</td>
                         <td class="p-2 text-center">
                             <!--<a href="{ route('pedido.show', $pedido->id) }}" class="text-blue-500">-->Ver</a>
                         </td>
                     </tr>
-               <!--endforeach-->
+               @endforeach
             </tbody>
         </table>
     </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PedidoController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard/pedidos', function(){
-    return view('dashboard.pedidos');
-});
+
+Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
