@@ -93,7 +93,7 @@
             <h1 class="Titulo2">Colores</h1>
 
             <div class="btn-div">
-                <a href=""><button class="btn btn-gest"> <p class="p-btn">Ver Existentes</p> </button></a>
+                <a href=""><button class="btn btn-gest"> <p class="p-btn">Agregar Nuevo</p> </button></a>
                 </div>
             </div>
         </div>

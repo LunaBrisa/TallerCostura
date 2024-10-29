@@ -7,10 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoPrenda extends Model
 {
-
     use HasFactory;
 
     protected $table = 'tipo_prendas';
+    protected $primaryKey = 'id_tp';
+
     protected $fillable = ['tipo_prenda'];
-    protected $primarikey = 'id_tp';
+
+    public $timestamps = false;
+
+    public function prendas()
+    {
+        return $this->hasMany(Prenda::class, 'id_tp');
+    }
 }
