@@ -16,4 +16,4 @@ Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPre
 
 Route::post('/agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
 
-Route::get('/elim/tipo-prenda/{idtipo}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
+Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);

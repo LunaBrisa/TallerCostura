@@ -12,5 +12,5 @@ class TipoPrenda extends Model
 
     protected $table = 'tipo_prendas';
     protected $fillable = ['tipo_prenda'];
-    protected $primarikey = 'id_tipo_prenda';
+    protected $primarikey = 'id_tp';
 }

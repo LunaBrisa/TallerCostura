@@ -21,7 +21,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Catalogo</a>
+                    <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Servicios</a>
@@ -83,8 +83,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5><br>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalElim">
-                  Launch demo modal
+                <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalElim">
+                  Eliminar
                 </button>
 
                 <!-- Modal -->

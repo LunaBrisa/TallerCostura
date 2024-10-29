@@ -24,8 +24,8 @@ class ControladorTipoPrenda extends Controller
         return redirect('/gestion/tipos-prendas');
     }
 
-    public function elimTipoPrenda($idtipo){
-        TipoPrenda::destroy($idtipo);
+    public function elimTipoPrenda($id){
+        TipoPrenda::destroy($id);
         return redirect('/gestion/tipos-prendas');
     }
 

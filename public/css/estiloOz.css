@@ -187,3 +187,24 @@ h1.Titulomodal{
     border-color: #8A226F;
     color:#8A226F;
 }
+
+.btn-elim {
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 40px;
+    width: 150px;
+    background-color: #8A226F;
+    border: solid 2px;
+    border-color: #FFCDD4;
+    color: #FFCDD4;
+    text-align: center; /* Asegura que el texto esté centrado */
+    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+}
+
+.btn-elim:hover{
+    background-color: #FFCDD4;
+    border-color: #8A226F;
+    color:#8A226F;
+}
