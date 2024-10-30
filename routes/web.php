@@ -22,16 +22,3 @@ Route::get('/Cliente/ClienteMujeresView', function(){
 Route::get('/Cliente/ClienteHombresView', function(){
     return view('Cliente.ClienteHombresView');
 });
-
-// RUTAS PARA TIPOS DE PRENDA
-Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
-
-Route::post('/agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
-
-Route::post('/agg/color', [ColorController::class, 'saveColor']);
-
-Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
-Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
-Route::get('/Pcatalogo', function () {
-    return view('Cliente.PcatalogoView');
-});
