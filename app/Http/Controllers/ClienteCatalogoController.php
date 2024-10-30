@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\prendas;
-
 use Illuminate\Http\Request;
+use App\Models\prenda;
 
 class ClienteCatalogoController extends Controller
 {
   public function MostrarCatalogo(){
-    $prenda = prendas::all();
+    $prenda = prenda::all();
     return view('Cliente.PcatalogoView',compact('prenda'));
   }
 }

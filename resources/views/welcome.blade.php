@@ -21,7 +21,7 @@
                     <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Catalogo</a>
+                    <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Servicios</a>
@@ -39,12 +39,11 @@
     <h1>¡Bienvenido a Taller Costura!</h1>
     <h1>Luna Cast.</h1>
     <h1>Ven y hecha un vistazo a nuestro catálogo</h1>
-<button type="button" class="btn btn-outline-light" style="width: 250px; height:60px;">CLICK</button>
-</div>
 
+    <a href="Cliente/PcatalogoView" class="btn btn-outline-light btn-hover" style="width: 250px; height:60px;">Ver Catálogo</a>
+</div>
     <div class="container d-flex justify-content-center align-items-center vh-100 position-relative p-5">
         <div class="historia position-relative">
-           
             <h1 class="text-black text-center p-2" style="font-size: 20px;">
              " Nuestra Historia "<br>
               Nuestro Taller comenzó desde que yo era muy pequeña 
@@ -191,5 +190,10 @@ integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIe
     color: white;
     text-align: center;
     font-size: 20px;
+}
+.btn-hover:hover {
+    color: white; 
+    background-color: #ff69b4; 
+    border-color: #ff69b4;
 }
 </style>
