@@ -2,22 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TipoPrenda extends Model
 {
-    use HasFactory;
-
-    protected $table = 'tipo_prendas';
-    protected $primaryKey = 'id_tp';
-
+    protected $table = 'tipos_prendas';
     protected $fillable = ['tipo_prenda'];
 
-    public $timestamps = false;
-
-    public function prendas()
+    public function prendasConfeccion()
     {
-        return $this->hasMany(Prenda::class, 'id_tp');
+        return $this->hasMany(PrendaConfeccion::class);
     }
 }

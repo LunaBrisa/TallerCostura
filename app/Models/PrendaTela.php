@@ -2,27 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PrendaTela extends Model
 {
-    use HasFactory;
+    protected $table = 'prendas_telas';
+    protected $fillable = ['tela_id', 'prenda_id', 'color_id', 'cantidad_tela'];
 
-    protected $table = 'prenda_telas';
-    protected $primaryKey = 'id_pt';
-
-    protected $fillable = ['id_prenda', 'id_color', 'cantidad_tela'];
-
-    public $timestamps = false;
+    public function tela()
+    {
+        return $this->belongsTo(Tela::class);
+    }
 
     public function prenda()
     {
-        return $this->belongsTo(Prenda::class, 'id_prenda');
+        return $this->belongsTo(PrendaConfeccion::class);
     }
 
     public function color()
     {
-        return $this->belongsTo(Color::class, 'id_color');
+        return $this->belongsTo(Color::class);
     }
 }

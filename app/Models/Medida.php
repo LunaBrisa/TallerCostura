@@ -2,21 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Medida extends Model
 {
-    use HasFactory;
-
     protected $table = 'medidas';
-    protected $primaryKey = 'id_medida';
+    protected $fillable = ['detalle_confeccion_id', 'pecho', 'cintura', 'mangas', 'largo'];
 
-    protected $fillable = ['pecho', 'cintura', 'mangas', 'largo', 'detalle_pedido_id'];
-    public $timestamps = false;
-
-    public function detallePedido()
+    public function detalleConfeccion()
     {
-        return $this->belongsTo(DetallePedido::class, 'detalle_pedido_id');
+        return $this->belongsTo(DetalleConfeccion::class);
     }
 }

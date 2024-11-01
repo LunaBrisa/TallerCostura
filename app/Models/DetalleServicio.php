@@ -2,31 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DetalleServicio extends Model
 {
-    use HasFactory;
-
     protected $table = 'detalle_servicios';
-    protected $primaryKey = 'id_detalle_servicio';
-
-    protected $fillable = ['id_detalle_pedido', 'id_servicio', 'id_insumo'];
-    public $timestamps = false;
-
-    public function detallePedido()
-    {
-        return $this->belongsTo(DetallePedido::class, 'id_detalle_pedido');
-    }
+    protected $fillable = ['servicio_id', 'detalle_reparacion_id', 'insumo_id'];
 
     public function servicio()
     {
-        return $this->belongsTo(Servicio::class, 'id_servicio');
+        return $this->belongsTo(Servicio::class);
+    }
+
+    public function detalleReparacion()
+    {
+        return $this->belongsTo(DetalleReparacion::class);
     }
 
     public function insumo()
     {
-        return $this->belongsTo(Insumo::class, 'id_insumo');
+        return $this->belongsTo(Insumo::class);
     }
 }

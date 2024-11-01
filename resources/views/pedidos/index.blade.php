@@ -88,8 +88,7 @@
                     <th class="p-2">Empleado</th>
                     <th class="p-2">Fecha de Orden</th>
                     <th class="p-2">Fecha de Entrega</th>
-                    <th class="p-2">Anticipo</th>
-                    <th class="p-2">Subtotal</th>
+                    <th class="p-2">Servicio</th>
                     <th class="p-2">Total</th>
                     <th class="p-2">Detalles</th>
                 </tr>
@@ -97,16 +96,15 @@
             <tbody>
                 @foreach ($pedidos as $pedido)
                     <tr class="border-b">
-                        <td class="p-2 text-center">{{ $pedido->id_pedido }}</td>
-                        <td class="p-2 text-center">{{ $pedido->id_usuario }}</td>
-                        <td class="p-2 text-center">{{ $pedido->id_empleado }}</td>
+                        <td class="p-2 text-center">{{ $pedido->id }}</td>
+                        <td class="p-2 text-center">{{ $pedido->usuario_id }}</td>
+                        <td class="p-2 text-center">{{ $pedido->empleado_id }}</td>
                         <td class="p-2 text-center">{{ $pedido->fecha_pedido }}</td>
                         <td class="p-2 text-center">{{ $pedido->fecha_entrega }}</td>
-                        <td class="p-2 text-center">{{ $pedido->anticipo }}</td>
-                        <td class="p-2 text-center">{{ $pedido->subtotal }}</td>
+                        <td class="p-2 text-center">{{ $pedido->servicio }}</td>
                         <td class="p-2 text-center">{{ $pedido->total }}</td>
                         <td class="p-2 text-center">
-                            <!--<a href="{ route('pedido.show', $pedido->id) }}" class="text-blue-500">-->Ver</a>
+                            <a href="{{ route('pedidos.show', ['id' => $pedido->id]) }}">Ver Pedido</a>
                         </td>
                     </tr>
                @endforeach
