@@ -23,6 +23,10 @@ Route::post('/agg/color', [ColorController::class, 'saveColor']);
 
 Route::get('/gestion/tipos-telas', [TiposTelaController::class, 'getTiposTela']);
 
+Route::post('agg/tipotela', [TiposTelaController::class, 'saveTipoTela']);
+
+Route::get('/elim/material-tela/{id}', [TiposTelaController::class, 'elimMaterialTela']);
+
 Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {

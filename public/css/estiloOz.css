@@ -208,3 +208,15 @@ h1.Titulomodal{
     border-color: #8A226F;
     color:#8A226F;
 }
+
+.list-title{
+    color: #BE5A8C;
+    font-weight: 700;
+    font-size: 25px;
+    text-align: center;
+}
+
+.cardsing{
+    background-color:#ffe2f3;
+    border: none;
+}
