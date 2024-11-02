@@ -24,18 +24,18 @@ class ControladorTipoPrenda extends Controller
         return redirect('/gestion/tipos-prendas');
     }
 
-    public function elimTipoPrenda($id){
+    public function elimTipoPrenda($id){      //ESTO NO VA A JALAR PQ PARA JALAR TENDRIA QUE BORRAR LA PRENDA EN EL DETALLE TAMBIEN
 
         // Encuentra las prendas asociadas al tipo de prenda
-        $prendas = \DB::table('prendas')->where('id_tp', $id)->get();
+        $prendas = \DB::table('prendas_confecciones')->where('id', $id)->get();
         
         foreach ($prendas as $prenda) {
             // Elimina las relaciones en prenda_telas para cada prenda asociada
-            \DB::table('prenda_telas')->where('id_prenda', $prenda->id_prenda)->delete();
+            \DB::table('prendas_telas')->where('id', $prenda->id)->delete();
         }
     
         // Ahora elimina las prendas relacionadas
-        \DB::table('prendas')->where('id_tp', $id)->delete();
+        \DB::table('prendas_confecciones')->where('id', $id)->delete();
     
         TipoPrenda::destroy($id);
         return redirect('/gestion/tipos-prendas');

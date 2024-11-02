@@ -57,7 +57,7 @@
                 <h1 class="Titulo2">Telas</h1>
 
                 <div class="btn-div">
-                <a href=""><button class="btn btn-gest"> <p class="p-btn">Ver Existentes</p> </button></a>
+                <a href="/gestion/tela"><button class="btn btn-gest"> <p class="p-btn">Ver Existentes</p> </button></a>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ class ColorController extends Controller
 {
     public function saveColor(SaveColorRequest $ColorRequest){
         $colorsillo = new Color();
-        $colorsillo -> Color = $ColorRequest -> colorsito;
+        $colorsillo -> color = $ColorRequest -> colorsito;
         $colorsillo -> save();
 
         return redirect('/gestion/catalogo');

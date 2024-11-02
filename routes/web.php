@@ -4,6 +4,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ControladorTipoPrenda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\TelaController;
 use App\Http\Controllers\TiposTelaController;
 
 Route::get('/', function () {
@@ -28,6 +29,11 @@ Route::post('agg/tipotela', [TiposTelaController::class, 'saveTipoTela']);
 Route::get('/elim/material-tela/{id}', [TiposTelaController::class, 'elimMaterialTela']);
 
 Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
+
+Route::get('/gestion/tela', [TelaController::class, 'getTelas']);
+
+Route::post('/agg/tela', [TelaController::class, 'saveTela']);
+
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
