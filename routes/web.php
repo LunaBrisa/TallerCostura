@@ -16,9 +16,8 @@ Route::get('/gestion/catalogo', function(){
     return view('Empleado/DashboardCatalogo');
 });
 Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
-Route::get('/Cliente/ClienteMujeresView', function(){
-    return view('Cliente.ClienteMujeresView');
-});
-Route::get('/Cliente/ClienteHombresView', function(){
-    return view('Cliente.ClienteHombresView');
+Route::get('/Cliente/ClienteMujeresView',[ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
+Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
+Route::get('/Registro', function(){
+    return view('Registro');
 });

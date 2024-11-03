@@ -13,6 +13,7 @@ class prenda extends Model
         'nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id',  'ruta_imagen'
     ];
 
+
     public $timestamps = false;
 
     public function tipoPrenda()

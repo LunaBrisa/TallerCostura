@@ -10,4 +10,12 @@ class ClienteCatalogoController extends Controller
     $prenda = prenda::all();
     return view('Cliente.PcatalogoView',compact('prenda'));
   }
+  public function MostrarMujeres(){
+    $prenda = prenda::where('genero','=','Mujer')->get();
+    return view('Cliente.ClienteMujeresView',compact('prenda'));
+  }
+  public function MostrarHombres(){
+    $prenda = prenda::where('genero','=','Hombre')->get();
+    return view('Cliente.ClienteHombresView',compact('prenda'));
+  }
 }
