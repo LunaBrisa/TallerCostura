@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ControladorTipoPrenda;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\TelaController;
 use App\Http\Controllers\TiposTelaController;
+use App\Http\Controllers\TelaController;
+use App\Http\Controllers\PedidoController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,5 +39,3 @@ Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
 
-Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
