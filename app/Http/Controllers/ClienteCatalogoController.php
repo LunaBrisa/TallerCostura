@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\prenda;
+use App\Models\PrendaConfeccion as prenda;
 
 class ClienteCatalogoController extends Controller
 {

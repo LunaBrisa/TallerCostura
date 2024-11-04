@@ -55,6 +55,13 @@
             <div class="overlay"></div>
         </div>
     </div>
+    <div class="servicio d-flex justify-content-center align-items-center vh-100 position-relative p-5">
+        <div class="contenido">
+            sdsbvdbskvn
+        </div>
+
+        <div class="overlay"></div>
+    </div>
 
     <div id="carouselExampleIndicators" class="carousel slide">      
         <div class="carousel-indicators">
@@ -135,6 +142,16 @@ integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIe
         align-items: center;
         text-align: center;
     }
+    .servicio {
+        background-image: url('/images/Fondo2.png');
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        
+    }
 
     .principal h1 {
         margin-bottom: 20px;
@@ -195,5 +212,11 @@ integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIe
     color: white; 
     background-color: #ff69b4; 
     border-color: #ff69b4;
+}
+.border{
+    width: 450px;
+    height: 400px;
+    padding-block-end: 29px;
+
 }
 </style>
