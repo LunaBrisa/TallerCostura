@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PrendaConfeccion extends Model
 {
+    use HasFactory;
     protected $table = 'prendas_confecciones';
     protected $fillable = ['nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id', 'ruta_imagen'];
     public function tipoPrenda()
