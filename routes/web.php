@@ -5,6 +5,7 @@ use App\Http\Controllers\ControladorTipoPrenda;
 use App\Http\Controllers\TiposTelaController;
 use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PrendaConfeccionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,19 +21,27 @@ Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPre
 
 Route::post('/agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
 
+Route::post('/modif/tipo-prenda', [ControladorTipoPrenda::class, 'modifTipoPrenda']);
+
+//RUTA PARA COLORES
 Route::post('/agg/color', [ColorController::class, 'saveColor']);
 
+//RUTAS PARA MATERIALES DE TELA
 Route::get('/gestion/tipos-telas', [TiposTelaController::class, 'getTiposTela']);
 
 Route::post('agg/tipotela', [TiposTelaController::class, 'saveTipoTela']);
 
-Route::get('/elim/material-tela/{id}', [TiposTelaController::class, 'elimMaterialTela']);
+Route::post('/modif/material-tela', [TiposTelaController::class, 'modifMaterialTela']);
 
-Route::get('/elim/tipo-prenda/{id}', [ControladorTipoPrenda::class, 'elimTipoPrenda']);
-
+//RUTAS PARA TELAS
 Route::get('/gestion/tela', [TelaController::class, 'getTelas']);
 
 Route::post('/agg/tela', [TelaController::class, 'saveTela']);
+
+Route::post('/modif/tela', [TelaController::class, 'modifTela']);
+
+//RUTAS PARA PRENDAS
+Route::get('/gestion/prenda-confeccion', [PrendaConfeccionController::class, 'getPrendasConfeccion']);
 
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {

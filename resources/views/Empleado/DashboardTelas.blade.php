@@ -91,6 +91,45 @@
               <h1 class="list-title">{{$tela->nombre_tela}}</h1>
 
               <h1 class="card-det">{{$tela->materialTela->material_tela}}</h1>
+
+                          <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalModif{{$tela->id}}">
+                Modificar
+              </button>
+    
+              <!-- Modal -->
+              <div class="modal fade" id="ModalModif{{$tela->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Tela</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/modif/tela" method="post">
+                        @csrf
+    
+                        <input type="hidden" name="idtela" value="{{$tela->id}}">
+    
+                        <label for="telilla"><h3 class="h3-modal">Nombre de la Tela</h3></label>
+                        <input type="text" name="telilla" class="form-control"><br>
+
+                        <label for="tipotelilla"><h3 class="h3-modal">Tipo de Tela</h3></label>
+                        <select class="form-select" name="tipotelilla" aria-label="Default select example">
+                            <option selected>Seleccionar el Tipo de Tela Nuevo</option>
+                                @foreach ($misMaterialTela as $matetela)
+                                    <option value="{{$matetela->id}}">{{$matetela->material_tela}}</option>
+                                @endforeach
+                        </select><br>
+                        
+                        <div class="btn-div">
+                          <input type="submit" class="btn btn-intemodal" value="Guardar">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         @endforeach

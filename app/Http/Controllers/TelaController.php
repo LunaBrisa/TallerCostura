@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModifTelaRequest;
 use App\Models\MaterialTela;
 use App\Models\Tela;
 use App\Http\Requests\TelasRequest;
@@ -27,6 +28,19 @@ class TelaController extends Controller
 
         $telita->save();
         
+        return redirect('/gestion/tela');
+    }
+
+    public function modifTela(ModifTelaRequest $modifTelaRequest){
+        $telota = Tela::find($modifTelaRequest->get('idtela'));
+
+        if($telota){
+            $telota->nombre_tela = $modifTelaRequest->get('telilla');
+            $telota->material_tela_id = $modifTelaRequest->get('tipotelilla');
+
+            $telota->save();
+        }
+
         return redirect('/gestion/tela');
     }
 }

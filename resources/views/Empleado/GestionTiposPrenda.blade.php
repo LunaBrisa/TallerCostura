@@ -73,45 +73,47 @@
             </div>
             </div>
         </div>
-    </div><br>  
+    </div><br>
     
     <div class="row">
-    @foreach ($MisTiposPrenda AS $TipoPrendita)
-    <div class="col col-md-4 mb-4">
-        <div class="card card-reg" style="width: 18rem;">
-              <img src="{{ asset('images/ejemplillo.png') }}" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{$TipoPrendita -> tipo_prenda}}</h5><br>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalElim{{$TipoPrendita->id}}">
-                  Eliminar
-                </button>
+      @foreach ($MisTiposPrenda AS $TipoPrendita)
+      <div class="card mb-4 cardsing">
+        <div class="card-body">
+          <h1 class="list-title">{{$TipoPrendita->tipo_prenda}}</h1>
 
-                <!-- Modal -->
-                <div class="modal fade" id="ModalElim{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tipo de Prenda</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <h5 class="h3-modal">Esta seguro de que quiere eliminar este tipo de prenda? <br> Esta accion
-                          eliminara tambien las prendas asociadas a este tipo de prenda.
-                        </h5>
-                        <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}" alt="">
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="/elim/tipo-prenda/{{$TipoPrendita->id}}"><button class="btn btn-intemodal">Eliminar</button></a>
-                      </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalModif{{$TipoPrendita->id}}">
+            Modificar
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="ModalModif{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Tipo de Prenda</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/modif/tipo-prenda" method="post">
+                    @csrf
+
+                    <input type="hidden" name="idtp" value="{{$TipoPrendita->id}}">
+
+                    <label for="tipoprendilla"><h3 class="h3-modal">Tipo de Prenda</h3></label>
+                    <input type="text" name="tipoprendilla" class="form-control"><br>
+                    
+                    <div class="btn-div">
+                      <input type="submit" class="btn btn-intemodal" value="Guardar">
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
+            </div>
+          </div>
         </div>
-        </div>
-     @endforeach
+      </div>
+  @endforeach
     </div>
 
     <div class="row">

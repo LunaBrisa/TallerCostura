@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveTipoPrendaRequest;
+use App\Http\Requests\ModifTipoPrendaRequest;
 use App\Models\TipoPrenda;
 use Illuminate\Http\Request;
 use tidy;
@@ -24,20 +25,14 @@ class ControladorTipoPrenda extends Controller
         return redirect('/gestion/tipos-prendas');
     }
 
-    public function elimTipoPrenda($id){      //ESTO NO VA A JALAR PQ PARA JALAR TENDRIA QUE BORRAR LA PRENDA EN EL DETALLE TAMBIEN
+    public function modifTipoPrenda(ModifTipoPrendaRequest $modifTipoPrendaRequest){
+        $tipoPrenda = TipoPrenda::find($modifTipoPrendaRequest->get('idtp'));
 
-        // Encuentra las prendas asociadas al tipo de prenda
-        $prendas = \DB::table('prendas_confecciones')->where('id', $id)->get();
-        
-        foreach ($prendas as $prenda) {
-            // Elimina las relaciones en prenda_telas para cada prenda asociada
-            \DB::table('prendas_telas')->where('id', $prenda->id)->delete();
+        if ($tipoPrenda) {
+            $tipoPrenda->tipo_prenda = $modifTipoPrendaRequest->get('tipoprendilla');
+            $tipoPrenda->save();
         }
-    
-        // Ahora elimina las prendas relacionadas
-        \DB::table('prendas_confecciones')->where('id', $id)->delete();
-    
-        TipoPrenda::destroy($id);
+
         return redirect('/gestion/tipos-prendas');
     }
 

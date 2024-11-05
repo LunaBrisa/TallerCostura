@@ -78,39 +78,42 @@
 
     <div class="row" style="padding-top: 25px;">
         @foreach ($MisMaterialesTela as $MaterialTelilla)
-            <div class="card mb-4 cardsing">
-              <div class="card-body">
-                <h1 class="list-title">{{$MaterialTelilla->material_tela}}</h1>
-
-
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalElim{{$MaterialTelilla->id_material_tela}}">
-                  Eliminar
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="ModalElim{{$MaterialTelilla->id_material_tela}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tipo de Tela</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="card mb-4 cardsing">
+          <div class="card-body">
+            <h1 class="list-title">{{$MaterialTelilla->material_tela}}</h1>
+  
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalModif{{$MaterialTelilla->id}}">
+              Modificar
+            </button>
+  
+            <!-- Modal -->
+            <div class="modal fade" id="ModalModif{{$MaterialTelilla->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Material de Tela</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/modif/material-tela" method="post">
+                      @csrf
+  
+                      <input type="hidden" name="idmate" value="{{$MaterialTelilla->id}}">
+  
+                      <label for="materialtelilla"><h3 class="h3-modal">Material de Tela</h3></label>
+                      <input type="text" name="materialtelilla" class="form-control"><br>
+                      
+                      <div class="btn-div">
+                        <input type="submit" class="btn btn-intemodal" value="Guardar">
                       </div>
-                      <div class="modal-body">
-                        <h5 class="h3-modal">Esta seguro de que quiere eliminar este tipo de tela? <br> Esta accion
-                          eliminara tambien las telas asociadas a este tipo de tela.
-                        </h5>
-                        <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}" alt="">
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                        <a href="/elim/material-tela/{{$MaterialTelilla->id_material_tela}}"><button class="btn btn-intemodal">Eliminar</button></a>
-                      </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
         @endforeach
     </div>
 </div>

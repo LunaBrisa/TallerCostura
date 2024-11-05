@@ -45,7 +45,7 @@
                 <h1 class="Titulo2">Prendas</h1>
 
                 <div class="btn-div">
-                <a href=""><button class="btn btn-gest"> <p class="p-btn">Ver Existentes</p> </button></a>
+                <a href="/gestion/prenda-confeccion"><button class="btn btn-gest"> <p class="p-btn">Ver Existentes</p> </button></a>
                 </div>
 
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ModifMateTelaRequest;
 use App\Http\Requests\SaveTipoTela;
 use App\Models\MaterialTela;
 use Illuminate\Http\Request;
@@ -24,16 +25,14 @@ class TiposTelaController extends Controller
         return redirect('/gestion/tipos-telas');
     }
 
-    public function elimMaterialTela($id){
-        $telas = \DB::table('telas')->where('id_material_tela', $id)->get();
+    public function modifMaterialTela(ModifMateTelaRequest $modifMateTelaRequest){
+        $matetela = MaterialTela::find($modifMateTelaRequest->get('idmate'));
 
-        foreach ($telas as $tela) {
-            \DB::table('prenda_telas')->where('id_tela', $tela->id_tela)->delete();
+        if($matetela){
+            $matetela->material_tela = $modifMateTelaRequest->get('materialtelilla');
+            $matetela->save();
         }
 
-        \DB::table('telas')->where('id_material_tela', $id)->delete();
-
-        MaterialTela::destroy($id);
         return redirect('/gestion/tipos-telas');
     }
 }
