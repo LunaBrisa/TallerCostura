@@ -1,0 +1,102 @@
+.texto1 {
+    background-color: black;
+    z-index: 1;
+    opacity: 70%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: auto;
+    max-width: 80%;
+  }
+
+    .servicio {
+        background-image: url('/images/Fondo2.png');
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat; 
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        
+    }
+    .contenido {
+            position: relative;
+            z-index: 1;
+            color: #1a237e; 
+            
+        }
+        .texto-box1 {
+            background-color: rgba(7, 2, 2, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            height: 400px;      
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .texto-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            height: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .texto {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin-left: 200px;   
+            margin-top: 500px;   
+            border-radius: 10px;
+            height: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+    .historia {
+        width: 100%;
+        max-width: 100vw;
+        height: 450px;
+        background-image: url('/images/FondoH.png');
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .historia h1 {
+        color: white;
+        z-index: 2;
+        position: relative;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ECDFCB;
+        z-index: 1;
+        opacity: 50%;
+    }
+    .carousel-inner img {
+    width: 70%; 
+    height: 400px; 
+    object-fit: cover; 
+    margin: 0 auto; 
+}
+
+.carousel {
+    margin: 0 auto; 
+}
+
+.btn-hover:hover {
+    color: white; 
+    background-color: #ff69b4; 
+    border-color: #ff69b4;
+}
+.border{
+    width: 450px;
+    height: 400px;
+    padding-block-end: 29px;
+
+}

@@ -4,6 +4,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ControladorTipoPrenda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
+use App\Http\Controllers\ClienteRegistroController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,4 @@ Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'Mo
 Route::get('/Registro', function(){
     return view('Registro');
 });
+Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');

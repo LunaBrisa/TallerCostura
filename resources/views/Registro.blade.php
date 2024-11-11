@@ -35,51 +35,27 @@
     </div>
 </nav>
          
-    <div class="container">
-      <h1>Registro</h1>
-      <form action="/Registro" method="post">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Apellido Paterno</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Paterno">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Apellido Materno</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apellido Materno">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
-          <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Fecha de Nacimiento">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Telefono</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telefono">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Email">
-        </div>
-        <div class="mb-3">
+<div class="container mt-4">
+  <h1>Registro</h1>
+  <form action="{{ route('Registro.RegistrarCliente') }}" method="post">
+      @csrf
+      <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre de Usuario">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Contraseña">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Confirmar Contraseña</label>
-          <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Confirmar Contraseña">
-        </div>
-        <div class="d-grid gap-2 col-6 mx-auto" style="margin:50px">
-          <button class="btn btn-info" type="button">Registrar</button>
-        
-        </div>
-  </div>
+          <input type="text" class="form-control" id="exampleFormControlInput1" name="nombre_usuario" placeholder="Nombre de Usuario">
+      </div>
+      <div class="mb-3">
+          <label for="exampleFormControlInput2" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="exampleFormControlInput2" name="contrasena" placeholder="Contraseña">
+      </div>
+      <div class="mb-3">
+          <label for="exampleFormControlInput3" class="form-label">Rol</label>
+          <input type="text" class="form-control" id="exampleFormControlInput3" name="rol_nombre" placeholder="Rol">
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto" style="margin:50px">
+          <button class="btn btn-info" type="submit">Registrar</button> 
+      </div>
   </form>
+</div>
   
 
       <div class="footer">
