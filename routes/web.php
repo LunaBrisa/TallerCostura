@@ -43,8 +43,14 @@ Route::post('/modif/tela', [TelaController::class, 'modifTela']);
 //RUTAS PARA PRENDAS
 Route::get('/gestion/prenda-confeccion', [PrendaConfeccionController::class, 'getPrendasConfeccion']);
 
+Route::post('/agg/prenda-confeccion', [PrendaConfeccionController::class, 'savePrendaConfeccion']);
+
+Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaPrendasConfeccion']);
+
+Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
+
+
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
-

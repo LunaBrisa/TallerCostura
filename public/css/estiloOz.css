@@ -50,6 +50,15 @@ h1.Titulo2{
     width: 90%;
 }
 
+.btn-div2{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 90%;
+}
+
 .btn-gest{
     margin: auto;
     display: flex;
@@ -225,4 +234,67 @@ h1.Titulomodal{
     color: #BE5A8C;
     font-weight: 500;
     font-size: 18px;
+}
+
+.radio-text{
+    font-size: 20px;
+    color: #BE5A8C;
+}
+
+.p-card{
+    color: #BE5A8C;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+
+.img-div {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 25px;
+    border: solid 2px;
+    border-color:#8A226F ;
+    margin-top: auto;
+}
+
+.img-div img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.card{
+    padding: 10px;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10%;
+}
+
+.containerModif{
+    margin: auto;
+    width: 70vw;
+    background-color: #FFCDD4;
+    padding-top: 25px;
+    border: solid 2px;
+    border-color: #8A226F;  
+    border-radius: 40px;
+}
+
+.h1-modif{
+    color:#8A226F;
+    font-size: 35px;
+}   
+
+.conteform{
+    margin: auto;
+    width: 80%;
+    background-color: #FFCDD4;  
+    padding-top: 25px;
 }
