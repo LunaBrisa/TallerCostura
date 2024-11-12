@@ -1,101 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
-    <title>Taller Costura</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Taller Costura</title>
 </head>
-<body>
-    <nav class="navbar">
-    <div class="container" >
-        <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-        <a class="navbar-brand">Taller Costura</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
+<body style="background-image: url('/images/F.jpg'); background-size: cover;">
+    @extends('layouts.nav')
+
+    @section('content')
+    <div class="container mt-4 mb-5 p-4" style="max-width: 900px; background-color: #ECDFDB; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="p-2 mb-3" style="border: 2px solid white; background-color: #F4D9EC;">
+            <h1 class="text-center">Registro</h1>
         </div>
+
+        <form action="{{ route('Registro.RegistrarCliente') }}" method="post">
+            @csrf
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="nombre_usuario" class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('nombre_usuario') }}">
+                    @error('nombre_usuario')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="contrasena" id="contrasena" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('contrasena') }}">
+                    @error('contrasena')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('nombre') }}">
+                    @error('nombre')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="apellido_p" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" name="apellido_p" id="apellido_p" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('apellido_p') }}">
+                    @error('apellido_p')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="apellido_m" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" name="apellido_m" id="apellido_m" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old('apellido_m')}}">
+                    @error('apellido_m')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" name="telefono" id="telefono" style="border: #B5C5D7 2px solid; font-size: larger;" value=" {{ old ('telefono') }}">
+                    @error('telefono')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" class="form-control" name="correo" id="correo" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('correo')}}">
+                    @error('correo')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="compania" class="form-label">Compañía</label>
+                    <input type="text" class="form-control" name="compania" id="compania" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('compania')}}">
+                    @error('compania')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <input type="text" class="form-control" name="cargo" id="cargo" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('cargo')}}">
+                    @error('cargo')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn" style="background-color:#B5C5D7; width: 200px; font-size: larger; border-radius: 8px;">Registrar</button>
+            </div>
+        </form>
     </div>
-</nav>
-         
-<div class="container mt-4">
-  <h1>Registro</h1>
-  <form action="{{ route('Registro.RegistrarCliente') }}" method="post">
-      @csrf
-      <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="exampleFormControlInput1" name="nombre_usuario" placeholder="Nombre de Usuario">
-      </div>
-      <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="exampleFormControlInput2" name="contrasena" placeholder="Contraseña">
-      </div>
-      <div class="mb-3">
-          <label for="exampleFormControlInput3" class="form-label">Rol</label>
-          <input type="text" class="form-control" id="exampleFormControlInput3" name="rol_nombre" placeholder="Rol">
-      </div>
-      <div class="d-grid gap-2 col-6 mx-auto" style="margin:50px">
-          <button class="btn btn-info" type="submit">Registrar</button> 
-      </div>
-  </form>
-</div>
-  
+    @endsection
 
-      <div class="footer">
-        <p>Taller Costura 2022</p>
-      </div>
-
-<script 
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<style>
-   .navbar {
-    
-        background-color: black;
-    }
-
-    .navbar a {
-        color: white;
-    }
-
-    .navbar a:hover {
-        color: lightgray;
-    }
-
-    .navbar-toggler-icon {
-        filter: invert(1);
-    }
-
-.footer {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-}
-
-</style>

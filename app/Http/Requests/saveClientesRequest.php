@@ -22,7 +22,15 @@ class saveClientesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre_usuario' => 'required|string|min:3|max:50',
+            'contrasena' => 'required|string|min:6|max:10',
+            'nombre' => 'required|string|min:3|max:50',
+            'apellido_p' => 'required|string|min:3|max:50',
+            'apellido_m' => 'required|string|max:255',
+            'telefono' => 'required|digits:10',
+            'correo' => 'required|string|min:10|max:100',
+            'compania' => 'required|string|min:5|max:50',
+            'cargo' => 'max:50',
         ];
     }
 }

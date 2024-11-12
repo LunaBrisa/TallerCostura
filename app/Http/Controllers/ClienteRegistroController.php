@@ -7,25 +7,38 @@ use App\Models\Usuario;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\saveClientesRequest;
 
 class ClienteRegistroController extends Controller
 {
-    public function RegistrarCliente(Request $request): RedirectResponse
+    public function RegistrarCliente(saveClientesRequest $request): RedirectResponse
     {
         $nombre_usuario = $request->input('nombre_usuario');
         $contrasena = $request->input('contrasena');
-        $rol_nombre = $request->input('rol_nombre');
+        $nombre = $request->input('nombre');
+        $apellido_p = $request->input('apellido_p');
+        $apellido_m = $request->input('apellido_m');
+        $telefono = $request->input('telefono');
+        $correo = $request->input('correo');
+        $compania = $request->input('compania');
+        $cargo = $request->input('cargo');
 
         try {
-            DB::statement('CALL crear_usuario(?, ?, ?)', [
+            DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                 $nombre_usuario,
                 $contrasena,
-                $rol_nombre
+                $nombre,
+                $apellido_p,
+                $apellido_m,
+                $telefono,
+                $correo,
+                $compania,
+                $cargo
             ]);
 
-            return redirect()->back()->with('success', 'Usuario creado exitosamente.');
+            return redirect()->back()->with('success', 'Cliente creado exitosamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al crear el usuario: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
         }
     }
 
