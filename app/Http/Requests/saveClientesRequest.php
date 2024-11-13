@@ -24,12 +24,12 @@ class saveClientesRequest extends FormRequest
         return [
             'nombre_usuario' => 'required|string|min:3|max:50',
             'contrasena' => 'required|string|min:6|max:10',
-            'nombre' => 'required|string|min:3|max:50',
-            'apellido_p' => 'required|string|min:3|max:50',
-            'apellido_m' => 'required|string|max:255',
+            'nombre' => 'required|alpha_spaces|min:3|max:50',
+            'apellido_p' => 'required|alpha_spaces|min:3|max:50',
+            'apellido_m' => 'required|alpha_spaces|max:255',
             'telefono' => 'required|digits:10',
-            'correo' => 'required|string|min:10|max:100',
-            'compania' => 'required|string|min:5|max:50',
+            'correo' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|gov)',
+            'compania' => 'required|alpha_spaces|min:5|max:50',
             'cargo' => 'max:50',
         ];
     }

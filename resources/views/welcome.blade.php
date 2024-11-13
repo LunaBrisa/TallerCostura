@@ -87,6 +87,10 @@
 </div>
 
 <div class="container coleccion mt-4">
+    <h1 class="text-black text-center p-2" style="font-size: 60px; position: relative; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
+        Colección de ropa
+    </h1>
+    <hr style="border-top: 2px solid black; margin: 5px 0; width: 40%; margin-left: 30%;">
     <div class="row g-4"> 
         <div class="col-md-4"> 
             <div class="card h-100">
@@ -145,10 +149,10 @@
     hyphens: auto;
 }
 
+
 .servicio {
     background-image: url('/images/Fondo2.png');
     height: 88vh;
-    background-repeat: no-repeat; 
     background-size: cover;
     background-position: center;
 }
