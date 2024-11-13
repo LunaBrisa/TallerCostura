@@ -60,13 +60,13 @@
                 <input type="hidden" name="idesote" value="{{$misPrendas -> id}}">
 
                 <label for="nombreprendota"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
-                <input type="text" class="form-control" name="nombreprendota"><br>
+                <input type="text" class="form-control" name="nombreprendota" placeholder="{{$misPrendas -> nombre_prenda}}"><br>
         
                 <label for="descripcionprendota"><h3 class="h3-modal">Descripcion de la Prenda</h3></label>
-                <textarea class="form-control" name="descripcionprendota" rows="3"></textarea><br>
+                <textarea class="form-control" name="descripcionprendota" rows="3" placeholder="{{$misPrendas -> descripcion}}"></textarea><br>
 
                 <label for="precioprendota"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                <input type="number" class="form-control" name="precioprendota" placeholder="$"><br>
+                <input type="number" class="form-control" name="precioprendota" placeholder="${{$misPrendas -> precio}}"><br>
 
                 <label for="tipoprendota"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                 <select name="tipoprendota" class="form-select" aria-label="Default select example">
@@ -85,10 +85,16 @@
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="generote" id="Mujer" value="Mujer">
                     <label class="form-check-label" for="Mujer"><h2 class="radio-text">Mujer</h2></label>
-                  </div><br>
+                  </div><br><br>
 
-                  <br>
-                <input type="submit" class="btn btn-modal-sub" value="Guardar">
+                  <div class="row">
+                    <div class="col">
+                      <a href="/gestion/prenda-confeccion"><button class="btn btn-modal-sub">Cancelar</button></a>
+                    </div>
+                    <div class="col">
+                      <input type="submit" class="btn btn-modal-sub" value="Guardar">
+                    </div>
+                  </div>
             </form><br>
         </div>
     </div>

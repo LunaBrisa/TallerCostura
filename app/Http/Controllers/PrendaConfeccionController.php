@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class PrendaConfeccionController extends Controller
 {
     public function getPrendasConfeccion(){
-        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas.tela', 'prendasTelas.color']) -> get();
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'prendasTelas.color']) -> get();
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
         $colorsillos = Color::all();
@@ -45,7 +45,10 @@ class PrendaConfeccionController extends Controller
     public function vistaPrendasConfeccion($id){
         return view('Empleado/ModificacionPrendaConfeccion')->with([
             'misPrendas' => PrendaConfeccion::find($id),
-            'misTiposPrendas' => TipoPrenda::all()
+            'misTiposPrendas' => TipoPrenda::all(),
+            'misTelasdePenda' => PrendaTela::all()->where('prenda_confeccion_id', $id),
+            'misTelas' => Tela::all(),
+            'misColroes' => Color::all()
         ]);
     }
 

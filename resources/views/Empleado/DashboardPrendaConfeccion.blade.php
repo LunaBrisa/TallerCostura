@@ -124,7 +124,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -153,6 +153,21 @@
 
                     <label for="tipoprenda"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                     <input type="text" class="form-control" name="tipoprenda" placeholder="{{$prenda -> tipoPrenda->tipo_prenda}}" readonly><br>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="telotas"><h3 class="h3-modal">Telas de la Prenda</h3></label>
+                        @foreach ($prenda -> prendasTelas as $tela)
+                          <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
+                        @endforeach
+                      </div>
+                      <div class="col">
+                        <label for="color"><h3 class="h3-modal">Color de la Tela</h3></label>
+                        @foreach ($prenda -> prendasTelas as $color)
+                          <input type="text" class="form-control" name="color" placeholder="{{$color -> color->color}}" readonly><br>
+                        @endforeach
+                      </div>
+                    </div>
 
                   </form>
                 </div>

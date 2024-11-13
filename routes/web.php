@@ -6,6 +6,7 @@ use App\Http\Controllers\TiposTelaController;
 use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaConfeccionController;
+use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,6 +50,9 @@ Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaP
 
 Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
 
+Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
+
+Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
 
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
