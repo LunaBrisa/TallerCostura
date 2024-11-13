@@ -161,12 +161,6 @@
                           <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
                         @endforeach
                       </div>
-                      <div class="col">
-                        <label for="color"><h3 class="h3-modal">Color de la Tela</h3></label>
-                        @foreach ($prenda -> prendasTelas as $color)
-                          <input type="text" class="form-control" name="color" placeholder="{{$color -> color->color}}" readonly><br>
-                        @endforeach
-                      </div>
                     </div>
 
                   </form>
