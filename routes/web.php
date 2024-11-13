@@ -7,10 +7,13 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaConfeccionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GestionUsuariosControllers;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::get('/gestion/catalogo', function(){
     return view('Empleado/DashboardCatalogo');
@@ -48,3 +51,9 @@ Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
 
+
+
+Route::get('/GestionUsuarios', [GestionUsuariosControllers::class, 'index'])->name('usuarios.index');
+Route::resource('personas', GestionUsuariosControllers::class);
+Route::put('/personas/{id}', [GestionUsuariosControllers::class, 'update'])->name('personas.update');
+Route::post('/personas', [GestionUsuariosControllers::class, 'store'])->name('personas.store');
