@@ -18,9 +18,4 @@ class Usuario extends Model
     {
         return $this->hasOne(Persona::class);
     }
-
-    public function pedidos()
-    {
-        return $this->hasMany(Pedido::class);
-    }
 }

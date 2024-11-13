@@ -3,116 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <title>Dashboard de Pedidos</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
-    th {
-        background-color: #f8f8f8;
-    }
-    .text-blue-500 {
-        color: #3490dc;
-    }
-    .navbar {
-        background-color: black;
-    }
-
-    .navbar a {
-        color: white;
-    }
-
-    .navbar a:hover {
-        color: lightgray;
-    }
-
-    .navbar-toggler-icon {
-        filter: invert(1);
-    }
+        :root {
+            --main-bg-color: #3490dc;
+            --navbar-bg-color: black;
+            --navbar-text-color: white;
+            --hover-color: lightgray;
+        }
+        .navbar {
+            background-color: var(--navbar-bg-color);
+        }
+        .navbar a {
+            color: var(--navbar-text-color);
+        }
+        .navbar a:hover {
+            color: var(--hover-color);
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
-<body class="bg-gray-100">
-        <nav class="navbar">
-            <div class="container" >
-                <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-                <a class="navbar-brand" href="#">Taller Costura</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-pink-600">Pedidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="text-pink-600">Producción</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="text-pink-600">Insumos</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-pink-600">Servicios</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-pink-600">Clientes</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-pink-600">Finanzas</a>
-                        </li>
-                    </ul>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="{{ asset('images/logo.png') }}" width="155" height="85">
+            <a class="navbar-brand" href="#">Taller Costura</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/produccion') }}">Producción</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Insumos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Finanzas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Número de Pedidos</h5>
+                        <p>Total: {{ $estadisticas['totalPedidos'] }}</p>
+                        <p>Pendientes: {{ $estadisticas['pedidosEnProceso'] }}</p>
+                        <p>Completados: {{ $estadisticas['pedidosCompletados'] }}</p>
+                    </div>
                 </div>
             </div>
-        </nav>
-    
-    
-    <div class="container mx-auto p-4">
-        <table class="w-full bg-white shadow-md rounded">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="p-2">#Orden</th>
-                    <th class="p-2">Usuario</th>
-                    <th class="p-2">Empleado</th>
-                    <th class="p-2">Fecha de Orden</th>
-                    <th class="p-2">Fecha de Entrega</th>
-                    <th class="p-2">Servicio</th>
-                    <th class="p-2">Total</th>
-                    <th class="p-2">Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($pedidos as $pedido)
-                    <tr class="border-b">
-                        <td class="p-2 text-center">{{ $pedido->id }}</td>
-                        <td class="p-2 text-center">{{ $pedido->usuario_id }}</td>
-                        <td class="p-2 text-center">{{ $pedido->empleado_id }}</td>
-                        <td class="p-2 text-center">{{ $pedido->fecha_pedido }}</td>
-                        <td class="p-2 text-center">{{ $pedido->fecha_entrega }}</td>
-                        <td class="p-2 text-center">{{ $pedido->servicio }}</td>
-                        <td class="p-2 text-center">{{ $pedido->total }}</td>
-                        <td class="p-2 text-center">
-                            <a href="{{ route('pedidos.show', ['id' => $pedido->id]) }}">Ver Pedido</a>
-                        </td>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ingresos Generados</h5>
+                        <p>Total: ${{ number_format($estadisticas['totalIngresos'], 2) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="GET" action="{{ route('pedidos.index') }}">
+            <div class="d-flex">
+                <input type="text" class="form-control" name="orden" placeholder="Buscar por Orden" value="{{ request()->input('orden') }}">
+                <input type="text" class="form-control ml-2" name="cliente" placeholder="Buscar por Cliente" value="{{ request()->input('cliente') }}">
+                <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createOrderModal">Crear Pedido</button>
+        <form action="{{ route('pedidos.index') }}" method="GET" class="d-flex">
+            <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
+            <button type="submit" class="btn btn-secondary mx-1" name="estado" value="Completado">Pedidos Completados</button>
+            <button type="submit" class="btn btn-warning mx-1" name="estado" value="Pendiente">Pedidos Pendientes</button>
+        </form>
+        <!-- Pedidos Table -->
+        <div class="table-responsive my-4">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th id="header-id" class="sortable" style="cursor: pointer;">#Orden</th>
+                        <th id="header-usuario" class="sortable" style="cursor: pointer;">Cliente</th>
+                        <th id="header-empleado" class="sortable" style="cursor: pointer;">Empleado</th>
+                        <th id="header-fecha-pedido" class="sortable" style="cursor: pointer;">Fecha de Orden</th>
+                        <th id="header-fecha-entrega" class="sortable" style="cursor: pointer;">Fecha de Entrega</th>
+                        <th>Descripción</th>
+                        <th id="header-estado" class="sortable" style="cursor: pointer;">Estado</th>
+                        <th id="header-total" class="sortable" style="cursor: pointer;">Total</th>
+                        <th>Detalles</th>
                     </tr>
-               @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($pedidos as $pedido)
+                        <tr>
+                            <td>{{ $pedido->id }}</td>
+                            <td>{{ $pedido->cliente->persona->nombre }}</td>
+                            <td>{{ $pedido->empleado->persona->nombre }}</td>
+                            <td>{{ $pedido->fecha_pedido }}</td>
+                            <td>{{ $pedido->fecha_entrega }}</td>
+                            <td>{{ $pedido->descripcion }}</td>
+                            <td>{{ $pedido->estado }}</td>
+                            <td>${{ number_format($pedido->total, 2) }}</td>
+                            <td><a href="{{ route('pedidos.show', ['id' => $pedido->id]) }}" class="text-decoration-none"><i class="bi bi-eye"></i> Ver Pedido</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            
+        </div>
     </div>
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Modal Crear Pedido -->
+<div class="modal fade" id="createOrderModal" tabindex="-1" aria-labelledby="createOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createOrderModalLabel">Crear Pedido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('pedidos.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <!-- Información del Pedido -->
+                    <div class="mb-3">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select name="cliente" id="cliente" class="form-control" required>
+                            <option value="">Seleccione un Cliente</option>
+                            @foreach($estadisticas['clientes'] as $cliente)
+                                <option value="{{ $cliente->id }}">{{ $cliente->persona->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empleado" class="form-label">Empleado</label>
+                        <select name="empleado" id="empleado" class="form-control" required>
+                            <option value="">Seleccione un Empleado</option>
+                            @foreach($estadisticas['empleados'] as $empleado)
+                                <option value="{{ $empleado->id }}">{{ $empleado->persona->nombre  }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
+                        <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+                        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    
+                    <!-- Sección Detalles de Lotes -->
+                    <h5>Detalles de Lotes</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Prenda</th>
+                                <th>Precio por prenda</th>
+                                <th>Cantidad</th>
+                                <th>Anticipo</th>
+                                <th>Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lotesDetailsTable">
+                            <tr>
+                                <td><input type="text" name="detalles_lote[0][prenda]" class="form-control" ></td>
+                                <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01"  oninput="updateLoteTotal(this)"></td>
+                                <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+                                <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" step="0.01"  oninput="updateLoteTotal(this)"></td>
+                                <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
+                                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-secondary" onclick="addRow('lotesDetailsTable')">Agregar Lote</button>
 
+                    <!-- Sección Detalles de Reparaciones -->
+                    <h5>Detalles de Reparaciones</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Prenda</th>
+                                <th>Descripción Problema</th>
+                                <th>Servicio</th>
+                                <th>Cantidad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reparacionesDetailsTable">
+                            <tr>
+                                <td><input type="text" name="reparacion_prendas[]" class="form-control"></td>
+                                <td><input type="text" name="reparacion_descripciones[]" class="form-control"></td>
+                                <td><input type="text" name="reparacion_servicios[]" class="form-control"></td>
+                                <td><input type="number" name="reparacion_cantidades[]" class="form-control"></td>
+                                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-secondary" onclick="addRow('reparacionesDetailsTable')">Agregar Reparación</button>
+
+                    <!-- Sección Detalles de Confecciones -->
+                    <h5>Detalles de Confecciones</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Prenda</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="confeccionesDetailsTable">
+                            <tr>
+                                <td><input type="text" name="confeccion_prendas[]" class="form-control" ></td>
+                                <td><input type="number" name="confeccion_cantidades[]" class="form-control"oninput="updateConfeccionTotal(this)"></td>
+                                <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
+                                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const headers = document.querySelectorAll('.sortable'); // Obtener todos los encabezados con la clase "sortable"
+        const table = document.querySelector('table');
+        const tbody = table.querySelector('tbody');
+    
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const index = Array.from(header.parentNode.children).indexOf(header); // Obtener el índice de la columna
+                ordenarTabla(index);
+            });
+        });
+    
+        let ordenAscendente = true; // Variable de estado para alternar entre mayor y menor
+    
+        function ordenarTabla(indice) {
+            const filas = Array.from(tbody.rows);
+            const esNumerico = indice === 0 || indice === 7; // Índices de las columnas numéricas: ID (0) y Total (7)
+    
+            filas.sort(function(a, b) {
+                const celdaA = a.cells[indice].textContent.trim();
+                const celdaB = b.cells[indice].textContent.trim();
+    
+                if (esNumerico) {
+                    // Ordenar numéricamente (de mayor a menor o de menor a mayor)
+                    return ordenAscendente ? parseFloat(celdaA.replace('$', '').replace(',', '')) - parseFloat(celdaB.replace('$', '').replace(',', '')) : parseFloat(celdaB.replace('$', '').replace(',', '')) - parseFloat(celdaA.replace('$', '').replace(',', ''));
+                } else {
+                    // Ordenar alfabéticamente
+                    return ordenAscendente ? celdaA.localeCompare(celdaB) : celdaB.localeCompare(celdaA);
+                }
+            });
+    
+            // Alternar el estado de ordenación
+            ordenAscendente = !ordenAscendente;
+    
+            // Añadir las filas ordenadas nuevamente al tbody
+            filas.forEach(function(fila) {
+                tbody.appendChild(fila);
+            });
+        }
+    });
+    </script>
+    
+<script>
+    // Función para añadir una nueva fila en una tabla específica
+    function addRow(tableId) {
+        const table = document.getElementById(tableId);
+        const newRow = table.rows[0].cloneNode(true);
+        newRow.querySelectorAll('input').forEach(input => input.value = '');
+        table.appendChild(newRow);
+    }
+
+    // Función para eliminar una fila específica
+    function removeRow(button, tableId) {
+        const table = document.getElementById(tableId);
+        if (table.rows.length > 1) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+    }
+
+    // Funciones para actualizar los totales en las filas de lotes y confecciones
+    function updateLoteTotal(input) {
+        const row = input.closest('tr');
+        const cantidad = row.querySelector('input[name="detalles_lote[0][cantidad]"]').value;
+        const precio = row.querySelector('input[name="detalles_lote[0][precio_por_prenda]"]').value;
+        const anticipo = row.querySelector('input[name="detalles_lote[0][anticipo]"]').value;
+        const subtotal = row.querySelector('input[name="detalles_lote[0][subtotal]"]');
+        subtotal.value = ((cantidad * precio)-anticipo).toFixed(2);
+    }
+
+    function updateConfeccionTotal(input) {
+        const row = input.closest('tr');
+        const cantidad = row.querySelector('input[name="confeccion_cantidades[]"]').value;
+        const subtotal = row.querySelector('input[name="confeccion_subtotales[]"]');
+        subtotal.value = (cantidad * 1).toFixed(2); // Cambia 1 por el precio si es necesario
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

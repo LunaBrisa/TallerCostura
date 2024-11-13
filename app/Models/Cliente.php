@@ -13,4 +13,8 @@ class Cliente extends Model
     {
         return $this->belongsTo(Persona::class);
     }
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
 }
