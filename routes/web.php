@@ -5,6 +5,8 @@ use App\Http\Controllers\ControladorTipoPrenda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
+use App\Http\Controllers\ServiceController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +25,13 @@ Route::get('/Registro', function(){
     return view('Registro');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+
+// Rutas para la opcion de servicios 
+
+Route::get('/servicios', [ServiceController::class, 'index'])->name('servicios.index');
+Route::get('/servicios/create', [ServiceController::class, 'create'])->name('servicios.create');
+Route::post('/servicios', [ServiceController::class, 'store'])->name('servicios.store');
+Route::get('/servicios/{id}/edit', [ServiceController::class, 'edit'])->name('servicios.edit');
+Route::put('/servicios/{id}', [ServiceController::class, 'update'])->name('servicios.update');
+Route::delete('/servicios/{id}', [ServiceController::class, 'destroy'])->name('servicios.destroy');
+
