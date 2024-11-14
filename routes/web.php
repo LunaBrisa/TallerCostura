@@ -2,29 +2,22 @@
 
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ControladorTipoPrenda;
-<<<<<<< HEAD
 use App\Http\Controllers\TiposTelaController;
 use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaConfeccionController;
 use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
-=======
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
->>>>>>> fdb26156aee5f4e6d331dafe09d0835057a34a4a
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-=======
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
->>>>>>> fdb26156aee5f4e6d331dafe09d0835057a34a4a
 Route::get('/gestion/catalogo', function(){
     return view('Empleado/DashboardCatalogo');
 });
@@ -70,7 +63,4 @@ Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index')
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
-<<<<<<< HEAD
-=======
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
->>>>>>> fdb26156aee5f4e6d331dafe09d0835057a34a4a
