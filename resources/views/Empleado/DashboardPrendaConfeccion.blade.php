@@ -90,9 +90,18 @@
                           @endforeach
                         </select><br>
 
-                        <label for="imagencita"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                        <input type="file" name="imagencita" class="form-control-file">
-                        <br><br>
+                        <label for="colorprendita"><h3 class="h3-modal">Color de la Prenda</h3></label>
+                        <select name="colorprendita" class="form-select" aria-label="Default select example">
+                          <option selected>Seleccionar el Color de la Prenda</option>
+                          @foreach ($misColores as $color)
+                            <option value="{{$color->id}}">{{$color->color}}</option>
+                          @endforeach
+                        </select><br>
+
+                        <div class="mb-3">
+                          <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
+                          <input class="form-control" type="file" id="imagencita">
+                        </div>
 
                         <div class="btn-div">
                           <input type="submit" class="btn btn-modal-sub" value="Guardar">
@@ -121,6 +130,8 @@
           <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
             Ver Mas
           </button>
+
+          <butto class="btn btn-intemodal">Ocultar</button>
         </div>
 
         <!-- Modal -->
@@ -153,6 +164,9 @@
 
                     <label for="tipoprenda"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                     <input type="text" class="form-control" name="tipoprenda" placeholder="{{$prenda -> tipoPrenda->tipo_prenda}}" readonly><br>
+
+                    <label for="colorprenda"><h3 class="h3-modal">Color de la Prenda</h3></label>
+                    <input type="text" class="form-control" name="colorprenda" placeholder="{{$prenda -> prendasColor ->color}}" readonly><br>
 
                     <div class="row">
                       <div class="col">

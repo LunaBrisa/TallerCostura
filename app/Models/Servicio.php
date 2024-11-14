@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Servicio extends Model
 {
-    protected $table = 'servicios';
-    protected $fillable = ['servicio', 'descripcion', 'precio'];
+    use HasFactory;
 
-    public function detallesServicios()
+    protected $table = 'servicios';
+
+    protected $fillable = [
+        'servicio',
+        'descripcion',
+        'precio',
+        'visible'
+    ];
+
+    // Relación con PrendasReparaciones (uno a muchos)
+    public function prendasReparaciones()
     {
-        return $this->hasMany(DetalleServicio::class);
+        return $this->hasMany(PrendaReparacion::class);
     }
 }

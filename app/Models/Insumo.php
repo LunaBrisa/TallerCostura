@@ -14,8 +14,8 @@ class Insumo extends Model
         return $this->hasMany(DetalleInsumo::class);
     }
 
-    public function detallesServicios()
+    public function prendasReparaciones()
     {
-        return $this->hasMany(DetalleServicio::class);
+        return $this->hasMany(PrendaReparacion::class);
     }
 }

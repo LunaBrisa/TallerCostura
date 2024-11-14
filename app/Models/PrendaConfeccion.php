@@ -9,7 +9,7 @@ class PrendaConfeccion extends Model
 {
     use HasFactory;
     protected $table = 'prendas_confecciones';
-    protected $fillable = ['nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id', 'ruta_imagen'];
+    protected $fillable = ['nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id', 'ruta_imagen', 'visible'];
 
     public function tipoPrenda()
     {
@@ -24,5 +24,9 @@ class PrendaConfeccion extends Model
     public function prendasTelas()
     {
         return $this->hasMany(PrendaTela::class);
+    }
+    public function prendasColor()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
     }
 }

@@ -75,6 +75,14 @@
                     <option value="{{$tipoPrenda->id}}">{{$tipoPrenda->tipo_prenda}}</option>
                   @endforeach
                 </select><br>
+
+                <label for="colorprendota"><h3 class="h3-modal">Color de la Prenda</h3></label>
+                <select name="colorprendota" class="form-select" aria-label="Default select example">
+                  <option selected>Seleccionar el Color de la Prenda</option>
+                  @foreach ($misColores as $color)
+                    <option value="{{$color->id}}">{{$color->color}}</option>
+                  @endforeach
+                </select><br>
         
                 <label for="generote"><h3 class="h3-modal">Genero de la Prenda</h3></label><br>
         

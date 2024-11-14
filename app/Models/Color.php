@@ -11,6 +11,6 @@ class Color extends Model
 
     public function prendasTelas()
     {
-        return $this->hasMany(PrendaTela::class);
+        return $this->hasMany(PrendaConfeccion::class);
     }
 }

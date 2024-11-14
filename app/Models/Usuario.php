@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
     protected $table = 'usuarios';
-    protected $fillable = ['nombre_usuario', 'contrasena'];
+    protected $fillable = ['nombre_usuario', 'contrasena','visible'];
 
     public function roles()
     {
@@ -17,10 +17,5 @@ class Usuario extends Model
     public function persona()
     {
         return $this->hasOne(Persona::class);
-    }
-
-    public function pedidos()
-    {
-        return $this->hasMany(Pedido::class);
     }
 }
