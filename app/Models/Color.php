@@ -9,8 +9,8 @@ class Color extends Model
     protected $table = 'colores';
     protected $fillable = ['color'];
 
-    public function prendasTelas()
+    public function prendasColores()
     {
-        return $this->hasMany(PrendaConfeccion::class);
+        return $this->hasMany(PrendaColor::class);
     }
 }
