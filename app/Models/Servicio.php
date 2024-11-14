@@ -14,7 +14,8 @@ class Servicio extends Model
     protected $fillable = [
         'servicio',
         'descripcion',
-        'precio'
+        'precio',
+        'visible'
     ];
 
     // Relación con PrendasReparaciones (uno a muchos)

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrendaTela extends Model
 {
     protected $table = 'prendas_telas';
-    protected $fillable = ['tela_id', 'prenda_id', 'color_id', 'cantidad_tela'];
+    protected $fillable = ['tela_id', 'prenda_id', 'cantidad_tela'];
 
     public function tela()
     {
@@ -17,10 +17,5 @@ class PrendaTela extends Model
     public function prenda()
     {
         return $this->belongsTo(PrendaConfeccion::class);
-    }
-
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
     }
 }

@@ -2,12 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Insumo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InventarioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('inventario.index');
+        $insumosMenosStock = Insumo::orderBy('cantidad_stock', 'asc')
+    ->limit(3)
+    ->get();
+
+    $insumosMasUtilizados = DB::table('detalle_insumo')
+        ->join('insumos', 'detalle_insumo.insumo_id', '=', 'insumos.id')
+        ->select('insumos.insumo', DB::raw('SUM(detalle_insumo.cantidad_insumo) as total_usado'))
+        ->groupBy('insumos.insumo')
+        ->orderBy('total_usado', 'desc')
+        ->limit(3)
+        ->get();
+
+
+
+        $query = Insumo::query();
+        // Filtrar por Nombre si se ha proporcionado
+        if ($request->has('insumo')) {
+            $insumo = $request->insumo;
+            $query->where('insumo', 'like', '%' . $insumo . '%'); // Búsqueda por Nombre
+        }
+        if ($request->has('estado')) {
+            $estado = $request->estado;
+        }
+        $insumos = $query->get();
+        return view('inventario.index', compact('insumos', 'insumosMenosStock', 'insumosMasUtilizados'));
     }
 }
