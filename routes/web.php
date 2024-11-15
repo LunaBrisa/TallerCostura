@@ -16,6 +16,7 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\FinanzasController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\GestionUsuariosControllers;
 
 
 Route::get('/', function () {
@@ -25,6 +26,8 @@ Route::get('/', function () {
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
+
+
 Route::get('/gestion/catalogo', function(){
     return view('Empleado/DashboardCatalogo');
 });
@@ -94,3 +97,9 @@ Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados
 
 // Ruta para la vista de Gestión de Clientes
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+
+
+Route::get('/GestionUsuarios', [GestionUsuariosControllers::class, 'index'])->name('usuarios.index');
+Route::resource('personas', GestionUsuariosControllers::class);
+Route::put('/personas/{id}', [GestionUsuariosControllers::class, 'update'])->name('personas.update');
+Route::post('/personas', [GestionUsuariosControllers::class, 'store'])->name('personas.store');
