@@ -20,10 +20,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/Cliente/ClienteHombresView">Hombres</a>
         </li>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
       </ul>
 
       <div class="container mt-4">

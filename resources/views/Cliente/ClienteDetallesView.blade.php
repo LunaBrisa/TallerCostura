@@ -20,7 +20,7 @@
 
   <div class="col-md-6 col-12">
      <h2>{{ $prenda->nombre_prenda }}</h2>
-     <p>Género: {{ $prenda->genero }}</p>
+     <p style="font-size: 20px; ">Género: {{ $prenda->genero }}</p>
      <p> @foreach ($prenda->colores as $color)
           <button class="circle" style="background-color: {{ $color->color }}" title="{{ $color->color }}"></button>
          @endforeach </p>

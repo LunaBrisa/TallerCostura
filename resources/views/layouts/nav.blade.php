@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <img src="{{ asset('images/logo.png') }}" width="155" height="85">
+            <a href="/"> <img src="{{ asset('images/logo.png') }}" width="155" height="85"></a>
             <a class="navbar-brand">Taller Costura</a>
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation" onclick="toggleNavbar()">
                 <span class="navbar-toggler-icon"></span>
