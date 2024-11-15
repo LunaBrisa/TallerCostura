@@ -1,42 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Servicios Disponibles</title>
 
-<h2>Servicios Disponibles</h2>
-
-
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($servicios as $servicio)
-        <tr>
-            <td>{{ $servicio->nombre }}</td>
-            <td>{{ $servicio->descripcion }}</td>
-            <td>${{ number_format($servicio->precio, 2) }}</td>
-            <td>
-
-                <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">🗑️</button>
-                </form>
-                <button onclick="editarServicio({{ $servicio }})">✏️</button>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-<button onclick="mostrarFormularioAgregar()">Agregar Servicio</button>
-
-<form action="{{ route('servicios.store') }}" method="POST" id="formularioAgregar" style="display:none;">
-    @csrf
-    <input type="text" name="nombre" placeholder="Nombre">
-    <input type="text" name="descripcion" placeholder="Descripción">
-    <input type="number" name="precio" placeholder="Precio">
-    <button type="submit">Guardar</button>
-</form>
+    <link rel="stylesheet" href="{{ asset('estilos.css') }}">
+</head>
+<body>
+    <div class="tabla">
+        <div class="header">
+            <h2>Servicios Disponibles</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Costura básica</td>
+                    <td>Costura simple para reparación</td>
+                    <td>$15.00</td>
+                    <td class="acciones">
+                        <button class="editar"></button>
+                        <button class="eliminar"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Corte y ajuste</td>
+                    <td>Corte de prenda y ajuste de largo</td>
+                    <td>$30.00</td>
+                    <td class="acciones">
+                        <button class="editar"></button>
+                        <button class="eliminar"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

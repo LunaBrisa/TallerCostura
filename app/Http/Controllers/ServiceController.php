@@ -32,7 +32,6 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
-        // Lógica para mostrar el formulario de edición del servicio
         return view('servicios.edit', compact('id'));
     }
 
