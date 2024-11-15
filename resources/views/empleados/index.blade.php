@@ -1,52 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestión de Empleados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    :root {
-            --main-bg-color: #3490dc;
-            --navbar-bg-color: black;
-            --navbar-text-color: white;
-            --hover-color: lightgray;
-        }
-        .navbar {
-            background-color: var(--navbar-bg-color);
-        }
-        .navbar a {
-            color: var(--navbar-text-color);
-        }
-        .navbar a:hover {
-            color: var(--hover-color);
-        }
-</style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-            <a class="navbar-brand" href="#">Taller Costura</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Pedidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/produccion') }}">Producción</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Insumos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Finanzas</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-<div class="container mt-5">
-    <h1 class="text-primary">Gestión de Empleados</h1>
+@extends('layouts.dashboard')
+
+@section('title', 'Dashboard de Empleados')
+@section('dashboard_name', 'Dashboard de Empleados')
+@section('content')
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -61,6 +17,15 @@
             </div>
         </div>
     </div>
+    <form method="GET" action="{{ route('empleados.index') }}" class="mt-2">
+        <div class="d-flex">
+            <input type="text" class="form-control" name="empleado" placeholder="Buscar por Nombre..." value="{{ request()->input('empleado') }}">
+            <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+        </div>
+    </form>
+    <form action="{{ route('empleados.index') }}" method="GET" class="d-flex">
+        <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
+    </form>
     <div class="d-flex justify-content-between align-items-center mb-4">
         
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarEmpleadoModal">Agregar Empleado</button>
@@ -71,8 +36,6 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Apellido Paterno</th>
-                <th>Apellido Materno</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Acciones</th>
@@ -82,9 +45,7 @@
             @foreach ($empleados as $empleado)
                 <tr>
                     <td>{{ $empleado->id }}</td>
-                    <td>{{ $empleado->persona->nombre }}</td>
-                    <td>{{ $empleado->persona->apellido_p }}</td>
-                    <td>{{ $empleado->persona->apellido_m }}</td>
+                    <td>{{ $empleado->persona->nombre }} {{ $empleado->persona->apellido_p }} {{ $empleado->persona->apellido_m }}</td>
                     <td>{{ $empleado->persona->telefono }}</td>
                     <td>{{ $empleado->persona->correo }}</td>
                     <td>
@@ -134,7 +95,6 @@
             @endforeach
         </tbody>
     </table>
-</div>
 
 <!-- Modal para Agregar Cliente -->
 <div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel" aria-hidden="true">
@@ -173,7 +133,4 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

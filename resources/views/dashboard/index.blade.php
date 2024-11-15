@@ -77,21 +77,20 @@
             <div class="card shadow-sm">
                 <div class="card-body text-center">
                     <i class="bi bi-boxes" style="font-size: 2rem;"></i>
-                    <h5 class="card-title mt-3">Productos</h5>
-                    <p class="card-text">Administra los productos en inventario.</p>
-                    <a href="/inventario" class="btn btn-primary">Inventario</a>
+                    <h5 class="card-title mt-3">Insumos</h5>
+                    <p class="card-text">Administra los insumos.</p>
+                    <a href="/inventario" class="btn btn-primary">Insumos</a>
                 </div>
             </div>
         </div>
-
-        <!-- Card para Reportes -->
+        <!-- Card para Servicios -->
         <div class="col-md-4 mt-4">
             <div class="card shadow-sm">
                 <div class="card-body text-center">
-                    <i class="bi bi-graph-up" style="font-size: 2rem;"></i>
-                    <h5 class="card-title mt-3">Reportes</h5>
-                    <p class="card-text">Consulta reportes de actividades.</p>
-                    <a href="/reportes" class="btn btn-primary">Reportes</a>
+                    <i class="bi bi-boxes" style="font-size: 2rem;"></i>
+                    <h5 class="card-title mt-3">Servicios</h5>
+                    <p class="card-text">Administra los productos en servicios.</p>
+                    <a href="/servicios" class="btn btn-primary">Servicios</a>
                 </div>
             </div>
         </div>
