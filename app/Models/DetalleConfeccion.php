@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class DetalleConfeccion extends Model
 {
     protected $table = 'detalles_confecciones';
-    protected $fillable = ['pedido_id', 'prenda_confeccion_id', 'cantidad_prenda'];
+    protected $fillable = ['pedido_id', 'prenda_confeccion_id', 'cantidad_prenda', 'subtotal'];
 
     public function pedido()
     {
-        return $this->belongsTo(Pedido::class);
+        return $this->belongsTo(Pedido::class, 'pedido_id');
     }
 
     public function prendaConfeccion()
     {
-        return $this->belongsTo(PrendaConfeccion::class);
+        return $this->belongsTo(PrendaConfeccion::class, 'prenda_confeccion_id');
     }
 
     public function medidas()
