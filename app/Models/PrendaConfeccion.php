@@ -27,6 +27,6 @@ class PrendaConfeccion extends Model
     }
     public function prendasColor()
     {
-        return $this->hasMany(PrendaColor::class);
+        return $this->hasMany(PrendaColor::class, 'prenda_id');
     }
 }

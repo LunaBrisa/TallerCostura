@@ -165,8 +165,10 @@
                     <label for="tipoprenda"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                     <input type="text" class="form-control" name="tipoprenda" placeholder="{{$prenda -> tipoPrenda->tipo_prenda}}" readonly><br>
 
-                    <label for="colorprenda"><h3 class="h3-modal">Color de la Prenda</h3></label>
-                    <input type="text" class="form-control" name="colorprenda" placeholder="{{$prenda -> prendasColor ->color}}" readonly><br>
+                    <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
+                    @foreach ($prenda -> prendasColor as $color)
+                      <input type="text" class="form-control" name="colorprenda" placeholder="{{$color -> color->color}}" readonly><br>
+                    @endforeach
 
                     <div class="row">
                       <div class="col">
