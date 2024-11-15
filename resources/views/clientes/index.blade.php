@@ -102,7 +102,7 @@
     </table>
 
 <!-- Modal para Agregar Cliente -->
-<div class="modal fade" id="agregarClienteModal" tabindex="-1" aria-labelledby="agregarClienteLabel" aria-hidden="true">
+<div class="modal fade" id="agregarClienteModal" tabindex="-1" aria-labelledby="agregarClienteLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -110,36 +110,87 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/clientes/agregar" method="POST">
+                <form action="{{ route('clientes.store') }}" method="POST">
                     @csrf
+
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="apellido_p" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" required>
+                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
+                        @error('apellido_p')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="apellido_m" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellido_m" name="apellido_m">
+                        <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
+                        @error('apellido_m')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" required>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+                        @error('telefono')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" required>
+                        <input type="email" class="form-control" id="correo" name="correo" value="{{ old('correo') }}" required>
+                        @error('correo')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="compania" class="form-label">Compañía</label>
-                        <input type="text" class="form-control" id="compania" name="compania">
+                        <input type="text" class="form-control" id="compania" name="compania" value="{{ old('compania') }}">
+                        @error('compania')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required>
+                        @error('nombre_usuario')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                        @error('contrasena')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-success">Agregar Cliente</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Script para mostrar el modal automáticamente si hay errores -->
+@if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarClienteModal = new bootstrap.Modal(document.getElementById('agregarClienteModal'));
+            agregarClienteModal.show();
+        });
+    </script>
+@endif
 @endsection

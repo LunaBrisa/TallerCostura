@@ -29,3 +29,4 @@ Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados
 
 // Ruta para la vista de Gestión de Clientes
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
