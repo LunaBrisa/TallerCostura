@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\modifPrendaRequest;
 use App\Models\PrendaConfeccion;
+use App\Models\PrendaColor;
 use App\Models\PrendaTela;
 use App\Models\TipoPrenda;
 use App\Models\Tela;
@@ -38,6 +39,14 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion -> ruta_imagen = "pormientras";
 
         $prendaconfeccion -> save();
+
+        $prendacolor = new PrendaColor();
+        $prendacolor -> prenda_id = $prendaconfeccion -> id;
+        $prendacolor -> color_id = $savePrendaConfeccionRequest -> colorprendita;
+        
+        $prendacolor -> save();
+
+        $prendatela = new PrendaTela();
 
         return redirect('/gestion/prenda-confeccion');
     }

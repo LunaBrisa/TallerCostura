@@ -10,6 +10,8 @@ use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
+use App\Http\Controllers\ServiceController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\InventarioController;
@@ -79,6 +81,7 @@ Route::get('/Registro', function(){
     return view('Registro');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+
 Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 Route::get('/Cliente/MostrarPrendasConColores', [ClienteCatalogoController::class, 'mostrarPrendasConColores'])->name('Cliente.MostrarPrendasConColores');
 Route::get('/login', function (){
