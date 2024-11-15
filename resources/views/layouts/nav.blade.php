@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
+                        {{-- <a class="nav-link" href="{{ route('servicios.index') }}">Servicios</a> --}}
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Iniciar Sesión</a>

@@ -97,13 +97,11 @@
 
                   <div class="row">
                     <div class="col">
-                      <a href="/gestion/prenda-confeccion"><button class="btn btn-modal-sub">Cancelar</button></a>
-                    </div>
-                    <div class="col">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
                     </div>
                   </div>
             </form><br>
+            <a href="/gestion/prenda-confeccion"><button class="btn btn-modal-sub">Cancelar</button></a><br>
         </div>
     </div>
   </div>

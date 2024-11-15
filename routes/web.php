@@ -10,6 +10,8 @@ use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
+use App\Http\Controllers\ServiceController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\InventarioController;
@@ -73,26 +75,3 @@ Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
-
-// Ruta para la vista de Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
-// Ruta para la vista de Pedidos
-Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
-Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
-
-// Ruta para la vista de Inventario de Insumos y Telas
-Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
-
-// Ruta para la vista de Gestión de Empleados
-Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-
-// Ruta para la vista de Gestión de Clientes
-Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
-
-
-Route::get('/GestionUsuarios', [GestionUsuariosControllers::class, 'index'])->name('usuarios.index');
-Route::resource('personas', GestionUsuariosControllers::class);
-Route::put('/personas/{id}', [GestionUsuariosControllers::class, 'update'])->name('personas.update');
-Route::post('/personas', [GestionUsuariosControllers::class, 'store'])->name('personas.store');
