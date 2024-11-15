@@ -7,7 +7,7 @@ use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Welcome');
 });
 
 Route::get('/Pcatalogo', function () {
@@ -23,3 +23,11 @@ Route::get('/Registro', function(){
     return view('Registro');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
+Route::get('/Cliente/MostrarPrendasConColores', [ClienteCatalogoController::class, 'mostrarPrendasConColores'])->name('Cliente.MostrarPrendasConColores');
+Route::get('/login', function (){
+    return view('login');
+});
+Route::get('/mispedidos', function (){
+    return view('Cliente.MisPedidos');
+});
