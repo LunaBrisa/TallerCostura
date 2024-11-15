@@ -90,3 +90,7 @@ Route::get('/login', function (){
 Route::get('/mispedidos', function (){
     return view('Cliente.MisPedidos');
 });
+// Ruta para la vista de Gestión de Clientes
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+>>>>>>> 41c3125c67f102425e73494268df41f5092009fc
