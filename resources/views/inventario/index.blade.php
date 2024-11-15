@@ -38,6 +38,10 @@
         <form action="{{ route('inventario.index') }}" method="GET" class="d-flex">
             <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
         </form>
+        
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarInsumoModal">Agregar Insumo</button>
+    </div>
     <div class="table-responsive my-4">
         <table class="table table-striped table-hover">
             <thead class="table-dark">
@@ -61,6 +65,57 @@
         </table>
         
     </div>
+    <!-- Modal para Agregar Insumos -->
+<div class="modal fade" id="agregarInsumoModal" tabindex="-1" aria-labelledby="agregarInsumoLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarInusmoLabel">Agregar Insumo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('inventario.store') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label for="insumo" class="form-label">Insumo</label>
+                        <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo') }}" required>
+                        @error('insumo')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cantidad_stock" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cantiad_stock" name="cantidad_stock" value="{{ old('cantidad_stock') }}" required>
+                        @error('cantidad_stock')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="precio_unitario" class="form-label">Precio Unitario</label>
+                        <input type="numeric" class="form-control" id="precio_unitario" name="precio_unitario" value="{{ old('precio_unitario') }}">
+                        @error('precio_unitario')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-success">Agregar Cliente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para mostrar el modal automáticamente si hay errores -->
+@if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarInsumoModal = new bootstrap.Modal(document.getElementById('agregarInsumoModal'));
+            agregarInsumoModal.show();
+        });
+    </script>
+@endif
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             let currentSort = { column: null, order: 'asc' };

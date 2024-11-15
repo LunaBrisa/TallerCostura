@@ -27,7 +27,6 @@
         <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
     </form>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarEmpleadoModal">Agregar Empleado</button>
     </div>
     
@@ -96,8 +95,8 @@
         </tbody>
     </table>
 
-<!-- Modal para Agregar Cliente -->
-<div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel" aria-hidden="true">
+<!-- Modal para Agregar Empleado -->
+<div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -105,32 +104,103 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="/empleados/agregar" method="POST">
+                <form action="{{ route('empleados.store') }}" method="POST">
                     @csrf
+
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="apellido_p" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" required>
+                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
+                        @error('apellido_p')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="apellido_m" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellido_m" name="apellido_m">
+                        <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
+                        @error('apellido_m')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" required>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+                        @error('telefono')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" required>
+                        <input type="email" class="form-control" id="correo" name="correo" value="{{ old('correo') }}" required>
+                        @error('correo')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-success">Agregar Empleado</button>
+
+                    <div class="mb-3">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">
+                        @error('fecha_nacimiento')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rfc" class="form-label">RFC</label>
+                        <input type="text" class="form-control" id="rfc" name="rfc" value="{{ old('rfc') }}" required>
+                        @error('rfc')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nss" class="form-label">NSS</label>
+                        <input type="text" class="form-control" id="nss" name="nss" value="{{ old('nss') }}" required>
+                        @error('nss')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required>
+                        @error('nombre_usuario')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                        @error('contrasena')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Agregar Cliente</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Script para mostrar el modal automáticamente si hay errores -->
+@if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarEmpleadoModal = new bootstrap.Modal(document.getElementById('agregarEmpleadoModal'));
+            agregarEmpleadoModal.show();
+        });
+    </script>
+@endif
 @endsection
