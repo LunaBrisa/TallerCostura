@@ -29,4 +29,20 @@ class PrendaConfeccion extends Model
     {
         return $this->hasMany(PrendaColor::class, 'prenda_id');
     }
+    public function colores()
+    {
+        return $this->belongsToMany(Color::class, 'prendas_colores', 'prenda_id', 'color_id');
+    }
+
+    public function telas()
+{
+    return $this->hasManyThrough(
+        Tela::class,
+        PrendaTela::class,
+        'prenda_confeccion_id', // Foreign key on `prendas_telas` table
+        'id',                   // Foreign key on `telas` table
+        'id',                   // Local key on `prendas_confecciones` table
+        'tela_id'               // Local key on `prendas_telas` table
+    );
+}
 }

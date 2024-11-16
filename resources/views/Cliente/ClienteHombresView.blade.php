@@ -69,7 +69,10 @@
                                     <p class="card-text">{{$prenda->descripcion}}</p>
                                     <p>Precio: {{$prenda->precio}}</p>
                                     <p>Genero: {{$prenda->genero}}</p>
-                                    <a href="#" class="btn btn-primary" style="background-color: #BE5A8C; border-color: #F99AAA">Ver detalles</a>
+                                    <form action="/Cliente/DetallePrenda/{{$prenda->id}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary" style="background-color: #B5C5D7; border-color: #B6C6D8"">Ver detalles</button>
+                                      </form>
                                 </div>
                             </div>
                         </div>  

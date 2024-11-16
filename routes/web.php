@@ -7,6 +7,7 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaConfeccionController;
 use App\Http\Controllers\PrendasTelasController;
+use App\Http\Controllers\PrendasColoresController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\GestionUsuariosControllers;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Welcome');
 });
 
 Route::get('/Pcatalogo', function () {
@@ -68,10 +69,28 @@ Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaCo
 
 Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
 
-Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
+
+Route::post('/agreg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+
+Route::post('/modif/cantidad-tela', [PrendasTelasController::class, 'modifCantidadTelaPrenda']);
+
+Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
+
+Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
+
+Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']);
 
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
+Route::get('/Cliente/MostrarPrendasConColores', [ClienteCatalogoController::class, 'mostrarPrendasConColores'])->name('Cliente.MostrarPrendasConColores');
+Route::get('/login', function (){
+    return view('login');
+});
+Route::get('/mispedidos', function (){
+    return view('Cliente.MisPedidos');
+});
