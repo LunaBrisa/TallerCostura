@@ -10,7 +10,7 @@ use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProduccionController;
@@ -75,3 +75,11 @@ Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+
+
+Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
+Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
+Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
+
