@@ -100,7 +100,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-success">Agregar Cliente</button>
+                    <button type="submit" class="btn btn-success">Agregar Insumo</button>
                 </form>
             </div>
         </div>
