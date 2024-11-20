@@ -67,7 +67,7 @@
                     <select name="colorprenda" class="form-select" aria-label="Default select example">
                       <option selected>Seleccionar el Color de la Prenda</option>
                       @foreach ($misColores as $color)
-                        <option value="{{$color->id}}">{{$color->color}}</option>
+                        <option value="{{$color->id}}">"{{$color->color}}"</option>
                       @endforeach
                     </select><br>
 
