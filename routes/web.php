@@ -11,7 +11,7 @@ use App\Http\Controllers\PrendasColoresController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProduccionController;
@@ -20,15 +20,12 @@ use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\GestionUsuariosControllers;
 
+use Illuminate\Support\Facades\Auth;
 
+// Rutas públicas
 Route::get('/', function () {
     return view('Welcome');
 });
-
-Route::get('/Pcatalogo', function () {
-    return view('Cliente.PcatalogoView');
-});
-
 
 Route::get('/gestion/catalogo', function(){
     return view('Empleado/DashboardCatalogo');
@@ -69,6 +66,7 @@ Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaCo
 
 Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
 
+<<<<<<< HEAD
 Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
 
 Route::post('/agreg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
@@ -85,12 +83,47 @@ Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index')
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
+=======
+Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
+Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
+Route::get('/Cliente/ClienteMujeresView',[ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
+Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
+>>>>>>> 5a2c41d9cc609174b7a2ee018257c717026d2b38
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
-Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
-Route::get('/Cliente/MostrarPrendasConColores', [ClienteCatalogoController::class, 'mostrarPrendasConColores'])->name('Cliente.MostrarPrendasConColores');
-Route::get('/login', function (){
-    return view('login');
-});
-Route::get('/mispedidos', function (){
-    return view('Cliente.MisPedidos');
-});
+<<<<<<< HEAD
+//
+Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
+Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+
+Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
+// Ruta para la vista de Gestión de Clientes
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+
+Route::get('/dashboard', function (){ return view('dashboard.index');});
+Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+
+// Rutas de autenticación (login/logout)
+Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
+    ->name('login'); // Ruta para mostrar el formulario de login
+
+Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store'])
+    ->name('login.store'); // Ruta para procesar el login
+
+Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout'); // Ruta para procesar el logout
+=======
+
+
+Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
+Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
+Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
+
+>>>>>>> vane

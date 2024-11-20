@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pedido;
-use GuzzleHttp\Client;
+use App\Models\Persona;
+use App\Models\Usuario;
+use App\Models\Rol;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -31,4 +34,52 @@ class ClientesController extends Controller
         $clientes = $query->with('persona')->get();
         return view('clientes.index', compact('clientes', 'pedidosPorCliente'));
     }
+    public function store(Request $request)
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'nombre' => 'required|string|max:100',
+        'apellido_p' => 'required|string|max:60',
+        'apellido_m' => 'nullable|string|max:60',
+        'telefono' => 'required|string|max:10',
+        'correo' => 'required|email|max:100',
+        'compania' => 'nullable|string|max:100',
+        'nombre_usuario' => 'required|string|max:30|unique:usuarios,nombre_usuario',
+        'contrasena' => 'required|string|min:6',
+    ], [
+        'nombre_usuario.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
+        'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
+    ]);
+
+    // Crear el usuario
+    $usuario = Usuario::create([
+        'nombre_usuario' => $request->nombre_usuario,
+        'contrasena' => Hash::make($request->contrasena),
+        'visible' => 1,
+    ]);
+
+    // Crear la persona y asociarla con el usuario
+    $persona = Persona::create([
+        'nombre' => $request->nombre,
+        'apellido_p' => $request->apellido_p,
+        'apellido_m' => $request->apellido_m,
+        'telefono' => $request->telefono,
+        'correo' => $request->correo,
+        'usuario_id' => $usuario->id,
+    ]);
+
+    // Crear el cliente y asociarlo con la persona
+    Cliente::create([
+        'compania' => $request->compania,
+        'persona_id' => $persona->id,
+    ]);
+
+    // Asignar el rol de "Cliente" al usuario
+    $clienteRole = Rol::firstOrCreate(['nombre_rol' => 'Cliente']);
+    $usuario->roles()->attach($clienteRole->id);
+
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
+}
+
 }
