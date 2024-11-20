@@ -47,6 +47,11 @@ class PrendaConfeccionController extends Controller
         $prendacolor -> save();
 
         $prendatela = new PrendaTela();
+        $prendatela -> prenda_confeccion_id = $prendaconfeccion -> id;
+        $prendatela -> tela_id = $savePrendaConfeccionRequest -> telitas;
+        $prendatela -> cantidad_tela = $savePrendaConfeccionRequest -> cantidadsitadetela;
+
+        $prendatela -> save();
 
         return redirect('/gestion/prenda-confeccion');
     }
@@ -54,10 +59,7 @@ class PrendaConfeccionController extends Controller
     public function vistaPrendasConfeccion($id){
         return view('Empleado/ModificacionPrendaConfeccion')->with([
             'misPrendas' => PrendaConfeccion::find($id),
-            'misTiposPrendas' => TipoPrenda::all(),
-            'misTelasdePenda' => PrendaTela::all()->where('prenda_confeccion_id', $id),
-            'misTelas' => Tela::all(),
-            'misColores' => Color::all()
+            'misTiposPrendas' => TipoPrenda::all()
         ]);
     }
 
@@ -90,9 +92,13 @@ class PrendaConfeccionController extends Controller
 
         $tiposPrendas = TipoPrenda::all();
         $prenditas = PrendaConfeccion::all();
+        $colores = Color::all();
+        $telas = Tela::all();
         return view('Empleado.DashboardPrendaConfeccion') -> with([
             'misPrendas' => $prenditas,
-            'misTiposPrendas' => $tiposPrendas
+            'misTiposPrendas' => $tiposPrendas,
+            'misColores' => $colores,
+            'misTelas' => $telas
         ]);
     }
 }

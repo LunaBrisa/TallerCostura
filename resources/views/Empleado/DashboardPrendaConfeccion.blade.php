@@ -47,9 +47,9 @@
             <button type="button" class="btn btn-agregprenda" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <p class="p-btn-agg">Agregar Nueva Prenda</p>
             </button>
-        <!-- Modal -->
+        <!-- Modal AGREGAR PRENDA -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- HEADER -->
               <div class="modal-header">
@@ -98,6 +98,17 @@
                           @endforeach
                         </select><br>
 
+                        <label for="telitas"><h3 class="h3-modal">Tela Base de la Prenda</h3></label>
+                        <select name="telitas" class="form-select" aria-label="Default select example">
+                          <option selected>Seleccionar la Tela Base de la Prenda</option>
+                          @foreach ($misTelas as $tela)
+                              <option value="{{$tela -> id}}">{{$tela->nombre_tela}}</option>
+                          @endforeach
+                        </select><br>
+
+                        <label for="cantidadsitadetela"><h3 class="h3-modal">Metros la Tela</h3></label>
+                        <input type="number" class="form-control" name="cantidadsitadetela" placeholder="0"><br>
+
                         <div class="mb-3">
                           <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
                           <input class="form-control" type="file" id="imagencita">
@@ -120,7 +131,7 @@
     @foreach ($misPrendas as $prenda)
     <div class="card cardsing mb-4 mx-2" style="width: 18rem;">
       <div class="img-div">
-        <img src="{{ asset($prenda->ruta_imagen) }}" class="card-img-top" alt="...">
+        <img src="{{ asset('images/Ejemplillo.png') }}" class="card-img-top" alt="...">
       </div>
       <div class="card-body">
         <h5 class="card-title">{{$prenda -> nombre_prenda}}</h5>
@@ -136,7 +147,7 @@
 
         <!-- Modal -->
         <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Datos de la Prenda</h1>
@@ -177,14 +188,35 @@
                           <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
                         @endforeach
                       </div>
+
+                      <div class="col">
+                        <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
+                        @foreach ($prenda -> prendasTelas as $tela)
+                          <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}" readonly><br>
+                        @endforeach
+                      </div>
                     </div>
 
                   </form>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
-                <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal">Modificar</button></a>
+                <div class="row mb-3" style="text-align: center; margin: auto">
+                  <div class="col">
+                    <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar datos de Prenda</button></a>
+                  </div>
+                  <div class="col">
+                    <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Telas</button></a>
+                  </div>
+                </div><br>
+                <div class="row" style="margin: auto">
+                  <div class="col">
+                    <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Colores</button></a>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
+                  </div>
+                </div><br>
               </div>
             </div>
           </div>
