@@ -67,24 +67,24 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion = PrendaConfeccion::find($modifPrendaRequest->get('idesote'));
         
         if($prendaconfeccion){
-            if($modifPrendaRequest->filled('nombreprendota')){
+            if($modifPrendaRequest -> filled('nombreprendota')){
                 $prendaconfeccion->nombre_prenda = $modifPrendaRequest->get('nombreprendota');
             }
 
-            if($modifPrendaRequest->filled('descripcionprendota')){
+            if($modifPrendaRequest -> filled('descripcionprendota')){
                 $prendaconfeccion->descripcion = $modifPrendaRequest->get('descripcionprendota');
             }
 
-            if($modifPrendaRequest->filled('precioprendota')){
-                $prendaconfeccion->precio = $modifPrendaRequest->get('precioprendota');
+            if($modifPrendaRequest -> filled('precioprendota')){
+                $prendaconfeccion -> precio = $modifPrendaRequest->get('precioprendota');
             }
 
-            if($modifPrendaRequest->filled('generote')){
-                $prendaconfeccion->genero = $modifPrendaRequest->get('generote');
+            if($modifPrendaRequest -> filled('generote')){
+                $prendaconfeccion -> genero = $modifPrendaRequest->get('generote');
             }
 
-            if($modifPrendaRequest->filled('tipoprendota')){
-                $prendaconfeccion->tp_id = $modifPrendaRequest->get('tipoprendota');
+            if($modifPrendaRequest -> filled('tipoprendota')){
+                $prendaconfeccion -> tp_id = $modifPrendaRequest->get('tipoprendota');
             }
             
             $prendaconfeccion->save();
