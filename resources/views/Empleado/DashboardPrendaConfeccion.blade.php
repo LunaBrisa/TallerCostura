@@ -171,7 +171,6 @@
                         @endforeach
                       </div>
                     </div>
-
                   </form>
                 </div>
               </div>

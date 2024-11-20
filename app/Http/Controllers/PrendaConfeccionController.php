@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class PrendaConfeccionController extends Controller
 {
     public function getPrendasConfeccion(){
-        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'prendasColor.color']) -> get();
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> get();
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
         $colorsillos = Color::all();
