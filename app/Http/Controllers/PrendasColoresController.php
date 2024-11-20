@@ -30,7 +30,7 @@ class PrendasColoresController extends Controller
         $prendaColor -> color_id = $saveColorPrendaRequest -> colorprenda;
         
         $prendaColor -> save();
-
+        
         return redirect('/gestion/prenda-confeccion');
     }
 
