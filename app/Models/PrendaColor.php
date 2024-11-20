@@ -11,7 +11,7 @@ class PrendaColor extends Model
     use HasFactory;
 
     protected $table = 'PRENDAS_COLORES';
-    protected $fillable = ['prenda_id', 'color_id'];
+    protected $fillable = ['prenda_id', 'color_id', 'ruta_imagen'];
 
     public function prenda()
     {
