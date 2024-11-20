@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     protected $table = 'pedidos';
-    protected $fillable = ['empleado_id', 'usuario_id', 'fecha_pedido', 'fecha_entrega', 'servicio', 'subtotal', 'total'];
+    protected $fillable = ['empleado_id', 'user_id', 'fecha_pedido', 'fecha_entrega', 'servicio', 'total'];
 
     public function empleado()
     {
         return $this->belongsTo(Empleado::class);
     }
 
-    public function usuario()
+    public function users()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
     public function detallesConfeccion()

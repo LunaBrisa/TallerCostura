@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <img src="{{ asset('images/logo.png') }}" width="155" height="85">
+            <a href="/"> <img src="{{ asset('images/logo.png') }}" width="155" height="85"></a>
             <a class="navbar-brand">Taller Costura</a>
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation" onclick="toggleNavbar()">
                 <span class="navbar-toggler-icon"></span>
@@ -19,17 +19,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/welcome">Inicio</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
+                        <a class="nav-link" href="/mispedidoscliente">Mis Pedidos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Iniciar Sesión</a>
-                    </li>
+                    <!-- Si el usuario está autenticado -->
+                    @if(auth()->check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}" 
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                               Cerrar sesión
+                            </a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <!-- Si el usuario no está autenticado -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

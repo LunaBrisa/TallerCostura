@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class RolUsuario extends Model
 {
     protected $table = 'roles_usuarios';
-    protected $fillable = ['usuario_id', 'rol_id'];
+    protected $fillable = ['user_id', 'rol_id'];
 
-    public function usuario()
+    public function users()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 
     public function rol()

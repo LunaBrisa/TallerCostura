@@ -3,47 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
 use Illuminate\Http\RedirectResponse;
-use App\Models\Servicio;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\saveClientesRequest;
 
 class ClienteRegistroController extends Controller
 {
-    public function RegistrarCliente(saveClientesRequest $request): RedirectResponse
+    public function RegistrarCliente(Request $request): RedirectResponse
     {
-        $nombre_usuario = $request->input('nombre_usuario');
-        $contrasena = $request->input('contrasena');
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        // Obtener el ID del usuario recién creado
+        $user_id = $user->id;
+
         $nombre = $request->input('nombre');
         $apellido_p = $request->input('apellido_p');
         $apellido_m = $request->input('apellido_m');
         $telefono = $request->input('telefono');
-        $correo = $request->input('correo');
         $compania = $request->input('compania');
         $cargo = $request->input('cargo');
 
         try {
-            DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-                $nombre_usuario,
-                $contrasena,
+            DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
+                $user_id,
                 $nombre,
                 $apellido_p,
                 $apellido_m,
                 $telefono,
-                $correo,
                 $compania,
-                $cargo
+                $cargo,
             ]);
 
             return redirect()->back()->with('success', 'Cliente creado exitosamente.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
         }
-    }
-
-    public function MostrarServicios()
-    {
-
     }
 }
