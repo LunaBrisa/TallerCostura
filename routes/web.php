@@ -71,8 +71,7 @@ Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'Mostrar
 Route::get('/Cliente/ClienteMujeresView',[ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
 Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
-<<<<<<< HEAD
-//
+
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
 
@@ -87,6 +86,7 @@ Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('
 
 Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
+Route::get('/pedidos', [PedidoController::class, 'show'])->name('pedidos.show');
 
 // Rutas de autenticación (login/logout)
 Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
@@ -97,13 +97,9 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
-=======
-
 
 Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
 Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
 Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
 Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
 Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-
->>>>>>> vane
