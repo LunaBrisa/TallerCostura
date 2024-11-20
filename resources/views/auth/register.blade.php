@@ -83,15 +83,6 @@
                         @enderror
                     </div>
                 </div>
-                    <div class="col-md-6">
-                        <label for="Rol" class="form-label">Rol</label>
-                        <select class="form-control" name="roles" id="roles" style="border: #B5C5D7 2px solid; font-size: larger;">
-                            <option value="0">Seleccione un rol</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Empleado</option>
-                            <option value="3">Cliente</option>
-                        </select>
-                    </div>
     
                     <div class="col-md-6">
                         <label for="compania" class="form-label">Compañía</label>

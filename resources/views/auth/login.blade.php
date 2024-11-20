@@ -56,9 +56,9 @@
             </h2> 
             <div class="row mt-4">
                 <label class="form-label" style="font-size: 20px; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
-                    Usuario:
+                  Correo:
                 </label>
-                <input type="email" name="email" class="form-control" id="inputUsername" placeholder="Usuario" required>
+                <input type="email" name="email" class="form-control" id="inputUsername" placeholder="Correo" required>
             </div>
       
             <div class="row mt-4">
