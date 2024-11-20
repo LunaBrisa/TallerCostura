@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetalleLote extends Model
 {
-    protected $table = 'detalles_lotes';
+    protected $table = 'DETALLES_LOTES';
     protected $fillable = ['pedido_id', 'prenda', 'precio_por_prenda','cantidad', 'anticipo', 'subtotal'];
 
     public function pedido()

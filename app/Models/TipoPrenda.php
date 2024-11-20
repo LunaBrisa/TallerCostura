@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TipoPrenda extends Model
 {
-    protected $table = 'tipos_prendas';
+    protected $table = 'TIPOS_PRENDAS';
     protected $fillable = ['tipo_prenda'];
 
     public function prendasConfeccion()
