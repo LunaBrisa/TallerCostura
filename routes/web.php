@@ -10,7 +10,7 @@ use App\Http\Controllers\PrendasTelasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
-use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProduccionController;
@@ -71,6 +71,7 @@ Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'Mostrar
 Route::get('/Cliente/ClienteMujeresView',[ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
 Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
+<<<<<<< HEAD
 //
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
@@ -96,3 +97,13 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
+=======
+
+
+Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
+Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
+Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
+
+>>>>>>> vane
