@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Rutas públicas
 Route::get('/', function () {
-    return view('Welcome');
+    return view('welcome');
 });
 
 Route::get('/gestion/catalogo', function(){
