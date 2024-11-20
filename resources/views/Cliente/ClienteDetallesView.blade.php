@@ -21,9 +21,9 @@
   <div class="col-md-6 col-12">
      <h2>{{ $prenda->nombre_prenda }}</h2>
      <p>Género: {{ $prenda->genero }}</p>
-     <p> @foreach ($prenda->colores as $color)
-          <button class="circle" style="background-color: {{ $color->color }}" title="{{ $color->color }}"></button>
-         @endforeach </p>
+     <p> @foreach ($prenda->prendasColor as $color)
+    <button class="circle" style="background-color: {{ $color->color }}" title="{{ $color->color }}"></button>
+@endforeach</p>
      <p id="precio">Precio: $ {{ $prenda->precio }}</p>
 
      <div class="accordion" id="accordionPanelsStayOpenExample">

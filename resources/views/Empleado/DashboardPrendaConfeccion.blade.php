@@ -9,33 +9,8 @@
     <title>Gestion Catalogo</title> 
 </head>
 <body>
-    <nav class="navbar">
-    <div class="container" >
-        <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-        <a class="navbar-brand" href="#">Taller Costura</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Catalogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-</nav><br>
-
+@extends('layouts.navemp')
+@section('content')
 <div class="container2">
   <div class="row" style="padding-top: 20px;">
     <div class="col">
@@ -167,8 +142,8 @@
 
                     <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                     @foreach ($prenda -> prendasColor as $color)
-                      <input type="text" class="form-control" name="colorprenda" placeholder="{{$color -> color->color}}" readonly><br>
-                    @endforeach
+                      <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br>
+                    @endforeach        
 
                     <div class="row">
                       <div class="col">
@@ -195,24 +170,7 @@
   </div>
 
 </div>
-
+@endsection
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
-<style>
-   .navbar {
-        background-color: black;
-    }
-
-    .navbar a {
-        color: white;
-    }
-
-    .navbar a:hover {
-        color: lightgray;
-    }
-
-    .navbar-toggler-icon {
-        filter: invert(1);
-    }
-</style>
