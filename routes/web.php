@@ -83,3 +83,16 @@ Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('s
 Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
 Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 
+// Ruta para la vista de Inventario de Insumos y Telas
+Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
+Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+
+// Ruta para la vista de Gestión de Empleados
+Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
+// Ruta para la vista de Gestión de Clientes
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');

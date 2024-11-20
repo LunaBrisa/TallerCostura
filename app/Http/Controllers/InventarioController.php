@@ -36,4 +36,22 @@ class InventarioController extends Controller
         $insumos = $query->get();
         return view('inventario.index', compact('insumos', 'insumosMenosStock', 'insumosMasUtilizados'));
     }
+    public function store(Request $request)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'insumo' => 'required|string|max:100',
+            'cantidad_stock' => 'required|integer',
+            'precio_unitario' => 'numeric',
+        ]);
+    
+        
+        Insumo::create([
+            'insumo' => $request->insumo,
+            'cantidad_stock' => $request->cantidad_stock,
+            'precio_unitario' => $request->precio_unitario,
+        ]);
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('inventario.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
+    }
 }
