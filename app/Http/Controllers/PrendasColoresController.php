@@ -28,6 +28,7 @@ class PrendasColoresController extends Controller
         $prendaColor = new PrendaColor();
         $prendaColor -> prenda_id = $saveColorPrendaRequest -> idprenda;
         $prendaColor -> color_id = $saveColorPrendaRequest -> colorprenda;
+        $prendaColor -> ruta_imagen = "pormientras";
         
         $prendaColor -> save();
         
