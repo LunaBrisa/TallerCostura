@@ -66,7 +66,6 @@ Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaCo
 
 Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
 
-<<<<<<< HEAD
 Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
 
 Route::post('/agreg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
@@ -83,13 +82,11 @@ Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index')
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
 });
-=======
 Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
 Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
 Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
 Route::get('/Cliente/ClienteMujeresView',[ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
 Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
->>>>>>> 5a2c41d9cc609174b7a2ee018257c717026d2b38
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
 
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
