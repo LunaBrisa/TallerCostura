@@ -22,8 +22,8 @@ class SaveColorPrendaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'colorprenda' => ['required', 'exists:colores,id', 'numeric'],
-            'idprenda' => ['required', 'exists:prendas_confecciones,id', 'numeric']
+            'colorprenda' => ['required', 'exists:COLORES,id', 'numeric'],
+            'idprenda' => ['required', 'exists:PRENDAS_CONFECCIONES,id', 'numeric']
         ];
     }
 }
