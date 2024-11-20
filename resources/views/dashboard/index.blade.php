@@ -90,7 +90,7 @@
                     <i class="bi bi-boxes" style="font-size: 2rem;"></i>
                     <h5 class="card-title mt-3">Servicios</h5>
                     <p class="card-text">Administra los productos en servicios.</p>
-                    <a href="/servicios" class="btn btn-primary">Servicios</a>
+                    <a href="/Servicios" class="btn btn-primary">Servicios</a>
                 </div>
             </div>
         </div>
