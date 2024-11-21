@@ -320,5 +320,19 @@
 </div>
 @endsection
 </body>
+<style>
+  .nav-pills .nav-link.active {
+  background-color: #8A226F; /* Cambia este color por el que prefieras */
+  color: #F6B2DB;             /* Cambia el color del texto si es necesario */
+}
+.nav-pills .nav-link {
+  background-color: #f8f9fa; /* Color de los tabs inactivos */
+  color: #8A226F;            /* Color del texto de los tabs inactivos */
+}
+.nav-pills .nav-link:hover {
+  background-color: #bc2e96; /* Color al pasar el mouse por encima */
+  color: #F99AAA;
+}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
