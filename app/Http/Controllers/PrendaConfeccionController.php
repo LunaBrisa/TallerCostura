@@ -78,7 +78,7 @@ class PrendaConfeccionController extends Controller
                 $prendaconfeccion->descripcion = $modifPrendaRequest->get('descripcionprendota');
             }
 
-            if($modifPrendaRequest -> filled('precioprendota')){
+            if($modifPrendaRequest -> has('precioprendota')){
                 $prendaconfeccion -> precio = $modifPrendaRequest->get('precioprendota');
             }
 
