@@ -27,7 +27,7 @@ class modifPrendaRequest extends FormRequest
             'descripcionprendota' => ['nullable', 'max:250'],
             'precioprendota' => ['nullable', 'decimal:2'],
             'generote' => ['nullable', 'in:Hombre,Mujer'],
-            'tipoprendota' => ['nullable', 'exists:tipos_prendas,id', 'numeric']
+            'tipoprendota' => ['nullable', 'exists:TIPOS_PRENDAS,id', 'numeric']
         ];
     }
 }

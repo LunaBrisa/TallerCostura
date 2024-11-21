@@ -22,7 +22,7 @@ class modifCantidadTelaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idtela' => ['required', 'exists:prendas_telas,id', 'numeric'],
+            'idtela' => ['required', 'exists:PRENDAS_TELAS,id', 'numeric'],
             'cantidadsota' => ['required', 'numeric']
         ];
     }

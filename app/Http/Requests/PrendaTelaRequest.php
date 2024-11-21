@@ -22,7 +22,7 @@ class PrendaTelaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'telitaprendita' => ['required', 'exists:telas,id', 'numeric'],
+            'telitaprendita' => ['required', 'exists:TELAS,id', 'numeric'],
             'cantidadtelitaprenda' => ['required', 'numeric']
         ];
     }
