@@ -106,7 +106,7 @@
     @foreach ($misPrendas as $prenda)
     <div class="card cardsing mb-4 mx-2" style="width: 18rem;">
       <div class="img-div">
-        <img src="{{ asset('{{$prenda -> ruta_imagen}}') }}" class="card-img-top" alt="...">
+        <img src="{{ asset($prenda -> ruta_imagen) }}" class="card-img-top" alt="...">
       </div>
       <div class="card-body">
         <h5 class="card-title">{{$prenda -> nombre_prenda}}</h5>
