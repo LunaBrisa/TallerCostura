@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Color extends Model
 {
-    protected $table = 'colores';
+    protected $table = 'COLORES';
     protected $fillable = ['color'];
 
-    public function prendasTelas()
+    public function Color()
     {
         return $this->hasMany(PrendaColor::class);
     }

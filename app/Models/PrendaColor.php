@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PrendaColor extends Model
 {
-    protected $table = 'prendas_colores';
-    protected $fillable = ['prenda_id', 'color_id'];
+
+    use HasFactory;
+
+    protected $table = 'PRENDAS_COLORES';
+    protected $fillable = ['prenda_id', 'color_id', 'ruta_imagen'];
 
     public function prenda()
     {
@@ -18,5 +22,4 @@ class PrendaColor extends Model
     {
         return $this->belongsTo(Color::class);
     }
-
 }
