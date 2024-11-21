@@ -109,7 +109,7 @@
 
             <!-- GESTION DE COLORES -->
             <div class="col-md-6 col-lg-4">
-                <div class="cuadradito-solo">
+                <div class="cuadradito">
                     <h1 class="Titulo2">Colores</h1>
                     <div class="btn-div">
                         <button class="btn btn-gest" data-bs-toggle="modal" data-bs-target="#exampleModal"> <p class="p-btn">Agregar Nuevo</p> </button>
