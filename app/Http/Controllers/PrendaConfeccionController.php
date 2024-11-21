@@ -43,6 +43,7 @@ class PrendaConfeccionController extends Controller
         $prendacolor = new PrendaColor();
         $prendacolor -> prenda_id = $prendaconfeccion -> id;
         $prendacolor -> color_id = $savePrendaConfeccionRequest -> colorprendita;
+        $prendacolor -> ruta_imagen = "pormientras";
         
         $prendacolor -> save();
 
