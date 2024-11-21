@@ -321,10 +321,11 @@
 @endsection
 </body>
 <style>
-  .nav-pills .nav-link.active {
-  background-color: #8A226F; /* Cambia este color por el que prefieras */
-  color: #F6B2DB;             /* Cambia el color del texto si es necesario */
+.nav-pills .nav-link.active {
+  background-color: #8A226F !important;
+  color: #F6B2DB !important;
 }
+
 .nav-pills .nav-link {
   background-color: #f8f9fa; /* Color de los tabs inactivos */
   color: #8A226F;            /* Color del texto de los tabs inactivos */
