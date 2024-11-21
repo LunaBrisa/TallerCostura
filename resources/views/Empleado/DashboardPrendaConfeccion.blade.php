@@ -106,7 +106,7 @@
     @foreach ($misPrendas as $prenda)
     <div class="card cardsing mb-4 mx-2" style="width: 18rem;">
       <div class="img-div">
-        <img src="{{ asset('images/Ejemplillo.png') }}" class="card-img-top" alt="...">
+        <img src="{{ asset('{{$prenda -> ruta_imagen}}') }}" class="card-img-top" alt="...">
       </div>
       <div class="card-body">
         <h5 class="card-title">{{$prenda -> nombre_prenda}}</h5>
@@ -153,7 +153,7 @@
 
                     <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                     @foreach ($prenda -> prendasColor as $color)
-                      <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br>
+                      <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br><br>
                     @endforeach        
 
                     <div class="row">
