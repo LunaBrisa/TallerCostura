@@ -8,64 +8,51 @@
     <link rel="stylesheet" href="{{asset('css/estiloOz.css')}}">
     <title>Gestion Catálogo</title>
     <style>
-        /* Personaliza el diseño con tu propio estilo */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .container2 {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-        .Titulo1 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .cuadradito, .cuadradito-solo {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
-        .Titulo2 {
-            font-size: 1.5rem;
-            color: #007bff;
-            margin-bottom: 15px;
-        }
-        .btn-div {
-            margin-top: 10px;
-        }
+        /* Estilo general */
         .btn-gest {
             background-color: #007bff;
             color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
+            font-size: 1rem;
         }
+    
         .btn-gest:hover {
             background-color: #0056b3;
         }
-        .p-btn {
-            margin: 0;
-            font-size: 1rem;
+    
+        .btn-div {
+            text-align: center;
         }
-        @media (max-width: 768px) {
+    
+        /* Ajustes específicos para pantallas pequeñas */
+        @media (max-width: 576px) {
+            .btn-gest {
+                font-size: 0.9rem; /* Reduce el tamaño de la fuente */
+                padding: 8px 15px; /* Reduce el padding */
+            }
+    
             .cuadradito, .cuadradito-solo {
-                margin-bottom: 20px;
+                padding: 15px;
+                width: 20vw /* Reduce el espacio interior del contenedor */
+            }
+    
+            .btn-div button {
+                width: 100%; /* Botón ocupa todo el ancho del contenedor */
+            }
+    
+            .p-btn {
+                font-size: 0.9rem; /* Ajusta el tamaño del texto */
             }
         }
     </style>
-</head>
+    </head>
 <body>
     @extends('layouts.navemp')
     @section('content')
-    <div class="container2">
-        <h1 class="Titulo1">Gestión del Catálogo</h1>
+    <div class="container2"><br>
+        <h1 class="Titulo1">Gestión del Catálogo</h1><br>
         <div class="row gy-4">
             <!-- GESTION DE PRENDAS -->
             <div class="col-md-6 col-lg-4">
