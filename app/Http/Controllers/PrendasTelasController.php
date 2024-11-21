@@ -43,8 +43,13 @@ class PrendasTelasController extends Controller
     }
 
     public function eliminarTelaPrenda($id){
+
         $prendatela = PrendaTela::find($id);
-        $prendatela::destroy($id);
+
+        if ($prendatela) {
+            PrendaTela::destroy($id);
+        }
+        
         return redirect('/gestion/prenda-confeccion');
     }
 }
