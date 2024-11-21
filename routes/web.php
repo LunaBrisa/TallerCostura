@@ -64,6 +64,9 @@ Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaP
 
 Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
 
+Route::get('/ocultar/prenda/{id}', [PrendaConfeccionController::class, 'ocultaPrenda']);
+Route::get('/mostrar/prenda/{id}', [PrendaConfeccionController::class, 'muestraPrenda']);
+
 Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
 
 Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
