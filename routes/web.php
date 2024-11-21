@@ -24,6 +24,7 @@ Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store
 // Ruta para la vista de Inventario de Insumos y Telas
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+Route::put('/inventario/{inventario}', [InventarioController::class, 'update'])->name('inventario.update');
 
 // Ruta para la vista de Gestión de Empleados
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
