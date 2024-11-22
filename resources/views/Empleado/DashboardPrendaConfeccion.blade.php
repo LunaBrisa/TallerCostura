@@ -343,7 +343,7 @@
 .btn-intemodal {
     height: 45px;
     max-width: 250px; /* Reduce el ancho máximo */
-    width: 100%; /* Ocupa el ancho disponible */
+    width: 90%; /* Ocupa el ancho disponible */
     background-color: #8A226F;
     border: 2px solid #FFCDD4;
     color: #FFCDD4;
@@ -368,7 +368,7 @@
     .btn-intemodal {
         height: 40px;
         font-size: 14px; /* Tamaño de texto más pequeño */
-        width: 100%; /* Ocupa todo el ancho disponible */
+        width:80%; /* Ocupa todo el ancho disponible */
     }
 }
 
