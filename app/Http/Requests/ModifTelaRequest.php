@@ -24,7 +24,7 @@ class ModifTelaRequest extends FormRequest
         return [
             'idtela' => ['required'],
             'telilla' => ['required', 'max:50'],
-            'tipotelilla' => ['required', 'numeric']
+            'tipotelilla' => ['required', 'numeric', 'exists:MATERIALES_TELAS,id']
         ];
     }
 }

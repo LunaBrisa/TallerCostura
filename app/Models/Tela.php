@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tela extends Model
 {
-    protected $table = 'telas';
+    protected $table = 'TELAS';
     protected $fillable = ['nombre_tela', 'material_tela_id'];
 
     public function prendasTela()

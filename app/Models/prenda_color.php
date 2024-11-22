@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class prenda_color extends Model
 {
     use HasFactory;
-    protected $table = 'prendas_colores';
+    protected $table = 'PRENDAS_COLORES';
     protected $fillable = ['prenda_id', 'color_id'];
     public function prenda()
     {
@@ -16,6 +16,6 @@ class prenda_color extends Model
     }
     public function color()
     {
-        return $this->belongsTo(Color::class, 'color_id');
+        return $this->belongsTo(Color::class, 'COLORES', 'color_id');
     }
 }

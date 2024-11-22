@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Insumo extends Model
 {
-    protected $table = 'insumos';
+    protected $table = 'INSUMOS';
     protected $fillable = ['insumo', 'cantidad_stock', 'precio_unitario'];
 
     public function detallesInsumo()

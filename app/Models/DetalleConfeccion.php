@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetalleConfeccion extends Model
 {
-    protected $table = 'detalles_confecciones';
+    protected $table = 'DETALLES_CONFECCIONES';
     protected $fillable = ['pedido_id', 'prenda_confeccion_id', 'cantidad_prenda', 'subtotal'];
 
     public function pedido()

@@ -7,6 +7,7 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrendaConfeccionController;
 use App\Http\Controllers\PrendasTelasController;
+use App\Http\Controllers\PrendasColoresController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
@@ -24,12 +25,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
+
+// Rutas públicas
+Route::get('/', function () { return view('Welcome');});
+Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
+Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
+Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
+
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
 Route::post('/Registro/RegistrarEmpleado', [EmpleadoRegistroController::class, 'RegistrarEmpleado'])->name('Registro.RegistrarEmpleado');
+Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
 
-Route::get('/gestion/catalogo', function(){ return view('Empleado/DashboardCatalogo');});
 // RUTAS PARA TIPOS DE PRENDA
 Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
 
@@ -63,15 +71,26 @@ Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaP
 
 Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
 
+Route::get('/ocultar/prenda/{id}', [PrendaConfeccionController::class, 'ocultaPrenda']);
+Route::get('/mostrar/prenda/{id}', [PrendaConfeccionController::class, 'muestraPrenda']);
+
 Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
 
+Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
+
+Route::post('/agreg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+
+Route::post('/modif/cantidad-tela', [PrendasTelasController::class, 'modifCantidadTelaPrenda']);
+
+Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
+
+Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
+
+Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']);
+
+Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
 });
-// Rutas públicas
-Route::get('/', function () { return view('Welcome');});
-Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
-Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
-Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
 
 // Rutas protegidas para clientes
 Route::middleware([ClienteMiddleware::class])->group(function () {
@@ -96,7 +115,6 @@ Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index'
 Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
 Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
 
-
 Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
 Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
 Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
@@ -112,4 +130,4 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
     ->name('login.store'); // Ruta para procesar el login
 
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout'); // Ruta para procesar el logout
+    ->name('logout'); // Ruta para procesar el logout>>>>>>> 0491d96db36d0af00fa33445a0fb41c292271394
