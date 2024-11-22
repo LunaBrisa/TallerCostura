@@ -38,6 +38,7 @@
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Compañía</th>
+                <th>Cargo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
                     <td>{{ $cliente->persona->telefono }}</td>
                     <td>{{ $cliente->persona->correo }}</td>
                     <td>{{ $cliente->compania }}</td>
+                    <td>{{ $cliente->cargo }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarClienteModal{{ $cliente->id }}">Editar</button>
                     </td>
@@ -64,8 +66,10 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Formulario para editar cliente -->
-                                <form action="/clientes/editar/{{ $cliente->id }}" method="POST">
-                                    @csrf
+                                
+                <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
                                     <!-- Campos del formulario -->
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Nombre</label>
