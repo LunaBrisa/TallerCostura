@@ -62,14 +62,15 @@
                     <label class="form-check-label" for="Mujer"><h2 class="radio-text">Mujer</h2></label>
                   </div><br><br>
 
-                  <div class="row">
+                  <div class="row text-center">
                     <div class="col-12 col-md-6 mb-3">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
                     </div>
                     <div class="col-12 col-md-6 mb-3">
-                      <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub text-center">Cancelar</a>
+                      <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub">Cancelar</a>
                     </div>
-                  </div>                  
+                  </div>
+                                 
             </form><br>
         </div>
     </div>
@@ -97,31 +98,29 @@
     }
 
     .btn-modal-sub {
-    margin: 10px auto; /* Centrar el botón horizontalmente */
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+    margin: 10px auto; /* Centra los botones en todos los tamaños */
+    display: block; /* Asegura que el botón sea un bloque */
     height: 50px;
-    width: 100%; /* Ocupa el 100% del ancho del contenedor */
-    max-width: 300px; /* Máximo ancho del botón */
+    max-width: 300px; /* Tamaño máximo del botón */
+    width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
     border-color: #F99AAA;
     color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
+    text-align: center;
+    font-size: 16px; /* Texto visible en todos los tamaños */
+    padding: 0;
 }
 
 .btn-modal-sub:hover {
     background-color: #F99AAA;
-    color: #b9437e;
+    color: #BE5A8C;
 }
 
 @media (max-width: 576px) {
     .btn-modal-sub {
-        height: 45px;
-        font-size: 0.9rem; /* Ajusta el tamaño del texto en pantallas pequeñas */
-        width: 170px;
+        height: 45px; /* Ajusta el alto del botón en pantallas pequeñas */
+        font-size: 14px; /* Tamaño de fuente menor */
     }
 }
 
