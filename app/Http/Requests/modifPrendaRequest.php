@@ -25,7 +25,7 @@ class modifPrendaRequest extends FormRequest
             'idesote' => ['required','numeric'],
             'nombreprendota' => ['nullable', 'max:50'],
             'descripcionprendota' => ['nullable', 'max:250'],
-            'precioprendota' => ['nullable', 'decimal:2'],
+            'precioprendota' => ['nullable', 'numeric'],
             'generote' => ['nullable', 'in:Hombre,Mujer'],
             'tipoprendota' => ['nullable', 'exists:TIPOS_PRENDAS,id', 'numeric']
         ];
