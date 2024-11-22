@@ -121,7 +121,7 @@
     .btn-modal-sub {
         height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
-        !important width: 70%;
+        width: 70% !important ;
     }
 }
 
