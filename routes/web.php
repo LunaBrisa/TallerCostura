@@ -31,6 +31,10 @@ Route::get('/', function () { return view('welcome');});
 Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
 Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
 Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
+// Ruta para la vista de Gestión de Clientes
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
 
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
@@ -105,10 +109,7 @@ Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados
 Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
-// Ruta para la vista de Gestión de Clientes
-Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
-Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
-Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+
 
 Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
