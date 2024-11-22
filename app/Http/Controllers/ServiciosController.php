@@ -27,7 +27,8 @@ public function store(Request $request)
 
     Servicio::create($request->all());
 
-    return redirect()->route('Servicios.ServiciosView')->with('success', 'Servicio agregado correctamente');
+    return redirect()->route('servicios.index')->with('success', 'Servicio agregado correctamente');
+
 }   
 
 public function update(Request $request, $id)
@@ -42,8 +43,18 @@ public function update(Request $request, $id)
     $servicio = Servicio::findOrFail($id);
     $servicio->update($request->all());
 
-    return redirect()->route('Servicios.ServiciosView')->with('success', 'Servicio actualizado correctamente');
+    return redirect()->route('servicios.index')->with('success', 'Servicio actualizado correctamente');
+
 }
 
-   
+public function toggle($id)
+{
+    $servicio = Servicio::find($id);
+    if ($servicio) {
+        $servicio->visible = !$servicio->visible;  // Alterna entre 1 y 0
+        $servicio->save();
+    }
+    return redirect()->route('servicios.index');  // O la ruta que redirige a la lista de servicios
+}
+
 }

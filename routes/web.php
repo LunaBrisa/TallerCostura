@@ -77,11 +77,11 @@ Route::get('/Pcatalogo', function () {
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
 
 
-Route::get('/Servicios', [ServiciosController::class, 'index'])->name('Servicios.index');
-Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
-Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
-Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
-Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
+Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
+Route::post('/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::put('/servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
+Route::put('/servicios/toggle/{id}', [ServiciosController::class, 'toggle'])->name('servicios.toggle');
+
 
 // Ruta para la vista de Inventario de Insumos y Telas
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');

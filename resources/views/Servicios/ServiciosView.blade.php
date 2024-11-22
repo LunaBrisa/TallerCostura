@@ -3,81 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios</title>
+    <title>Gestión de Servicios</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Estilo de la tabla */
         .table-container {
             margin: 20px auto;
             width: 90%;
             max-width: 800px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .table-header {
-            background-color: #bde0fe;
-            color: #023047;
-            font-weight: bold;
-            font-size: 1.5em;
+            background-color: #ef9ee3;
+            color: white;
             text-align: center;
-            padding: 15px;
+            padding: 10px;
+            font-size: 1.5rem;
             border-radius: 10px 10px 0 0;
         }
-
-        .table th {
-            background-color: #d8e2dc;
-            color: #1d3557;
-            text-align: center;
+        .btn-edit, .btn-delete, .btn-toggle {
+            margin: 0 5px;
         }
-
-        .table td {
-            text-align: center;
-            background-color: #e9f5ff;
-        }
-
-        /* Botones */
-        .btn-edit {
-            background-color: #76c893;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-        }
-
-        .btn-edit:hover {
-            background-color: #52b788;
-        }
-
-        .btn-delete {
-            background-color: #e63946;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-        }
-
-        .btn-delete:hover {
-            background-color: #d62828;
-        }
-
         .btn-add {
-            background-color: #ffb4a2;
-            color: #1d3557;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-weight: bold;
-            text-align: center;
-            display: block;
-            width: fit-content;
-            margin: 20px auto;
-        }
-
-        .btn-add:hover {
-            background-color: #ff8fa3;
+            background-color: #c1a3f6;
             color: white;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        .btn-add:hover {
+            background-color: #ed9df6;
         }
         .navbar {
       background-color: black;
@@ -107,7 +59,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
+        
     </style>
 </head>
 <body>
@@ -137,45 +89,98 @@
           </div>
         </div>
       </nav><br>
-      
-    <div class="table-container">
-        <div class="table-header">Servicios Disponibles</div>
-        <table class="table table-bordered table-hover m-0">
-            <thead>
-                <tr>
-                    <th>Servicio</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($servicios as $servicio)
-                <tr>
-                    <td>{{ $servicio->servicio }}</td>
-                    <td>{{ $servicio->descripcion }}</td>
-                    <td>${{ number_format($servicio->precio, 2) }}</td>
-                    <td>
-                        <!-- Botón Editar -->
-                        <button class="btn btn-edit btn-sm" data-bs-toggle="modal" data-bs-target="#editServiceModal-{{ $servicio->id }}">Editar</button>
-                        
-                        <!-- Botón Eliminar -->
-                        <button class="btn btn-delete btn-sm" data-bs-toggle="modal" data-bs-target="#deleteServiceModal-{{ $servicio->id }}">Eliminar</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addServiceModal">Agregar Servicio</button>
+    <div class="container">
+        <!-- Encabezado -->
+        <h1 class="text-center mt-4">Gestión de Servicios</h1>
+        
+        <!-- Tabla de servicios -->
+        <div class="table-container">
+            <div class="table-header">Listado de Servicios</div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($servicios as $servicio)
+                    <tr>
+                        <td>{{ $servicio->servicio }}</td>
+                        <td>{{ $servicio->descripcion }}</td>
+                        <td>${{ number_format($servicio->precio, 2) }}</td>
+                        <td>
+                            <!-- Botón para editar -->
+                            <button class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-{{ $servicio->id }}">Editar</button>
+
+                            <!-- Botón para alternar visibilidad -->
+                            <form action="{{ route('servicios.toggle', $servicio->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-warning btn-sm btn-toggle" type="submit">
+                                    {{ $servicio->visible ? 'Ocultar' : 'Mostrar' }}
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <!-- Botón para agregar un nuevo servicio -->
+            <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addModal">Agregar Servicio</button>
+        </div>
     </div>
 
-    <!-- Modal para Editar Servicio -->
-    @foreach ($servicios as $servicio)
-    <div class="modal fade" id="editServiceModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="editServiceModalLabel-{{ $servicio->id }}" aria-hidden="true">
+    <!-- Modal para agregar servicio -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editServiceModalLabel-{{ $servicio->id }}">Editar Servicio</h5>
+                    <h5 class="modal-title" id="addModalLabel">Agregar Nuevo Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form action="{{ route('servicios.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="servicio" class="form-label">Nombre del Servicio</label>
+                            <input type="text" class="form-control" id="servicio" name="servicio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="visible" class="form-label">Visible</label>
+                            <select class="form-control" id="visible" name="visible" required>
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales para editar servicios -->
+    @foreach ($servicios as $servicio)
+    <div class="modal fade" id="editModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $servicio->id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel-{{ $servicio->id }}">Editar Servicio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
@@ -192,7 +197,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="precio" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" value="{{ $servicio->precio }}" required>
+                            <input type="number" class="form-control" id="precio" name="precio" value="{{ $servicio->precio }}" step="0.01" required>
                         </div>
                         <div class="mb-3">
                             <label for="visible" class="form-label">Visible</label>
@@ -204,7 +209,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -212,47 +217,7 @@
     </div>
     @endforeach
 
-    <!-- Modal para Agregar Servicio -->
-    <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addServiceModalLabel">Agregar Nuevo Servicio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <form action="{{ route('servicios.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="servicio" class="form-label">Nombre del Servicio</label>
-                            <input type="text" class="form-control" id="servicio" name="servicio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="visible" class="form-label">Visible</label>
-                            <select class="form-control" id="visible" name="visible" required>
-                                <option value="1">Sí</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Agregar Servicio</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script de Bootstrap -->
+    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
