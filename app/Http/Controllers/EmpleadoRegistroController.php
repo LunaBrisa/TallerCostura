@@ -40,7 +40,7 @@ class EmpleadoRegistroController extends Controller
                 $nss,
             ]);
 
-            return redirect()->back()->with('success', 'Cliente creado exitosamente.');
+            return redirect()->back()->with('success', 'Empleado creado exitosamente.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error al crear el empleado: ' . $e->getMessage());
         }
