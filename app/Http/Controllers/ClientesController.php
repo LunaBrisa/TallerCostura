@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Persona;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -44,16 +44,16 @@ class ClientesController extends Controller
         'telefono' => 'required|string|max:10',
         'correo' => 'required|email|max:100',
         'compania' => 'nullable|string|max:100',
-        'nombre_usuario' => 'required|string|max:30|unique:usuarios,nombre_usuario',
+        'name' => 'required|string|max:30|unique:usuarios,nombre_usuario',
         'contrasena' => 'required|string|min:6',
     ], [
-        'nombre_usuario.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
+        'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
         'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
     ]);
 
     // Crear el usuario
-    $usuario = Usuario::create([
-        'nombre_usuario' => $request->nombre_usuario,
+    $usuario = User::create([
+        'name' => $request->name,
         'contrasena' => Hash::make($request->contrasena),
         'visible' => 1,
     ]);
@@ -81,5 +81,47 @@ class ClientesController extends Controller
     // Redirigir con un mensaje de éxito
     return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
 }
+public function update(Request $request, $id)
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'nombre' => 'required|string|max:100',
+        'apellido_p' => 'required|string|max:100',
+        'apellido_m' => 'required|string|max:100',
+        'telefono' => 'required|string|max:10',
+        'correo' => 'required|email|max:100',
+        'compania' => 'nullable|string|max:255',
+        'cargo' => 'nullable|string|max:255',
+        'name' => 'required|string|max:100',
+        'contrasena' => 'nullable|string|min:6',
+    ]);
 
+    // Encontrar al cliente por ID
+    $cliente = Cliente::findOrFail($id);
+
+    // Actualizar los datos de persona
+    $cliente->persona->update([
+        'nombre' => $request->nombre,
+        'apellido_p' => $request->apellido_p,
+        'apellido_m' => $request->apellido_m,
+        'telefono' => $request->telefono,
+        'correo' => $request->correo,
+    ]);
+
+    // Actualizar datos de cliente
+    $cliente->update([
+        'compania' => $request->compania,
+        'cargo' => $request->cargo,
+    ]);
+
+    // Actualizar datos de usuario
+    $usuario = $cliente->persona->user; // Acceso a la relación usuario
+    $usuario->update([
+        'name' => $request->name,
+        'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
+    ]);
+
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
+}
 }
