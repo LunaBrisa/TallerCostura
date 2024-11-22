@@ -38,6 +38,9 @@ Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('
 
 Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
@@ -106,9 +109,6 @@ Route::middleware([ClienteMiddleware::class])->group(function () {
 Route::middleware([EmpleadoMiddleware::class])->group(function () {
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
-
-Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
 Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
