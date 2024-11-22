@@ -295,22 +295,13 @@
                     </div>
                     <div class="modal-footer">
                       <div class="row">
-                        <div class="col-12 col-md-6">
                           <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
-                        </div>
-                        <div class="col-12 col-md-6">
                           <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
-                        </div>
-                      </div>
-                      <div class="row mt-2">
-                        <div class="col-12 col-md-6">
                           <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
-                        </div>
-                        <div class="col-12 col-md-6">
                           <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
                       </div>
-                    </div>                    
+                  </div>
+                                     
                   </div>
                 </div>
               </div>
@@ -341,19 +332,24 @@
   color: #F6B2DB;
 }
 
+.modal-footer .row {
+    display: flex; /* Flexbox para disposición horizontal */
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 15px; /* Espaciado uniforme entre botones */
+    flex-wrap: wrap; /* Permite que los botones bajen si no caben */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
 .btn-intemodal {
-    margin: 5px auto; /* Centra y reduce el margen */
-    display: block; /* Asegura que cada botón esté en su propia fila */
-    height: 45px; /* Altura consistente */
-    max-width: 300px; /* Ancho máximo */
-    width: 100%; /* Se adapta al contenedor */
+    height: 45px;
+    max-width: 250px; /* Reduce el ancho máximo */
+    width: 90%; /* Ocupa el ancho disponible */
     background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
+    border: 2px solid #FFCDD4;
     color: #FFCDD4;
     text-align: center;
     font-size: 16px;
-    padding: 0;
+    padding: 0 15px; /* Espaciado interno más compacto */
     border-radius: 5px; /* Bordes redondeados */
 }
 
@@ -364,13 +360,18 @@
 }
 
 @media (max-width: 576px) {
+    .modal-footer .row {
+        flex-direction: column; /* Apila los botones verticalmente */
+        gap: 10px; /* Espaciado entre los botones */
+    }
+
     .btn-intemodal {
-        height: 40px; /* Altura ajustada */
-        font-size: 14px; /* Fuente más pequeña */
-        width: 75%; /* Ocupa casi todo el ancho disponible */
-        margin: 10px auto; /* Más espacio vertical para evitar saturación */
+        height: 40px;
+        font-size: 14px; /* Tamaño de texto más pequeño */
+        width:80%; /* Ocupa todo el ancho disponible */
     }
 }
+
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
