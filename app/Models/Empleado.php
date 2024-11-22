@@ -10,7 +10,8 @@ class Empleado extends Model
     protected $fillable = ['fecha_nacimiento', 'rfc', 'nss', 'persona_id'];
 
     public function persona()
-    {
-        return $this->belongsTo(Persona::class);
-    }
+{
+    return $this->belongsTo(Persona::class);
+}
+
 }
