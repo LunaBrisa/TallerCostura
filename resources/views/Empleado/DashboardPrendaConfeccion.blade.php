@@ -9,7 +9,7 @@
     <title>Gestion Catalogo</title> 
 </head>
 <body>
-@extends('layouts.navemp')
+@extends('layouts.nav')
 @section('content')
 <div class="container2">
   <div class="row" style="padding-top: 20px;">

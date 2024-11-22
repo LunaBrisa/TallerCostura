@@ -15,7 +15,7 @@
         <div class="p-2 mb-3" style="border: 2px solid white; background-color: #F4D9EC;">
             <h1 class="text-center">Registro</h1>
         </div>
-        <form action="{{ route('Registro.RegistrarCliente') }}" method="post">
+        <form action="{{ route('Registro.RegistrarEmpleado') }}" method="post">
             @csrf
             <div class="row mb-3">
                 <div class="col-md-6">
@@ -32,7 +32,6 @@
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-
 
                 <div class="col-md-6">
                     <label for="password" class="form-label">Contraseña</label>
@@ -85,24 +84,31 @@
                 </div>
     
                     <div class="col-md-6">
-                        <label for="compania" class="form-label">Compañía</label>
-                        <input type="text" class="form-control" name="compania" id="compania" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('compania')}}">
-                        @error('compania')
+                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" style="border: #B5C5D7 2px solid; font-size: larger;" value=" {{ old ('fecha_nacimiento') }}">
+                        @error('fecha_nacimiento')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
     
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="cargo" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" name="cargo" id="cargo" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('cargo')}}">
-                        @error('cargo')
+                        <label for="rfc" class="form-label">RFC</label>
+                        <input type="text" class="form-control" name="rfc" id="rfc" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('rfc')}}">
+                        @error('rfc')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="nss" class="form-label">NSS</label>
+                        <input type="text" class="form-control" name="nss" id="nss" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('nss')}}">
+                        @error('nss')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn" style="background-color:#B5C5D7; width: 200px; font-size: larger; border-radius: 8px;">Registrar</button>
                 </div>

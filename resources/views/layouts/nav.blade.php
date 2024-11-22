@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  
- 
+    <link rel="stylesheet" href="{{asset('css/estiloOz.css')}}">
     <title>Taller Costura</title> 
 </head>
 <body>
@@ -19,28 +19,39 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Cliente/PcatalogoView" >Catalogo</a>
+                        <a class="nav-link" href="/Cliente/PcatalogoView">Catálogo</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Cliente/MisPedidos">Mis Pedidos</a>
-                    </li>
-                    <!-- Si el usuario está autenticado -->
                     @if(auth()->check())
+                    @if(auth()->user()->hasRole('Cliente'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" 
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                               Cerrar sesión
-                            </a>
+                            <a class="nav-link" href="/Cliente/MisPedidos">Mis Pedidos</a>
                         </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    @else
-                        <!-- Si el usuario no está autenticado -->
+                    @elseif(auth()->user()->hasRole('Empleado'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
+                    @elseif(auth()->user()->hasRole('Admin'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gestion/catalogo">Gestion del Catalogo</a>
                         </li>
                     @endif
+
+                    <!-- Enlace para cerrar sesión -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           Cerrar sesión
+                        </a>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @else
+                    <!-- Si el usuario no está autenticado -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                    </li>
+         @endif
                 </ul>
             </div>
         </div>

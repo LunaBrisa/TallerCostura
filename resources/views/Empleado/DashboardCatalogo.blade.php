@@ -9,7 +9,7 @@
     <title>Gestion Catalogo</title> 
 </head>
 <body>
-    @extends('layouts.navemp')
+    @extends('layouts.nav')
     @section('content')
 <div class="container2">
 <h1 class="Titulo1">Gestion del Catalogo</h1>

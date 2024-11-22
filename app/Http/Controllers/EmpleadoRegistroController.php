@@ -7,9 +7,9 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class ClienteRegistroController extends Controller
+class EmpleadoRegistroController extends Controller
 {
-    public function RegistrarCliente(Request $request): RedirectResponse
+    public function RegistrarEmpleado(Request $request): RedirectResponse
     {
         $user = User::create([
             'name' => $request->input('name'),
@@ -24,24 +24,25 @@ class ClienteRegistroController extends Controller
         $apellido_p = $request->input('apellido_p');
         $apellido_m = $request->input('apellido_m');
         $telefono = $request->input('telefono');
-        $compania = $request->input('compania');
-        $cargo = $request->input('cargo');
+        $fecha_nacimiento = $request->input('fecha_nacimiento');
+        $rfc = $request->input('rfc');
+        $nss = $request->input('nss');
 
         try {
-            DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
+            DB::statement('CALL crear_empleado(?, ?, ?, ?, ?, ?, ?, ?)', [
                 $user_id,
                 $nombre,
                 $apellido_p,
                 $apellido_m,
                 $telefono,
-                $compania,
-                $cargo,
+                $fecha_nacimiento,
+                $rfc,
+                $nss,
             ]);
 
             return redirect()->back()->with('success', 'Cliente creado exitosamente.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al crear el empleado: ' . $e->getMessage());
         }
     }
-  
 }
