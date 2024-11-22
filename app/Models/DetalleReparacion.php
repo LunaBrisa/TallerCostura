@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetalleReparacion extends Model
 {
-    protected $table = 'detalles_reparaciones';
+    protected $table = 'DETALLES_REPARACIONES';
     protected $fillable = ['pedido_id', 'prenda_reparacion_id', 'cantidad_prenda', 'subtotal'];
 
     public function pedido()

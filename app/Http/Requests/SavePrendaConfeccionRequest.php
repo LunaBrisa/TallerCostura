@@ -26,7 +26,7 @@ class SavePrendaConfeccionRequest extends FormRequest
             'descripcionprendita' => ['required', 'max:250'],
             'precioprendita' => ['required', 'decimal:2'],
             'generito' => ['required', 'in:Hombre,Mujer'],
-            'tipoprendita' => ['required', 'exists:tipos_prendas,id', 'numeric']
+            'tipoprendita' => ['required', 'exists:TIPOS_PRENDAS,id', 'numeric']
         ];
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PrendaConfeccion as prenda;
+use App\Models\Pedido;
+use Illuminate\Support\Facades\Auth;
+
 
 class ClienteCatalogoController extends Controller
 {
@@ -32,5 +35,9 @@ class ClienteCatalogoController extends Controller
     $prenda = PrendaConfeccion::with(['telas.materialTela'])->get();
     return view('Cliente.ClienteDetallesView', compact('prenda'));
   }
-  
+  public function MostrarPedidosClinte(){
+    $user = Auth::user();
+    $pedidos = collect($user->persona->cliente->pedidos ?? []); 
+      return view('Cliente.MisPedidos', compact('pedidos'));
+  }
 }

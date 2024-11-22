@@ -7,6 +7,17 @@ h1.Titulo1{
 h1.Titulo2{
     color: #E57D90;
     font-style: italic;
+    font-size: 35px;
+    padding-top: 15px;
+}
+
+@media (max-width: 576px) {
+    h1.Titulo2{
+        color: #E57D90;
+        font-style: italic;
+        font-size: 30px;
+        padding-top: 5px;
+    }
 }
 
 .row{
@@ -14,8 +25,8 @@ h1.Titulo2{
 }
 
 .container2{
-    height: 100vh;
     width: 60%;
+    min-height: 100vh;
     margin: auto;
     text-align: center;
 
@@ -81,14 +92,38 @@ h1.Titulo2{
 }
 
 .p-btn {
-    margin: 0; /* Elimina cualquier margen adicional en el párrafo */
+    margin: 0;
     font-style: italic;
     font-size: 25px;
     text-align: center;
 }
 
+@media (max-width: 576px) {
+    .p-btn {
+        margin: 0;
+        font-style: italic;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .btn-gest{
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 250px;
+        padding-top: 20px;
+        background-color: #F6B2DB;
+        border: solid 2px;
+        border-color: #BE5A8C ;
+        text-align: center;
+        padding: 0%;
+    }
+}
+
 .p-btn-agg {
-    margin: 0; /* Elimina cualquier margen adicional en el párrafo */
+    margin: 0;
     font-style: italic;
     font-size: 18px;
     text-align: center;
@@ -97,16 +132,16 @@ h1.Titulo2{
 .btn-agregprenda {
     margin: auto;
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; 
+    align-items: center; 
     height: 40px;
     width: 280px;
     background-color: #8A226F;
     border: solid 2px;
     border-color: #FFCDD4;
     color: #FFCDD4;
-    text-align: center; /* Asegura que el texto esté centrado */
-    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+    text-align: center; 
+    padding: 0;
 }
 
 .btn-agregprenda:hover{
@@ -116,17 +151,17 @@ h1.Titulo2{
 }
  
 a {
-    color: black; /* Color de texto en estado normal */
-    text-decoration: none; /* Sin subrayado */
+    color: black;
+    text-decoration: none; 
 }
 
 a:visited {
-    color: black; /* Color después de hacer clic */
+    color: black; 
 }
 
 a:hover,
 a:active {
-    color: black; /* Color cuando pasas el cursor o haces clic */
+    color: black; 
 }
 
 .modal-header,.modal-footer{
@@ -149,16 +184,16 @@ h1.Titulomodal{
 .btn-modal-sub {
     margin: auto;
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; 
+    align-items: center;
     height: 40px;
     width: 280px;
     background-color: #BE5A8C;
     border: solid 2px;
     border-color: #F99AAA;
     color: #FFCDD4;
-    text-align: center; /* Asegura que el texto esté centrado */
-    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+    text-align: center; 
+    padding: 0; 
 }
 
 .btn-modal-sub:hover{
@@ -179,16 +214,16 @@ h1.Titulomodal{
 .btn-intemodal {
     margin: 0 4px;
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; 
+    align-items: center;
     height: 40px;
     width: 100px;
     background-color: #8A226F;
     border: solid 2px;
     border-color: #FFCDD4;
     color: #FFCDD4;
-    text-align: center; /* Asegura que el texto esté centrado */
-    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+    text-align: center; 
+    padding: 0; 
 }
 
 .btn-intemodal:hover{
@@ -200,16 +235,16 @@ h1.Titulomodal{
 .btn-elim {
     margin: auto;
     display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; 
+    align-items: center; 
     height: 40px;
     width: 150px;
     background-color: #8A226F;
     border: solid 2px;
     border-color: #FFCDD4;
     color: #FFCDD4;
-    text-align: center; /* Asegura que el texto esté centrado */
-    padding: 0; /* Elimina cualquier relleno que pueda descentrar el texto */
+    text-align: center; 
+    padding: 0; 
 }
 
 .btn-elim:hover{
@@ -306,3 +341,18 @@ h1.Titulomodal{
     font-style: italic;
     font-weight: bold;
 }
+
+
+.nav-pills .nav-link.active {
+  background-color: #8A226F;
+  color: #F6B2DB;           
+}
+.nav-pills .nav-link {
+  background-color: #f8f9fa; 
+  color: #8A226F;            
+}
+.nav-pills .nav-link:hover {
+  background-color: #bc2e96; 
+  color: #F99AAA;
+}
+

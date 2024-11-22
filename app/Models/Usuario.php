@@ -11,7 +11,7 @@ class Usuario extends Model
 
     public function roles()
     {
-        return $this->belongsToMany(Rol::class, 'roles_usuarios', 'usuario_id', 'rol_id');
+        return $this->belongsToMany(Rol::class, 'roles_usuarios', 'user_id', 'rol_id');
     }
 
     public function persona()

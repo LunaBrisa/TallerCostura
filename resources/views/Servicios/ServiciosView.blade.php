@@ -107,25 +107,41 @@
                 </thead>
                 <tbody>
                     @foreach ($servicios as $servicio)
-                    <tr>
-                        <td>{{ $servicio->servicio }}</td>
-                        <td>{{ $servicio->descripcion }}</td>
-                        <td>${{ number_format($servicio->precio, 2) }}</td>
-                        <td>
-                            <!-- Botón para editar -->
-                            <button class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-{{ $servicio->id }}">Editar</button>
-
-                            <!-- Botón para alternar visibilidad -->
-                            <form action="{{ route('servicios.toggle', $servicio->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('PUT')
-                                <button class="btn btn-warning btn-sm btn-toggle" type="submit">
-                                    {{ $servicio->visible ? 'Ocultar' : 'Mostrar' }}
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
+                    @if ($servicio->visible)
+                        <tr>
+                            <td>{{ $servicio->servicio }}</td>
+                            <td>{{ $servicio->descripcion }}</td>
+                            <td>${{ number_format($servicio->precio, 2) }}</td>
+                            <td>
+                                <!-- Mostrar u ocultar servicio -->
+                                <form action="{{ route('servicios.ocultar', $servicio->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-warning btn-sm btn-toggle" type="submit">
+                                        Ocultar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @else
+                        <!-- Si el servicio no es visible, no mostrar la fila -->
+                        <tr style="display:none;">
+                            <td>{{ $servicio->servicio }}</td>
+                            <td>{{ $servicio->descripcion }}</td>
+                            <td>${{ number_format($servicio->precio, 2) }}</td>
+                            <td>
+                                <form action="{{ route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button class="btn btn-success btn-sm btn-toggle" type="submit">
+                                        Mostrar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                
                 </tbody>
             </table>
 

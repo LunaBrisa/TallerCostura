@@ -9,7 +9,7 @@ class PrendaReparacion extends Model
 {
     use HasFactory;
 
-    protected $table = 'prendas_reparaciones';
+    protected $table = 'PRENDAS REPARACIONES';
 
     protected $fillable = [
         'nombre_prenda',

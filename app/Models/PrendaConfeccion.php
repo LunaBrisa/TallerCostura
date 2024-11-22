@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrendaConfeccion extends Model
 {
     use HasFactory;
-    protected $table = 'prendas_confecciones';
+    protected $table = 'PRENDAS_CONFECCIONES';
     protected $fillable = ['nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id', 'ruta_imagen', 'visible'];
 
     public function tipoPrenda()
@@ -25,13 +25,9 @@ class PrendaConfeccion extends Model
     {
         return $this->hasMany(PrendaTela::class);
     }
-    public function prendasColor()
+    public function PrendasColor()
     {
-        return $this->hasMany(PrendaColor::class, 'prenda_id');
-    }
-    public function colores()
-    {
-        return $this->belongsToMany(Color::class, 'prendas_colores', 'prenda_id', 'color_id');
+        return $this->belongsToMany(Color::class, 'PRENDAS_COLORES', 'prenda_id', 'color_id');
     }
 
     public function telas()

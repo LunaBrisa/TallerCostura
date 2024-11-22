@@ -16,13 +16,15 @@ use Illuminate\Http\Request;
 class PrendaConfeccionController extends Controller
 {
     public function getPrendasConfeccion(){
-        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'prendasColor.color']) -> get();
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> get();
+        $prendillasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> get();
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
         $colorsillos = Color::all();
 
         return view('Empleado/DashboardPrendaConfeccion')->with([
             'misPrendas' => $prendillas,
+            'misPrendasOcultas' => $prendillasOcultas,
             'misTiposPrendas' => $tiposprendilla,
             'misTelas' => $telillas,
             'misColores' => $colorsillos
@@ -43,6 +45,7 @@ class PrendaConfeccionController extends Controller
         $prendacolor = new PrendaColor();
         $prendacolor -> prenda_id = $prendaconfeccion -> id;
         $prendacolor -> color_id = $savePrendaConfeccionRequest -> colorprendita;
+        $prendacolor -> ruta_imagen = "pormientras";
         
         $prendacolor -> save();
 
@@ -67,24 +70,24 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion = PrendaConfeccion::find($modifPrendaRequest->get('idesote'));
         
         if($prendaconfeccion){
-            if($modifPrendaRequest->filled('nombreprendota')){
+            if($modifPrendaRequest -> filled('nombreprendota')){
                 $prendaconfeccion->nombre_prenda = $modifPrendaRequest->get('nombreprendota');
             }
 
-            if($modifPrendaRequest->filled('descripcionprendota')){
+            if($modifPrendaRequest -> filled('descripcionprendota')){
                 $prendaconfeccion->descripcion = $modifPrendaRequest->get('descripcionprendota');
             }
 
-            if($modifPrendaRequest->filled('precioprendota')){
-                $prendaconfeccion->precio = $modifPrendaRequest->get('precioprendota');
+            if($modifPrendaRequest -> has('precioprendota')){
+                $prendaconfeccion -> precio = $modifPrendaRequest->get('precioprendota');
             }
 
-            if($modifPrendaRequest->filled('generote')){
-                $prendaconfeccion->genero = $modifPrendaRequest->get('generote');
+            if($modifPrendaRequest -> filled('generote')){
+                $prendaconfeccion -> genero = $modifPrendaRequest->get('generote');
             }
 
-            if($modifPrendaRequest->filled('tipoprendota')){
-                $prendaconfeccion->tp_id = $modifPrendaRequest->get('tipoprendota');
+            if($modifPrendaRequest -> filled('tipoprendota')){
+                $prendaconfeccion -> tp_id = $modifPrendaRequest->get('tipoprendota');
             }
             
             $prendaconfeccion->save();
@@ -100,5 +103,19 @@ class PrendaConfeccionController extends Controller
             'misColores' => $colores,
             'misTelas' => $telas
         ]);
+    }
+
+    public function ocultaPrenda($id){
+        $prendaconfeccion = PrendaConfeccion::find($id);
+        $prendaconfeccion -> visible = 0;
+        $prendaconfeccion -> save();
+        return redirect('/gestion/prenda-confeccion');
+    }
+
+    public function muestraPrenda($id){
+        $prendaconfeccion = PrendaConfeccion::find($id);
+        $prendaconfeccion -> visible = 1;
+        $prendaconfeccion -> save();
+        return redirect('/gestion/prenda-confeccion');
     }
 }

@@ -20,10 +20,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/Cliente/ClienteHombresView">Hombres</a>
         </li>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
       </ul>
 
       <div class="container mt-4">
@@ -43,9 +39,9 @@
                 <div class="row"> 
                     @foreach($prenda as $prenda)
                         <div class="col-md-4 mb-4"> 
-                            <div class="card h-100">
+                            <div class="card h-100" style="background-color: #FFCDD4; border-color: #F99AAA">
                                 <img src="{{ asset($prenda->ruta_imagen) }}" class="card-img-top" style="height: 500px">
-                                <div class="card-body">
+                                <div class="card-body" >
                                     <h5 class="card-title">{{$prenda->nombre_prenda}}</h5>
                                     <p class="card-text">{{$prenda->descripcion}}</p>
                                     <p>Precio: {{$prenda->precio}}</p>
