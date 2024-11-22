@@ -103,7 +103,9 @@ Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('
 
 Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
-Route::get('/pedidos', [PedidoController::class, 'show'])->name('pedidos.show');
+Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
+Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
+
 
 // Rutas de autenticación (login/logout)
 Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
