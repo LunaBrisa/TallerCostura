@@ -107,14 +107,17 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
 
-    Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
-    Route::post('/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
-    Route::put('/servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
-    Route::put('/servicios/toggle/{id}', [ServiciosController::class, 'toggle'])->name('servicios.toggle');
-    
-    // Nuevas rutas para ocultar y mostrar servicios
-    Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
-    Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
+    // Ruta para mostrar todos los servicios
+Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
+
+// Rutas para crear, actualizar y eliminar servicios
+Route::post('/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
+Route::put('/servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
+Route::put('/servicios/toggle/{id}', [ServiciosController::class, 'toggle'])->name('servicios.toggle');
+
+// Nuevas rutas para ocultar y mostrar servicios
+Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
+Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
     
 // Ruta para la vista de Inventario de Insumos y Telas
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
