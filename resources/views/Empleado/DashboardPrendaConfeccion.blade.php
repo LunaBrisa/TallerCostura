@@ -367,7 +367,7 @@
     .btn-intemodal {
         height: 40px; /* Altura ajustada */
         font-size: 14px; /* Fuente más pequeña */
-        width: 90%; /* Ocupa casi todo el ancho disponible */
+        width: 75%; /* Ocupa casi todo el ancho disponible */
         margin: 10px auto; /* Más espacio vertical para evitar saturación */
     }
 }
