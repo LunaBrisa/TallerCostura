@@ -42,10 +42,8 @@ class ClientesController extends Controller
         'apellido_p' => 'required|string|max:60',
         'apellido_m' => 'nullable|string|max:60',
         'telefono' => 'required|string|max:10',
-        'email' => 'required|email|max:100',
         'compania' => 'nullable|string|max:100',
         'name' => 'required|string|max:30|unique:usuarios,nombre_usuario',
-        'contrasena' => 'required|string|min:6',
     ], [
         'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
         'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
@@ -92,7 +90,7 @@ public function update(Request $request, $id)
         'apellido_p' => 'required|string|max:100',
         'apellido_m' => 'required|string|max:100',
         'telefono' => 'required|string|max:10',
-        'correo' => 'required|email|max:100',
+        'email' => 'required|email|max:100',
         'compania' => 'nullable|string|max:255',
         'cargo' => 'nullable|string|max:255',
         'name' => 'required|string|max:100',
@@ -108,7 +106,7 @@ public function update(Request $request, $id)
         'apellido_p' => $request->apellido_p,
         'apellido_m' => $request->apellido_m,
         'telefono' => $request->telefono,
-        'correo' => $request->correo,
+        'email' => $request->correo,
     ]);
 
     // Actualizar datos de cliente
