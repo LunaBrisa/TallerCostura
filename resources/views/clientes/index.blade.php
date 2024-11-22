@@ -263,7 +263,6 @@
                             <button type="submit" class="btn" style="background-color:#B5C5D7; width: 200px; font-size: larger; border-radius: 8px;">Registrar</button>
                         </div>
                     </div>
-<<<<<<< HEAD
 
                     <div class="mb-3">
                         <label for="apellido_p" class="form-label">Apellido Paterno</label>
@@ -332,9 +331,6 @@
 
                     <button type="submit" class="btn btn-success">Agregar Cliente</button>
                 </form>
-=======
-            </form>
->>>>>>> 727e1daaa43e4dc4bcc102c103b767ab1e08b54c
             </div>
         </div>
     </div>
