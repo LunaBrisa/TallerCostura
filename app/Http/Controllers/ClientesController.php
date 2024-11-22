@@ -42,44 +42,47 @@ class ClientesController extends Controller
         'apellido_p' => 'required|string|max:60',
         'apellido_m' => 'nullable|string|max:60',
         'telefono' => 'required|string|max:10',
-        'correo' => 'required|email|max:100',
+        'email' => 'required|email|max:100',
         'compania' => 'nullable|string|max:100',
-        'nombre_usuario' => 'required|string|max:30|unique:usuarios,nombre_usuario',
+        'name' => 'required|string|max:30|unique:usuarios,nombre_usuario',
         'contrasena' => 'required|string|min:6',
     ], [
-        'nombre_usuario.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
+        'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
         'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
     ]);
 
-    // Crear el usuario
-    $usuario = User::create([
-        'nombre_usuario' => $request->nombre_usuario,
-        'contrasena' => Hash::make($request->contrasena),
-        'visible' => 1,
+    $user = User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
     ]);
 
-    // Crear la persona y asociarla con el usuario
-    $persona = Persona::create([
-        'nombre' => $request->nombre,
-        'apellido_p' => $request->apellido_p,
-        'apellido_m' => $request->apellido_m,
-        'telefono' => $request->telefono,
-        'correo' => $request->correo,
-        'usuario_id' => $usuario->id,
-    ]);
+    // Obtener el ID del usuario recién creado
+    $user_id = $user->id;
 
-    // Crear el cliente y asociarlo con la persona
-    Cliente::create([
-        'compania' => $request->compania,
-        'persona_id' => $persona->id,
-    ]);
+    $nombre = $request->input('nombre');
+    $apellido_p = $request->input('apellido_p');
+    $apellido_m = $request->input('apellido_m');
+    $telefono = $request->input('telefono');
+    $compania = $request->input('compania');
+    $cargo = $request->input('cargo');
 
-    // Asignar el rol de "Cliente" al usuario
-    $clienteRole = Rol::firstOrCreate(['nombre_rol' => 'Cliente']);
-    $usuario->roles()->attach($clienteRole->id);
+    try {
+        DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
+            $user_id,
+            $nombre,
+            $apellido_p,
+            $apellido_m,
+            $telefono,
+            $compania,
+            $cargo,
+        ]);
 
+        return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
+    }
     // Redirigir con un mensaje de éxito
-    return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
 }
 public function update(Request $request, $id)
 {
@@ -92,7 +95,7 @@ public function update(Request $request, $id)
         'correo' => 'required|email|max:100',
         'compania' => 'nullable|string|max:255',
         'cargo' => 'nullable|string|max:255',
-        'nombre_usuario' => 'required|string|max:100',
+        'name' => 'required|string|max:100',
         'contrasena' => 'nullable|string|min:6',
     ]);
 
@@ -115,9 +118,9 @@ public function update(Request $request, $id)
     ]);
 
     // Actualizar datos de usuario
-    $usuario = $cliente->persona->usuario; // Acceso a la relación usuario
+    $usuario = $cliente->persona->user; // Acceso a la relación usuario
     $usuario->update([
-        'nombre_usuario' => $request->nombre_usuario,
+        'name' => $request->name,
         'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
     ]);
 

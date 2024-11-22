@@ -32,6 +32,7 @@ Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'Mostrar
 Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
 Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
 
+Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
 Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
@@ -102,7 +103,6 @@ Route::get('/inventario', [InventarioController::class, 'index'])->name('inventa
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
 
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
 // Ruta para la vista de Gestión de Clientes
