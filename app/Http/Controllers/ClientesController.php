@@ -43,10 +43,7 @@ class ClientesController extends Controller
         'apellido_m' => 'nullable|string|max:60',
         'telefono' => 'required|string|max:10',
         'compania' => 'nullable|string|max:100',
-        'name' => 'required|string|max:30|unique:usuarios,nombre_usuario',
-    ], [
-        'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
-        'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
+        'cargo' => 'min:3|max:100',
     ]);
 
     $user = User::create([

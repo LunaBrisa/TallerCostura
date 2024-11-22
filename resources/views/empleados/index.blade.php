@@ -214,7 +214,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="contrasena" class="form-label">Confirmar Contraseña</label>
+                        <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         @error('password_confirmation')
                             <small class="text-danger">{{ $message }}</small>
