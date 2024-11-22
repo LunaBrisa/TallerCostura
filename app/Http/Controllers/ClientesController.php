@@ -53,7 +53,7 @@ class ClientesController extends Controller
 
     // Crear el usuario
     $usuario = User::create([
-        'nombre_usuario' => $request->nombre_usuario,
+        'name' => $request->name,
         'contrasena' => Hash::make($request->contrasena),
         'visible' => 1,
     ]);
@@ -115,9 +115,9 @@ public function update(Request $request, $id)
     ]);
 
     // Actualizar datos de usuario
-    $usuario = $cliente->persona->usuario; // Acceso a la relación usuario
+    $usuario = $cliente->persona->user; // Acceso a la relación usuario
     $usuario->update([
-        'nombre_usuario' => $request->nombre_usuario,
+        'name' => $request->name,
         'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
     ]);
 
