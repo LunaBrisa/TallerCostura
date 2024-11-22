@@ -227,11 +227,16 @@
               <p class="card-text p-card">{{$prenda -> descripcion}}</p>
               <!-- Button trigger modal -->
               <div class="btn-div2">
-                <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
-                  Ver Mas
-                </button>
-      
-                <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
+                <div class="row">
+                  <div class="col">
+                    <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
+                      Ver Mas
+                    </button>    
+                  </div>
+                  <div class="col">
+                    <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
+                  </div>
+                </div>
               </div>
       
               <!-- Modal -->
@@ -289,23 +294,23 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <div class="row mb-3" style="text-align: center; margin: auto">
-                        <div class="col">
-                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar datos de Prenda</button></a>
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
                         </div>
-                        <div class="col">
-                          <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Telas</button></a>
+                        <div class="col-12 col-md-6">
+                          <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
                         </div>
-                      </div><br>
-                      <div class="row" style="margin: auto">
-                        <div class="col">
-                          <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Colores</button></a>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col-12 col-md-6">
+                          <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
                         </div>
-                        <div class="col">
-                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
+                        <div class="col-12 col-md-6">
+                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
                         </div>
-                      </div><br>
-                    </div>
+                      </div>
+                    </div>                    
                   </div>
                 </div>
               </div>
@@ -336,14 +341,37 @@
   color: #F6B2DB;
 }
 
+.btn-intemodal {
+    margin: 5px auto; /* Centra y reduce el margen */
+    display: block; /* Asegura que cada botón esté en su propia fila */
+    height: 45px; /* Altura consistente */
+    max-width: 300px; /* Ancho máximo */
+    width: 100%; /* Se adapta al contenedor */
+    background-color: #8A226F;
+    border: solid 2px;
+    border-color: #FFCDD4;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.btn-intemodal:hover {
+    background-color: #FFCDD4;
+    border-color: #8A226F;
+    color: #8A226F;
+}
 
 @media (max-width: 576px) {
     .btn-intemodal {
-        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
-        font-size: 14px; /* Tamaño de fuente menor */
-        width: 90% !important ;
+        height: 40px; /* Altura ajustada */
+        font-size: 14px; /* Fuente más pequeña */
+        width: 90%; /* Ocupa casi todo el ancho disponible */
+        margin: 10px auto; /* Más espacio vertical para evitar saturación */
     }
 }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
