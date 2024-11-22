@@ -173,84 +173,95 @@
             <div class="modal-body" style="background-color: #F5C6C6;">
                 <form action="{{ route('clientes.store') }}" method="post">
                     @csrf
-                    <div class="mb-3">
-                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
-                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required>
-                        @error('nombre_usuario')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" name="name" id="name" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('nombre_usuario') }}">
+                            @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Correo</label>
+                            <input type="email" class="form-control" name="email" id="email" style="border: #B5C5D7 2px solid; font-size: larger;">
+                            @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
         
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                        @error('email')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="contrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                        @error('contrasena')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="contrasena" class="form-label">Confirmar Contraseña</label>
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                        @error('password_confirmation')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
-                        @error('nombre')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                            <div class="mb-3">
+                         <div class="col-md-6">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" id="password" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('contrasena') }}">
+                            @error('contrasena')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" style="border: #B5C5D7 2px solid; font-size: larger;">
+                            @error('contrasena')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('nombre') }}">
+                                @error('nombre')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+            
+                            <div class="col-md-6">
                                 <label for="apellido_p" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
+                                <input type="text" class="form-control" name="apellido_p" id="apellido_p" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{ old('apellido_p') }}">
                                 @error('apellido_p')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-        
-                            <div class="mb-3">
+                        </div>
+            
+                        <div class="row mb-3">
+                            <div class="col-md-6">
                                 <label for="apellido_m" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
+                                <input type="text" class="form-control" name="apellido_m" id="apellido_m" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old('apellido_m')}}">
                                 @error('apellido_m')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-        
-                            <div class="mb-3">
+            
+                            <div class="col-md-6">
                                 <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+                                <input type="text" class="form-control" name="telefono" id="telefono" style="border: #B5C5D7 2px solid; font-size: larger;" value=" {{ old ('telefono') }}">
                                 @error('telefono')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                        </div>
+            
+                            <div class="col-md-6">
                                 <label for="compania" class="form-label">Compañía</label>
-                                <input type="text" class="form-control" id="compania" name="compania" value="{{ old('compania') }}">
+                                <input type="text" class="form-control" name="compania" id="compania" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('compania')}}">
                                 @error('compania')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-        
-                            <div class="mb-3">
+                        </div>
+            
+                        <div class="row mb-3">
+                            <div class="col-md-6">
                                 <label for="cargo" class="form-label">Cargo</label>
-                                <input type="text" class="form-control" id="cargo" name="cargo" value="{{ old('cargo') }}">
+                                <input type="text" class="form-control" name="cargo" id="cargo" style="border: #B5C5D7 2px solid; font-size: larger;" value="{{old ('cargo')}}">
                                 @error('cargo')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <input type="hidden" name="cliente_id" value="nuevo">
-        
-                            <button type="submit" class="btn btn-success">Agregar Cliente</button>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn" style="background-color:#B5C5D7; width: 200px; font-size: larger; border-radius: 8px;">Registrar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

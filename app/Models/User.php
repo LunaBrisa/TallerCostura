@@ -14,7 +14,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
     public function roles()
     {
-        return $this->belongsToMany(Rol::class, 'roles_usuarios', 'user_id', 'rol_id');
+        return $this->belongsToMany(Rol::class, 'ROLES_USUARIOS', 'user_id', 'rol_id');
     }
     public function hasRole($role)
     {
