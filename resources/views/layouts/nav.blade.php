@@ -34,6 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/gestion/catalogo">Gestion del Catalogo</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
                     @endif
 
                     <!-- Enlace para cerrar sesión -->
