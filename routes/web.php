@@ -36,6 +36,7 @@ Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.in
 Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
 Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
 
+Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
@@ -109,7 +110,6 @@ Route::post('/inventario', [InventarioController::class, 'store'])->name('invent
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
 Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
-Route::get('/dashboard', function (){ return view('dashboard.index');});
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
 Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
 Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');

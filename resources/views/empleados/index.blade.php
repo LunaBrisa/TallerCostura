@@ -208,7 +208,7 @@
 
                     <div class="mb-3">
                         <label for="password_confirmation" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                        <input type="password" class="form-control" id="password" name="password" required>
                         @error('contrasena')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
