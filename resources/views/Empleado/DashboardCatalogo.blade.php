@@ -49,7 +49,7 @@
     </style>
     </head>
 <body>
-    @extends('layouts.navemp')
+    @extends('layouts.nav')
     @section('content')
     <div class="container2"><br>
         <h1 class="Titulo1">Gestión del Catálogo</h1><br>
