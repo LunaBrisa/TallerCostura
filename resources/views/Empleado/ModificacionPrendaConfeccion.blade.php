@@ -121,7 +121,7 @@
     .btn-modal-sub {
         height: 45px;
         font-size: 0.9rem; /* Ajusta el tamaño del texto en pantallas pequeñas */
-        max-width: 100%; /* Ocupa todo el ancho del contenedor */
+        width: 170px;
     }
 }
 
