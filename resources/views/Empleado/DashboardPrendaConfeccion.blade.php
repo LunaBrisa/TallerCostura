@@ -294,22 +294,15 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <div class="row">
-                        <div class="col-12 col-md-6">
-                          <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
+                      <div class="modal-footer">
+                        <div class="row">
+                            <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
+                            <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
+                            <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
+                            <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
                         </div>
-                        <div class="col-12 col-md-6">
-                          <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
-                        </div>
-                      </div>
-                      <div class="row mt-2">
-                        <div class="col-12 col-md-6">
-                          <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
-                        </div>
-                        <div class="col-12 col-md-6">
-                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                      </div>
+                    </div>
+                    
                     </div>                    
                   </div>
                 </div>
@@ -341,19 +334,24 @@
   color: #F6B2DB;
 }
 
+.modal-footer .row {
+    display: flex; /* Convierte la fila en un contenedor flex */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    gap: 10px; /* Espaciado entre los botones */
+    flex-wrap: wrap; /* Permite que los botones bajen a otra fila si no caben */
+    margin: 0; /* Elimina márgenes no deseados */
+}
+
 .btn-intemodal {
-    margin: 5px auto; /* Centra y reduce el margen */
-    display: block; /* Asegura que cada botón esté en su propia fila */
-    height: 45px; /* Altura consistente */
-    max-width: 300px; /* Ancho máximo */
-    width: 100%; /* Se adapta al contenedor */
+    height: 45px;
+    max-width: 300px;
+    width: auto; /* Ajusta el ancho al contenido */
     background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
+    border: 2px solid #FFCDD4;
     color: #FFCDD4;
     text-align: center;
     font-size: 16px;
-    padding: 0;
+    padding: 0 15px; /* Ajusta el relleno para botones más compactos */
     border-radius: 5px; /* Bordes redondeados */
 }
 
@@ -364,11 +362,15 @@
 }
 
 @media (max-width: 576px) {
+    .modal-footer .row {
+        gap: 8px; /* Reduce el espacio entre los botones en pantallas pequeñas */
+    }
+    
     .btn-intemodal {
-        height: 40px; /* Altura ajustada */
-        font-size: 14px; /* Fuente más pequeña */
-        width: 75%; /* Ocupa casi todo el ancho disponible */
-        margin: 10px auto; /* Más espacio vertical para evitar saturación */
+        height: 40px;
+        font-size: 14px;
+        width: 100%; /* Los botones ocupan todo el ancho disponible */
+        max-width: none; /* Quita la limitación del ancho máximo */
     }
 }
 
