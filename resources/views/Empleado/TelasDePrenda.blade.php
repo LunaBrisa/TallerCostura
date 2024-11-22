@@ -171,5 +171,33 @@
      .navbar-toggler-icon {
          filter: invert(1);
      }
+
+     .btn-modal-sub {
+    margin: 10px auto; /* Centra los botones en todos los tamaños */
+    display: block; /* Asegura que el botón sea un bloque */
+    height: 50px;
+    max-width: 300px; /* Tamaño máximo del botón */
+    width: 100%; /* Ocupa todo el espacio posible */
+    background-color: #BE5A8C;
+    border: solid 2px;
+    border-color: #F99AAA;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 16px; /* Texto visible en todos los tamaños */
+    padding: 0;
+}
+
+.btn-modal-sub:hover {
+    background-color: #F99AAA;
+    color: #BE5A8C;
+}
+
+@media (max-width: 576px) {
+    .btn-modal-sub {
+        height: 45px; /* Ajusta el alto del botón en pantallas pequeñas */
+        font-size: 14px; /* Tamaño de fuente menor */
+        width: 170px !important;
+    }
+}
  </style>
  
