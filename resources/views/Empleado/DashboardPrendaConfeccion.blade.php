@@ -363,7 +363,7 @@
 
 @media (max-width: 576px) {
     .modal-footer .row {
-        gap: 8px; /* Reduce el espacio entre los botones en pantallas pequeñas */
+        gap: 6px; /* Reduce el espacio entre los botones en pantallas pequeñas */
     }
     
     .btn-intemodal {
