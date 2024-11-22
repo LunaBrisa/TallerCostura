@@ -137,10 +137,10 @@
                                         <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
                                         <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}"><br>
                                         <div class="row text-center">
-                                          <div class="col-12 col-md-6 mb-1">
+                                          <div class="col-12 col-md-6 mb-3">
                                             <input type="submit" class="btn btn-modal-sub" value="Guardar">
                                           </div>
-                                          <div class="col-12 col-md-6 mb-1">
+                                          <div class="col-12 col-md-6 mb-3">
                                             <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub">Cancelar</a>
                                           </div>
                                         </div>
@@ -180,7 +180,7 @@
      .btn-modal-sub {
     margin: 10px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
-    height: 35px;
+    height: 50px;
     max-width: 300px; /* Tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
@@ -199,7 +199,7 @@
 
 @media (max-width: 576px) {
     .btn-modal-sub {
-        height: 25px; /* Ajusta el alto del botón en pantallas pequeñas */
+        height: 45px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
     }
 }
