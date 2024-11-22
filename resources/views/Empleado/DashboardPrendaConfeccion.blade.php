@@ -369,6 +369,10 @@
         font-size: 12px; /* Ajusta el tamaño del texto en pantallas pequeñas */
         height: 40px; /* Ajusta la altura */
     }
+
+    .row {
+      separator-gap: 1rem; /* Elimina el espaciado entre filas en pantallas pequeñas */
+    }
 }
 
 </style>
