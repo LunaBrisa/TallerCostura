@@ -144,6 +144,7 @@
                   <div class="modal-body">
                     <div class="conteform">
                       <form action="">
+                        
                         <label for="prenda"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
                         <input type="text" class="form-control" name="prenda" placeholder="{{$prenda -> nombre_prenda}}" readonly><br>
     
