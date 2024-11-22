@@ -341,7 +341,7 @@
     .btn-intemodal {
         height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
-        width: 70% !important ;
+        width: 90% !important ;
     }
 }
 </style>
