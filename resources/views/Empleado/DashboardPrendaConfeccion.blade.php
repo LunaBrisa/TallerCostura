@@ -294,21 +294,22 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <div class="row justify-content-center">
-                          <div class="col-12 col-sm-6 col-md-3 mb-2">
+                      <div class="row justify-content-center flex-wrap">
+                          <div class="col-auto mb-2">
                               <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
                           </div>
-                          <div class="col-12 col-sm-6 col-md-3 mb-2">
+                          <div class="col-auto mb-2">
                               <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
                           </div>
-                          <div class="col-12 col-sm-6 col-md-3 mb-2">
+                          <div class="col-auto mb-2">
                               <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
                           </div>
-                          <div class="col-12 col-sm-6 col-md-3 mb-2">
+                          <div class="col-auto mb-2">
                               <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
                           </div>
                       </div>
                   </div>
+                  
                   
                                      
                   </div>
@@ -342,17 +343,19 @@
 }
 
 .modal-footer .btn-intemodal {
-    display: block;
-    width: 100%; /* Asegura que los botones ocupen todo el ancho de su contenedor */
-    max-width: 250px; /* Limita el ancho máximo en pantallas grandes */
+    display: inline-block; /* Asegura que se alineen uno al lado del otro */
+    width: auto; /* Evita que ocupen el 100% del contenedor */
+    min-width: 150px; /* Ancho mínimo para uniformidad */
+    max-width: 200px; /* Limita el ancho máximo */
     height: 45px;
-    margin: auto;
+    margin: 5px; /* Espaciado uniforme entre botones */
     background-color: #8A226F;
     border: 2px solid #FFCDD4;
     color: #FFCDD4;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 5px;
+    white-space: nowrap; /* Evita que el texto se corte */
 }
 
 .modal-footer .btn-intemodal:hover {
@@ -363,12 +366,10 @@
 
 @media (max-width: 576px) {
     .modal-footer .btn-intemodal {
-        height: 40px; /* Ajusta el tamaño en pantallas pequeñas */
-        font-size: 14px; /* Fuente más pequeña */
+        font-size: 12px; /* Ajusta el tamaño del texto en pantallas pequeñas */
+        height: 40px; /* Ajusta la altura */
     }
 }
-
-
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
