@@ -180,7 +180,7 @@
      .btn-modal-sub {
     margin: 5px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
-    height: 50px;
+    height: 40px;
     max-width: 300px; /* Tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
@@ -199,7 +199,7 @@
 
 @media (max-width: 576px) {
     .btn-modal-sub {
-        height: 45px; /* Ajusta el alto del botón en pantallas pequeñas */
+        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
     }
 }
