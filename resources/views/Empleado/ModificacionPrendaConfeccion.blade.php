@@ -63,12 +63,14 @@
                   </div><br><br>
 
                   <div class="row">
-                    <div class="col">
+                    <div class="col-12 col-md-6 mb-3">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
                     </div>
-                  </div>
+                    <div class="col-12 col-md-6 mb-3">
+                      <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub text-center">Cancelar</a>
+                    </div>
+                  </div>                  
             </form><br>
-            <a href="/gestion/prenda-confeccion"><button class="btn btn-modal-sub">Cancelar</button></a><br>
         </div>
     </div>
   </div>
@@ -93,4 +95,34 @@
     .navbar-toggler-icon {
         filter: invert(1);
     }
+
+    .btn-modal-sub {
+    margin: 10px auto; /* Centrar el botón horizontalmente */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 50px;
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    max-width: 300px; /* Máximo ancho del botón */
+    background-color: #BE5A8C;
+    border: solid 2px;
+    border-color: #F99AAA;
+    color: #FFCDD4;
+    text-align: center; 
+    padding: 0; 
+}
+
+.btn-modal-sub:hover {
+    background-color: #F99AAA;
+    color: #b9437e;
+}
+
+@media (max-width: 576px) {
+    .btn-modal-sub {
+        height: 45px;
+        font-size: 0.9rem; /* Ajusta el tamaño del texto en pantallas pequeñas */
+        max-width: 100%; /* Ocupa todo el ancho del contenedor */
+    }
+}
+
 </style>
