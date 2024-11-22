@@ -44,10 +44,10 @@ class ClientesController extends Controller
         'telefono' => 'required|string|max:10',
         'correo' => 'required|email|max:100',
         'compania' => 'nullable|string|max:100',
-        'nombre_usuario' => 'required|string|max:30|unique:usuarios,nombre_usuario',
+        'name' => 'required|string|max:30|unique:usuarios,nombre_usuario',
         'contrasena' => 'required|string|min:6',
     ], [
-        'nombre_usuario.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
+        'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
         'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
     ]);
 
@@ -92,7 +92,7 @@ public function update(Request $request, $id)
         'correo' => 'required|email|max:100',
         'compania' => 'nullable|string|max:255',
         'cargo' => 'nullable|string|max:255',
-        'nombre_usuario' => 'required|string|max:100',
+        'name' => 'required|string|max:100',
         'contrasena' => 'nullable|string|min:6',
     ]);
 
