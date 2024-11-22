@@ -81,5 +81,47 @@ class ClientesController extends Controller
     // Redirigir con un mensaje de éxito
     return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
 }
+public function update(Request $request, $id)
+{
+    // Validar los datos del formulario
+    $request->validate([
+        'nombre' => 'required|string|max:100',
+        'apellido_p' => 'required|string|max:100',
+        'apellido_m' => 'required|string|max:100',
+        'telefono' => 'required|string|max:10',
+        'correo' => 'required|email|max:100',
+        'compania' => 'nullable|string|max:255',
+        'cargo' => 'nullable|string|max:255',
+        'nombre_usuario' => 'required|string|max:100',
+        'contrasena' => 'nullable|string|min:6',
+    ]);
 
+    // Encontrar al cliente por ID
+    $cliente = Cliente::findOrFail($id);
+
+    // Actualizar los datos de persona
+    $cliente->persona->update([
+        'nombre' => $request->nombre,
+        'apellido_p' => $request->apellido_p,
+        'apellido_m' => $request->apellido_m,
+        'telefono' => $request->telefono,
+        'correo' => $request->correo,
+    ]);
+
+    // Actualizar datos de cliente
+    $cliente->update([
+        'compania' => $request->compania,
+        'cargo' => $request->cargo,
+    ]);
+
+    // Actualizar datos de usuario
+    $usuario = $cliente->persona->usuario; // Acceso a la relación usuario
+    $usuario->update([
+        'nombre_usuario' => $request->nombre_usuario,
+        'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
+    ]);
+
+    // Redirigir con un mensaje de éxito
+    return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
+}
 }
