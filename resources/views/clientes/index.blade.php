@@ -38,6 +38,7 @@
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Compañía</th>
+                <th>Cargo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
                     <td>{{ $cliente->persona->telefono }}</td>
                     <td>{{ $cliente->persona->correo }}</td>
                     <td>{{ $cliente->compania }}</td>
+                    <td>{{ $cliente->cargo }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarClienteModal{{ $cliente->id }}">Editar</button>
                     </td>

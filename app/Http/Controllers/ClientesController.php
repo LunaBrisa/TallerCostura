@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Persona;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +52,7 @@ class ClientesController extends Controller
     ]);
 
     // Crear el usuario
-    $usuario = Usuario::create([
+    $usuario = User::create([
         'nombre_usuario' => $request->nombre_usuario,
         'contrasena' => Hash::make($request->contrasena),
         'visible' => 1,
