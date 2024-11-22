@@ -11,6 +11,18 @@ class ClienteRegistroController extends Controller
 {
     public function RegistrarCliente(Request $request): RedirectResponse
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'nombre' => 'required||min:3|max:50',
+            'apellido_p' => 'required||min:3|max:50',
+            'apellido_m' => 'required||max:255',
+            'telefono' => 'required|digits:10',
+            'compania' => 'required||min:5|max:50',
+            'cargo' => 'max:50',
+        ]);
+
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
