@@ -294,24 +294,23 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <div class="row justify-content-center flex-wrap">
-                          <div class="col-auto mb-2">
-                              <a href="/modificar/prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar datos de Prenda</a>
-                          </div>
-                          <div class="col-auto mb-2">
-                              <a href="/modificar/telas-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Telas</a>
-                          </div>
-                          <div class="col-auto mb-2">
-                              <a href="/modificar/colores-prenda/{{$prenda->id}}" class="btn btn-intemodal">Gestionar Colores</a>
-                          </div>
-                          <div class="col-auto mb-2">
-                              <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cerrar</button>
-                          </div>
-                      </div>
+                      <div class="row mb-3" style="text-align: center; margin: auto">
+                        <div class="col">
+                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar datos de Prenda</button></a>
+                        </div>
+                        <div class="col">
+                          <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Telas</button></a>
+                        </div>
+                      </div><br>
+                      <div class="row" style="margin: auto">
+                        <div class="col">
+                          <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Colores</button></a>
+                        </div>
+                        <div class="col">
+                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
+                        </div>
+                      </div><br>
                   </div>
-                  
-                  
-                                     
                   </div>
                 </div>
               </div>
