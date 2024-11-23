@@ -358,16 +358,6 @@
     color: #8A226F;
 }
 
-@media (max-width: 576px) {
-    .modal-footer .btn-intemodal {
-        font-size: 12px; /* Ajusta el tamaño del texto en pantallas pequeñas */
-        height: 40px; /* Ajusta la altura */
-    }
-
-    .row {
-      separator-gap: 1rem; /* Elimina el espaciado entre filas en pantallas pequeñas */
-    }
-}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
