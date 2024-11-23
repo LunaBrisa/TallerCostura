@@ -34,6 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/gestion/catalogo">Gestion del Catalogo</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
                     @endif
 
                     <!-- Enlace para cerrar sesión -->
@@ -62,9 +65,13 @@
     </div>
 
     <div class="footer">
-        <p>Taller Costura 2022</p>
+ 
+       <div style="margin-left: 50px"> <img src="{{ asset('images/llamada.png') }}" width="30px" height="30px">Telefono: +528 715 627 999</div>
+       <hr style="border-top: 2px solid rgb(203, 185, 185); margin: 5px 0; width: 40%; margin-left: 30%;">
+       <div style="margin-left: 50px"> <img src="{{ asset('images/email.png') }}" width="30px" height="30px">Correo: fatimacastcanelo756@gmail.com</div>
+       <div><p style="font-size: 20px; font-family: 'Bodoni Moda'; align-content:flex-start; text-align: center;">
+        Taller Costura 2022</p></div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
@@ -95,13 +102,10 @@
    }
 
    .footer {
-       bottom: 0;
-       left: 0;
        width: 100%;
-       height: 50px;
+       height: 100px;
        background-color: black;
        color: white;
-       text-align: center;
        font-size: 20px;
        font-family: 'Bodoni Moda';
    } 

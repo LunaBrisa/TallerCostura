@@ -227,11 +227,16 @@
               <p class="card-text p-card">{{$prenda -> descripcion}}</p>
               <!-- Button trigger modal -->
               <div class="btn-div2">
-                <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
-                  Ver Mas
-                </button>
-      
-                <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
+                <div class="row">
+                  <div class="col">
+                    <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
+                      Ver Mas
+                    </button>    
+                  </div>
+                  <div class="col">
+                    <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
+                  </div>
+                </div>
               </div>
       
               <!-- Modal -->
@@ -305,7 +310,7 @@
                           <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
                         </div>
                       </div><br>
-                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -335,6 +340,40 @@
   background-color: #bc2e96; /* Color al pasar el mouse por encima */
   color: #F6B2DB;
 }
+
+.modal-footer .btn-intemodal {
+    display: inline-block; /* Asegura que se alineen uno al lado del otro */
+    width: auto; /* Evita que ocupen el 100% del contenedor */
+    min-width: 150px; /* Ancho mínimo para uniformidad */
+    max-width: 200px; /* Limita el ancho máximo */
+    height: 45px;
+    margin: 5px; /* Espaciado uniforme entre botones */
+    background-color: #8A226F;
+    border: 2px solid #FFCDD4;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    white-space: nowrap; /* Evita que el texto se corte */
+}
+
+.modal-footer .btn-intemodal:hover {
+    background-color: #FFCDD4;
+    border-color: #8A226F;
+    color: #8A226F;
+}
+
+@media (max-width: 576px) {
+    .modal-footer .btn-intemodal {
+        font-size: 12px; /* Ajusta el tamaño del texto en pantallas pequeñas */
+        height: 40px; /* Ajusta la altura */
+    }
+
+    .row {
+      separator-gap: 1rem; /* Elimina el espaciado entre filas en pantallas pequeñas */
+    }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

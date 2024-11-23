@@ -84,30 +84,30 @@
     </div>
 </div>
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner text-center">
-        <div class="carousel-item active">
-            <img src="{{ asset('images/PantalonC1.jpg') }}" class="d-block mx-auto" alt="Pantalón">
+<div class="container coleccion mt-4">
+    <h1 class="text-black text-center p-2" style="font-size: 60px; position: relative; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
+        Colección de ropa
+    </h1>
+    <hr style="border-top: 2px solid black; margin: 5px 0; width: 40%; margin-left: 30%;">
+    <div class="row g-4"> 
+        <div class="col-md-4"> 
+            <div class="card h-100">
+                <img src="{{ asset('images/PantalonC1.jpg') }}" class="card-img-top" style="height: 500px;">
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="{{ asset('images/VestidoGala.png') }}" class="d-block mx-auto" alt="Vestido de Gala">
+        <div class="col-md-4"> 
+            <div class="card h-100">
+                <img src="{{ asset('images/VestidoGala.png') }}" class="card-img-top" style="height: 500px;">
+            </div>
         </div>
-        <div class="carousel-item">
-            <img src="{{ asset('images/PlayeraNike.jpg') }}" class="d-block mx-auto" alt="Playera Nike">
+        <div class="col-md-4"> 
+            <div class="card h-100">
+                <img src="{{ asset('images/PlayeraNike.jpg') }}" class="card-img-top" style="height: 500px;">
+            </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
-
-
-        
+    
 <div style="margin-top: 50px;">
     <h1 class="text-black text-center p-2" style="font-size: 60px; position: relative; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
         ¡Ven y Visitanos!

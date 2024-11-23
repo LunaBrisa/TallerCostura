@@ -43,16 +43,10 @@ class EmpleadosController extends Controller
         'apellido_p' => 'required|min:3|string|max:60',
         'apellido_m' => 'nullable|min:3|string|max:60',
         'telefono' => 'required|string|max:10',
-        'email' => 'required|email|max:100',
         'fecha_nacimiento' => 'required|date',
         'rfc' => 'required|string|max:20',
         'nss' => 'required|string|max:20',
-        'name' => 'required|string|max:30|unique:users,name',
-        'contrasena' => 'required|string|min:6',
-    ], [
-        'name.unique' => 'El nombre de usuario ya está en uso.', // Mensaje personalizado para nombre de usuario único
-        'contrasena.min' => 'La contraseña necesita al menos 6 caracteres.', // Mensaje personalizado para longitud mínima de contraseña
-    ]);
+    ],);
 
     $user = User::create([
         'name' => $request->input('name'),

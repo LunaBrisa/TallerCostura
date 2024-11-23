@@ -16,7 +16,7 @@ class EmpleadoMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->hasRole('Empleado')) {
+        if (auth()->user()->hasRole('Empleado') || auth()->user()->hasRole('Admin')) {
             return $next($request);
         }
 
