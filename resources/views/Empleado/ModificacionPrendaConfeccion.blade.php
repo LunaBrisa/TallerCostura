@@ -45,7 +45,7 @@
 
                 <label for="tipoprendota"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                 <select name="tipoprendota" class="form-select" aria-label="Default select example">
-                  <option selected>Seleccionar el Tipo de Prenda</option>
+                  <option selected value="{{$misPrendas -> tp_id}}">Seleccionar el Tipo de Prenda</option>
                   @foreach ($misTiposPrendas as $tipoPrenda)
                     <option value="{{$tipoPrenda->id}}">{{$tipoPrenda->tipo_prenda}}</option>
                   @endforeach

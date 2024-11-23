@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\modifPrendaRequest;
 use App\Models\PrendaConfeccion;
 use App\Models\PrendaColor;
@@ -67,38 +68,39 @@ class PrendaConfeccionController extends Controller
     }
 
     public function modifPrendaConfeccion(modifPrendaRequest $modifPrendaRequest){
-        $prendaconfeccion = PrendaConfeccion::find($modifPrendaRequest->get('idesote'));
-        
-        if($prendaconfeccion){
-            if($modifPrendaRequest -> filled('nombreprendota')){
-                $prendaconfeccion->nombre_prenda = $modifPrendaRequest->get('nombreprendota');
-            }
 
-            if($modifPrendaRequest -> filled('descripcionprendota')){
-                $prendaconfeccion->descripcion = $modifPrendaRequest->get('descripcionprendota');
-            }
+        $prendaconfeccion = PrendaConfeccion::find($modifPrendaRequest -> idesote);
 
-            if($modifPrendaRequest -> has('precioprendota')){
-                $prendaconfeccion -> precio = $modifPrendaRequest->get('precioprendota');
-            }
-
-            if($modifPrendaRequest -> filled('generote')){
-                $prendaconfeccion -> genero = $modifPrendaRequest->get('generote');
-            }
-
-            if($modifPrendaRequest -> filled('tipoprendota')){
-                $prendaconfeccion -> tp_id = $modifPrendaRequest->get('tipoprendota');
-            }
-            
-            $prendaconfeccion->save();
+        if ($modifPrendaRequest -> nombreprendota != null){
+            $prendaconfeccion -> nombre_prenda = $modifPrendaRequest -> nombreprendota;
         }
 
+        if ($modifPrendaRequest -> descripcionprendota != null){
+            $prendaconfeccion -> descripcion = $modifPrendaRequest -> descripcionprendota;
+        }
+
+        if ($modifPrendaRequest -> precioprendota != null){
+            $prendaconfeccion -> precio = $modifPrendaRequest -> precioprendota;
+        }
+
+        if ($modifPrendaRequest -> generote != null){
+            $prendaconfeccion -> genero = $modifPrendaRequest -> generote;
+        }
+
+        if ($modifPrendaRequest -> tipoprendota != null){
+            $prendaconfeccion -> tp_id = $modifPrendaRequest -> tipoprendota;
+        }   
+
+        $prendaconfeccion -> save();
+
         $tiposPrendas = TipoPrenda::all();
-        $prenditas = PrendaConfeccion::all();
+        $prenditas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> get();
+        $prenditasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> get();
         $colores = Color::all();
         $telas = Tela::all();
         return view('Empleado.DashboardPrendaConfeccion') -> with([
             'misPrendas' => $prenditas,
+            'misPrendasOcultas' => $prenditasOcultas,
             'misTiposPrendas' => $tiposPrendas,
             'misColores' => $colores,
             'misTelas' => $telas
