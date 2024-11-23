@@ -227,16 +227,11 @@
               <p class="card-text p-card">{{$prenda -> descripcion}}</p>
               <!-- Button trigger modal -->
               <div class="btn-div2">
-                <div class="row">
-                  <div class="col">
-                    <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
-                      Ver Mas
-                    </button>    
-                  </div>
-                  <div class="col">
-                    <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
-                  </div>
-                </div>
+                <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
+                  Ver Mas
+                </button>
+      
+                <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
               </div>
       
               <!-- Modal -->
