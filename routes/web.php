@@ -31,7 +31,7 @@ use App\Http\Middleware\AdminMiddleware;
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
     Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
-
+    Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 // Rutas protegidas para admin
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
