@@ -33,7 +33,7 @@ use App\Http\Middleware\AdminMiddleware;
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 // Rutas protegidas para admin
-Route::middleware([AdminMiddleware::class])->group(function () {
+//Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
     Route::post('/Registro/RegistrarEmpleado', [EmpleadoRegistroController::class, 'RegistrarEmpleado'])->name('Registro.RegistrarEmpleado');
     Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
@@ -72,7 +72,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
-});
+//});
 
 // Rutas protegidas para Empleados
 //Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
