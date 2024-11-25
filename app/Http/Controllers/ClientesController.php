@@ -77,49 +77,50 @@ class ClientesController extends Controller
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
     }
-    // Redirigir con un mensaje de éxito
 }
 public function update(Request $request, $id)
 {
-    // Validar los datos del formulario
     $request->validate([
         'nombre' => 'required|string|max:100',
-        'apellido_p' => 'required|string|max:100',
-        'apellido_m' => 'required|string|max:100',
+        'apellido_p' => 'required|string|max:60',
+        'apellido_m' => 'nullable|string|max:60',
         'telefono' => 'required|string|max:10',
-        'email' => 'required|email|max:100',
-        'compania' => 'nullable|string|max:255',
-        'cargo' => 'nullable|string|max:255',
-        'name' => 'required|string|max:100',
-        'contrasena' => 'nullable|string|min:6',
+        'compania' => 'nullable|string|max:100',
+        'cargo' => 'min:3|max:100',
+        'email' => 'required|email|max:255',
+        'password' => 'nullable|string|min:6|confirmed', 
+        'name' => 'required|string|max:255', 
     ]);
 
-    // Encontrar al cliente por ID
-    $cliente = Cliente::findOrFail($id);
+    try {
+        $cliente = Cliente::findOrFail($id);
+        $persona = $cliente->persona; 
+        $user = $persona->user; 
 
-    // Actualizar los datos de persona
-    $cliente->persona->update([
-        'nombre' => $request->nombre,
-        'apellido_p' => $request->apellido_p,
-        'apellido_m' => $request->apellido_m,
-        'telefono' => $request->telefono,
-        'email' => $request->correo,
-    ]);
+        $user->name = $request->input('name'); 
+        $user->email = $request->input('email'); 
 
-    // Actualizar datos de cliente
-    $cliente->update([
-        'compania' => $request->compania,
-        'cargo' => $request->cargo,
-    ]);
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password')); 
+        }
 
-    // Actualizar datos de usuario
-    $usuario = $cliente->persona->user; // Acceso a la relación usuario
-    $usuario->update([
-        'name' => $request->name,
-        'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
-    ]);
+        $user->save(); 
 
-    // Redirigir con un mensaje de éxito
-    return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
+        $persona->nombre = $request->input('nombre');
+        $persona->apellido_p = $request->input('apellido_p');
+        $persona->apellido_m = $request->input('apellido_m');
+        $persona->telefono = $request->input('telefono');
+        $persona->save();
+
+
+        $cliente->compania = $request->input('compania');
+        $cliente->cargo = $request->input('cargo');
+        $cliente->save();
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente y usuario actualizados exitosamente.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Error al actualizar el cliente: ' . $e->getMessage());
+    }
 }
+
 }
