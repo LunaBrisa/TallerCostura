@@ -75,7 +75,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 });
 
 // Rutas protegidas para Empleados
-Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
+//Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
     Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
     
@@ -98,7 +98,7 @@ Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(fu
     Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
     Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
     Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-});
+//});
 
 // Rutas protegidas para clientes
 Route::middleware([ClienteMiddleware::class])->group(function () {
