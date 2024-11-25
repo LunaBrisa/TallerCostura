@@ -191,6 +191,7 @@
 
                 <form action="{{ route('empleados.store') }}" method="POST">
                     @csrf
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
@@ -198,6 +199,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo</label>
                         <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
@@ -251,6 +253,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+
                     <div class="mb-3">
                         <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
                         <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">

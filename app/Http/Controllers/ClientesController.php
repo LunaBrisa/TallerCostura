@@ -40,7 +40,7 @@ class ClientesController extends Controller
     $request->validate([
         'nombre' => 'required|string|max:100',
         'apellido_p' => 'required|string|max:60',
-        'apellido_m' => 'nullable|string|max:60',
+        'apellido_m' => 'required|string|max:60',
         'telefono' => 'required|string|max:10',
         'compania' => 'nullable|string|max:100',
         'cargo' => 'min:3|max:100',
