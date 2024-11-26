@@ -164,6 +164,7 @@
     display: block; /* Asegura que el botón sea un bloque */
     height: 40px;
     max-width: 250px; /* Tamaño máximo del botón */
+    min-width: 150px;
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
