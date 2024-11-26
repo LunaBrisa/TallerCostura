@@ -54,12 +54,12 @@
                         <tr>
                             <td><strong>Nombre de Usuario:</strong></td>
                             <td>{{ $dato->NombreUsuario }}</td>
-                            <td><a href=""><img src="{{ asset('images/flecha-bnt.png') }}" width="30" height="30"></a></td>
+                            <td><a href=""><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
                         </tr>
                         <tr>
                             <td><strong>Correo:</strong></td>
                             <td>{{ $dato->Correo }}</td>
-                            <td><a href=""><img src="{{ asset('images/flecha-bnt.png') }}" width="30" height="30"></a></td>
+                            <td><a href=""><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
                         </tr>
                         <tr>
                             <td><strong>Nombre:</strong></td>
@@ -69,7 +69,7 @@
                         <tr>
                             <td><strong>Teléfono:</strong></td>
                             <td>{{ $dato->Telefono }}</td>
-                            <td><a href=""><img src="{{ asset('images/flecha-bnt.png') }}" width="30" height="30"></a></td>
+                            <td><a href=""><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
                         </tr>
                             @if(auth()->user()->hasRole('Cliente'))
                          <tr>
