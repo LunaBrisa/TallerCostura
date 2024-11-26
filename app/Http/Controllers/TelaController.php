@@ -25,6 +25,7 @@ class TelaController extends Controller
         $telita = new Tela();
         $telita->nombre_tela = $telasRequest->telita;
         $telita->material_tela_id = $telasRequest->tipotelita;
+        $telita->precio = $telasRequest->preciotelita;
 
         $telita->save();
         

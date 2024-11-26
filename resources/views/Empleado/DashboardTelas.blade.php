@@ -46,6 +46,10 @@
                                     <option value="{{$matetela->id}}">{{$matetela->material_tela}}</option>
                                 @endforeach
                             </select><br>
+
+                            <label for="preciotelita"><h3 class="h3-modal">Precio de la Tela</h3></label>
+                            <input type="number" class="form-control" name="preciotelita" placeholder="$""><br>
+                            
                             <div class="btn-div">
                                 <input type="submit" class="btn btn-modal-sub" value="Guardar">
                             </div>
