@@ -43,7 +43,7 @@
                         </select><br>
 
                         <label for="cantidadtelitaprenda"><h3 class="h3-modal">Cantidad de Tela</h3></label>
-                        <input type="number" class="form-control" name="cantidadtelitaprenda" placeholder="0"><br>
+                        <input type="number" class="form-control" name="cantidadtelitaprenda" placeholder="Ingresar la cantidad de tela en metros"><br>
 
                         <div class="btn-div">
                             <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
