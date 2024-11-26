@@ -23,7 +23,7 @@
             <div class="offcanvas-body">
                 <div class="order-1 order-lg-3 mb-3 mb-lg-0 d-flex align-items-center" style="color: aliceblue">
                   <a href="{{ route('informacion.consultarUsuario') }}" class="d-flex align-items-center text-decoration-none" style="color: inherit;">
-                    <img src="{{ asset('images/usuario.png') }}" width="30px" height="30px" alt="Usuario">
+                    <img src="{{ asset('images/usuario.jpg') }}" width="30px" height="30px" alt="Usuario">
                       @if(auth()->check())
                         {{ auth()->user()->name }}                  
                       @endif
@@ -77,9 +77,9 @@
     </div>
     <div class="footer">
        <div style="margin-left: 50px"> 
-        <img src="{{ asset('images/llamada.png') }}" width="30px" height="30px">
+        <img src="{{ asset('images/telefono.jpg') }}" width="30px" height="30px">
         Telefono: +528 715 627 999
-        <img src="{{ asset('images/email.png') }}" width="30px" height="30px">
+        <img src="{{ asset('images/email.jpg') }}" width="30px" height="30px">
         Correo: fatimacastcanelo756@gmail.com
       <p style="font-size: 20px; font-family: 'Bodoni Moda'; text-align:end; margin-right: 50px;">
         Taller Costura 2022</p></div>
