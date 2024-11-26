@@ -336,6 +336,12 @@
   color: #F6B2DB;
 }
 
+.btn-intemodal {
+    display: inline-block; /* Asegura que se alineen uno al lado del otro */
+    width: auto; /* Evita que ocupen el 100% del contenedor */
+    width: 150px !important;
+}
+
 .modal-footer .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
     width: auto; /* Evita que ocupen el 100% del contenedor */
