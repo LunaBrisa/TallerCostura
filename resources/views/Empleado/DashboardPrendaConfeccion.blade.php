@@ -342,7 +342,7 @@
 
 .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
-    width: 70px !important;
+    width: 100px !important;
     height: 45px !important;
     margin: 5px !important; /* Espaciado uniforme entre botones */
     padding: 5px 10px !important;
