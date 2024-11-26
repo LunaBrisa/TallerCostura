@@ -336,11 +336,11 @@
   color: #F6B2DB;
 }
 
-.modal-footer .btn-intemodal {
+.modal-footer{
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
     width: auto; /* Evita que ocupen el 100% del contenedor */
-    min-width: 150px; /* Ancho mínimo para uniformidad */
-    max-width: 200px; /* Limita el ancho máximo */
+    min-width: 150px;
+    max-width: 200px; 
     height: 45px;
     margin: 5px; /* Espaciado uniforme entre botones */
     background-color: #8A226F;

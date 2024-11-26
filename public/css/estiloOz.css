@@ -217,7 +217,7 @@ h1.Titulomodal{
     justify-content: center; 
     align-items: center;
     height: 40px;
-    width: 100px;
+    width: 100px !important;
     background-color: #8A226F;
     border: solid 2px;
     border-color: #FFCDD4;
