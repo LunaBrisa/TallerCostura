@@ -345,6 +345,7 @@
     width: 70px !important;
     height: 45px !important;
     margin: 5px !important; /* Espaciado uniforme entre botones */
+    padding: 0%;
     background-color: #8A226F;
     border: 2px solid #FFCDD4;
     color: #FFCDD4;
