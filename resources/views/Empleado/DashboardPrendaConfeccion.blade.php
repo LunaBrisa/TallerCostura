@@ -361,13 +361,13 @@
     color: #8A226F;
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .btn-intemodal {
     width: auto;
     min-width: 150px;
     max-width: 200px;
   }
-}
+} */
 
 
 </style>
