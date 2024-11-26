@@ -61,7 +61,7 @@
                 <div class="card cardsing mb-4">
                     <div class="card-body">
                         <h1 class="list-title">{{$tela-> tela->nombre_tela}}</h1>
-                        <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1><br>
+                        <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1>
                         <h1 class="card-det">Precio: {{$tela-> tela->precio}}</h1><br>
 
                         <!-- Button trigger modal -->
@@ -155,7 +155,7 @@
     margin: 5px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
     height: 40px;
-    max-width: 300px; /* Tamaño máximo del botón */
+    max-width: 250px; /* Tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
@@ -175,6 +175,7 @@
     .btn-modal-sub {
         height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
+        width: 100px;
     }
 }
  </style>
