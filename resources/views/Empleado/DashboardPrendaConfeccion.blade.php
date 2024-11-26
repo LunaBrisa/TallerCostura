@@ -337,14 +337,10 @@
 }
 
 .btn-intemodal {
-    width: 100px;
-}
-
-.modal-footer{
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
     width: auto; /* Evita que ocupen el 100% del contenedor */
-    min-width: 150px;
-    max-width: 200px; 
+    min-width: 100px;
+    max-width: 100px; 
     height: 45px;
     margin: 5px; /* Espaciado uniforme entre botones */
     background-color: #8A226F;
