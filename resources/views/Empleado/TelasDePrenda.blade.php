@@ -62,6 +62,7 @@
                     <div class="card-body">
                         <h1 class="list-title">{{$tela-> tela->nombre_tela}}</h1>
                         <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1><br>
+                        <h1 class="card-det">Precio: {{$tela-> tela->precio}}</h1><br>
 
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$tela->id}}">
