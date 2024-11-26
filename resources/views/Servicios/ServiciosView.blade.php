@@ -112,14 +112,22 @@
                             <td>{{ $servicio->servicio }}</td>
                             <td>{{ $servicio->descripcion }}</td>
                             <td>${{ number_format($servicio->precio, 2) }}</td>
-                            <td>
-                                <!-- Mostrar u ocultar servicio -->
-                                <form action="{{ route('servicios.ocultar', $servicio->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="btn btn-warning btn-sm btn-toggle" type="submit">
-                                        Ocultar
+                                <td>
+                                    <!-- Botón para abrir el modal de editar servicio -->
+                                    <button class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-{{ $servicio->id }}">
+                                        Editar
                                     </button>
+                                
+                                    <!-- Mostrar u ocultar servicio -->
+                                    <form action="{{ $servicio->visible ? route('servicios.ocultar', $servicio->id) : route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-{{ $servicio->visible ? 'warning' : 'success' }} btn-sm btn-toggle" type="submit">
+                                            {{ $servicio->visible ? 'Ocultar' : 'Mostrar' }}
+                                        </button>
+                                    </form>
+                                </td>
+                                
                                 </form>
                             </td>
                         </tr>
@@ -151,87 +159,134 @@
     </div>
 
     <!-- Modal para agregar servicio -->
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Agregar Nuevo Servicio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <form action="{{ route('servicios.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="servicio" class="form-label">Nombre del Servicio</label>
-                            <input type="text" class="form-control" id="servicio" name="servicio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="visible" class="form-label">Visible</label>
-                            <select class="form-control" id="visible" name="visible" required>
-                                <option value="1">Sí</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </form>
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Agregar Nuevo Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
+            <form action="{{ route('servicios.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <!-- Nombre del Servicio: Solo letras y espacios -->
+                    <div class="mb-3">
+                        <label for="servicio" class="form-label">Nombre del Servicio</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="servicio" 
+                               name="servicio" 
+                               pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" 
+                               title="El nombre solo puede contener letras y espacios" 
+                               required>
+                    </div>
+                    <!-- Descripción: Permitir cualquier texto, mínimo 10 caracteres -->
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" 
+                                  id="descripcion" 
+                                  name="descripcion" 
+                                  minlength="10" 
+                                  title="La descripción debe tener al menos 10 caracteres" 
+                                  required></textarea>
+                    </div>
+                    <!-- Precio: Solo números mayores a 0 -->
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="precio" 
+                               name="precio" 
+                               step="0.01" 
+                               min="0.01" 
+                               title="El precio debe ser un número mayor a 0" 
+                               required>
+                    </div>
+                    <!-- Visible: Opciones sí o no -->
+                    <div class="mb-3">
+                        <label for="visible" class="form-label">Visible</label>
+                        <select class="form-control" id="visible" name="visible" required>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Modales para editar servicios -->
-    @foreach ($servicios as $servicio)
-    <div class="modal fade" id="editModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $servicio->id }}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel-{{ $servicio->id }}">Editar Servicio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="servicio" class="form-label">Nombre del Servicio</label>
-                            <input type="text" class="form-control" id="servicio" name="servicio" value="{{ $servicio->servicio }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" required>{{ $servicio->descripcion }}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" value="{{ $servicio->precio }}" step="0.01" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="visible" class="form-label">Visible</label>
-                            <select class="form-control" id="visible" name="visible" required>
-                                <option value="1" {{ $servicio->visible ? 'selected' : '' }}>Sí</option>
-                                <option value="0" {{ !$servicio->visible ? 'selected' : '' }}>No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
+
+   <!-- Modales para editar servicios -->
+@foreach ($servicios as $servicio)
+<div class="modal fade" id="editModal-{{ $servicio->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $servicio->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel-{{ $servicio->id }}">Editar Servicio</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
+            <form action="{{ route('servicios.update', $servicio->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <!-- Nombre del Servicio: Solo letras y espacios -->
+                    <div class="mb-3">
+                        <label for="servicio-{{ $servicio->id }}" class="form-label">Nombre del Servicio</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="servicio-{{ $servicio->id }}" 
+                               name="servicio" 
+                               value="{{ $servicio->servicio }}" 
+                               pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" 
+                               title="El nombre solo puede contener letras y espacios" 
+                               required>
+                    </div>
+                    <!-- Descripción: Mínimo 10 caracteres -->
+                    <div class="mb-3">
+                        <label for="descripcion-{{ $servicio->id }}" class="form-label">Descripción</label>
+                        <textarea class="form-control" 
+                                  id="descripcion-{{ $servicio->id }}" 
+                                  name="descripcion" 
+                                  minlength="10" 
+                                  title="La descripción debe tener al menos 10 caracteres" 
+                                  required>{{ $servicio->descripcion }}</textarea>
+                    </div>
+                    <!-- Precio: Solo números mayores a 0 -->
+                    <div class="mb-3">
+                        <label for="precio-{{ $servicio->id }}" class="form-label">Precio</label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="precio-{{ $servicio->id }}" 
+                               name="precio" 
+                               value="{{ $servicio->precio }}" 
+                               step="0.01" 
+                               min="0.01" 
+                               title="El precio debe ser un número mayor a 0" 
+                               required>
+                    </div>
+                    <!-- Visible: Opciones Sí o No -->
+                    <div class="mb-3">
+                        <label for="visible-{{ $servicio->id }}" class="form-label">Visible</label>
+                        <select class="form-control" id="visible-{{ $servicio->id }}" name="visible" required>
+                            <option value="1" {{ $servicio->visible ? 'selected' : '' }}>Sí</option>
+                            <option value="0" {{ !$servicio->visible ? 'selected' : '' }}>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
         </div>
     </div>
-    @endforeach
+</div>
+@endforeach
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
