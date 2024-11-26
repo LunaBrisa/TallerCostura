@@ -37,7 +37,6 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion -> nombre_prenda = $savePrendaConfeccionRequest -> nombreprendita;
         $prendaconfeccion -> descripcion = $savePrendaConfeccionRequest -> descripcionprendita;
         $prendaconfeccion -> precio_obra = $savePrendaConfeccionRequest -> precio_obra_prendita;
-        $prendaconfeccion -> precio_telas = $savePrendaConfeccionRequest -> precio_telas_prendita;
         $prendaconfeccion -> genero = $savePrendaConfeccionRequest -> generito;
         $prendaconfeccion -> tp_id = $savePrendaConfeccionRequest -> tipoprendita;
         $prendaconfeccion -> ruta_imagen = "pormientras";
