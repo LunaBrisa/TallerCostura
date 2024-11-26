@@ -58,7 +58,7 @@
     </div><br>
     <div class="row">
             @foreach ($misPrendasTelas as $tela)                                                                                                                   
-                <div class="card cardsing mb-4">
+                <div class="card cardsing mb-4" style="width: 18rem">
                     <div class="card-body">
                         <h1 class="list-title">{{$tela-> tela->nombre_tela}}</h1>
                         <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1>
