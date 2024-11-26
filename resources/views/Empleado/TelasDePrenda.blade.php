@@ -163,8 +163,7 @@
     margin: 5px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
     height: 40px;
-    max-width: 250px; /* Tamaño máximo del botón */
-    min-width: 150px;
+    max-width: 200px; /* Incrementar el tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
@@ -184,7 +183,13 @@
     .btn-modal-sub {
         height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
-        width: 80px;
+        width: 80px; /* Más angosto en pantallas pequeñas */
+    }
+}
+
+@media (min-width: 992px) { /* Estilos específicos para pantallas grandes */
+    .btn-modal-sub {
+        max-width: 300px; /* Botón más ancho en pantallas grandes */
     }
 }
  </style>
