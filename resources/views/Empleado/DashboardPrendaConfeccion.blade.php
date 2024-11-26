@@ -342,9 +342,9 @@
 
 .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
-    width: 100px;
-    height: 45px;
-    margin: 5px; /* Espaciado uniforme entre botones */
+    width: 100px !important;
+    height: 45px !important;
+    margin: 5px !important; /* Espaciado uniforme entre botones */
     background-color: #8A226F;
     border: 2px solid #FFCDD4;
     color: #FFCDD4;
