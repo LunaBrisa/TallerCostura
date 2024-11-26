@@ -42,8 +42,8 @@
                         <label for="descripcionprendita"><h3 class="h3-modal">Descripcion de la Prenda</h3></label>
                         <textarea class="form-control" name="descripcionprendita" rows="3"></textarea><br>
 
-                        <label for="precio-obra-prendita"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                        <input type="number" class="form-control" name="precio-obra-prendita" placeholder="$"><br>
+                        <label for="precio_obra_prendita"><h3 class="h3-modal">Precio de la Prenda</h3></label>
+                        <input type="number" class="form-control" name="precio_obra_prendita" placeholder="$"><br>
 
                         <label for=""><h3 class="h3-modal">Genero de la Prenda</h3></label><br>
 
