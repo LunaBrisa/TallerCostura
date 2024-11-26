@@ -45,9 +45,6 @@
                         <label for="precio-obra-prendita"><h3 class="h3-modal">Precio de la Prenda</h3></label>
                         <input type="number" class="form-control" name="precio-obra-prendita" placeholder="$"><br>
 
-                        <label for="precio-telas-prendita"><h3 class="h3-modal">Precio de las Telas Requeridas</h3></label>
-                        <input type="number" class="form-control" name="precio-telas-prendita" placeholder="$"><br>
-
                         <label for=""><h3 class="h3-modal">Genero de la Prenda</h3></label><br>
 
                           <div class="form-check form-check-inline">
