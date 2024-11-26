@@ -338,13 +338,11 @@
 
 .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
-    width: auto; /* Evita que ocupen el 100% del contenedor */
     width: 100px !important;
 }
 
 .modal-footer .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
-    width: auto; /* Evita que ocupen el 100% del contenedor */
     min-width: 150px; /* Ancho mínimo para uniformidad */
     max-width: 150px; /* Limita el ancho máximo */
     height: 45px;
