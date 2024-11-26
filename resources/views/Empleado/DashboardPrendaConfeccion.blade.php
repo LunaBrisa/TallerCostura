@@ -154,7 +154,7 @@
                         <div class="row">
                           <div class="col">
                             <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                            <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio}}" readonly><br>
+                            <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
                           </div>
                           <div class="col">
                             <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
@@ -254,7 +254,7 @@
                           <div class="row">
                             <div class="col">
                               <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                              <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio}}" readonly><br>
+                              <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
                             </div>
                             <div class="col">
                               <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
