@@ -51,6 +51,8 @@ class PrendaConfeccionController extends Controller
         $prendacolor -> prenda_id = $prendaconfeccion -> id;
         $prendacolor -> color_id = $savePrendaConfeccionRequest -> colorprendita;
         $prendacolor -> ruta_imagen = "pormientras";
+        $prendacolor -> created_at = date('Y-m-d H:i:s');
+        $prendacolor -> updated_at = date('Y-m-d H:i:s');
         
         $prendacolor -> save();
 
@@ -58,6 +60,8 @@ class PrendaConfeccionController extends Controller
         $prendatela -> prenda_confeccion_id = $prendaconfeccion -> id;
         $prendatela -> tela_id = $savePrendaConfeccionRequest -> telitas;
         $prendatela -> cantidad_tela = $savePrendaConfeccionRequest -> cantidadsitadetela;
+        $prendatela -> created_at = date('Y-m-d H:i:s');
+        $prendatela -> updated_at = date('Y-m-d H:i:s');
 
         $prendatela -> save();
 
