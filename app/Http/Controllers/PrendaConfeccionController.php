@@ -37,6 +37,7 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion -> nombre_prenda = $savePrendaConfeccionRequest -> nombreprendita;
         $prendaconfeccion -> descripcion = $savePrendaConfeccionRequest -> descripcionprendita;
         $prendaconfeccion -> precio_obra = $savePrendaConfeccionRequest -> precio_obra_prendita;
+        $prendaconfeccion -> precio_telas = '100.00'; //Esto es en lo que esta el trigger de calcular el precio de las telas
         $prendaconfeccion -> genero = $savePrendaConfeccionRequest -> generito;
         $prendaconfeccion -> tp_id = $savePrendaConfeccionRequest -> tipoprendita;
         $prendaconfeccion -> ruta_imagen = "pormientras";
