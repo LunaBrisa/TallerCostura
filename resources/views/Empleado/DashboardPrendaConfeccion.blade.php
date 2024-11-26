@@ -340,7 +340,7 @@
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
     width: auto; /* Evita que ocupen el 100% del contenedor */
     min-width: 150px; /* Ancho mínimo para uniformidad */
-    max-width: 200px; /* Limita el ancho máximo */
+    max-width: 150px; /* Limita el ancho máximo */
     height: 45px;
     margin: 5px; /* Espaciado uniforme entre botones */
     background-color: #8A226F;
