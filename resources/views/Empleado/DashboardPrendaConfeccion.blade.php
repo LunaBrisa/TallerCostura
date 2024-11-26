@@ -9,7 +9,7 @@
     <title>Gestion Catalogo</title> 
 </head>
 <body>
-@extends('layouts.navemp')
+@extends('layouts.nav')
 @section('content')
 <div class="container2">
   <div class="row" style="padding-top: 20px;">
@@ -42,8 +42,8 @@
                         <label for="descripcionprendita"><h3 class="h3-modal">Descripcion de la Prenda</h3></label>
                         <textarea class="form-control" name="descripcionprendita" rows="3"></textarea><br>
 
-                        <label for="precioprendita"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                        <input type="number" class="form-control" name="precioprendita" placeholder="$"><br>
+                        <label for="precio_obra_prendita"><h3 class="h3-modal">Precio de la Prenda</h3></label>
+                        <input type="number" class="form-control" name="precio_obra_prendita" placeholder="$"><br>
 
                         <label for=""><h3 class="h3-modal">Genero de la Prenda</h3></label><br>
 
@@ -126,7 +126,7 @@
             <p class="card-text p-card">{{$prenda -> descripcion}}</p>
             <!-- Button trigger modal -->
             <div class="btn-div2">
-              <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
+              <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
                 Ver Mas
               </button>
     
@@ -144,6 +144,7 @@
                   <div class="modal-body">
                     <div class="conteform">
                       <form action="">
+                        
                         <label for="prenda"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
                         <input type="text" class="form-control" name="prenda" placeholder="{{$prenda -> nombre_prenda}}" readonly><br>
     
@@ -153,7 +154,7 @@
                         <div class="row">
                           <div class="col">
                             <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                            <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio}}" readonly><br>
+                            <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
                           </div>
                           <div class="col">
                             <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
@@ -188,20 +189,20 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <div class="row mb-3" style="text-align: center; margin: auto">
-                      <div class="col">
-                        <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar datos de Prenda</button></a>
+                    <div class="row mb-1" style="text-align: center; margin: auto">
+                      <div class="col mb-3">
+                        <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Prenda</button></a>
                       </div>
-                      <div class="col">
-                        <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Telas</button></a>
+                      <div class="col mb-3">
+                        <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Telas</button></a>
                       </div>
                     </div><br>
                     <div class="row" style="margin: auto">
-                      <div class="col">
-                        <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Colores</button></a>
+                      <div class="col mb-3">
+                        <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Colores</button></a>
                       </div>
-                      <div class="col">
-                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
+                      <div class="col mb-3">
+                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 150px !important">Cerrar</button>
                       </div>
                     </div><br>
                   </div>
@@ -230,7 +231,7 @@
                   Ver Mas
                 </button>
       
-                <a href="/mostrar/prenda/{{$prenda -> id}}" class="btn btn-intemodal">Mostrar</a>
+                <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
               </div>
       
               <!-- Modal -->
@@ -253,7 +254,7 @@
                           <div class="row">
                             <div class="col">
                               <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                              <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio}}" readonly><br>
+                              <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
                             </div>
                             <div class="col">
                               <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
@@ -288,23 +289,23 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <div class="row mb-3" style="text-align: center; margin: auto">
-                        <div class="col">
-                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar datos de Prenda</button></a>
+                      <div class="row mb-1" style="text-align: center; margin: auto">
+                        <div class="col mb-3">
+                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar datos de Prenda</button></a>
                         </div>
-                        <div class="col">
-                          <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Telas</button></a>
+                        <div class="col mb-3">
+                          <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Telas</button></a>
                         </div>
                       </div><br>
                       <div class="row" style="margin: auto">
-                        <div class="col">
-                          <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 205px">Gestionar Colores</button></a>
+                        <div class="col mb-3">
+                          <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Colores</button></a>
                         </div>
-                        <div class="col">
-                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 205px">Cerrar</button>
+                        <div class="col mb-3">
+                          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 150px !important">Cerrar</button>
                         </div>
                       </div><br>
-                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -334,6 +335,41 @@
   background-color: #bc2e96; /* Color al pasar el mouse por encima */
   color: #F6B2DB;
 }
+
+.tamal {
+  width: 100px;
+}
+
+.btn-intemodal {
+    display: inline-block; /* Asegura que se alineen uno al lado del otro */
+    width: 100px !important;
+    height: 45px !important;
+    margin: 5px !important; /* Espaciado uniforme entre botones */
+    padding: 5px 10px !important;
+    background-color: #8A226F;
+    border: 2px solid #FFCDD4;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    white-space: nowrap; /* Evita que el texto se corte */
+}
+
+.modal-footer .btn-intemodal:hover {
+    background-color: #FFCDD4;
+    border-color: #8A226F;
+    color: #8A226F;
+}
+
+/* @media (min-width: 576px) {
+  .btn-intemodal {
+    width: auto;
+    min-width: 150px;
+    max-width: 200px;
+  }
+} */
+
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

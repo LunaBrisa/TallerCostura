@@ -68,7 +68,6 @@ h1.Titulo2{
     align-items: center;
     height: 10%;
     width: 90%;
-    padding: 0%;
 }
 
 .btn-gest{
@@ -157,7 +156,7 @@ a {
 }
 
 a:visited {
-    color:unset; 
+    color: black; 
 }
 
 a:hover,
@@ -218,7 +217,7 @@ h1.Titulomodal{
     justify-content: center; 
     align-items: center;
     height: 40px;
-    width: 100px !important;
+    width: 100px;
     background-color: #8A226F;
     border: solid 2px;
     border-color: #FFCDD4;

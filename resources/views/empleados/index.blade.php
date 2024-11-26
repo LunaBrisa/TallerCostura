@@ -53,10 +53,10 @@
                 <tr>
                     <td>{{ $empleado->id }}</td>
                     <td>{{ $empleado->persona->nombre }} {{ $empleado->persona->apellido_p }} {{ $empleado->persona->apellido_m }}</td>
-                    <td>{{ $empleado->persona->usuario->nombre_usuario }}</td>
+                    <td>{{ $empleado->persona->user->name }}</td>
                     <td>{{ $empleado->persona->telefono }}</td>
                     <td>{{ $empleado->persona->correo }}</td>
-                    <td>{{ $empleado->persona->usuario->roles->first()->nombre_rol }}</td>
+                    <td>{{ $empleado->persona->user->roles->first()->nombre_rol }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
                     </td>
@@ -138,9 +138,9 @@
                                     </div>
                 
                                     <div class="mb-3">
-                                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
-                                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ $empleado->persona->usuario->nombre_usuario }}" required>
-                                        @error('nombre_usuario')
+                                        <label for="name" class="form-label">Nombre de Usuario</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ $empleado->persona->user->name }}" required>
+                                        @error('name')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -158,7 +158,7 @@
                                         <select class="form-control" id="rol" name="rol_id" required>
                                             @foreach ($roles as $rol)
                                                 <option value="{{ $rol->id }}" 
-                                                    {{ $empleado->persona->usuario->roles->first()->id == $rol->id ? 'selected' : '' }}>
+                                                    {{ $empleado->persona->user->roles->first()->id == $rol->id ? 'selected' : '' }}>
                                                     {{ $rol->nombre_rol }}
                                                 </option>
                                             @endforeach
@@ -183,14 +183,45 @@
 <div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #F5C6C6;">
                 <h5 class="modal-title" id="agregarEmpleadoLabel">Agregar Empleado</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color: #F5C6C6;">
+
                 <form action="{{ route('empleados.store') }}" method="POST">
                     @csrf
 
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        @error('contrasena')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                        @error('password_confirmation')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
@@ -224,14 +255,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" value="{{ old('correo') }}" required>
-                        @error('correo')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
                         <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">
                         @error('fecha_nacimiento')
@@ -254,26 +277,10 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
-                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required>
-                        @error('nombre_usuario')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                        @error('contrasena')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
                     <input type="hidden" name="empleado_id" value="nuevo">
                     <button type="submit" class="btn btn-success">Agregar Empleado</button>
                 </form>
+           
             </div>
         </div>
     </div>

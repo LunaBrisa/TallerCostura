@@ -54,9 +54,9 @@
                 <tr>
                     <td>{{ $cliente->id }}</td>
                     <td>{{ $cliente->persona->nombre }} {{ $cliente->persona->apellido_p }} {{ $cliente->persona->apellido_m }}</td>
-                    <td>{{ $cliente->persona->usuario->nombre_usuario }}</td>
+                    <td>{{ $cliente->persona->user->name }}</td>
                     <td>{{ $cliente->persona->telefono }}</td>
-                    <td>{{ $cliente->persona->correo }}</td>
+                    <td>{{ $cliente->persona->user->email }}</td>
                     <td>{{ $cliente->compania }}</td>
                     <td>{{ $cliente->cargo }}</td>
                     <td>
@@ -76,83 +76,91 @@
                 <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $cliente->persona->nombre }}" required>
+                
+                    <div class="form-group">
+                        <label for="name">Nombre de Usuario</label>
+                        <input type="text" name="name" id="name" value="{{ old('name', $cliente->persona->user->name) }}" class="form-control" required>
+                        @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $cliente->persona->nombre) }}" class="form-control" required>
                         @error('nombre')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="apellido_p" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ $cliente->persona->apellido_p }}" required>
+                
+                    <div class="form-group">
+                        <label for="apellido_p">Apellido Paterno</label>
+                        <input type="text" name="apellido_p" id="apellido_p" value="{{ old('apellido_p', $cliente->persona->apellido_p) }}" class="form-control" required>
                         @error('apellido_p')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="apellido_m" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ $cliente->persona->apellido_m }}">
+                
+                    <div class="form-group">
+                        <label for="apellido_m">Apellido Materno</label>
+                        <input type="text" name="apellido_m" id="apellido_m" value="{{ old('apellido_m', $cliente->persona->apellido_m) }}" class="form-control">
                         @error('apellido_m')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $cliente->persona->telefono }}" required>
+                
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" name="telefono" id="telefono" value="{{ old('telefono', $cliente->persona->telefono) }}" class="form-control" required>
                         @error('telefono')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" value="{{ $cliente->persona->correo }}" required>
-                        @error('correo')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="compania" class="form-label">Compañía</label>
-                        <input type="text" class="form-control" id="compania" name="compania" value="{{ $cliente->compania }}">
+                
+                    <div class="form-group">
+                        <label for="compania">Compañía</label>
+                        <input type="text" name="compania" id="compania" value="{{ old('compania', $cliente->compania) }}" class="form-control">
                         @error('compania')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="cargo" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" id="cargo" name="cargo" value="{{ $cliente->cargo }}">
+                
+                    <div class="form-group">
+                        <label for="cargo">Cargo</label>
+                        <input type="text" name="cargo" id="cargo" value="{{ old('cargo', $cliente->cargo) }}" class="form-control">
                         @error('cargo')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
-                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ $cliente->persona->usuario->nombre_usuario }}" required>
-                        @error('nombre_usuario')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" name="email" id="email" value="{{ old('email', $cliente->persona->user->email) }}" class="form-control" required>
+                        @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="contrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena">
-                        <small class="text-muted">Deja este campo vacío si no deseas cambiar la contraseña.</small>
-                        @error('contrasena')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                
+                    <div class="form-group">
+                        <label for="password">Nueva Contraseña (Opcional)</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Dejar vacío si no desea cambiarla">
+                        @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirmar Contraseña (Opcional)</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                        @error('password_confirmation')
+                                 <small class="text-danger">{{ $message }}</small>
+                               @enderror
                     </div>
                     <input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
 
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
                 </form>
+                
             </div>
         </div>
     </div>
@@ -166,89 +174,93 @@
 <div class="modal fade" id="agregarClienteModal" tabindex="-1" aria-labelledby="agregarClienteLabel">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #F5C6C6;">
                 <h5 class="modal-title" id="agregarClienteLabel">Agregar Cliente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="{{ route('clientes.store') }}" method="POST">
+            <div class="modal-body" style="background-color: #F5C6C6;">
+                <form action="{{ route('clientes.store') }}" method="post">
                     @csrf
-
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
-                        @error('nombre')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="apellido_p" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
-                        @error('apellido_p')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="apellido_m" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
-                        @error('apellido_m')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
-                        @error('telefono')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" name="correo" value="{{ old('correo') }}" required>
-                        @error('correo')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="compania" class="form-label">Compañía</label>
-                        <input type="text" class="form-control" id="compania" name="compania" value="{{ old('compania') }}">
-                        @error('compania')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="cargo" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" id="cargo" name="cargo" value="{{ old('cargo') }}">
-                        @error('cargo')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="nombre_usuario" class="form-label">Nombre de Usuario</label>
-                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" value="{{ old('nombre_usuario') }}" required>
-                        @error('nombre_usuario')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contrasena" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                        @error('contrasena')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <input type="hidden" name="cliente_id" value="nuevo">
-
-                    <button type="submit" class="btn btn-success">Agregar Cliente</button>
-                </form>
+                    <div class="row mb-3">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                            @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                              <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
+                               <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" style="border: #B5C5D7 2px solid; font-size: larger;">
+                               @error('password_confirmation')
+                                 <small class="text-danger">{{ $message }}</small>
+                               @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                            @error('nombre')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                                <div class="mb-3">
+                                    <label for="apellido_p" class="form-label">Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
+                                    @error('apellido_p')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="apellido_m" class="form-label">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
+                                    @error('apellido_m')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+                                    @error('telefono')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="compania" class="form-label">Compañía</label>
+                                    <input type="text" class="form-control" id="compania" name="compania" value="{{ old('compania') }}">
+                                    @error('compania')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="cargo" class="form-label">Cargo</label>
+                                    <input type="text" class="form-control" id="cargo" name="cargo" value="{{ old('cargo') }}">
+                                    @error('cargo')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <input type="hidden" name="cliente_id" value="nuevo">
+            
+                                <button type="submit" class="btn btn-success" style="background-color: #B5C5D7">Agregar Cliente</button>
+                            </form>
             </div>
         </div>
     </div>
@@ -256,21 +268,22 @@
 
 <!-- Script para mostrar el modal automáticamente si hay errores -->
 @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Verifica si el error pertenece a un cliente específico
-            var clienteId = '{{ old("cliente_id") }}';
-            if (clienteId && clienteId !== 'nuevo') {
-                // Muestra el modal de edición correspondiente
-                var editarClienteModal = new bootstrap.Modal(document.getElementById('editarClienteModal' + clienteId));
-                editarClienteModal.show();
-            } else {
-                // Muestra el modal de agregar
-                var agregarClienteModal = new bootstrap.Modal(document.getElementById('agregarClienteModal'));
-                agregarClienteModal.show();
-            }
-        });
-    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var clienteId = '{{ old("cliente_id") }}';
+        if (clienteId && clienteId !== 'nuevo') {
+            // Muestra el modal de edición correspondiente
+            var editarClienteModal = new bootstrap.Modal(document.getElementById('editarClienteModal' + clienteId));
+            editarClienteModal.show();
+        } else {
+            // Muestra el modal de agregar
+            var agregarClienteModal = new bootstrap.Modal(document.getElementById('agregarClienteModal'));
+            agregarClienteModal.show();
+        }
+    });
+</script>
+
+
 @endif
 
 @endsection

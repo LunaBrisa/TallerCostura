@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class PrendasTelasController extends Controller
 {
     public function getTelasDePrenda($id){
-        $prendasTelas = PrendaTela::with('prenda', 'tela')->where(['prenda_confeccion_id', $id])->get();
+        $prendasTelas = PrendaTela::with('prenda', 'tela')->where('prenda_confeccion_id', $id)->get();
         $telitas = Tela::all();
         $prenda = PrendaConfeccion::find($id);
         return view('Empleado.TelasDePrenda')->with([

@@ -16,17 +16,17 @@
     <div class="overlay"></div>  
     <div class="contenido d-flex justify-content-center align-items-center w-100 h-100">
         <div class="texto1 col-lg-8 col-md-10 col-sm-12 text-center mx-auto">
-            <h1 class="p-2 display-3 text-white">
+            <h1 class="p-2 display-3 text-black">
                 ¡Bienvenido al Taller Costura!
             </h1> 
-            <h1 class="p-2 display-4 text-white">
+            <h1 class="p-2 display-4 text-black">
                 Luna Cast.! 
             </h1>
-            <h2 class="p-2 text-white" style="font-size: 30px;">
+            <h2 class="p-2 text-black" style="font-size: 30px;">
                 Ven y échale un vistazo a nuestro catálogo de ropa que te podemos confeccionar!!
             </h2>
             <a href="Cliente/PcatalogoView" class="btn btn-outline-light btn-hover mt-4" 
-               style="width: 250px; height:60px;">
+               style="width: 250px; height:60px; color: black;">
                Ver Catálogo
             </a>
         </div>
@@ -41,9 +41,7 @@
           Nuestro Taller comenzó desde que yo era muy pequeña 
           ya que siempre me llamo la atención las máquinas y
           el poder hacer que las demás personas luzcan unos conjuntos muy bonitos
-          y hechos por mí.!Nuestro propósito es que no solo las personas 
-          puedan lucir ropa hecha, sino que también podamos reparar la ropa favorita
-          que esta dañada para que así las personas las puedan volver a lucirla.
+          y hechos por mí.
         </h1>
     </div>
 </div>
@@ -109,7 +107,7 @@
         </div>
     </div>
 </div>
-        
+    
 <div style="margin-top: 50px;">
     <h1 class="text-black text-center p-2" style="font-size: 60px; position: relative; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
         ¡Ven y Visitanos!
@@ -134,9 +132,9 @@
     border: 2px solid black;
 }
 .texto1 {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color:blanchedalmond;
     z-index: 1;
-    opacity: 0.9;
+    opacity: 50%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 30px;
@@ -201,4 +199,5 @@
         font-size: 30px;
     }
 }
+
 </style>

@@ -9,7 +9,7 @@ class PrendaConfeccion extends Model
 {
     use HasFactory;
     protected $table = 'PRENDAS_CONFECCIONES';
-    protected $fillable = ['nombre_prenda', 'descripcion', 'precio', 'genero', 'tp_id', 'ruta_imagen', 'visible'];
+    protected $fillable = ['nombre_prenda', 'descripcion', 'precio_obra', 'precio_telas', 'genero', 'tp_id', 'ruta_imagen', 'visible'];
 
     public function tipoPrenda()
     {

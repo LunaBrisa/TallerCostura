@@ -19,18 +19,17 @@ class Pedido extends Model
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }
-
-    public function detallesConfeccion()
+    public function detallesConfecciones()
     {
         return $this->hasMany(DetalleConfeccion::class, 'pedido_id');
     }
-
-    public function detallesReparacion()
+    
+    public function detallesReparaciones()
     {
         return $this->hasMany(DetalleReparacion::class, 'pedido_id');
     }
-
-    public function detallesLote()
+    
+    public function detallesLotes()
     {
         return $this->hasMany(DetalleLote::class, 'pedido_id');
     }

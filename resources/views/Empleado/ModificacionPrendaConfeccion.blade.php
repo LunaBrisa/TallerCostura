@@ -9,33 +9,8 @@
     <title>Gestion Catalogo</title> 
 </head>
 <body>
-    <nav class="navbar">
-    <div class="container" >
-        <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-        <a class="navbar-brand" href="#">Taller Costura</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Catalogo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Servicios</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-</nav><br>
-
+@extends('layouts.nav')
+@section('content')
 {{-- MODIFCACION --}}
 <div class="container">
   <div class="row">
@@ -70,7 +45,7 @@
 
                 <label for="tipoprendota"><h3 class="h3-modal">Tipo de Prenda</h3></label>
                 <select name="tipoprendota" class="form-select" aria-label="Default select example">
-                  <option selected>Seleccionar el Tipo de Prenda</option>
+                  <option selected value="{{$misPrendas -> tp_id}}">Seleccionar el Tipo de Prenda</option>
                   @foreach ($misTiposPrendas as $tipoPrenda)
                     <option value="{{$tipoPrenda->id}}">{{$tipoPrenda->tipo_prenda}}</option>
                   @endforeach
@@ -87,18 +62,21 @@
                     <label class="form-check-label" for="Mujer"><h2 class="radio-text">Mujer</h2></label>
                   </div><br><br>
 
-                  <div class="row">
-                    <div class="col">
+                  <div class="row text-center">
+                    <div class="col-12 col-md-6 mb-3">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
                     </div>
+                    <div class="col-12 col-md-6 mb-3">
+                      <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub">Cancelar</a>
+                    </div>
                   </div>
+                                 
             </form><br>
-            <a href="/gestion/prenda-confeccion"><button class="btn btn-modal-sub">Cancelar</button></a><br>
         </div>
     </div>
   </div>
 </div><br>
-
+@endsection
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
@@ -118,4 +96,33 @@
     .navbar-toggler-icon {
         filter: invert(1);
     }
+
+    .btn-modal-sub {
+    margin: 5px auto; /* Centra los botones en todos los tamaños */
+    display: block; /* Asegura que el botón sea un bloque */
+    height: 40px;
+    max-width: 300px; /* Tamaño máximo del botón */
+    width: 100%; /* Ocupa todo el espacio posible */
+    background-color: #BE5A8C;
+    border: solid 2px;
+    border-color: #F99AAA;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 16px; /* Texto visible en todos los tamaños */
+    padding: 0;
+}
+
+.btn-modal-sub:hover {
+    background-color: #F99AAA;
+    color: #BE5A8C;
+}
+
+@media (max-width: 576px) {
+    .btn-modal-sub {
+        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
+        font-size: 14px; /* Tamaño de fuente menor */
+        width: 70% !important ;
+    }
+}
+
 </style>

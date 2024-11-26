@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class ClienteCatalogoController extends Controller
 {
   public function MostrarCatalogo(){
-    $prenda = prenda::all();
+    $prenda = prenda::where('visible', true)->get();
     return view('Cliente.PcatalogoView',compact('prenda'));
   }
   public function MostrarMujeres(){
-    $prenda = prenda::where('genero','=','Mujer')->get();
+    $prenda = prenda::where('genero','=','Mujer',)->where('visible', true)->get();
     return view('Cliente.ClienteMujeresView',compact('prenda'));
   }
   public function MostrarHombres(){
-    $prenda = prenda::where('genero','=','Hombre')->get();
+    $prenda = prenda::where('genero','=','Hombre')->where('visible', true)->get();
     return view('Cliente.ClienteHombresView',compact('prenda'));
   }
 
@@ -39,5 +39,21 @@ class ClienteCatalogoController extends Controller
     $user = Auth::user();
     $pedidos = collect($user->persona->cliente->pedidos ?? []); 
       return view('Cliente.MisPedidos', compact('pedidos'));
+  }
+  public function MostrarDetallesPedido($id)
+  {
+      
+      $pedido = Pedido::with([
+          'cliente.persona',
+          'empleado.persona',
+          'detallesConfecciones.prendaConfeccion',
+          'detallesConfecciones.medidas',
+          'detallesConfecciones.insumos',
+          'detallesReparaciones.servicios',
+          'detallesReparaciones.insumos',
+          'detallesLotes'
+      ])->findOrFail($id);
+
+      return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
 }
