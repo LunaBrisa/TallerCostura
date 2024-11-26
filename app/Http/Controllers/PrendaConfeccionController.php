@@ -71,11 +71,11 @@ class PrendaConfeccionController extends Controller
             $savePrendaConfeccionRequest -> precio_obra_prendita,
             $savePrendaConfeccionRequest -> generito,
             $savePrendaConfeccionRequest -> tipoprendita,
+            'pormientras',
             $savePrendaConfeccionRequest -> colorprendita,
+            'pormientras',
             $savePrendaConfeccionRequest -> telitas,
             $savePrendaConfeccionRequest -> cantidadsitadetela,
-            'pormientras',
-            'pormientras'
         ]);
 
         return redirect('/gestion/prenda-confeccion');
