@@ -226,13 +226,13 @@
               <h5 class="card-title">{{$prenda -> nombre_prenda}}</h5>
               <p class="card-text p-card">{{$prenda -> descripcion}}</p>
               <!-- Button trigger modal -->
-              <div class="btn-div2">
+              {{-- <div class="btn-div2"> --}}
                 <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
                   Ver Mas
                 </button>
       
                 <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
-              </div>
+              {{-- </div> --}}
       
               <!-- Modal -->
               <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
