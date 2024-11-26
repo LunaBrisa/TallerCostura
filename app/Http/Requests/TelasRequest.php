@@ -23,7 +23,8 @@ class TelasRequest extends FormRequest
     {
         return [
             'telita' => ['required', 'max:50'],
-            'tipotelita' => ['required', 'numeric', 'exists:MATERIALES_TELAS,id']
+            'tipotelita' => ['required', 'numeric', 'exists:MATERIALES_TELAS,id'],
+            'preciotelita' => ['required', 'decimal:2'],
         ];
     }
 }
