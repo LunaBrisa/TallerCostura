@@ -41,6 +41,9 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion -> genero = $savePrendaConfeccionRequest -> generito;
         $prendaconfeccion -> tp_id = $savePrendaConfeccionRequest -> tipoprendita;
         $prendaconfeccion -> ruta_imagen = "pormientras";
+        $prendaconfeccion -> visible = 1;
+        $prendaconfeccion -> created_at = date('Y-m-d H:i:s');
+        $prendaconfeccion -> updated_at = date('Y-m-d H:i:s');
 
         $prendaconfeccion -> save();
 
