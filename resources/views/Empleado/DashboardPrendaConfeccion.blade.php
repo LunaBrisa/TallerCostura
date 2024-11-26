@@ -343,8 +343,8 @@
 
 .modal-footer .btn-intemodal {
     display: inline-block; /* Asegura que se alineen uno al lado del otro */
-    min-width: 150px; /* Ancho mínimo para uniformidad */
-    max-width: 150px; /* Limita el ancho máximo */
+    min-width: 100px; /* Ancho mínimo para uniformidad */
+    max-width: 100px; /* Limita el ancho máximo */
     height: 45px;
     margin: 5px; /* Espaciado uniforme entre botones */
     background-color: #8A226F;
