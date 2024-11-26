@@ -40,4 +40,20 @@ class ClienteCatalogoController extends Controller
     $pedidos = collect($user->persona->cliente->pedidos ?? []); 
       return view('Cliente.MisPedidos', compact('pedidos'));
   }
+  public function MostrarDetallesPedido($id)
+  {
+      
+      $pedido = Pedido::with([
+          'cliente.persona',
+          'empleado.persona',
+          'detallesConfecciones.prendaConfeccion',
+          'detallesConfecciones.medidas',
+          'detallesConfecciones.insumos',
+          'detallesReparaciones.servicios',
+          'detallesReparaciones.insumos',
+          'detallesLotes'
+      ])->findOrFail($id);
+
+      return view('MisPedidos.DetallesPedido', compact('pedido'));
+  }
 }

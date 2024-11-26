@@ -16,13 +16,13 @@
     <div class="overlay"></div>  
     <div class="contenido d-flex justify-content-center align-items-center w-100 h-100">
         <div class="texto1 col-lg-8 col-md-10 col-sm-12 text-center mx-auto">
-            <h1 class="p-2 display-3 text-white">
+            <h1 class="p-2 display-3 text-black">
                 ¡Bienvenido al Taller Costura!
             </h1> 
-            <h1 class="p-2 display-4 text-white">
+            <h1 class="p-2 display-4 text-black">
                 Luna Cast.! 
             </h1>
-            <h2 class="p-2 text-white" style="font-size: 30px;">
+            <h2 class="p-2 text-black" style="font-size: 30px;">
                 Ven y échale un vistazo a nuestro catálogo de ropa que te podemos confeccionar!!
             </h2>
             <a href="Cliente/PcatalogoView" class="btn btn-outline-light btn-hover mt-4" 
@@ -132,9 +132,9 @@
     border: 2px solid black;
 }
 .texto1 {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color:blanchedalmond;
     z-index: 1;
-    opacity: 0.9;
+    opacity: 50%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 30px;
@@ -199,11 +199,5 @@
         font-size: 30px;
     }
 }
-.carousel-item img {
-    max-width: 30%; /* Reduce el ancho relativo al contenedor */
-    height: auto;   /* Mantén la proporción de las imágenes */
-    margin: 0 auto; /* Centra las imágenes */
-}
-
 
 </style>

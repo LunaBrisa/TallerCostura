@@ -19,7 +19,6 @@ class EmpleadoMiddleware
         if (auth()->user()->hasRole('Empleado') || auth()->user()->hasRole('Admin')) {
             return $next($request);
         }
-
         // Si no tiene el rol, lo redirigimos
         return redirect('/')->with('error', 'Acceso denegado: Solo clientes pueden acceder.');
     }

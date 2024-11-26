@@ -47,7 +47,7 @@
                                     <p>Genero: {{$prenda->genero}}</p>
                                     <form action="/Cliente/DetallePrenda/{{$prenda->id}}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary" style="background-color: #83a6cd; border-color: #557ead"">Ver detalles</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #83a6cd; border-color: #557ead">Ver detalles</button>
                                       </form>
                                 </div>
                             </div>

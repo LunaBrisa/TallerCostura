@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\UsuarioInformacion;
 
 // Rutas públicas
     Route::get('/', function () { return view('welcome');});
@@ -75,7 +76,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 });
 
 // Rutas protegidas para Empleados
-Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
+Route::middleware([EmpleadoMiddleware::class])->group(function () {
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
     Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
     
@@ -99,13 +100,22 @@ Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(fu
     Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
     Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 });
-
+    // Ruta para la vista de Gestión de Clientes
+    Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+    Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+    Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+    
+    Route::get('/dashboard', function (){ return view('dashboard.index');});
+    Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+    Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+    Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+    
 // Rutas protegidas para clientes
 Route::middleware([ClienteMiddleware::class])->group(function () {
     Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
 });
-
-// Rutas de autenticación (login/logout)
+Route::get('/Cliente/DetallesPedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
+Route::get('/informacion', [UsuarioInformacion::class, 'consultarUsuario'])->name('informacion.consultarUsuario');
 Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
     ->name('login'); // Ruta para mostrar el formulario de login
 
