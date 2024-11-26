@@ -26,7 +26,7 @@
                 Ven y échale un vistazo a nuestro catálogo de ropa que te podemos confeccionar!!
             </h2>
             <a href="Cliente/PcatalogoView" class="btn btn-outline-light btn-hover mt-4" 
-               style="width: 250px; height:60px;">
+               style="width: 250px; height:60px; color: black;">
                Ver Catálogo
             </a>
         </div>
