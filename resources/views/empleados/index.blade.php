@@ -272,7 +272,7 @@
                     </div>
 
                     <input type="hidden" name="empleado_id" value="nuevo">
-                    <button type="submit" class="btn btn-success">Agregar Cliente</button>
+                    <button type="submit" class="btn btn-success">Agregar Empleado</button>
                 </form>
             </div>
         </div>

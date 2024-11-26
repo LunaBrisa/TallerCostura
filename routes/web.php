@@ -83,11 +83,11 @@ Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'Re
 
 Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
 Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+Route::put('/inventario/{inventario}', [InventarioController::class, 'update'])->name('inventario.update');
 
 Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
 Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
-
 // Ruta para la vista de Gestión de Clientes
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
