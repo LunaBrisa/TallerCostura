@@ -66,12 +66,12 @@ class PrendaConfeccionController extends Controller
         // $prendatela -> save();
 
         DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-            $savePrendaConfeccionRequest -> nombreprenda,
+            $savePrendaConfeccionRequest -> nombreprendita,
             $savePrendaConfeccionRequest -> descripcionprendita,
             $savePrendaConfeccionRequest -> precio_obra_prendita,
-            $savePrendaConfeccionRequest -> generote,
-            $savePrendaConfeccionRequest -> tipoprendota,
-            $savePrendaConfeccionRequest -> colorprenda,
+            $savePrendaConfeccionRequest -> generito,
+            $savePrendaConfeccionRequest -> tipoprendita,
+            $savePrendaConfeccionRequest -> colorprendita,
             $savePrendaConfeccionRequest -> telitas,
             $savePrendaConfeccionRequest -> cantidadsitadetela,
             'pormientras',
