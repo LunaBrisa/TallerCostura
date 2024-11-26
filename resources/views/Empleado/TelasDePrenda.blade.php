@@ -12,7 +12,7 @@
 @extends('layouts.nav')
 @section('content')
 <div class="container2">
-    <div class="row">
+    <br><div class="row">
         <div class="col">
             <h1 class="Titulo1">Telas de Prenda</h1>
         </div>
