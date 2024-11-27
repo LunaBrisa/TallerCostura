@@ -26,6 +26,8 @@ use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 
+use App\Http\Controllers\PerfilController;
+
 // Rutas públicas
     Route::get('/', function () { return view('welcome');});
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
@@ -170,3 +172,5 @@ Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->nam
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
 Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+
+Route::get('/perfil', [PerfilController::class, 'show'])->name('perfil')->middleware('auth');
