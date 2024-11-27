@@ -33,9 +33,9 @@
             padding: 20px;
             height: 400px;
             display: flex;
+            opacity: 80%;
             
         }
-
     </style>
 </head>
 <body>
