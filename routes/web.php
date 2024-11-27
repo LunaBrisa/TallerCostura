@@ -28,27 +28,7 @@ use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-
-// Página para pedir verificación
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-// URL que se llama cuando se verifica el correo
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/'); // Redirige al lugar deseado después de verificar
-})->middleware(['auth', 'signed'])->name('verification.verify');
-// Reenvío de correo de verificación
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-
-    return back()->with('message', 'Correo de verificación enviado.');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 // Rutas públicas
     Route::get('/', function () { return view('welcome');});
@@ -125,8 +105,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {
-Route::get('/mispedidosclientes', [ClientePedidosController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
-Route::get('/detallepedido/{id}', [ClientePedidosController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
+Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
+Route::get('/detallepedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
 //});
 
 //Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class, ClienteMiddleware::class])->group(function () {

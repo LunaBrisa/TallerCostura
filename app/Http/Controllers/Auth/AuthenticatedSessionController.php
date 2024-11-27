@@ -6,25 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
+    // Mostrar el formulario de inicio de sesión
     public function create()
     {
         return view('auth.login');
     }
 
+    // Iniciar sesión
     public function store(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
-
-        if ($user && !$user->visible) {
-            return redirect()->route('login')->withErrors(['email' => 'Tu cuenta está inactiva. Contacta al administrador.']);
-        }
-
-        return parent::store($request); 
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
