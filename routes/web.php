@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteCatalogoController;
 use App\Http\Controllers\ClienteRegistroController;
 use App\Http\Controllers\EmpleadoRegistroController;
+use App\Http\Controllers\PrendasColoresController;
 use App\Http\Controllers\ServiciosController;
 
 use App\Http\Controllers\DashboardController;
