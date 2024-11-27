@@ -197,7 +197,7 @@
     margin: 5px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
     height: 40px;
-    max-width: 200px; /* Incrementar el tamaño máximo del botón */
+    max-width: 100px; /* Incrementar el tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
