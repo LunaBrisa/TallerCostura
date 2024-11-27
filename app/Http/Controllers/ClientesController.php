@@ -93,7 +93,7 @@ public function update(Request $request, $id)
         'telefono' => 'required|string|max:10',
         'compania' => 'nullable|string|max:100',
         'cargo' => 'min:3|max:100',
-        'email' => 'required|email|exists:users,email',
+        'email' => 'required|email',
         'password' => 'nullable|string|min:6|confirmed', 
         'name' => 'required|string|max:255', 
     ]);

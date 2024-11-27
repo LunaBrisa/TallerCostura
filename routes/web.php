@@ -90,15 +90,11 @@ use Illuminate\Http\Request;
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     
     // Ruta para la vista de Gestión de Clientes
-    Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
-    Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
-    Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
-    Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
+    Route::resource('clientes', ClientesController::class);
     
     Route::get('/dashboard', function (){ return view('dashboard.index');});
-    Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
-    Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-    Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+    Route::resource('empleados', EmpleadosController::class);
+
     
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {
