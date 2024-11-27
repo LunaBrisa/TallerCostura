@@ -57,7 +57,7 @@
           <div class="alert alert-danger">
               <ul>
                   @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
+                      <li><p class="p-error">{{ $error }}</p></li>
                   @endforeach
               </ul>
           </div>
@@ -65,7 +65,7 @@
             
           @if (session('success'))
               <div class="alert alert-success" role="alert">
-                  {{ session('success') }}
+                  <p class="p-success">{{ session('success') }}</p>
               </div>
           @endif
         </div>
@@ -119,6 +119,16 @@
     .p-btn-agg{
       font-size: 14px !important;
     }
+  }
+
+  .p-error{
+    color: rgb(138, 0, 0);
+    font-size: 19px;
+  }
+
+  .p-success{
+    color: rgb(0, 99, 0);
+    font-sixe: 19px;
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
