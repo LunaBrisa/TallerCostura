@@ -224,7 +224,7 @@
 
 .btn-modal-sub-interior:hover {
     background-color: #F99AAA !important;
-    color: #BE5A8C !important;
+    color: #eb6eac !important;
 }
  </style>
  
