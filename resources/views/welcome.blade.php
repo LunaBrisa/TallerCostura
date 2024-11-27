@@ -46,7 +46,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="row g-4 justify-content-center" style="height: auto; background-color: #F4D9EC; padding:20px;">
+    <div class="row g-4 justify-content-center" style="height: auto; background-color: #F4D9EC; padding:20px; border-radius: 10px;">
         <h2 class="p-2 text-white text-center" style="font-size: 50px; text-shadow: 2px 2px 0px black, -2px -2px 0px black, 2px -2px 0px black, -2px 2px 0px black;">
             Servicios  
         </h2> 
@@ -88,21 +88,21 @@
     <h1 class="text-black text-center p-2" style="font-size: 60px; position: relative; font-family: 'Junigarden Swash'; text-shadow: 2px 2px 0px #F4D9EC;">
         Colección de ropa
     </h1>
-    <hr style="border-top: 2px solid black; margin: 5px 0; width: 40%; margin-left: 30%;">
-    <div class="row g-4"> 
-        <div class="col-md-4"> 
+    <hr style="border-top: 2px solid black; margin: 5px 0; width: 40%; margin-left: 30%; padding: 30px;">
+    <div class="row g-4" style="background-color: #F4D9EC; height: 450px; padding: 20px; border-radius: 10px;">
+        <div class="col-md-4" style="height: 400px; width: 350px;">
             <div class="card h-100">
-                <img src="{{ asset('images/PantalonC1.jpg') }}" class="card-img-top" style="height: 500px;">
+                <img src="{{ asset('images/PantalonC1.jpg') }}" class="card-img-top" style="height: 380px; width: 300px;">
             </div>
         </div>
-        <div class="col-md-4"> 
+        <div class="col-md-4" style="height: 400px; width: 350px; "> 
             <div class="card h-100">
-                <img src="{{ asset('images/VestidoGala.png') }}" class="card-img-top" style="height: 500px;">
+                <img src="{{ asset('images/VestidoGala.png') }}" class="card-img-top" style="height: 380px; width: 300px;">
             </div>
         </div>
-        <div class="col-md-4"> 
+        <div class="col-md-4" style="height: 400px; width: 350px; "> 
             <div class="card h-100">
-                <img src="{{ asset('images/PlayeraNike.jpg') }}" class="card-img-top" style="height: 500px;">
+                <img src="{{ asset('images/PlayeraNike.jpg') }}" class="card-img-top" style="height: 380px; width: 300px;">
             </div>
         </div>
     </div>
@@ -173,6 +173,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 10px;
 }
 
 .overlay {
@@ -183,6 +184,7 @@
     height: 100%;
     background-color: black;
     opacity: 40%;
+    border-radius: 10px;
 }
 .btn-outline-light {
     font-size: 1rem;

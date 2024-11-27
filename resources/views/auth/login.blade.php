@@ -40,6 +40,12 @@
 <body>
 @extends('layouts.nav')
 @section('content')
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="c">
     <div class="login-container">
         <form action="{{ route('login') }}" method="post">
