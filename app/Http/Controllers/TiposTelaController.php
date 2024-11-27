@@ -31,7 +31,7 @@ class TiposTelaController extends Controller
         if($matetela){
             $matetela->material_tela = $modifMateTelaRequest->get('materialtelilla');
             $matetela->save();
-            return redirect('/gestion/tipos-telas')->with('success', '¡Se modifico el material de tela correctamente!');
+            return redirect('/gestion/tipos-telas')->with('successmodif', '¡Se modifico el material de tela correctamente!');
         }//Notita: VALIDA ESTA MADRE WEY -De Oz para Oz
 
     }

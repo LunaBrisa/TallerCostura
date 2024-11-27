@@ -66,6 +66,12 @@
                   <p class="p-success">{{ session('success') }}</p>
               </div>
           @endif
+
+          @if (session('successmodif'))
+              <div class="alert alert-success" role="alert">
+                  <p class="p-success">{{ session('successmodif') }}</p>
+              </div>
+          @endif
         </div>
     </div>
 
