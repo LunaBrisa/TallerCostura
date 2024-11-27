@@ -85,17 +85,17 @@ if ($request->has('cliente') && $request->cliente) {
         // Pasar los pedidos y las estadísticas a la vista
         return view('pedidos.index', compact('pedidos', 'estadisticas'));
     }
-public function show($id)
+    public function show($id)
     {
         $pedido = Pedido::with([
-            'cliente',
-            'empleado',
-            'detallesConfeccion.PrendaConfeccion', 
-            'detallesLote', 
-            'detallesReparacion.prendaReparacion.servicio',
-        ])->findOrFail($id); 
+            'detallesLotes',
+            'detallesReparaciones',
+            'detallesConfecciones'
+        ])->findOrFail($id);
+    
         return view('pedidos.show', compact('pedido'));
     }
+    
     public function store(Request $request)
     {
         // Validar la entrada del formulario
