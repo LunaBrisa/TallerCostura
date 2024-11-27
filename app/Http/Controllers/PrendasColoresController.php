@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveColorPrendaRequest;
 use App\Models\Color;
-use App\Models\Prenda;
-use App\Models\prenda_color;
 use App\Models\PrendaColor;
 use App\Models\PrendaConfeccion;
 use Illuminate\Http\Request;

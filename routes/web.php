@@ -87,15 +87,21 @@ use App\Http\Controllers\PerfilController;
     Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
     Route::get('/ocultar/prenda/{id}', [PrendaConfeccionController::class, 'ocultaPrenda']);
     Route::get('/mostrar/prenda/{id}', [PrendaConfeccionController::class, 'muestraPrenda']);
+
+    //TELAS DE PRENDA
     Route::get('/elim/tela/prenda/{id}', [PrendasTelasController::class, 'eliminarTelaPrenda']);
     Route::get('/modificar/telas-prenda/{id}', [PrendasTelasController::class, 'getTelasDePrenda']);
     Route::post('/agreg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
-    Route::post('/modif/cantidad-tela', [PrendasTelasController::class, 'modifCantidadTelaPrenda']);   
+    Route::post('/modif/cantidad-tela', [PrendasTelasController::class, 'modifCantidadTelaPrenda']); 
+
+    //COLORES DE PRENDA  
     Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
     Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
-    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+
+    //PEDIDOS
+    Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 //});
 
 // Rutas protegidas para Empleados
