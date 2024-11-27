@@ -54,25 +54,18 @@
     <div class="row">
         <div class="col">
           @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                  <div class="alert alert-danger" role="alert">
-                    {{$error}}
-                  </div>
-                  @endforeach
-              </ul>
-          </div>
-
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
           @else
-
-          <div class="alert alert-danger">
-              <div class="alert alert-success" role="alert">
-                Se agrego el material de tela correctamente!
-              </div>
-         </div>
-
-          @endif
+            <div class="alert alert-success" role="alert">
+                ¡Se agregó el material de tela correctamente!
+            </div>
+          @endif      
         </div>
     </div>
 
