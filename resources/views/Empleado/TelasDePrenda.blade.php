@@ -62,7 +62,7 @@
                     <div class="card-body">
                         <h1 class="list-title">{{$tela-> tela->nombre_tela}}</h1>
                         <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1>
-                        <h1 class="card-det">Precio: {{$tela-> tela->precio}}</h1><br>
+                        <h1 class="card-det">Precio por Metro: {{$tela-> tela->precio}}</h1><br>
 
                         <!-- Button trigger modal -->
                         <div class="row">
@@ -118,7 +118,7 @@
                                               <input type="submit" class="btn btn-modal-sub" value="Guardar">
                                             </div>
                                             <div class="col-12 col-md-6">
-                                              <a href="/gestion/prenda-confeccion" class="btn btn-modal-sub">Cancelar</a>
+                                              <button class="btn btn-modal-sub" data-bs-dismiss="modal">Cancelar</button>
                                             </div>
                                           </div>
                                           
@@ -190,6 +190,35 @@
 @media (min-width: 992px) { /* Estilos específicos para pantallas grandes */
     .btn-modal-sub {
         max-width: 300px; /* Botón más ancho en pantallas grandes */
+    }
+}
+
+.btn-modal-sub-interior {
+    margin: 5px auto; /* Centra los botones en todos los tamaños */
+    display: block; /* Asegura que el botón sea un bloque */
+    height: 40px;
+    max-width: 200px; /* Incrementar el tamaño máximo del botón */
+    width: 100%; /* Ocupa todo el espacio posible */
+    background-color: #BE5A8C;
+    border: solid 2px;
+    border-color: #F99AAA;
+    color: #FFCDD4;
+    text-align: center;
+    font-size: 16px; /* Texto visible en todos los tamaños */
+    padding: 0;
+}
+
+@media (min-width: 992px) { /* Estilos específicos para pantallas grandes */
+    .btn-modal-sub-interior {
+        max-width: 150px; /* Botón más ancho en pantallas grandes */
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-modal-sub-interior {
+        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
+        font-size: 14px; /* Tamaño de fuente menor */
+        width: 80px; /* Más angosto en pantallas pequeñas */
     }
 }
  </style>
