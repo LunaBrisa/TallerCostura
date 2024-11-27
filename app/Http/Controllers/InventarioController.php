@@ -56,7 +56,7 @@ class InventarioController extends Controller
 {
     $request->validate([
         'insumo' => 'required|string|max:255',
-        'cantidad_reabastecer' => 'required|integer|min:0',
+        'cantidad_reabastecer' => 'nullable|integer|min:0',
         'precio_unitario' => 'nullable|numeric|min:0',
     ]);
 

@@ -61,7 +61,7 @@
                     <td>{{ $cliente->cargo }}</td>
                     <td>
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editarClienteModal{{ $cliente->id }}">Editar</button>
-                        <a href="{{ route('clientes.show', $cliente->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver Detalle</a>                        
+                        <a href="{{ route('clientes.show', $cliente->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver</a>                        
                     </td>
                     
                 </tr>
