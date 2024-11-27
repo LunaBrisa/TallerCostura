@@ -51,6 +51,22 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                  <div class="alert alert-danger" role="alert">
+                    {{$error}}
+                  </div>
+                  @endforeach
+              </ul>
+          </div>
+          @endif
+        </div>
+    </div>
+
     <div class="row" style="padding-top: 25px;">
         @foreach ($MisMaterialesTela as $MaterialTelilla)
         <div class="card mb-4 cardsing">
