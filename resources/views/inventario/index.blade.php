@@ -132,6 +132,7 @@ th {
         overflow-x: scroll;
     }
 }
+<<<<<<< HEAD
 </style>
 
     @if (session('success'))
@@ -150,11 +151,41 @@ th {
                     <ul>
                         @foreach ($insumosMenosStock as $insumo)
                             <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+=======
+    </style>
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Insumos con menos stock</h5>
+                        <ul>
+                            @foreach ($insumosMenosStock as $insumo)
+                                <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Insumos más utilizados</h5>
+                        <ul>
+                            @foreach ($insumosMasUtilizados as $insumo)
+                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
+>>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
         <!-- Columna de insumos más utilizados -->
         <div class="col-md-6">
@@ -170,6 +201,8 @@ th {
             </div>
         </div>
     </div>
+=======
+>>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
 
     <!-- Formulario de búsqueda -->
     <form method="GET" action="{{ route('inventario.index') }}" class="mt-2">
@@ -248,4 +281,52 @@ th {
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 @endsection
+=======
+
+    <!-- Script para mostrar el modal automáticamente si hay errores -->
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var agregarInsumoModal = new bootstrap.Modal(document.getElementById('agregarInsumoModal'));
+                agregarInsumoModal.show();
+            });
+        </script>
+    @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentSort = { column: null, order: 'asc' };
+
+            document.querySelectorAll('.sortable').forEach(header => {
+                header.addEventListener('click', function () {
+                    const column = header.getAttribute('data-column');
+                    const order = currentSort.column === column && currentSort.order === 'asc' ? 'desc' : 'asc';
+                    
+                    currentSort = { column, order };
+                    sortTable(column, order);
+                });
+            });
+        
+            function sortTable(column, order) {
+                const rows = Array.from(document.querySelectorAll('tbody tr'));
+                rows.sort((rowA, rowB) => {
+                    const cellA = rowA.querySelector(`[data-column="${column}"]`).textContent;
+                    const cellB = rowB.querySelector(`[data-column="${column}"]`).textContent;
+                    const compareA = isNaN(cellA) ? cellA : parseFloat(cellA);
+                    const compareB = isNaN(cellB) ? cellB : parseFloat(cellB);
+                    if (order === 'asc') {
+                        return compareA > compareB ? 1 : (compareA < compareB ? -1 : 0);
+                    } else {
+                        return compareA < compareB ? 1 : (compareA > compareB ? -1 : 0);
+                    }
+                });
+        
+                const tbody = document.getElementById('insumo-body');
+                rows.forEach(row => tbody.appendChild(row));
+            }
+        });
+    </script>
+@endsection
+>>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751

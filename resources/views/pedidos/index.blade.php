@@ -1,10 +1,5 @@
 @extends('layouts.dashboard')
-
-@section('title', 'Dashboard de Pedidos')
-@section('dashboard_name', 'Dashboard de Pedidos')
-@section('content')
 <style>
-    <style>
     /* Estilo general */
 body {
     font-family: 'Roboto', sans-serif;
@@ -175,7 +170,13 @@ body {
 }
 
     </style>
+<<<<<<< HEAD
    </style> 
+=======
+@section('title', 'Dashboard de Pedidos')
+@section('dashboard_name', 'Dashboard de Pedidos')
+@section('content')
+>>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
