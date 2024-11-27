@@ -97,7 +97,7 @@
 <style>
   @media (max-width: 576px) {
     .p-btn-agg{
-      font-size: 10px;
+      font-size: 10px !important;
     }
   }
 </style>
