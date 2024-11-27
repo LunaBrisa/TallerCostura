@@ -19,12 +19,33 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\GestionUsuariosControllers;
-use App\Http\Kernel;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+// Página para pedir verificación
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// URL que se llama cuando se verifica el correo
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/'); // Redirige al lugar deseado después de verificar
+})->middleware(['auth', 'signed'])->name('verification.verify');
+// Reenvío de correo de verificación
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Correo de verificación enviado.');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 use App\Http\Controllers\PerfilController;
 
@@ -35,7 +56,7 @@ use App\Http\Controllers\PerfilController;
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 // Rutas protegidas para admin
-Route::middleware([AdminMiddleware::class])->group(function () {
+//Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
     Route::post('/Registro/RegistrarEmpleado', [EmpleadoRegistroController::class, 'RegistrarEmpleado'])->name('Registro.RegistrarEmpleado');
     Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
@@ -74,10 +95,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
-});
+//});
 
 // Rutas protegidas para Empleados
-Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
+//Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
     Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
     Route::put('/inventario/{id}', [InventarioController::class, 'update'])->name('inventario.update');
@@ -91,8 +112,7 @@ Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(fu
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
     Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
     Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
-    Route::get('/clientes/{id}/detalle', [ClientesController::class, 'show'])->name('clientes.show');
-
+    Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
     
     Route::get('/dashboard', function (){ return view('dashboard.index');});
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
@@ -104,8 +124,9 @@ Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(fu
     Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
     Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
     Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-});
+//});
 
+<<<<<<< HEAD
 Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaPrendasConfeccion']);
 
 Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
@@ -120,8 +141,13 @@ Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda'
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
+=======
+// Rutas protegidas para clientes
+Route::middleware([ClienteMiddleware::class])->group(function () {
+    Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
+    Route::get('/Cliente/DetallesPedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
+>>>>>>> 63564da9df7dae42bc31ee19c2d593e0bb24e772
 });
-Route::get('/Cliente/DetallesPedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
 Route::get('/informacion', [UsuarioInformacion::class, 'consultarUsuario'])->name('informacion.consultarUsuario');
 Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
     ->name('login'); // Ruta para mostrar el formulario de login

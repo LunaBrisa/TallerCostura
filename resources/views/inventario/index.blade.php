@@ -3,6 +3,7 @@
 @section('title', 'Dashboard de Insumos')
 @section('dashboard_name', 'Dashboard de Insumos')
 @section('content')
+<<<<<<< HEAD
 <style>
  /* Tarjetas */
 .card {
@@ -142,6 +143,34 @@ th {
                     <ul>
                         @foreach ($insumosMenosStock as $insumo)
                             <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+=======
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Insumos con menos stock</h5>
+                        <ul>
+                            @foreach ($insumosMenosStock as $insumo)
+                                <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Insumos más utilizados</h5>
+                        <ul>
+                            @foreach ($insumosMasUtilizados as $insumo)
+                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
+>>>>>>> 63564da9df7dae42bc31ee19c2d593e0bb24e772
                         @endforeach
                     </ul>
                 </div>
@@ -224,7 +253,7 @@ th {
 
                                         <div class="mb-3">
                                             <label for="cantidad_reabastecer" class="form-label">Cantidad a Reabastecer</label>
-                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}" required>
+                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}">
                                             @error('cantidad_reabastecer')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
