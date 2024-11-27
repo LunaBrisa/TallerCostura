@@ -221,5 +221,10 @@
         width: 80px; /* Más angosto en pantallas pequeñas */
     }
 }
+
+.btn-modal-sub-interior:hover {
+    background-color: #F99AAA;
+    color: #BE5A8C;
+}
  </style>
  
