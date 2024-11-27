@@ -20,6 +20,8 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\GestionUsuariosControllers;
+use App\Http\Controllers\ClientePedidosController;
+
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
