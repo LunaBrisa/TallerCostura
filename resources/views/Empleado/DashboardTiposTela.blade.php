@@ -26,11 +26,10 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                    <!-- HEADER -->
                   <div class="modal-header">
                     <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Agregar Material de Tela</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+                  </div>s
                   <!-- BODY -->
                   <div class="modal-body">
                     <div class="conteform">
