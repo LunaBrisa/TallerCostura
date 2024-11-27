@@ -44,7 +44,7 @@ class ClientesController extends Controller
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -93,7 +93,7 @@ public function update(Request $request, $id)
         'telefono' => 'required|string|max:10',
         'compania' => 'nullable|string|max:100',
         'cargo' => 'min:3|max:100',
-        'email' => 'required|email|max:255',
+        'email' => 'required|email|exists:users,email',
         'password' => 'nullable|string|min:6|confirmed', 
         'name' => 'required|string|max:255', 
     ]);
