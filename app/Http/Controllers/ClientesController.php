@@ -35,49 +35,55 @@ class ClientesController extends Controller
         return view('clientes.index', compact('clientes', 'pedidosPorCliente'));
     }
     public function store(Request $request)
-{
-    // Validar los datos del formulario
-    $request->validate([
-        'nombre' => 'required|string|max:100',
-        'apellido_p' => 'required|string|max:60',
-        'apellido_m' => 'required|string|max:60',
-        'telefono' => 'required|string|max:10',
-        'compania' => 'nullable|string|max:100',
-        'cargo' => 'min:3|max:100',
-    ]);
-
-    $user = User::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
-    ]);
-
-    // Obtener el ID del usuario recién creado
-    $user_id = $user->id;
-
-    $nombre = $request->input('nombre');
-    $apellido_p = $request->input('apellido_p');
-    $apellido_m = $request->input('apellido_m');
-    $telefono = $request->input('telefono');
-    $compania = $request->input('compania');
-    $cargo = $request->input('cargo');
-
-    try {
-        DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
-            $user_id,
-            $nombre,
-            $apellido_p,
-            $apellido_m,
-            $telefono,
-            $compania,
-            $cargo,
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'apellido_p' => 'required|string|max:60',
+            'apellido_m' => 'required|string|max:60',
+            'telefono' => 'required|string|max:10',
+            'compania' => 'nullable|string|max:100',
+            'cargo' => 'nullable|min:3|max:100',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        return redirect()->route('clientes.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Error al crear el cliente: ' . $e->getMessage());
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+    
+        $user->sendEmailVerificationNotification();
+    
+        $user_id = $user->id;
+    
+        $nombre = $request->input('nombre');
+        $apellido_p = $request->input('apellido_p');
+        $apellido_m = $request->input('apellido_m');
+        $telefono = $request->input('telefono');
+        $compania = $request->input('compania');
+        $cargo = $request->input('cargo');
+    
+        try {
+            DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
+                $user_id,
+                $nombre,
+                $apellido_p,
+                $apellido_m,
+                $telefono,
+                $compania,
+                $cargo,
+            ]);
+    
+            return redirect()->route('clientes.index')
+                ->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error al crear el cliente: ' . $e->getMessage());
+        }
     }
-}
+
 public function update(Request $request, $id)
 {
     $request->validate([
