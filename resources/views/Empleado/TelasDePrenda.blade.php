@@ -199,10 +199,10 @@
     height: 40px;
     max-width: 200px; /* Incrementar el tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
-    background-color: #BE5A8C;
+    background-color: #BE5A8C !important;
     border: solid 2px;
-    border-color: #F99AAA;
-    color: #FFCDD4;
+    border-color: #F99AAA !important;
+    color: #FFCDD4 !important;
     text-align: center;
     font-size: 16px; /* Texto visible en todos los tamaños */
     padding: 0;
