@@ -15,7 +15,7 @@ class TiposTelaController extends Controller
         return view('Empleado/DashboardTiposTela')->with('MisMaterialesTela', $TipoTelilla);
     }
 
-    public function saveTipoTela(SaveTipoTela $saveTipoTela){
+    public function saveTipoTela(SaveTipoTela $saveTipoTela){ //REQUEST VALIDADO Y CONFIGURADO
         $TipoTelilla = new MaterialTela();
 
         $TipoTelilla->material_tela = $saveTipoTela->tipotelita;

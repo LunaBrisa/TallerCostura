@@ -23,7 +23,7 @@
             <div class="offcanvas-body">
                 <div class="order-1 order-lg-3 mb-3 mb-lg-0 d-flex align-items-center" style="color: aliceblue">
                   <a href="{{ route('informacion.consultarUsuario') }}" class="d-flex align-items-center text-decoration-none" style="color: inherit;">
-                    <img src="{{ asset('images/usuario.jpg') }}" width="30px" height="30px" alt="Usuario">
+                    <img src="{{ asset('images/perfil.png') }}" width="30px" height="30px" alt="Usuario">
                       @if(auth()->check())
                         {{ auth()->user()->name }}                  
                       @endif
