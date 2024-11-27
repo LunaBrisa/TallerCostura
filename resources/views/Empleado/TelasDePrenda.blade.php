@@ -210,7 +210,7 @@
 
 @media (min-width: 992px) { /* Estilos específicos para pantallas grandes */
     .btn-modal-sub-interior {
-        max-width: 150px; /* Botón más ancho en pantallas grandes */
+        max-width: 90px; /* Botón más ancho en pantallas grandes */
     }
 }
 
