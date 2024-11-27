@@ -126,7 +126,6 @@ use App\Http\Controllers\PerfilController;
     Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 //});
 
-<<<<<<< HEAD
 Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaPrendasConfeccion']);
 
 Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
@@ -141,12 +140,6 @@ Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda'
 Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
 Route::get('/Pcatalogo', function () {
     return view('Cliente.PcatalogoView');
-=======
-// Rutas protegidas para clientes
-Route::middleware([ClienteMiddleware::class])->group(function () {
-    Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
-    Route::get('/Cliente/DetallesPedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
->>>>>>> 63564da9df7dae42bc31ee19c2d593e0bb24e772
 });
 Route::get('/informacion', [UsuarioInformacion::class, 'consultarUsuario'])->name('informacion.consultarUsuario');
 Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
