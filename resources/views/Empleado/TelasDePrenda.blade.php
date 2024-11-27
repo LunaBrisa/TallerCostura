@@ -115,10 +115,10 @@
                                           <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}"><br>
                                           <div class="row text-center">
                                             <div class="col-12 col-md-6">
-                                              <input type="submit" class="btn btn-modal-sub" value="Guardar">
+                                              <input type="submit" class="btn btn-modal-sub-interior" value="Guardar">
                                             </div>
                                             <div class="col-12 col-md-6">
-                                              <button class="btn btn-modal-sub" data-bs-dismiss="modal">Cancelar</button>
+                                              <button class="btn btn-modal-sub-interior" data-bs-dismiss="modal">Cancelar</button>
                                             </div>
                                           </div>
                                           
@@ -197,7 +197,7 @@
     margin: 5px auto; /* Centra los botones en todos los tamaños */
     display: block; /* Asegura que el botón sea un bloque */
     height: 40px;
-    max-width: 100px; /* Incrementar el tamaño máximo del botón */
+    max-width: 200px; /* Incrementar el tamaño máximo del botón */
     width: 100%; /* Ocupa todo el espacio posible */
     background-color: #BE5A8C;
     border: solid 2px;
@@ -210,7 +210,7 @@
 
 @media (min-width: 992px) { /* Estilos específicos para pantallas grandes */
     .btn-modal-sub-interior {
-        max-width: 90px; /* Botón más ancho en pantallas grandes */
+        max-width: 150px; /* Botón más ancho en pantallas grandes */
     }
 }
 
