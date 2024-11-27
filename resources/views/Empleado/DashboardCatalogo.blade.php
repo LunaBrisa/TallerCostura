@@ -93,38 +93,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- GESTION DE COLORES -->
-            <div class="col-md-6 col-lg-4">
-                <div class="cuadradito">
-                    <h1 class="Titulo2">Colores</h1>
-                    <div class="btn-div">
-                        <a href="#"><button class="btn btn-gest" data-bs-toggle="modal" data-bs-target="#exampleModal"> <p class="p-btn">Agregar Nuevo</p> </button></a>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Agregar Nuevo Color</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="/agg/color" method="post">
-                                        @csrf
-                                        <label for="colorsito"><h3 class="h3-modal">Color</h3></label>
-                                        <input type="text" name="colorsito" class="form-control" placeholder="Ejemplo: Azul"><br>
-                                        <div class="btn-div">
-                                            <input type="submit" class="btn btn-modal-sub" value="Guardar">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div><br>
     </div>
     @endsection

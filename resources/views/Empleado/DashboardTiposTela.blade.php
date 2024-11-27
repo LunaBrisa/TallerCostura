@@ -26,12 +26,10 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
-                    <!-- HEADER -->
                   <div class="modal-header">
                     <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Agregar Material de Tela</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <!-- BODY -->
                   <div class="modal-body">
                     <div class="conteform">
                     <form action="/agg/tipotela" method="post">
@@ -48,6 +46,32 @@
               </div>
             </div>
             </div>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col">
+          @if ($errors->any())
+          <div class="alert alert-danger">
+              <ol>
+                  @foreach ($errors->all() as $error)
+                      <li><p class="p-error">{{ $error }}</p></li>
+                  @endforeach
+              </ol>
+          </div>
+          @endif
+            
+          @if (session('success'))
+              <div class="alert alert-success" role="alert">
+                  <p class="p-success">{{ session('success') }}</p>
+              </div>
+          @endif
+
+          @if (session('successmodif'))
+              <div class="alert alert-success" role="alert">
+                  <p class="p-success">{{ session('successmodif') }}</p>
+              </div>
+          @endif
         </div>
     </div>
 
@@ -99,6 +123,16 @@
     .p-btn-agg{
       font-size: 14px !important;
     }
+  }
+
+  .p-error{
+    color: rgb(138, 0, 0);
+    font-size: 19px;
+  }
+
+  .p-success{
+    color: rgb(0, 99, 0);
+    font-size: 19px;
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

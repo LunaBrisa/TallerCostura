@@ -40,12 +40,15 @@ use Illuminate\Http\Request;
     // Rutas protegidas para admin
 //Route::middleware([AdminMiddleware::class])->group(function () {
      Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
-//RUTA PARA COLORES
-    Route::post('/agg/color', [ColorController::class, 'saveColor']);
 //RUTAS PARA MATERIALES DE TELA
     Route::get('/gestion/tipos-telas', [TiposTelaController::class, 'getTiposTela']);
     Route::post('agg/tipotela', [TiposTelaController::class, 'saveTipoTela']);
     Route::post('/modif/material-tela', [TiposTelaController::class, 'modifMaterialTela']);
+
+//RUTAS PARA TIPOS DE PRENDA
+    Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
+    Route::post('agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
+
 
 //RUTAS PARA TELAS
     Route::get('/gestion/tela', [TelaController::class, 'getTelas']);   
