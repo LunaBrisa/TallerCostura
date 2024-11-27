@@ -175,7 +175,7 @@ body {
 }
 
     </style>
-</style>
+   </style> 
         <div class="row">
             <div class="col-md-6">
                 <div class="card">

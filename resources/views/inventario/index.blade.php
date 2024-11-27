@@ -2,8 +2,8 @@
 
 @section('title', 'Dashboard de Insumos')
 @section('dashboard_name', 'Dashboard de Insumos')
+
 @section('content')
-<<<<<<< HEAD
 <style>
  /* Tarjetas */
 .card {
@@ -132,10 +132,17 @@ th {
         overflow-x: scroll;
     }
 }
+</style>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-    </style>
     <div class="row">
+        <!-- Columna de insumos con menos stock -->
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -143,39 +150,13 @@ th {
                     <ul>
                         @foreach ($insumosMenosStock as $insumo)
                             <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
-=======
-@if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Insumos con menos stock</h5>
-                        <ul>
-                            @foreach ($insumosMenosStock as $insumo)
-                                <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Insumos más utilizados</h5>
-                        <ul>
-                            @foreach ($insumosMasUtilizados as $insumo)
-                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
->>>>>>> 63564da9df7dae42bc31ee19c2d593e0bb24e772
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+
+        <!-- Columna de insumos más utilizados -->
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -190,6 +171,7 @@ th {
         </div>
     </div>
 
+    <!-- Formulario de búsqueda -->
     <form method="GET" action="{{ route('inventario.index') }}" class="mt-2">
         <div class="d-flex">
             <input type="text" class="form-control" name="insumo" placeholder="Buscar por Nombre..." value="{{ request()->input('insumo') }}">
@@ -197,14 +179,7 @@ th {
         </div>
     </form>
 
-    <form action="{{ route('inventario.index') }}" method="GET" class="d-flex my-3">
-        <button type="submit" class="btn btn-outline-secondary mx-2" name="estado" value="">Ver todos</button>
-    </form>
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarInsumoModal">Agregar Insumo</button>
-    </div>
-
+    <!-- Tabla de insumos -->
     <div class="table-responsive my-4">
         <table class="table table-striped table-hover">
             <thead class="table-dark">
@@ -227,6 +202,7 @@ th {
                             <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInsumoModal{{ $insumo->id }}">Editar</button>
                         </td>
                     </tr>
+                    <!-- Modal de editar insumo -->
                     <div class="modal fade" id="editarInsumoModal{{ $insumo->id }}" tabindex="-1" aria-labelledby="editarInsumoLabel{{ $insumo->id }}">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -241,32 +217,8 @@ th {
                                         <div class="mb-3">
                                             <label for="insumo" class="form-label">Insumo</label>
                                             <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo', $insumo->insumo) }}" required>
-                                            @error('insumo')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label for="cantidad_actual" class="form-label">Stock Actual</label>
-                                            <input type="number" class="form-control" id="cantidad_actual" name="cantidad_actual" value="{{ $insumo->cantidad_stock }}" readonly>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="cantidad_reabastecer" class="form-label">Cantidad a Reabastecer</label>
-                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}">
-                                            @error('cantidad_reabastecer')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="precio_unitario" class="form-label">Precio Unitario</label>
-                                            <input type="number" step="0.01" class="form-control" id="precio_unitario" name="precio_unitario" value="{{ old('precio_unitario', $insumo->precio_unitario) }}">
-                                            @error('precio_unitario')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-
+                                        <!-- Otros campos del formulario -->
                                         <button type="submit" class="btn btn-primary">Actualizar</button>
                                     </form>
                                 </div>
@@ -278,91 +230,22 @@ th {
         </table>
     </div>
 
-    <!-- Modal para Agregar Insumos -->
+    <!-- Modal para agregar insumo -->
     <div class="modal fade" id="agregarInsumoModal" tabindex="-1" aria-labelledby="agregarInsumoLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="agregarInusmoLabel">Agregar Insumo</h5>
+                    <h5 class="modal-title" id="agregarInsumoLabel">Agregar Insumo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('inventario.store') }}" method="POST">
                         @csrf
-
-                        <div class="mb-3">
-                            <label for="insumo" class="form-label">Insumo</label>
-                            <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo') }}" required>
-                            @error('insumo')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cantidad_stock" class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" id="cantidad_stock" name="cantidad_stock" value="{{ old('cantidad_stock') }}" required>
-                            @error('cantidad_stock')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="precio_unitario" class="form-label">Precio Unitario</label>
-                            <input type="numeric" class="form-control" id="precio_unitario" name="precio_unitario" value="{{ old('precio_unitario') }}">
-                            @error('precio_unitario')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
+                        <!-- Campos del formulario para agregar insumo -->
                         <button type="submit" class="btn btn-success">Agregar Insumo</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Script para mostrar el modal automáticamente si hay errores -->
-    @if ($errors->any())
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var agregarInsumoModal = new bootstrap.Modal(document.getElementById('agregarInsumoModal'));
-                agregarInsumoModal.show();
-            });
-        </script>
-    @endif
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let currentSort = { column: null, order: 'asc' };
-
-            document.querySelectorAll('.sortable').forEach(header => {
-                header.addEventListener('click', function () {
-                    const column = header.getAttribute('data-column');
-                    const order = currentSort.column === column && currentSort.order === 'asc' ? 'desc' : 'asc';
-                    
-                    currentSort = { column, order };
-                    sortTable(column, order);
-                });
-            });
-        
-            function sortTable(column, order) {
-                const rows = Array.from(document.querySelectorAll('tbody tr'));
-                rows.sort((rowA, rowB) => {
-                    const cellA = rowA.querySelector(`[data-column="${column}"]`).textContent;
-                    const cellB = rowB.querySelector(`[data-column="${column}"]`).textContent;
-                    const compareA = isNaN(cellA) ? cellA : parseFloat(cellA);
-                    const compareB = isNaN(cellB) ? cellB : parseFloat(cellB);
-                    if (order === 'asc') {
-                        return compareA > compareB ? 1 : (compareA < compareB ? -1 : 0);
-                    } else {
-                        return compareA < compareB ? 1 : (compareA > compareB ? -1 : 0);
-                    }
-                });
-        
-                const tbody = document.getElementById('insumo-body');
-                rows.forEach(row => tbody.appendChild(row));
-            }
-        });
-    </script>
 @endsection
- 

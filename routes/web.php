@@ -198,9 +198,3 @@ Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados
 Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
 Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
-// Ruta para la vista de Gestión de Clientes
-Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
-Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
-Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
-
-Route::get('/perfil', [PerfilController::class, 'show'])->name('perfil')->middleware('auth');
