@@ -44,7 +44,6 @@
                                 <div class="card-body" >
                                     <h5 class="card-title">{{$prenda->nombre_prenda}}</h5>
                                     <p class="card-text">{{$prenda->descripcion}}</p>
-                                    <p>Precio: {{$prenda->precio}}</p>
                                     <p>Genero: {{$prenda->genero}}</p>
                                     <form action="/Cliente/DetallePrenda/{{$prenda->id}}" method="post">
                                         @csrf

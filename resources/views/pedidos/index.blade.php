@@ -268,6 +268,6 @@
         const row = input.closest('tr');
         const cantidad = row.querySelector('input[name="confeccion_cantidades[]"]').value;
         const subtotal = row.querySelector('input[name="confeccion_subtotales[]"]');
-        subtotal.value = (cantidad * 1).toFixed(2); // Cambia 1 por el precio si es necesario
+        subtotal.value = (cantidad * 1).toFixed(2);
     }
 @endsection

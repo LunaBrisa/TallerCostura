@@ -50,6 +50,7 @@
                     <th id="header-nombre" class="sortable" data-column="nombre" style="cursor: pointer;">Nombre</th>
                     <th id="header-stock" class="sortable" data-column="cantidad_stock" style="cursor: pointer;">Stock</th>
                     <th id="header-precio" class="sortable" data-column="precio_unitario" style="cursor: pointer;">Precio Unitario</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="insumo-body">
@@ -59,7 +60,59 @@
                         <td>{{ $insumo->insumo }}</td>
                         <td>{{ $insumo->cantidad_stock }}</td>
                         <td>${{ number_format($insumo->precio_unitario, 2) }}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInsumoModal{{ $insumo->id }}">Editar</button>
+                        </td>
                     </tr>
+                    <div class="modal fade" id="editarInsumoModal{{ $insumo->id }}" tabindex="-1" aria-labelledby="editarInsumoLabel{{ $insumo->id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editarInsumoLabel{{ $insumo->id }}">Editar Insumo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('inventario.update', $insumo->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                    
+                                        <div class="mb-3">
+                                            <label for="insumo" class="form-label">Insumo</label>
+                                            <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo', $insumo->insumo) }}" required>
+                                            @error('insumo')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label for="cantidad_actual" class="form-label">Stock Actual</label>
+                                            <input type="number" class="form-control" id="cantidad_actual" name="cantidad_actual" value="{{ $insumo->cantidad_stock }}" readonly>
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label for="cantidad_reabastecer" class="form-label">Cantidad a Reabastecer</label>
+                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}" required>
+                                            @error('cantidad_reabastecer')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                    
+                                        <div class="mb-3">
+                                            <label for="precio_unitario" class="form-label">Precio Unitario</label>
+                                            <input type="number" step="0.01" class="form-control" id="precio_unitario" name="precio_unitario" value="{{ old('precio_unitario', $insumo->precio_unitario) }}">
+                                            @error('precio_unitario')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                    
+                                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
                 @endforeach
             </tbody>
         </table>

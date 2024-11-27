@@ -14,8 +14,8 @@ class InventarioController extends Controller
     ->limit(3)
     ->get();
 
-    $insumosMasUtilizados = DB::table('detalle_insumo')
-        ->join('insumos', 'detalle_insumo.insumo_id', '=', 'insumos.id')
+    $insumosMasUtilizados = DB::table('DETALLE_INSUMO')
+        ->join('INSUMOS', 'detalle_insumo.insumo_id', '=', 'insumos.id')
         ->select('insumos.insumo', DB::raw('SUM(detalle_insumo.cantidad_insumo) as total_usado'))
         ->groupBy('insumos.insumo')
         ->orderBy('total_usado', 'desc')
@@ -38,7 +38,6 @@ class InventarioController extends Controller
     }
     public function store(Request $request)
     {
-        // Validar los datos del formulario
         $request->validate([
             'insumo' => 'required|string|max:100',
             'cantidad_stock' => 'required|integer',
@@ -53,4 +52,25 @@ class InventarioController extends Controller
         ]);
         return redirect()->route('inventario.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
     }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'insumo' => 'required|string|max:255',
+        'cantidad_reabastecer' => 'required|integer|min:0',
+        'precio_unitario' => 'nullable|numeric|min:0',
+    ]);
+
+    $insumo = Insumo::findOrFail($id);
+
+    // Sumar el stock actual con la cantidad reabastecida
+    $insumo->cantidad_stock += $request->input('cantidad_reabastecer');
+    $insumo->insumo = $request->input('insumo');
+    $insumo->precio_unitario = $request->input('precio_unitario', $insumo->precio_unitario);
+
+    $insumo->save();
+
+    return redirect()->route('inventario.index')->with('success', 'Insumo actualizado correctamente.');
+}
+
+
 }

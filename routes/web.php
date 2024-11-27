@@ -35,7 +35,7 @@ use App\Http\Controllers\PerfilController;
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 // Rutas protegidas para admin
-//Route::middleware([AdminMiddleware::class])->group(function () {
+Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/Registro/RegistrarCliente', [ClienteRegistroController::class, 'RegistrarCliente'])->name('Registro.RegistrarCliente');
     Route::post('/Registro/RegistrarEmpleado', [EmpleadoRegistroController::class, 'RegistrarEmpleado'])->name('Registro.RegistrarEmpleado');
     Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
@@ -74,12 +74,14 @@ use App\Http\Controllers\PerfilController;
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
-//});
+});
 
 // Rutas protegidas para Empleados
-//Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
+Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
     Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+    Route::put('/inventario/{id}', [InventarioController::class, 'update'])->name('inventario.update');
+
     
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
@@ -89,6 +91,8 @@ use App\Http\Controllers\PerfilController;
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
     Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
     Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+    Route::get('/clientes/{id}/detalle', [ClientesController::class, 'show'])->name('clientes.show');
+
     
     Route::get('/dashboard', function (){ return view('dashboard.index');});
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
@@ -100,7 +104,7 @@ use App\Http\Controllers\PerfilController;
     Route::get('Servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
     Route::put('Servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
     Route::delete('Servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-//});
+});
 
 Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaPrendasConfeccion']);
 
