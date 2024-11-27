@@ -38,6 +38,7 @@ class TelaController extends Controller
         if($telota){
             $telota->nombre_tela = $modifTelaRequest->get('telilla');
             $telota->material_tela_id = $modifTelaRequest->get('tipotelilla');
+            $telota->precio = $modifTelaRequest->get('preciotelilla');
 
             $telota->save();
         }

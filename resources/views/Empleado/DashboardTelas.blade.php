@@ -91,7 +91,7 @@
                         <input type="hidden" name="idtela" value="{{$tela->id}}">
     
                         <label for="telilla"><h3 class="h3-modal">Nombre de la Tela</h3></label>
-                        <input type="text" name="telilla" class="form-control"><br>
+                        <input type="text" name="telilla" class="form-control" placeholder="Ingresar el nombre nuevo"><br>
 
                         <label for="tipotelilla"><h3 class="h3-modal">Tipo de Tela</h3></label>
                         <select class="form-select" name="tipotelilla" aria-label="Default select example">
