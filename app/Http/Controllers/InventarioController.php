@@ -16,7 +16,7 @@ class InventarioController extends Controller
 
     $insumosMasUtilizados = DB::table('DETALLE_INSUMO')
         ->join('INSUMOS', 'detalle_insumo.insumo_id', '=', 'insumos.id')
-        ->select('insumos.insumo', DB::raw('SUM(detalle_insumo.cantidad_insumo) as total_usado'))
+        ->select('INSUMOS.insumo', DB::raw('SUM(detalle_insumo.cantidad_insumo) as total_usado'))
         ->groupBy('insumos.insumo')
         ->orderBy('total_usado', 'desc')
         ->limit(3)
