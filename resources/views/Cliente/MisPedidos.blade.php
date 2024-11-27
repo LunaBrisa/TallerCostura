@@ -83,16 +83,28 @@
                                             <div class="card-header">Detalles de Reparaciones</div>
                                             <div class="card-body">
                                                 @foreach($pedido->detallesReparaciones as $detalle)
-                                                <div class="mb-3">
-                                                    <p><strong>Prenda:</strong> {{ $detalle->prenda }}</p>
-                                                    <p><strong>Descripción del Problema:</strong> {{ $detalle->descripcion_problema }}</p>
-                                                    <p><strong>Cantidad:</strong> {{ $detalle->cantidad_prenda }}</p>
-                                                </div>
-                                                <hr>
+                                                    <div class="mb-3">
+                                                        <p><strong>Prenda:</strong> {{ $detalle->prenda }}</p>
+                                                        <p><strong>Descripción del Problema:</strong> {{ $detalle->descripcion_problema }}</p>
+                                                        <p><strong>Cantidad:</strong> {{ $detalle->cantidad_prenda }}</p>
+                                                        <p><strong>Servicios:</strong></p>
+                                                        <ul>
+                                                            @if($detalle->servicios)
+                                                                @foreach($detalle->servicios as $servicio)
+                                                                    <li>{{ $servicio->servicio }}</li>
+                                                                @endforeach
+                                                            @else
+                                                                <li>No hay servicios registrados</li>
+                                                            @endif
+                                                        </ul>
+                                                        <p><strong>Subtotal:</strong> ${{ number_format($detalle->subtotal, 2) }}</p>
+                                                    </div>
+                                                    <hr>
                                                 @endforeach
                                             </div>
                                         </div>
-                                        @endif
+                                    @endif
+                                    
 
                                         <!-- Detalles de Lotes -->
                                         @if($pedido->detallesLotes->isNotEmpty())
@@ -105,6 +117,7 @@
                                                     <p><strong>Precio por Prenda:</strong> ${{ number_format($detalle->precio_por_prenda, 2) }}</p>
                                                     <p><strong>Cantidad:</strong> {{ $detalle->cantidad }}</p>
                                                     <p><strong>Anticipo:</strong> ${{ number_format($detalle->anticipo, 2) }}</p>
+                                                    <p><strong>Subtotal:</strong> ${{ number_format($detalle->subtotal, 2) }}</p>
                                                 </div>
                                                 <hr>
                                                 @endforeach
