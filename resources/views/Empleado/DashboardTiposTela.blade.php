@@ -63,6 +63,15 @@
                   @endforeach
               </ul>
           </div>
+
+          @else
+
+          <div class="alert alert-danger">
+              <div class="alert alert-success" role="alert">
+                Se agrego el material de tela correctamente!
+              </div>
+         </div>
+
           @endif
         </div>
     </div>
