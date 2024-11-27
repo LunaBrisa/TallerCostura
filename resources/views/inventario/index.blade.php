@@ -3,7 +3,6 @@
 @section('title', 'Dashboard de Insumos')
 @section('dashboard_name', 'Dashboard de Insumos')
 @section('content')
-<<<<<<< HEAD
 <style>
  /* Tarjetas */
 .card {
@@ -132,18 +131,7 @@ th {
         overflow-x: scroll;
     }
 }
-
-
     </style>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos con menos stock</h5>
-                    <ul>
-                        @foreach ($insumosMenosStock as $insumo)
-                            <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
-=======
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -170,25 +158,11 @@ th {
                         <ul>
                             @foreach ($insumosMasUtilizados as $insumo)
                             <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
->>>>>>> 63564da9df7dae42bc31ee19c2d593e0bb24e772
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos más utilizados</h5>
-                    <ul>
-                        @foreach ($insumosMasUtilizados as $insumo)
-                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <form method="GET" action="{{ route('inventario.index') }}" class="mt-2">
         <div class="d-flex">
@@ -365,4 +339,3 @@ th {
         });
     </script>
 @endsection
- 
