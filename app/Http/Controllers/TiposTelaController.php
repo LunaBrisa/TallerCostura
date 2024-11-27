@@ -22,7 +22,7 @@ class TiposTelaController extends Controller
 
         $TipoTelilla->save();
 
-        return redirect('/gestion/tipos-telas');
+        return redirect('/gestion/tipos-telas')->with('success', '¡Se agregó el material de tela correctamente!');
     }
 
     public function modifMaterialTela(ModifMateTelaRequest $modifMateTelaRequest){
