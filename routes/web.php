@@ -79,6 +79,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class])->group(function () {
     Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
     Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
+    Route::put('/inventario/{id}', [InventarioController::class, 'update'])->name('inventario.update');
+
     
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
