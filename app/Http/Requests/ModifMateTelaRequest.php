@@ -22,8 +22,19 @@ class ModifMateTelaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idmate' => ['required'],
-            'materialtelilla' => ['required', 'max:50']
+            'idmate' => ['required', 'numeric'],
+            'materialtelilla' => ['required', 'regex:/^[\pL\s]+$/u', 'max:50']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'idmate.required' => 'No se ha detectado una tela',
+            'idmate.numeric' => 'No se ha detectado una tela',
+            'materialtelilla.required' => 'El nombre de la tela es obligatorio',
+            'materialtelilla.regex' => 'El nombre de la tela solo puede contener letras y espacios',
+            'materialtelilla.max' => 'El nombre de la tela no puede tener mas de 50 caracteres'
         ];
     }
 }

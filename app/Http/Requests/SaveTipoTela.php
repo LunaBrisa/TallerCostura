@@ -22,7 +22,16 @@ class SaveTipoTela extends FormRequest
     public function rules(): array
     {
         return [
-            'tipotelita' => ['required', 'max:50']
+            'tipotelita' => ['required', 'regex:/^[\pL\s]+$/u', 'max:50']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'tipotelita.required' => 'El nombre de la tela es obligatorio',
+            'tipotelita.regex' => 'El nombre de la tela solo puede contener letras y espacios',
+            'tipotelita.max' => 'El nombre de la tela no puede tener mas de 50 caracteres'
         ];
     }
 }
