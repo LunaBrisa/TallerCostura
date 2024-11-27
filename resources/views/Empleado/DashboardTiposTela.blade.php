@@ -55,11 +55,11 @@
         <div class="col">
           @if ($errors->any())
           <div class="alert alert-danger">
-              <ul>
+              <ol>
                   @foreach ($errors->all() as $error)
                       <li><p class="p-error">{{ $error }}</p></li>
                   @endforeach
-              </ul>
+              </ol>
           </div>
           @endif
             
@@ -128,7 +128,7 @@
 
   .p-success{
     color: rgb(0, 99, 0);
-    font-sixe: 19px;
+    font-size: 19px;
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
