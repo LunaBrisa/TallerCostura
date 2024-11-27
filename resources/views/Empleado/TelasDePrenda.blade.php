@@ -218,7 +218,7 @@
     .btn-modal-sub-interior {
         height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
         font-size: 14px; /* Tamaño de fuente menor */
-        width: 80px; /* Más angosto en pantallas pequeñas */
+        width: 120px; /* Más angosto en pantallas pequeñas */
     }
 }
 
