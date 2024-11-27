@@ -231,7 +231,7 @@ body {
                     <td>{{ $empleado->persona->nombre }} {{ $empleado->persona->apellido_p }} {{ $empleado->persona->apellido_m }}</td>
                     <td>{{ $empleado->persona->user->name }}</td>
                     <td>{{ $empleado->persona->telefono }}</td>
-                    <td>{{ $empleado->persona->correo }}</td>
+                    <td>{{ $empleado->persona->user->email}}</td>
                     <td>{{ $empleado->persona->user->roles->first()->nombre_rol }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
@@ -268,7 +268,7 @@ body {
                                     </div>
                                     <div class="mb-3">
                                         <label for="correo" class="form-label">Correo</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" value="{{ $empleado->persona->correo }}" required>
+                                        <input type="email" class="form-control" id="correo" name="correo" value="{{ $empleado->persona->user->email }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rol" class="form-label">Rol</label>
