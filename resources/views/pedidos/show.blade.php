@@ -1,101 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detalles del Pedido</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-</head>
-<body>
+@extends('layouts.dashboard')
 
+@section('title', 'Detalle del Pedido')
+@section('dashboard_name', 'Detalle del Pedido')
+
+@section('content')
 <div class="container">
-    <h2 class="text-center mb-4">Detalles del Pedido #{{ $pedido->id }}</h2>
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5>Información del Pedido</h5>
-            <p><strong>Fecha de Pedido:</strong> {{ $pedido->fecha_pedido }}</p>
-            <p><strong>Fecha de Entrega:</strong> {{ $pedido->fecha_entrega }}</p>
-            <p><strong>Cliente:</strong> {{ $pedido->cliente->persona->nombre }}</p>
-            <p><strong>Compañia:</strong> {{ $pedido->cliente->compania }}</p>
-            <p><strong>Empleado:</strong> {{ $pedido->empleado->persona->nombre }}</p>
-            <p><strong>Descripción:</strong> {{ $pedido->descripcion }}</p>
-            <p><strong>Estado:</strong> {{ $pedido->estado }}</p>
-            <p><strong>Total:</strong> ${{ number_format($pedido->total, 2) }}</p>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3>Información del Pedido</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>ID Pedido:</strong> {{ $pedido->id }}</li>
+                <li class="list-group-item"><strong>Fecha del Pedido:</strong> {{ $pedido->fecha_pedido }}</li>
+                <li class="list-group-item"><strong>Fecha de Entrega:</strong> {{ $pedido->fecha_entrega }}</li>
+                <li class="list-group-item"><strong>Descripción:</strong> {{ $pedido->descripcion }}</li>
+                <li class="list-group-item"><strong>Estado:</strong> {{ $pedido->estado }}</li>
+                <li class="list-group-item"><strong>Total:</strong> {{ number_format($pedido->total, 2) }} {{ $pedido->moneda ?? 'MXN' }}</li>
+            </ul>
         </div>
     </div>
 
-    <h5>Detalles del Pedido</h5>
-            @if($pedido->detallesConfeccion && $pedido->detallesConfeccion->isNotEmpty())
-            <h6>Detalles de Confección</h6>
-            <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Prenda</th>
-                    <th>Cantidad</th>
-                </tr>
-            </thead>
-            <tbody>
-    @foreach($pedido->detallesConfeccion as $detalle)
-        <tr>
-            <td>{{ $detalle->prendaConfeccion->nombre_prenda}}</td>
-            <td>{{ $detalle->cantidad_prenda }}</td>
-        </tr>
-    @endforeach
-</tbody>
-</table>
-@endif
-
-@if($pedido->detallesReparacion && $pedido->detallesReparacion->isNotEmpty())
-<h6>Detalles de Reparación</h6>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Prenda</th>
-            <th>Cantidad</th>
-            <th>Servicio</th>
-            <th>Descripción</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($pedido->detallesReparacion as $detalle)
-    @if ($detalle->prendaReparacion && $detalle->prendaReparacion->servicio)
-        <tr>
-            <td>{{ $detalle->prendaReparacion->nombre_prenda }}</td>
-            <td>{{ $detalle->cantidad_prenda }}</td>
-            <td>{{ $detalle->prendaReparacion->servicio->servicio }}</td>
-            <td>{{ $detalle->prendaReparacion->servicio->descripcion }}</td>
-        </tr>
-    @endif
-@endforeach
-
-    </tbody>
-</table>
-@endif
-
-@if($pedido->detallesLote && $pedido->detallesLote->isNotEmpty())
-<h6>Detalles de Lote</h6>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Prenda</th>
-            <th>Cantidad</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($pedido->detallesLote as $detalleLote)
+    {{-- Detalles de Lotes --}}
+    @if ($pedido->detallesLotes->isNotEmpty())
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h3>Detalles de Lotes</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
                         <tr>
-                            <td>{{ $detalleLote->prenda }}</td>
-                            <td>{{ $detalleLote->cantidad }}</td>
+                            <th>Prenda</th>
+                            <th>Precio por Prenda</th>
+                            <th>Cantidad</th>
+                            <th>Anticipo</th>
                         </tr>
-            @endforeach
-    </tbody>
-</table>
-@endif
-        
+                    </thead>
+                    <tbody>
+                        @foreach ($pedido->detallesLotes as $detalle)
+                            <tr>
+                                <td>{{ $detalle->prenda }}</td>
+                                <td>{{ number_format($detalle->precio_por_prenda, 2) }}</td>
+                                <td>{{ $detalle->cantidad }}</td>
+                                <td>{{ number_format($detalle->anticipo, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
 
-    <a href="{{ route('pedidos.index') }}" class="btn btn-secondary mt-4">Volver a la lista de pedidos</a>
+    {{-- Detalles de Reparaciones --}}
+    @if ($pedido->detallesReparaciones->isNotEmpty())
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h3>Detalles de Reparaciones</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Prenda</th>
+                            <th>Descripción del Problema</th>
+                            <th>Cantidad</th>
+                            <th>Precio por Prenda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pedido->detallesReparaciones as $detalle)
+                            <tr>
+                                <td>{{ $detalle->prenda }}</td>
+                                <td>{{ $detalle->descripcion_problema }}</td>
+                                <td>{{ $detalle->cantidad_prenda }}</td>
+                                <td>{{ number_format($detalle->subtotal, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
+    {{-- Detalles de Confecciones --}}
+    @if ($pedido->detallesConfecciones->isNotEmpty())
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h3>Detalles de Confecciones</h3>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Prenda</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pedido->detallesConfecciones as $detalle)
+                            <tr>
+                                <td>{{ $detalle->prendaConfeccion->nombre_prenda ?? 'N/A' }}</td>
+                                <td>{{ $detalle->cantidad_prenda }}</td>
+                                <td>{{ number_format($detalle->subtotal, 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    @endif
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+    
 </div>
-
-</body>
-</html>
+@endsection

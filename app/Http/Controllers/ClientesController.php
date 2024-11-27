@@ -122,5 +122,11 @@ public function update(Request $request, $id)
         return redirect()->back()->with('error', 'Error al actualizar el cliente: ' . $e->getMessage());
     }
 }
+public function show($id)
+{
+    $cliente = Cliente::with(['persona', 'persona.user', 'pedidos'])->findOrFail($id);
+    
+    return view('clientes.show', compact('cliente'));
+}
 
 }
