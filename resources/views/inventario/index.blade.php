@@ -132,201 +132,118 @@ th {
         overflow-x: scroll;
     }
 }
-<<<<<<< HEAD
 </style>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
-    <div class="row">
-        <!-- Columna de insumos con menos stock -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos con menos stock</h5>
-                    <ul>
-                        @foreach ($insumosMenosStock as $insumo)
-                            <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
-=======
-    </style>
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Insumos con menos stock</h5>
-                        <ul>
-                            @foreach ($insumosMenosStock as $insumo)
-                                <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Insumos más utilizados</h5>
-                        <ul>
-                            @foreach ($insumosMasUtilizados as $insumo)
-                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
->>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-<<<<<<< HEAD
 
-        <!-- Columna de insumos más utilizados -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos más utilizados</h5>
-                    <ul>
-                        @foreach ($insumosMasUtilizados as $insumo)
-                            <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+<div class="row">
+    <!-- Columna de insumos con menos stock -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Insumos con menos stock</h5>
+                <ul>
+                    @foreach ($insumosMenosStock as $insumo)
+                        <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
-=======
->>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
 
-    <!-- Formulario de búsqueda -->
-    <form method="GET" action="{{ route('inventario.index') }}" class="mt-2">
-        <div class="d-flex">
-            <input type="text" class="form-control" name="insumo" placeholder="Buscar por Nombre..." value="{{ request()->input('insumo') }}">
-            <button type="submit" class="btn btn-outline-primary ms-2">Buscar</button>
+    <!-- Columna de insumos más utilizados -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Insumos más utilizados</h5>
+                <ul>
+                    @foreach ($insumosMasUtilizados as $insumo)
+                        <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
-    </form>
+    </div>
+</div>
 
-    <!-- Tabla de insumos -->
-    <div class="table-responsive my-4">
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
+<!-- Formulario de búsqueda -->
+<form method="GET" action="{{ route('inventario.index') }}" class="mt-2">
+    <div class="d-flex">
+        <input type="text" class="form-control" name="insumo" placeholder="Buscar por Nombre..." value="{{ request()->input('insumo') }}">
+        <button type="submit" class="btn btn-outline-primary ms-2">Buscar</button>
+    </div>
+</form>
+
+<!-- Tabla de insumos -->
+<div class="table-responsive my-4">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th id="header-id" class="sortable" data-column="id" style="cursor: pointer;">ID Insumo</th>
+                <th id="header-nombre" class="sortable" data-column="nombre" style="cursor: pointer;">Nombre</th>
+                <th id="header-stock" class="sortable" data-column="cantidad_stock" style="cursor: pointer;">Stock</th>
+                <th id="header-precio" class="sortable" data-column="precio_unitario" style="cursor: pointer;">Precio Unitario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="insumo-body">
+            @foreach ($insumos as $insumo)
                 <tr>
-                    <th id="header-id" class="sortable" data-column="id" style="cursor: pointer;">ID Insumo</th>
-                    <th id="header-nombre" class="sortable" data-column="nombre" style="cursor: pointer;">Nombre</th>
-                    <th id="header-stock" class="sortable" data-column="cantidad_stock" style="cursor: pointer;">Stock</th>
-                    <th id="header-precio" class="sortable" data-column="precio_unitario" style="cursor: pointer;">Precio Unitario</th>
-                    <th>Acciones</th>
+                    <td>{{ $insumo->id }}</td>
+                    <td>{{ $insumo->insumo }}</td>
+                    <td>{{ $insumo->cantidad_stock }}</td>
+                    <td>${{ number_format($insumo->precio_unitario, 2) }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInsumoModal{{ $insumo->id }}">Editar</button>
+                    </td>
                 </tr>
-            </thead>
-            <tbody id="insumo-body">
-                @foreach ($insumos as $insumo)
-                    <tr>
-                        <td>{{ $insumo->id }}</td>
-                        <td>{{ $insumo->insumo }}</td>
-                        <td>{{ $insumo->cantidad_stock }}</td>
-                        <td>${{ number_format($insumo->precio_unitario, 2) }}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInsumoModal{{ $insumo->id }}">Editar</button>
-                        </td>
-                    </tr>
-                    <!-- Modal de editar insumo -->
-                    <div class="modal fade" id="editarInsumoModal{{ $insumo->id }}" tabindex="-1" aria-labelledby="editarInsumoLabel{{ $insumo->id }}">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editarInsumoLabel{{ $insumo->id }}">Editar Insumo</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('inventario.update', $insumo->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="mb-3">
-                                            <label for="insumo" class="form-label">Insumo</label>
-                                            <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo', $insumo->insumo) }}" required>
-                                        </div>
-                                        <!-- Otros campos del formulario -->
-                                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                                    </form>
-                                </div>
+                <!-- Modal de editar insumo -->
+                <div class="modal fade" id="editarInsumoModal{{ $insumo->id }}" tabindex="-1" aria-labelledby="editarInsumoLabel{{ $insumo->id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarInsumoLabel{{ $insumo->id }}">Editar Insumo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('inventario.update', $insumo->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="insumo" class="form-label">Insumo</label>
+                                        <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo', $insumo->insumo) }}" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-    <!-- Modal para agregar insumo -->
-    <div class="modal fade" id="agregarInsumoModal" tabindex="-1" aria-labelledby="agregarInsumoLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="agregarInsumoLabel">Agregar Insumo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('inventario.store') }}" method="POST">
-                        @csrf
-                        <!-- Campos del formulario para agregar insumo -->
-                        <button type="submit" class="btn btn-success">Agregar Insumo</button>
-                    </form>
-                </div>
+<!-- Modal para agregar insumo -->
+<div class="modal fade" id="agregarInsumoModal" tabindex="-1" aria-labelledby="agregarInsumoLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarInsumoLabel">Agregar Insumo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('inventario.store') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Agregar Insumo</button>
+                </form>
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+</div>
 @endsection
-=======
-
-    <!-- Script para mostrar el modal automáticamente si hay errores -->
-    @if ($errors->any())
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var agregarInsumoModal = new bootstrap.Modal(document.getElementById('agregarInsumoModal'));
-                agregarInsumoModal.show();
-            });
-        </script>
-    @endif
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let currentSort = { column: null, order: 'asc' };
-
-            document.querySelectorAll('.sortable').forEach(header => {
-                header.addEventListener('click', function () {
-                    const column = header.getAttribute('data-column');
-                    const order = currentSort.column === column && currentSort.order === 'asc' ? 'desc' : 'asc';
-                    
-                    currentSort = { column, order };
-                    sortTable(column, order);
-                });
-            });
-        
-            function sortTable(column, order) {
-                const rows = Array.from(document.querySelectorAll('tbody tr'));
-                rows.sort((rowA, rowB) => {
-                    const cellA = rowA.querySelector(`[data-column="${column}"]`).textContent;
-                    const cellB = rowB.querySelector(`[data-column="${column}"]`).textContent;
-                    const compareA = isNaN(cellA) ? cellA : parseFloat(cellA);
-                    const compareB = isNaN(cellB) ? cellB : parseFloat(cellB);
-                    if (order === 'asc') {
-                        return compareA > compareB ? 1 : (compareA < compareB ? -1 : 0);
-                    } else {
-                        return compareA < compareB ? 1 : (compareA > compareB ? -1 : 0);
-                    }
-                });
-        
-                const tbody = document.getElementById('insumo-body');
-                rows.forEach(row => tbody.appendChild(row));
-            }
-        });
-    </script>
-@endsection
->>>>>>> aaab8d58ca4a143fa5fcf424d414396f69e03751
