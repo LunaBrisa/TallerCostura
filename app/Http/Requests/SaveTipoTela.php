@@ -22,7 +22,7 @@ class SaveTipoTela extends FormRequest
     public function rules(): array
     {
         return [
-            'tipotelita' => ['required', 'regex:/^[\pL\s]+$/u', 'max:50']
+            'tipotelita' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:50']
         ];
     }
 
