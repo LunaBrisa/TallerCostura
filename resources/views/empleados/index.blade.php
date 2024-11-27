@@ -301,11 +301,94 @@ body {
             <div class="modal-body" style="background-color: #F5C6C6;">
                 <form action="{{ route('empleados.store') }}" method="POST">
                     @csrf
-                    <!-- Campos del formulario para agregar empleado -->
+                    
+                 <div class="row mb-3">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                          <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
+                           <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" >
+                           @error('password_confirmation')
+                             <small class="text-danger">{{ $message }}</small>
+                           @enderror
+                    </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
+                            <div class="mb-3">
+                                <label for="apellido_p" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="apellido_p" name="apellido_p" value="{{ old('apellido_p') }}" required>
+                                @error('apellido_p')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="apellido_m" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="apellido_m" name="apellido_m" value="{{ old('apellido_m') }}">
+                                @error('apellido_m')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+        
+                          <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}" required>
+                            @error('telefono')
+                                 <small class="text-danger">{{ $message }}</small>
+                             @enderror
+                         </div>
+        
+                        <div class="col-mb-3">
+                            <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value=" {{ old ('fecha_nacimiento') }}">
+                            @error('fecha_nacimiento')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+        
+                        <div class="col-mb-3">
+                            <label for="rfc" class="form-label">RFC</label>
+                            <input type="text" class="form-control" name="rfc" id="rfc" value="{{old ('rfc')}}">
+                            @error('rfc')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                  
+                        <div class="col-mb-3">
+                            <label for="nss" class="form-label">NSS</label>
+                            <input type="text" class="form-control" name="nss" id="nss" value="{{old ('nss')}}">
+                            @error('nss')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                   </div>
                     <button type="submit" class="btn btn-success mt-2">Agregar Empleado</button>
                 </form>
             </div>
