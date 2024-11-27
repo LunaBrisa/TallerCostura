@@ -3,6 +3,12 @@
 @section('title', 'Dashboard de Insumos')
 @section('dashboard_name', 'Dashboard de Insumos')
 @section('content')
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -91,7 +97,7 @@
                     
                                         <div class="mb-3">
                                             <label for="cantidad_reabastecer" class="form-label">Cantidad a Reabastecer</label>
-                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}" required>
+                                            <input type="number" class="form-control" id="cantidad_reabastecer" name="cantidad_reabastecer" value="{{ old('cantidad_reabastecer') }}">
                                             @error('cantidad_reabastecer')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror

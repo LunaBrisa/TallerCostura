@@ -14,10 +14,10 @@ class InventarioController extends Controller
     ->limit(3)
     ->get();
 
-    $insumosMasUtilizados = DB::table('detalle_insumo')
-        ->join('insumos', 'detalle_insumo.insumo_id', '=', 'insumos.id')
-        ->select('insumos.insumo', DB::raw('SUM(detalle_insumo.cantidad_insumo) as total_usado'))
-        ->groupBy('insumos.insumo')
+    $insumosMasUtilizados = DB::table('DETALLE_INSUMO')
+        ->join('INSUMOS', 'DETALLE_INSUMO.insumo_id', '=', 'INSUMOS.id')
+        ->select('INSUMOS.insumo', DB::raw('SUM(DETALLE_INSUMO.cantidad_insumo) as total_usado'))
+        ->groupBy('INSUMOS.insumo')
         ->orderBy('total_usado', 'desc')
         ->limit(3)
         ->get();
@@ -56,7 +56,7 @@ class InventarioController extends Controller
 {
     $request->validate([
         'insumo' => 'required|string|max:255',
-        'cantidad_reabastecer' => 'required|integer|min:0',
+        'cantidad_reabastecer' => 'nullable|integer|min:0',
         'precio_unitario' => 'nullable|numeric|min:0',
     ]);
 

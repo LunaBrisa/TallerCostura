@@ -111,6 +111,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
     Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
     Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+    Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
     
     Route::get('/dashboard', function (){ return view('dashboard.index');});
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');

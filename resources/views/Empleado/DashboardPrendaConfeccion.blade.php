@@ -297,7 +297,7 @@
                     <div class="modal-footer">
                       <div class="row mb-1" style="text-align: center; margin: auto">
                         <div class="col mb-3">
-                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar datos de Prenda</button></a>
+                          <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Prenda</button></a>
                         </div>
                         <div class="col mb-3">
                           <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Telas</button></a>
