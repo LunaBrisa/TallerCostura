@@ -189,6 +189,20 @@
                     </div>
                 </div>
             </div>
+
+            
+            <!-- Card para Catálogo -->
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-collection" style="font-size: 3rem; color: #d16b6b;"></i>
+                        <h5 class="card-title mt-3">Catálogo</h5>
+                        <p class="card-text">Gestiona los productos del catálogo.</p>
+                        <a href="/catalogo" class="btn btn-primary">Catálogo</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

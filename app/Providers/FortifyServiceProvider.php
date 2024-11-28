@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Redirect;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -42,14 +43,25 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
+
         Fortify::loginView(function () {
             return view('auth.login');
-        }); 
-        Fortify::registerView(function () {
-            return view('auth.register_combined'); 
         });
+
+        Fortify::registerView(function () {
+            return view('auth.register_combined');
+        });
+
         Fortify::resetPasswordView(function () {
             return view('auth.reset_password');
         });
+        // Registro de la vista para verificar el correo
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
+
+        // Redirección después de la verificación
+        Fortify::redirects('verification.notice', '/dashboard');
+
     }
 }

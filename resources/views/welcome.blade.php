@@ -89,7 +89,7 @@
         Colección de ropa
     </h1>
     <hr style="border-top: 2px solid black; margin: 5px 0; width: 40%; margin-left: 30%; padding: 30px;">
-    <div class="row g-4" style="background-color: #F4D9EC; height: 450px; padding: 20px; border-radius: 10px;">
+    <div class="row g-4" style="background-color: #F4D9EC; height: 450px; width: 90%; padding: 20px; border-radius: 10px;">
         <div class="col-md-4" style="height: 400px; width: 350px;">
             <div class="card h-100">
                 <img src="{{ asset('images/PantalonC1.jpg') }}" class="card-img-top" style="height: 380px; width: 300px;">

@@ -22,13 +22,42 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\GestionUsuariosControllers;
 use App\Http\Controllers\ClientePedidosController;
 
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+Route::get('/test-email', function () {
+    Mail::raw('HOLAAAAAAAAAAAAAAAAA, Este es un correo de prueba', function ($message) {
+        $message->to('brisa.luna@bateil.edu.mx')
+                ->subject('Correo de prueba');
+    });
+
+    return 'Correo enviado';
+});
+
+// Página para pedir verificación
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// URL que se llama cuando se verifica el correo
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/'); // Redirige al lugar deseado después de verificar
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Reenvío de correo de verificación
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Correo de verificación enviado.');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 // Rutas públicas
     Route::get('/', function () { return view('welcome');});
@@ -93,10 +122,15 @@ use Illuminate\Http\Request;
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     
     // Ruta para la vista de Gestión de Clientes
-    Route::resource('clientes', ClientesController::class);
-    
+    Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+    Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+    Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+    Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
+
     Route::get('/dashboard', function (){ return view('dashboard.index');});
-    Route::resource('empleados', EmpleadosController::class);
+    Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+    Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+    Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
     
 //});
@@ -118,24 +152,15 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
 
-    // Ruta para mostrar todos los servicios
-Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
 
-// Rutas para crear, actualizar y eliminar servicios
-Route::post('/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
-Route::put('/servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
-Route::put('/servicios/toggle/{id}', [ServiciosController::class, 'toggle'])->name('servicios.toggle');
 
-// Nuevas rutas para ocultar y mostrar servicios
-Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
-Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
-    
-// Ruta para la vista de Inventario de Insumos y Telas
-Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
-Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
 
-// Ruta para la vista de Gestión de Empleados
-Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
-Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
+
+
+// Rutas Vistas Telas y Premndas
+
+Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
+Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
+Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
 

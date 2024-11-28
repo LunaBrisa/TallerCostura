@@ -44,7 +44,7 @@ class ClientesController extends Controller
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -53,9 +53,9 @@ class ClientesController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
-    
+
         $user->sendEmailVerificationNotification();
-    
+
         $user_id = $user->id;
     
         $nombre = $request->input('nombre');
@@ -75,7 +75,6 @@ class ClientesController extends Controller
                 $compania,
                 $cargo,
             ]);
-    
             return redirect()->route('clientes.index')
                 ->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
         } catch (\Exception $e) {

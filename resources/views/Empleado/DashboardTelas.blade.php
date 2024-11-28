@@ -61,7 +61,31 @@
             </div>
             </div>
         </div>
-    </div>
+    </div><br>
+
+    <div class="row">
+      <div class="col">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+            @endforeach
+        @endif
+          
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('successmodif'))
+            <div class="alert alert-success" role="alert">
+                {{ session('successmodif') }}
+            </div>
+        @endif
+      </div>
+  </div>
 
     <div class="row" style="padding-top: 25px">
         @foreach ($misTelas as $tela)

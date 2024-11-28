@@ -21,7 +21,7 @@ class TelaController extends Controller
         ]);
     }
 
-    public function saveTela(TelasRequest $telasRequest){
+    public function saveTela(TelasRequest $telasRequest){ //VALIDADO DE Q YA YA TODO PROTEGIDO
         $telita = new Tela();
         $telita->nombre_tela = $telasRequest->telita;
         $telita->material_tela_id = $telasRequest->tipotelita;
@@ -29,7 +29,7 @@ class TelaController extends Controller
 
         $telita->save();
         
-        return redirect('/gestion/tela');
+        return redirect('/gestion/tela')->with('success', '¡Se agregó la tela correctamente!');
     }
 
     public function modifTela(ModifTelaRequest $modifTelaRequest){
@@ -45,4 +45,36 @@ class TelaController extends Controller
 
         return redirect('/gestion/tela');
     }
+
+
+
+
+
+    public function mostrarVistaTelas()
+{
+    $telas = \App\Models\VistaTelas::all(); 
+
+    return view('Empleado/VistaTelas', compact('telas')); 
+}
+
+
+
+public function mostrarVistaMateriales()
+{
+    $materiales = \App\Models\VistaMaterialesTelas::all(); 
+    return view('Empleado/VistaMaterialesTelas', compact('materiales')); 
+}
+
+
+
+public function mostrarVistaTiposPrenda()
+{
+    $tipos = \App\Models\VistaTiposPrenda::all(); // Consultar datos de la vista
+    return view('Empleado/VistaTiposPrenda', compact('tipos')); // Enviar datos a la vista
+}
+
+
+
+
+
 }
