@@ -8,7 +8,7 @@
     <title>Gestión Catálogo</title>
 </head>
 <body>
-    @extends('layouts.nav') <br>
+    @extends('layouts.nav')
     @section('content')
         <div class="container py-5">
             <div class="row">
@@ -31,8 +31,8 @@
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Prendas</h3>
-                            <p class="card-text">Descripción breve para la tarjeta 1.</p>
-                            <button class="btn btn-primary">Acción 1</button>
+                            <p class="card-text">Agregar, modificar y ocultar prendas</p>
+                            <button class="btn btn-primary btn-gest">Acción 1</button>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Tipos de Prendas</h3>
-                            <p class="card-text">Descripción breve para la tarjeta 2.</p>
-                            <button class="btn btn-primary">Acción 2</button>
+                            <p class="card-text">Agregar y modificar tipos de prendas</p>
+                            <button class="btn btn-primary btn-gest">Acción 2</button>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Telas</h3>
-                            <p class="card-text">Descripción breve para la tarjeta 3.</p>
-                            <button class="btn btn-primary">Acción 3</button>
+                            <p class="card-text">Agregar y modificar tipo de telas</p>
+                            <button class="btn btn-primary btn-gest">Acción 3</button>
                         </div>
                     </div>
                 </div>
@@ -61,8 +61,8 @@
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Materiales de Tela</h3>
-                            <p class="card-text">Descripción breve para la tarjeta 4.</p>
-                            <button class="btn btn-primary">Acción 4</button>
+                            <p class="card-text">Agregar y modificar materiales de tela</p>
+                            <button class="btn btn-primary btn-gest">Acción 4</button>
                         </div>
                     </div>
                 </div>
