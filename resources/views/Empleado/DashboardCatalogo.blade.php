@@ -63,7 +63,7 @@
       padding: 20px;
       text-align: center;
       width: 280px; /* Ancho fijo para las tarjetas */
-      height: 350px !important; /* Alto fijo para las tarjetas */
+      height: 250px !important; /* Alto fijo para las tarjetas */
     }
 
     .card:hover {
