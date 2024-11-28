@@ -74,7 +74,7 @@
 </body>
 <style>
     body{
-        background-color: #fff3ed;
+        background-color: #fff3ed !important;
     }
 
     .container {
