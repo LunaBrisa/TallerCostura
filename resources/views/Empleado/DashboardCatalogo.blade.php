@@ -32,7 +32,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Prendas</h3>
                             <p class="card-text">Agregar, modificar y ocultar prendas</p>
-                            <button class="btn btn-gest2">Gestionar</button>
+                            <a href=""><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Tipos de Prendas</h3>
                             <p class="card-text">Agregar y modificar tipos de prendas</p>
-                            <button class="btn btn-gest2">Gestionar</button>
+                            <a href="/gestion/tipos-prendas"><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Telas</h3>
                             <p class="card-text">Agregar y modificar telas</p>
-                            <button class="btn btn-gest2">Gestionar</button>
+                            <a href=""><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Materiales de Tela</h3>
                             <p class="card-text">Agregar y modificar materiales de tela</p>
-                            <button class="btn btn-gest2">Gestionar</button>
+                            <a href="/gestion/tipos-telas"><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
