@@ -30,6 +30,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
 
+
 // Rutas públicas
     Route::get('/', function () { return view('welcome');});
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');

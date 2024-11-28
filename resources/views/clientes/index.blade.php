@@ -3,6 +3,90 @@
 @section('title', 'Dashboard de Clientes')
 @section('dashboard_name', 'Dashboard de Clientes')
 @section('content')
+<style>
+    body {
+        background-color: #f8f9fa; /* Fondo suave */
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        color: #6c757d;
+    }
+
+    .btn {
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #d7b5bf; /* Azul pastel */
+        border: none;
+        color: #ffffff;
+    }
+
+    .btn-primary:hover {
+        background-color: #cca0ab;
+    }
+
+    .btn-success {
+        background-color: #d5bfa8; /* Verde pastel */
+        border: none;
+        color: #ffffff;
+    }
+
+    .btn-success:hover {
+        background-color: #c9a498;
+    }
+
+    .btn-close {
+        background-color: transparent;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #57153a;
+        border-radius: 8px;
+    }
+
+    .table {
+        margin-top: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #F9F9F9;
+    }
+
+    .table-dark {
+        background-color: #B5C5D7;
+        color: #ffffff;
+    }
+
+    .modal-header {
+        background-color: #F5C6C6; /* Rojo pastel */
+        color: #6c757d;
+    }
+
+    .modal-body {
+        background-color: #FDF5E6; /* Fondo claro */
+    }
+
+    .d-flex .btn {
+        margin-right: 10px; /* Espaciado entre botones */
+    }
+
+    form {
+        margin-bottom: 1.5rem; /* Espaciado entre formularios */
+    }
+    </style>
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}

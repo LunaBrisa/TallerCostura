@@ -1,4 +1,7 @@
 @extends('layouts.dashboard')
+@section('title', 'Dashboard de Pedidos')
+@section('dashboard_name', 'Dashboard de Pedidos')
+@section('content')
 <style>
     /* Estilo general */
 body {
@@ -169,10 +172,7 @@ body {
     color: #333;
 }
 
-    </style>
-@section('title', 'Dashboard de Pedidos')
-@section('dashboard_name', 'Dashboard de Pedidos')
-@section('content')
+   </style> 
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
