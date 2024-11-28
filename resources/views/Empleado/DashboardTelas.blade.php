@@ -121,7 +121,7 @@
 
                         <label for="tipotelilla"><h3 class="h3-modal">Tipo de Tela</h3></label>
                         <select class="form-select" name="tipotelilla" aria-label="Default select example">
-                            <option selected>Seleccionar el Tipo de Tela Nuevo</option>
+                            <option selected value="null">Seleccionar el Tipo de Tela Nuevo</option>
                                 @foreach ($misMaterialTela as $matetela)
                                     <option value="{{$matetela->id}}">{{$matetela->material_tela}}</option>
                                 @endforeach
