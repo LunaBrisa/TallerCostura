@@ -49,6 +49,10 @@
             </div>
         </div>
     </div><br>
+
+    <div class="row">
+        
+    </div><br>
     
     <div class="row">
       @foreach ($MisTiposPrenda AS $TipoPrendita)
