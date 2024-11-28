@@ -82,7 +82,7 @@ class PedidoController extends Controller
         $pedido = Pedido::with(['empleado.persona', 'detallesConfecciones', 'detallesReparaciones.servicios', 'detallesLotes'])
                         ->findOrFail($id);
     
-        return view('detalles', compact('pedido'));
+        return view('Cliente.detalles', compact('pedido'));
     }
     
     
