@@ -54,7 +54,7 @@
 
     .container2{
         margin: auto;
-        width: 90%;
+        width: 100%;
     }
 
     .gestion-div{
