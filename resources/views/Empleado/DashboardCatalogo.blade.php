@@ -93,8 +93,12 @@
     }
 
     .Titulo3 {
-        color: #ff90a4;
+        color: #ff90a4 !important;
         font-size: 30px;
+    }
+
+    .btn-gest{
+
     }
 
     /* Estilo base de las tarjetas */
@@ -105,11 +109,12 @@
     /* Efecto hover */
     .card-hover:hover {
         transform: translateY(-10px); /* Desplazamiento hacia arriba */
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+        box-shadow: 0 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
     }
 
     .card-hover:hover .btn {
         background-color: #0056b3; /* Cambiar el color del botón */
+        color: 
     }
 </style>
 </html>
