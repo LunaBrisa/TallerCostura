@@ -12,27 +12,28 @@
     @section('content')
         <div class="container">
             <div class="card">
-              <h3>Título 1</h3>
+              <h3>Gestion de Prendas</h3>
               <p>Descripción breve para la tarjeta 1.</p>
               <button>Acción 1</button>
             </div>
             <div class="card">
-              <h3>Título 2</h3>
+              <h3>Gestion de Tipos de Prendas</h3>
               <p>Descripción breve para la tarjeta 2.</p>
               <button>Acción 2</button>
             </div>
             <div class="card">
-              <h3>Título 3</h3>
+              <h3>Gestion de Telas</h3>
               <p>Descripción breve para la tarjeta 3.</p>
               <button>Acción 3</button>
             </div>
             <div class="card">
-              <h3>Título 4</h3>
+              <h3>Gestion de Materiales de Tela</h3>
               <p>Descripción breve para la tarjeta 4.</p>
               <button>Acción 4</button>
             </div>
         </div>
-    @endsection <br>
+        <br>
+    @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
