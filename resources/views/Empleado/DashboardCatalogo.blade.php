@@ -54,7 +54,7 @@
 
     .gestion-div{
         height: 30vh;
-        width: 100%;
+        width: 200%;
         background-color: #FFCDD4;
         margin: auto;
         border-radius: 20%;
