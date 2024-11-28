@@ -80,6 +80,7 @@
     h1.Titulo1 {
         color: #E57D90;
         font-size: 50px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
 
     .card-title {
@@ -90,6 +91,7 @@
         color: #ff90a4;
         font-size: 36px;
         text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .Titulo3 {
@@ -97,10 +99,10 @@
         font-size: 30px;
     }
 
-    .btn{
-        background-color: #8A226F;
-        border: solid #FFCDD4;
-        color: #FFCDD4;
+    .btn-gest2{
+        background-color: #8A226F !important;
+        border: solid #FFCDD4 !important;
+        color: #FFCDD4 !important;
     }
 
     /* Estilo base de las tarjetas */
