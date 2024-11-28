@@ -74,9 +74,8 @@
     }
 
     h1.Titulo2 {
-    color: #E57D90;
-    font-style: italic;
-    font-size: 35px;
+    color: #e56980;
+    font-size: 19px;
     padding-top: 15px;
     }
 
