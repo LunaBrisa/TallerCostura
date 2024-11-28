@@ -101,15 +101,15 @@
     }
 
     .btn-gest2{
-        background-color: #8A226F !important;
-        border: solid #FFCDD4 !important;
-        color: #FFCDD4 !important;
-    }
-
-    .btn-gest2:hover{
         background-color: #FFCDD4 !important; /* Cambiar el color del botón */
         color: #8A226F !important;
         border: solid #8A226F !important;
+    }
+
+    .btn-gest2:hover{
+        background-color: #8A226F !important;
+        border: solid #FFCDD4 !important;
+        color: #FFCDD4 !important;
     }
 
     /* Estilo base de las tarjetas */
@@ -120,7 +120,7 @@
     /* Efecto hover */
     .card-hover:hover {
         transform: translateY(-10px); /* Desplazamiento hacia arriba */
-        box-shadow: 0 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
+        box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
     }
 
     .card-hover:hover .btn {
