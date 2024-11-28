@@ -77,16 +77,17 @@ class PedidoController extends Controller
         return view('pedidos.index', compact('pedidos', 'estadisticas'));
     }
 
-    public function show($id)
+    public function detalles($id)
     {
-        $pedido = Pedido::with(['detallesConfecciones', 'detallesReparaciones', 'detallesLotes', 'empleado.persona'])->findOrFail($id);
+        $pedido = Pedido::with(['empleado.persona', 'detallesConfecciones', 'detallesReparaciones.servicios', 'detallesLotes'])
+                        ->findOrFail($id);
     
-        return view('pedido.detalles', compact('pedido'));
+        return view('detalles', compact('pedido'));
     }
     
-
+    
     public function store(Request $request)
-{
+    {
     $request->validate([
         'cliente' => 'required|exists:clientes,id',
         'empleado' => 'required|exists:empleados,id',
