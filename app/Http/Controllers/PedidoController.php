@@ -6,7 +6,6 @@ use App\Models\Empleado;
 use App\Models\Pedido;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -17,74 +16,67 @@ class PedidoController extends Controller
         $pedidosEnProceso = Pedido::where('estado', 'pendiente')->count();
         $pedidosCompletados = Pedido::where('estado', 'completado')->count();
         $totalEnProceso = Pedido::where('estado', 'pendiente')->sum('total');
-        $totalIngresos = Pedido::where('estado', 'Completado')->sum('total');
+        $totalIngresos = Pedido::where('estado', 'completado')->sum('total');
 
         // Consultas adicionales
         $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
             ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
+            ->orderBy('cantidad_pedidos', 'desc')
             ->limit(3)
             ->get();
 
-        $pedidosPorEmpleado = Pedido::with('empleado')->select('empleado_id', DB::raw('count(*) as cantidad_pedidos'))
+        $pedidosPorEmpleado = Pedido::select('empleado_id', DB::raw('count(*) as cantidad_pedidos'))
             ->groupBy('empleado_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
+            ->orderBy('cantidad_pedidos', 'desc')
             ->limit(3)
             ->get();
 
-        // Recoger otros datos necesarios
         $clientes = Cliente::all();
         $empleados = Empleado::all();
 
-        // Devolver un array con las variables necesarias para la vista
         return [
-            'totalPedidos' => $totalPedidos, 
-            'pedidosEnProceso' => $pedidosEnProceso, 
-            'pedidosCompletados' => $pedidosCompletados, 
+            'totalPedidos' => $totalPedidos,
+            'pedidosEnProceso' => $pedidosEnProceso,
+            'pedidosCompletados' => $pedidosCompletados,
             'totalIngresos' => $totalIngresos,
             'totalEnProceso' => $totalEnProceso,
-            'totalPedidos' => $totalPedidos,
-            'pedidosPorCliente' => $pedidosPorCliente, 
-            'pedidosPorEmpleado' => $pedidosPorEmpleado, 
+            'pedidosPorCliente' => $pedidosPorCliente,
+            'pedidosPorEmpleado' => $pedidosPorEmpleado,
             'clientes' => $clientes,
             'empleados' => $empleados
         ];
     }
+
     public function index(Request $request)
     {
         $query = Pedido::query();
-// Filtrar por ID de orden si se ha proporcionado
-if ($request->has('orden') && $request->orden) {
-    $orden = $request->orden;
-    $query->where('id', 'like', '%' . $orden . '%'); // Búsqueda por ID de orden
-}
 
-// Filtrar por nombre de cliente si se ha proporcionado
-if ($request->has('cliente') && $request->cliente) {
-    $cliente = $request->cliente;
-    $query->whereHas('cliente', function ($query) use ($cliente) {
-        $query->whereHas('persona', function ($query) use ($cliente) {
-            $query->where('nombre', 'like', '%' . $cliente . '%'); // Búsqueda por nombre del cliente
-        });
-    });
-}
-        // Aplicar filtro si 'estado' está presente en la solicitud
-        if ($request->has('estado')) {
-            $estado = $request->estado;
-            if ($estado == 'Completado') {
-                $query->where('estado', 'Completado');
-            } elseif ($estado == 'Pendiente') {
-                $query->where('estado', 'Pendiente');
-            }
+        // Filtro por ID de orden
+        if ($request->filled('orden')) {
+            $orden = $request->orden;
+            $query->where('id', 'like', '%' . $orden . '%');
         }
-    
-        $pedidos = $query->with('cliente', 'empleado')->get();
-        // Llamar al método auxiliar para obtener las variables necesarias
+
+        // Filtro por nombre de cliente
+        if ($request->filled('cliente')) {
+            $cliente = $request->cliente;
+            $query->whereHas('cliente.persona', function ($query) use ($cliente) {
+                $query->where('nombre', 'like', '%' . $cliente . '%');
+            });
+        }
+
+        // Filtro por estado
+        if ($request->filled('estado')) {
+            $estado = strtolower($request->estado);
+            $query->where('estado', ucfirst($estado));
+        }
+
+        $pedidos = $query->with(['cliente', 'empleado'])->get();
         $estadisticas = $this->obtenerEstadisticas();
 
-        // Pasar los pedidos y las estadísticas a la vista
         return view('pedidos.index', compact('pedidos', 'estadisticas'));
     }
+
     public function show($id)
     {
         $pedido = Pedido::with([
@@ -92,76 +84,80 @@ if ($request->has('cliente') && $request->cliente) {
             'detallesReparaciones',
             'detallesConfecciones'
         ])->findOrFail($id);
-    
+
         return view('pedidos.show', compact('pedido'));
     }
-    
+
     public function store(Request $request)
-    {
-        // Validar la entrada del formulario
-    $validated = $request->validate([
+{
+    $request->validate([
         'cliente' => 'required|exists:clientes,id',
         'empleado' => 'required|exists:empleados,id',
         'fecha_pedido' => 'required|date',
         'fecha_entrega' => 'required|date',
         'descripcion' => 'required|string',
-        'detalles_confeccion' => 'array|nullable',
-        'detalles_lote' => 'array|nullable',
-        'detalles_reparacion' => 'array|nullable',
+        'detalles_lote' => 'nullable|array',
+        'detalles_lote.*.prenda' => 'required|string',
+        'detalles_lote.*.precio_por_prenda' => 'required|numeric',
+        'detalles_lote.*.cantidad' => 'required|numeric',
+        'detalles_lote.*.anticipo' => 'required|numeric',
+        'reparacion_prendas' => 'nullable|array',
+        'reparacion_descripciones' => 'nullable|array',
+        'reparacion_cantidades' => 'nullable|array',
+        'confeccion_prendas' => 'nullable|array',
+        'confeccion_cantidades' => 'nullable|array',
     ]);
-        // Handle the form data here and create a new order
-        $pedido = new Pedido();
-        $pedido->cliente_id = $request->cliente;
-        $pedido->empleado_id = $request->empleado;
-        $pedido->fecha_pedido = $request->fecha_pedido;
-        $pedido->fecha_entrega = $request->fecha_entrega;
-        $pedido->descripcion = $request->descripcion;
-        // Add logic to save the order
-        $pedido->save();
-// 2. Guardar los detalles de confección (si existen)
-if ($request->has('detalles_confeccion')) {
-    foreach ($request->detalles_confeccion as $detalle) {
-        $pedido->detallesConfeccion()->create([
-            'prenda_id' => $detalle['prenda_id'],
-            'cantidad' => $detalle['cantidad'],
-            // Agrega más campos aquí según sea necesario
-        ]);
+
+    $pedido = Pedido::create([
+        'cliente_id' => $request->cliente,
+        'empleado_id' => $request->empleado,
+        'fecha_pedido' => $request->fecha_pedido,
+        'fecha_entrega' => $request->fecha_entrega,
+        'descripcion' => $request->descripcion,
+        'estado' => 'Pendiente',
+    ]);
+
+    // Verificación para agregar detalles_lote solo si no están vacíos
+    if ($request->filled('detalles_lote')) {
+        foreach ($request->detalles_lote as $detalle) {
+            if (!empty($detalle['prenda']) && !empty($detalle['precio_por_prenda']) && !empty($detalle['cantidad']) && !empty($detalle['anticipo'])) {
+                $pedido->detallesLotes()->create([
+                    'prenda' => $detalle['prenda'],
+                    'precio_por_prenda' => $detalle['precio_por_prenda'],
+                    'cantidad' => $detalle['cantidad'],
+                    'anticipo' => $detalle['anticipo'],
+                ]);
+            }
+        }
     }
+
+    // Verificación para agregar detallesReparaciones solo si no están vacíos
+    if ($request->filled('reparacion_prendas')) {
+        foreach ($request->reparacion_prendas as $key => $reparacion) {
+            if (!empty($reparacion) && !empty($request->reparacion_descripciones[$key])) {
+                $pedido->detallesReparaciones()->create([
+                    'prenda' => $reparacion,
+                    'descripcion_problema' => $request->reparacion_descripciones[$key],
+                    'cantidad_prenda' => $request->reparacion_cantidades[$key] ?? 1,
+                ]);
+            }
+        }
+    }
+
+    // Verificación para agregar detallesConfecciones solo si no están vacíos
+    if ($request->filled('confeccion_prendas')) {
+        foreach ($request->confeccion_prendas as $key => $prenda) {
+            if (!empty($prenda) && !empty($request->confeccion_cantidades[$key])) {
+                $pedido->detallesConfecciones()->create([
+                    'prenda_confeccion_id' => $prenda,
+                    'cantidad_prenda' => $request->confeccion_cantidades[$key],
+                    'subtotal' => $request->confeccion_cantidades[$key], // Ajustar si se necesita cálculo de precio
+                ]);
+            }
+        }
+    }
+
+    return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
 
-// 3. Guardar los detalles de lote (si existen)
-if ($request->has('detalles_lote')) {
-    foreach ($request->detalles_lote as $detalle) {
-        $pedido->detallesLote()->create([
-            'prenda' => $detalle['prenda'],
-            'precio_por_prenda' => $detalle['precio_por_prenda'],
-            'cantidad' => $detalle['cantidad'],
-            'anticipo' => $detalle['anticipo'],
-            'subtotal' => $detalle['subtotal'],
-        ]);
-    }
 }
-
-// 4. Guardar los detalles de reparación (si existen)
-if ($request->has('detalles_reparacion')) {
-    foreach ($request->detalles_reparacion as $detalle) {
-        $pedido->detallesReparacion()->create([
-            'prenda_reparacion_id' => $detalle['prenda_reparacion_id'],
-            'servicio_id' => $detalle['servicio_id'],
-            'cantidad_prenda' => $detalle['cantidad_prenda'],
-            'subtotal' => $detalle['subtotal'],
-            // Agrega más campos aquí según sea necesario
-        ]);
-    }
-}
-        // Llamar al método auxiliar para obtener las estadísticas actualizadas
-        $estadisticas = $this->obtenerEstadisticas();
-
-        // Obtener pedidos (si es necesario)
-        $pedidos = Pedido::with('cliente', 'empleado')->get();
-
-        // Pasar los pedidos y las estadísticas a la vista
-        return view('pedidos.index', compact('pedidos', 'estadisticas'));
-    }
-}
-    
