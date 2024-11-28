@@ -11,12 +11,17 @@
     @extends('layouts.nav') <br>
     @section('content')
         <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                    <h1 class="Titulo1">Gestión del Catálogo</h1>
+                </div>
+            </div>
             <div class="row g-4">
                 <!-- Card 1 -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Prendas</h3>
+                            <h1 class="Titulo2">Gestión de Prendas</h1>
                             <p class="card-text">Descripción breve para la tarjeta 1.</p>
                             <button class="btn btn-primary">Acción 1</button>
                         </div>
@@ -26,7 +31,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Tipos de Prendas</h3>
+                            <h1 class="Titulo2">Gestión de Tipos de Prendas</h1>
                             <p class="card-text">Descripción breve para la tarjeta 2.</p>
                             <button class="btn btn-primary">Acción 2</button>
                         </div>
@@ -36,7 +41,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Telas</h3>
+                            <h1 class="Titulo2">Gestión de Telas</h1>
                             <p class="card-text">Descripción breve para la tarjeta 3.</p>
                             <button class="btn btn-primary">Acción 3</button>
                         </div>
@@ -46,7 +51,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Materiales de Tela</h3>
+                            <h1 class="Titulo2">Gestión de Materiales de Tela</h1>
                             <p class="card-text">Descripción breve para la tarjeta 4.</p>
                             <button class="btn btn-primary">Acción 4</button>
                         </div>
@@ -62,5 +67,18 @@
     .container {
         height: 100vh;
     }
+
+    h1.Titulo1 {
+    color: #E57D90;
+    font-size: 50px;
+    }
+
+    h1.Titulo2 {
+    color: #E57D90;
+    font-style: italic;
+    font-size: 35px;
+    padding-top: 15px;
+    }
+
 </style>
 </html>
