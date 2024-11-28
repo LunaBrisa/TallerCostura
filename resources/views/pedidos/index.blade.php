@@ -172,9 +172,7 @@ body {
     background-color: #f5f5f5;
     color: #333;
 }
-<<<<<<< HEAD
     </style>
-=======
 </style>
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -182,7 +180,6 @@ body {
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
->>>>>>> 782f217a5b5ac5fe26b0fff88780ca2248047044
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
