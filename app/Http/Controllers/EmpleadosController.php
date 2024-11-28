@@ -42,6 +42,7 @@ class EmpleadosController extends Controller
         'apellido_p' => 'required|min:3|string|max:60',
         'apellido_m' => 'nullable|min:3|string|max:60',
         'telefono' => 'required|string|max:10',
+        'email' => 'required|email|exists:users,email|unique:users',
         'fecha_nacimiento' => 'required|date',
         'rfc' => 'required|string|max:20',
         'nss' => 'required|string|max:20',
@@ -53,6 +54,8 @@ class EmpleadosController extends Controller
         'password' => bcrypt($request->input('password')),
     ]);
 
+    $user->sendEmailVerificationNotification();
+    
     // Obtener el ID del usuario recién creado
     $user_id = $user->id;
 
