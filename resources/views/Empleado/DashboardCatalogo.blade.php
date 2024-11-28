@@ -97,12 +97,19 @@
     .Titulo3 {
         color: #ff90a4 !important;
         font-size: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .btn-gest2{
         background-color: #8A226F !important;
         border: solid #FFCDD4 !important;
         color: #FFCDD4 !important;
+    }
+
+    .btn-gest2:hover{
+        background-color: #FFCDD4 !important; /* Cambiar el color del botón */
+        color: #8A226F !important;
+        border: solid #8A226F !important;
     }
 
     /* Estilo base de las tarjetas */
