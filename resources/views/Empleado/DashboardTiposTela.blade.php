@@ -75,7 +75,7 @@
 
     <div class="row" style="padding-top: 25px;">
         @foreach ($MisMaterialesTela as $MaterialTelilla)
-        <div class="card mb-4 cardsing">
+        <div class="card mb-4 shadow-md cardsing card-hover">
           <div class="card-body">
             <h1 class="list-title">{{$MaterialTelilla->material_tela}}</h1>
   
@@ -122,16 +122,14 @@
       font-size: 14px !important;
     }
   }
+  .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .p-error{
-    color: rgb(138, 0, 0);
-    font-size: 19px;
-  }
-
-  .p-success{
-    color: rgb(0, 99, 0);
-    font-size: 19px;
-  }
+    .card-hover:hover {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+        box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
+    }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
