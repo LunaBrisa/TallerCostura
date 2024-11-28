@@ -10,7 +10,7 @@ class ServiciosController extends Controller
     public function index()
     {
         $servicios = Servicio::all(); // Obtiene todos los servicios
-        return view('servicios.ServiciosView', compact('servicios')); // Pasa la variable a la vista
+        return view('Servicios.ServiciosView', compact('servicios')); // Pasa la variable a la vista
     }
 
     public function store(Request $request)
