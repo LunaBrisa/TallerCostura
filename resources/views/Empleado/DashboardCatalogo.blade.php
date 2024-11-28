@@ -12,9 +12,16 @@
     @section('content')
         <div class="container">
             <div class="card">
-              <h3>Gestion de Prendas</h3>
-              <p>Descripción breve para la tarjeta 1.</p>
-              <button>Acción 1</button>
+                <div class="row">
+                    <h3>Gestion de Prendas</h3>
+                </div>
+                <div class="row">
+                    <p>Descripción breve para la tarjeta 1.</p>
+                </div>
+                <div class="row">
+                    <button>Acción 1</button>
+                </div>
+
             </div>
             <div class="card">
               <h3>Gestion de Tipos de Prendas</h3>
