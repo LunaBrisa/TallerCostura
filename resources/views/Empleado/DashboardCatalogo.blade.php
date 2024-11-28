@@ -97,7 +97,7 @@
         font-size: 30px;
     }
 
-    .btn-gest2{
+    .btn{
         background-color: #8A226F;
         border: solid #FFCDD4;
         color: #FFCDD4;
