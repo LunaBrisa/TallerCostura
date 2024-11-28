@@ -198,7 +198,7 @@
                         <i class="bi bi-collection" style="font-size: 3rem; color: #d16b6b;"></i>
                         <h5 class="card-title mt-3">Catálogo</h5>
                         <p class="card-text">Gestiona los productos del catálogo.</p>
-                        <a href="/catalogo" class="btn btn-primary">Catálogo</a>
+                        <a href="/gestion/catalogo" class="btn btn-primary">Catálogo</a>
                     </div>
                 </div>
             </div>

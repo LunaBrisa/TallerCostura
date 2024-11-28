@@ -44,7 +44,7 @@ class ClientesController extends Controller
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|exists:users,email|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 

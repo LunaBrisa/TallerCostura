@@ -16,7 +16,7 @@ class UsuarioInformacion extends Controller
          $id = Auth::user()->id;
          $result = DB::select('CALL Informacion_Usuario(?)', [$id]);    
     
-         if (count($result) > 0) {   return view('informacion', ['datos' => $result]); } 
+         if (count($result) > 0) {   return view('Informacion', ['datos' => $result]); } 
          else { return redirect()->route('login')->with('error', 'No se ha encontrado el usuario'); }
            }  else
            return redirect()->route('login')->with('error', 'No se ha encontrado el usuario');
