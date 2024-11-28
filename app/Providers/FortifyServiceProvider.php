@@ -56,9 +56,5 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset_password');
         });
 
-        // Redirección después de la verificación del correo electrónico
-        Fortify::verifyEmailView(function () {
-            return Redirect::route('/ashboard');  // Reemplaza 'home' con el nombre de la ruta que desees
-        });
     }
 }
