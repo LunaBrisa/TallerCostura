@@ -21,7 +21,7 @@ class TelaController extends Controller
         ]);
     }
 
-    public function saveTela(TelasRequest $telasRequest){
+    public function saveTela(TelasRequest $telasRequest){ //VALIDADO DE Q YA YA TODO PROTEGIDO
         $telita = new Tela();
         $telita->nombre_tela = $telasRequest->telita;
         $telita->material_tela_id = $telasRequest->tipotelita;
@@ -29,7 +29,7 @@ class TelaController extends Controller
 
         $telita->save();
         
-        return redirect('/gestion/tela');
+        return redirect('/gestion/tela')->with('success', '¡Se agregó la tela correctamente!');
     }
 
     public function modifTela(ModifTelaRequest $modifTelaRequest){
