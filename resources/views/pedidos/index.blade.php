@@ -2,6 +2,7 @@
 @section('title', 'Dashboard de Pedidos')
 @section('dashboard_name', 'Dashboard de Pedidos')
 @section('content')
+
 <style>
     /* Estilo general */
 body {
@@ -171,6 +172,7 @@ body {
     background-color: #f5f5f5;
     color: #333;
 }
+    </style>
 </style>
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -257,6 +259,7 @@ body {
         </div>
 <!-- Modal Crear Pedido -->
 <div class="modal fade" id="createOrderModal" tabindex="-1" aria-labelledby="createOrderModalLabel" aria-hidden="true">
+    
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -526,4 +529,8 @@ body {
         const subtotal = row.querySelector('input[name="confeccion_subtotales[]"]');
         subtotal.value = (cantidad * 1).toFixed(2);
     }
-@endsection
+@endsection 
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Bundle con Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
