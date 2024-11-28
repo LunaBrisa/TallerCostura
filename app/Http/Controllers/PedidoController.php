@@ -79,14 +79,11 @@ class PedidoController extends Controller
 
     public function show($id)
     {
-        $pedido = Pedido::with([
-            'detallesLotes',
-            'detallesReparaciones',
-            'detallesConfecciones'
-        ])->findOrFail($id);
-
-        return view('pedidos.show', compact('pedido'));
+        $pedido = Pedido::with(['detallesConfecciones', 'detallesReparaciones', 'detallesLotes', 'empleado.persona'])->findOrFail($id);
+    
+        return view('pedido.detalles', compact('pedido'));
     }
+    
 
     public function store(Request $request)
 {
