@@ -57,6 +57,7 @@
       overflow: hidden;
       padding: 20px;
       text-align: center;
+      height: auto;
     }
 
     .card:hover {
