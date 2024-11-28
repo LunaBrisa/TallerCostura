@@ -15,7 +15,7 @@
         }
 
         .c {
-            width: 100%;
+            flex: 1;
             height: 100vh;
             background-image: url('/images/F2.png');
             background-size: cover;
@@ -40,7 +40,7 @@
 <body>
 @extends('layouts.nav')
 @section('content')
-<div class="c">
+<div class="c d-flex flex-column min-vh-100">
     <div class="login-container">
         <form action="{{ route('login') }}" method="post">
             @csrf

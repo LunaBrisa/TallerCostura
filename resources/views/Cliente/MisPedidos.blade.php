@@ -37,8 +37,9 @@
                             <td>{{ $pedido->total }}</td>
                             <td>{{ $pedido->estado }}</td>
                             <td>
-                                <button class="btn btn-gest" data-bs-toggle="modal" data-bs-target="#modalPedido{{ $pedido->id }}">Ver</button>
+                                <a href="{{ route('pedidos.detalles', $pedido->id) }}" class="btn btn-primary">Ver</a>
                             </td>
+                            
                         </tr>
 
                         <!-- Modal para cada pedido -->
