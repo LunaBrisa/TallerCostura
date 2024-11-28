@@ -12,33 +12,12 @@
     @section('content')
     <div class="container2"><br>
         <h1 class="Titulo1">Gestión del Catálogo</h1><br>
-        <div class="row gy-4">
 
-            <!-- GESTION DE PRENDAS -->
-            <div class="col-md-6">
-                <div class="gestion-div">
-
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="gestion-div">
-                    
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="gestion-div">
-                    
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="gestion-div">
-                    
-                </div>
-            </div>
-
+        <div class="d-flex justify-content-between flex-wrap row-gap-4"> 
+            <div class="gestion-div"></div>
+            <div class="gestion-div"></div>
+            <div class="gestion-div"></div>
+            <div class="gestion-div"></div>
         </div><br>
     </div>
     @endsection
@@ -47,25 +26,26 @@
 
 <style>
 
-    h1.Titulo1{
+h1.Titulo1 {
         color: #E57D90;
         font-size: 50px;
     }
 
-    .container2{
+    .container2 {
         margin: auto;
         width: 100%;
     }
 
-    .gestion-div{
+    .gestion-div {
         height: 30vh;
-        width: 100%;
+        width: 22%; /* Ajusta el ancho de cada div */
         background-color: #FFCDD4;
         margin: auto;
         border-radius: 20%;
         border: solid 2px;
         border-color: #BE5A8C;
     }
+
 </style>
 
 </html>
