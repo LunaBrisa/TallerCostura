@@ -61,7 +61,7 @@
             
           @if (session('success'))
               <div class="alert alert-success" role="alert">
-                  <p class="p-success">{{ session('success') }}</p>
+                  {{ session('success') }}
               </div>
           @endif
 
