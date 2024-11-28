@@ -48,6 +48,7 @@
             border: none;
             border-radius: 12px;
             padding: 10px 20px;
+            
         }
 
         .btn-primary:hover {
