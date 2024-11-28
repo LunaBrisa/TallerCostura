@@ -10,57 +10,84 @@
 <body>
     @extends('layouts.nav')
     @section('content')
-    <div class="container2"><br>
-        <h1 class="Titulo1">Gestión del Catálogo</h1><br>
-
-        <div class="d-flex justify-content-between flex-wrap row-gap-4"> 
-            <div class="gestion-div">
-                <h1 class="Titulo2">Gestionar las prendas existentes</h1>
+        <div class="container">
+            <div class="card">
+              <h3>Título 1</h3>
+              <p>Descripción breve para la tarjeta 1.</p>
+              <button>Acción 1</button>
             </div>
-            <div class="gestion-div">
-
+            <div class="card">
+              <h3>Título 2</h3>
+              <p>Descripción breve para la tarjeta 2.</p>
+              <button>Acción 2</button>
             </div>
-            <div class="gestion-div">
-
+            <div class="card">
+              <h3>Título 3</h3>
+              <p>Descripción breve para la tarjeta 3.</p>
+              <button>Acción 3</button>
             </div>
-            <div class="gestion-div">
-
+            <div class="card">
+              <h3>Título 4</h3>
+              <p>Descripción breve para la tarjeta 4.</p>
+              <button>Acción 4</button>
             </div>
-        </div><br>
-    </div>
+        </div>
     @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 <style>
 
-    h1.Titulo1 {
-        color: #E57D90;
-        font-size: 50px;
+
+.container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
     }
 
-    h1.Titulo2{
-    color: #E57D90;
-    font-style: italic;
-    font-size: 35px;
-    padding-top: 15px;
-    }   
-
-    .container2 {
-        margin: auto;
-        width: 100%;
+    .card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
     }
 
-    .gestion-div {
-        height: 30vh;
-        width: 22%; /* Ajusta el ancho de cada div */
-        background-color: #FFCDD4;
-        margin: auto;
-        border-radius: 20%;
-        border: solid 2px;
-        border-color: #BE5A8C;
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
+    .card h3 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #666;
+      margin: 15px 0;
+    }
+
+    .card button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .card button:hover {
+      background-color: #0056b3;
+    }
 </style>
 
 </html>
