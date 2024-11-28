@@ -14,10 +14,18 @@
         <h1 class="Titulo1">Gestión del Catálogo</h1><br>
 
         <div class="d-flex justify-content-between flex-wrap row-gap-4"> 
-            <div class="gestion-div"></div>
-            <div class="gestion-div"></div>
-            <div class="gestion-div"></div>
-            <div class="gestion-div"></div>
+            <div class="gestion-div">
+                <h1 class="Titulo2">Prendas</h1>
+            </div>
+            <div class="gestion-div">
+
+            </div>
+            <div class="gestion-div">
+
+            </div>
+            <div class="gestion-div">
+
+            </div>
         </div><br>
     </div>
     @endsection
@@ -26,10 +34,17 @@
 
 <style>
 
-h1.Titulo1 {
+    h1.Titulo1 {
         color: #E57D90;
         font-size: 50px;
     }
+
+    h1.Titulo2{
+    color: #E57D90;
+    font-style: italic;
+    font-size: 35px;
+    padding-top: 15px;
+    }   
 
     .container2 {
         margin: auto;
