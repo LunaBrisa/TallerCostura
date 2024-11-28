@@ -15,7 +15,7 @@
                 <div class="col">
                     <h1 class="Titulo1">Gestión del Catálogo</h1>
                 </div>
-            </div><br>
+            </div>
 
             <div class="row">
                 <div class="col">
@@ -23,7 +23,7 @@
                         Selecciona el modulo que deseas gestionar
                     </h2>
                 </div>
-            </div>
+            </div><br>
 
             <div class="row g-4">
                 <!-- Card 1 -->
@@ -79,7 +79,6 @@
 
     h1.Titulo1 {
         color: #E57D90;
-        -webkit-text-stroke: 1px #d0566c;
         font-size: 50px;
     }
 
@@ -89,7 +88,7 @@
 
     .Subtitulo {
         color: #ff90a4;
-        font-size: 25px;
+        font-size: 36px;
         text-align: center;
     }
 
