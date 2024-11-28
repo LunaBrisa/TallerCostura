@@ -97,8 +97,10 @@
         font-size: 30px;
     }
 
-    .btn-gest{
-
+    .btn-gest2{
+        background-color: #8A226F;
+        border: solid #FFCDD4;
+        color: #FFCDD4;
     }
 
     /* Estilo base de las tarjetas */
@@ -113,8 +115,9 @@
     }
 
     .card-hover:hover .btn {
-        background-color: #0056b3; /* Cambiar el color del botón */
-        color: 
+        background-color: #FFCDD4; /* Cambiar el color del botón */
+        color: #8A226F;
+        border: solid #8A226F;
     }
 </style>
 </html>
