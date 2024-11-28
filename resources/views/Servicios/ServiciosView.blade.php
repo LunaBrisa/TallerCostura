@@ -31,62 +31,113 @@
         .btn-add:hover {
             background-color: #ed9df6;
         }
+        <style>
+        .table-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+        }
+        .table-header {
+            background-color: #ef9ee3;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5rem;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-edit, .btn-delete, .btn-toggle {
+            margin: 0 5px;
+        }
+        .btn-add {
+            background-color: #c1a3f6;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        .btn-add:hover {
+            background-color: #ed9df6;
+        }
+        
+        :root {
+            --navbar-bg-color: black;
+            --navbar-text-color: white;
+            --btn-bg-color: pink; 
+            --btn-text-color: black;
+            --btn-hover-bg-color: lightpink;
+        }
+
         .navbar {
-      background-color: black;
-    }
-    .navbar a {
-      color: white;
-    }
-    .navbar a:hover {
-      color: lightgray;
-    }
-    .navbar-toggler-icon {
-      filter: invert(1);
-    }
-    .footer {
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background-color: black;
-      color: white;
-      text-align: center;
-      font-size: 20px;
-    }
-    .containern {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+            background-color: var(--navbar-bg-color);
+        }
+
+        .navbar .navbar-brand {
+            color: var(--navbar-text-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .dashboard-btn {
+            background-color: var(--btn-bg-color);
+            color: var(--btn-text-color);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .dashboard-btn:hover {
+            background-color: var(--btn-hover-bg-color);
+        }
+
+        .dashboard-btn .icon {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-text {
+            color: var(--navbar-text-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center;
+            flex-grow: 1; 
+        }
+
+        .navbar-collapse {
+            display: flex;
+            justify-content: flex-end;
+        }
+    
+    </style>
         
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <img src="{{ asset('images/logo.png') }}" width="155" height="85">
-          <a class="navbar-brand" href="/">Taller Costura</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/gestion/catalogo">Catalogo</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Servicios</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-          </div>
+             <img src="{{ asset('images/logo.png') }}" width="155" height="85" alt="Logo">
+
+            <div class="navbar-text">
+                Dashboard de Pedidos 
+            </div>
+
+            <div class="navbar-collapse">
+                <a class="dashboard-btn" href="http://127.0.0.1:8000/dashboard">
+                    <span class="icon">←</span>
+                    Regresar al Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
         </div>
       </nav><br>
     <div class="container">

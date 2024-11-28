@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
-
 @section('title', 'Dashboard de Empleados')
 @section('dashboard_name', 'Dashboard de Empleados')
 @section('content')
+
 <style>
-    /* Estilo general */
+/* Estilo general */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5; /* Fondo claro y neutro */
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     color: #333;
@@ -17,22 +17,14 @@ body {
 .card {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff; /* Fondo blanco para destacar contenido */
+    background-color: #fff;
     padding: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra más fuerte en hover */
-}
-
-/* Encabezados de tarjeta */
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #4c4c4c;
-    margin-bottom: 10px;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Botones */
@@ -49,7 +41,7 @@ body {
 .btn-primary:hover {
     background-color: #80cbc4;
     border-color: #80cbc4;
-    transform: translateY(-2px); /* Efecto sutil de elevación */
+    transform: translateY(-2px);
 }
 
 .btn-success {
@@ -88,7 +80,7 @@ body {
     margin-bottom: 20px;
     border-collapse: collapse;
     border-radius: 10px;
-    overflow: hidden; /* Para bordes redondeados */
+    overflow: hidden;
 }
 
 .table thead {
@@ -118,62 +110,8 @@ input.form-control:focus {
     border-color: #a3d2ca;
     box-shadow: 0 0 5px rgba(163, 210, 202, 0.4);
 }
+</style>
 
-/* Modales */
-.modal-content {
-    border-radius: 15px;
-    background: linear-gradient(to bottom, #fceff1, #fdfbfb);
-    padding: 20px;
-}
-
-.modal-header {
-    background-color: #a3d2ca;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    padding: 10px 20px;
-}
-
-/* Ajustes generales de la vista */
-.d-flex .btn {
-    margin-right: 15px;
-    margin-left: 5px;
-}
-
-.form-control, .btn {
-    margin-bottom: 15px;
-}
-
-/* Ajustes en la vista de dispositivos pequeños */
-@media (max-width: 768px) {
-    .d-flex {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .table-responsive {
-        overflow-x: scroll;
-    }
-}
-
-/* Títulos y texto en general */
-h5.card-title {
-    color: #6c757d;
-    font-weight: bold;
-}
-
-/* Encabezado y pies de tabla */
-th {
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Fondo de página */
-body {
-    background-color: #f5f5f5;
-    color: #333;
-}
-
-    </style>
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -194,7 +132,6 @@ body {
             </div>
         </div>
     </div>
-
     <!-- Formulario de búsqueda con botones con mejor espaciado -->
     <form method="GET" action="{{ route('empleados.index') }}" class="mt-2 mb-4">
         <div class="d-flex align-items-center">
@@ -202,15 +139,12 @@ body {
             <button type="submit" class="btn btn-primary ms-2">Buscar</button>
         </div>
     </form>
-
     <form action="{{ route('empleados.index') }}" method="GET" class="mb-4">
         <button type="submit" class="btn btn-outline-secondary mx-2">Ver todos</button>
     </form>
-
     <div class="d-flex justify-content-between align-items-center mb-4">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarEmpleadoModal">Agregar Empleado</button>
     </div>
-
     <!-- Tabla de empleados -->
     <table class="table table-hover table-bordered">
         <thead class="table-dark">
@@ -237,7 +171,6 @@ body {
                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
                     </td>
                 </tr>
-
                 <!-- Modal para Editar Empleado -->
                 <div class="modal fade" id="editarEmpleadoModal{{ $empleado->id }}" tabindex="-1" aria-labelledby="editarEmpleadoLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -289,7 +222,6 @@ body {
             @endforeach
         </tbody>
     </table>
-
 <!-- Modal para Agregar Empleado -->
 <div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel">
     <div class="modal-dialog">
@@ -387,7 +319,6 @@ body {
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-
                    </div>
                     <button type="submit" class="btn btn-success mt-2">Agregar Empleado</button>
                 </form>
@@ -395,5 +326,4 @@ body {
         </div>
     </div>
 </div>
-
 @endsection
