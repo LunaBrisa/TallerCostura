@@ -112,6 +112,10 @@
         color: #FFCDD4 !important;
     }
 
+    body{
+        background-color: #fff3ed;
+    }
+
     /* Estilo base de las tarjetas */
     .card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
