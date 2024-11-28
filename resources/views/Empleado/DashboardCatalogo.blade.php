@@ -12,7 +12,7 @@
     @section('content')
     <div class="container2"><br>
         <h1 class="Titulo1">Gestión del Catálogo</h1><br>
-        <div class="row">
+        <div class="row gy-4">
 
             <!-- GESTION DE PRENDAS -->
             <div class="col col-md-6">
