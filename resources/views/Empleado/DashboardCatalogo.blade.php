@@ -54,12 +54,12 @@
 
     .container2{
         margin: auto;
-        width: 80%;
+        width: 90%;
     }
 
     .gestion-div{
         height: 30vh;
-        width: 200px;
+        width: 100%;
         background-color: #FFCDD4;
         margin: auto;
         border-radius: 20%;
