@@ -75,8 +75,7 @@
 
     h1.Titulo2 {
     color: #e56980;
-    font-size: 19px;
-    padding-top: 15px;
+    font-size: 20px;
     }
 
 </style>
