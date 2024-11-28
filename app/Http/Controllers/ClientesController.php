@@ -5,7 +5,6 @@ use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Persona;
 use App\Models\User;
-use App\Mail\WelcomeMail;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;

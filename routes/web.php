@@ -22,13 +22,41 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\GestionUsuariosControllers;
 use App\Http\Controllers\ClientePedidosController;
 
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\ClienteMiddleware;
 use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+Route::get('/test-email', function () {
+    Mail::raw('HOLAAAAAAAAAAAAAAAAA, Este es un correo de prueba', function ($message) {
+        $message->to('brisa.luna@bateil.edu.mx')
+                ->subject('Correo de prueba');
+    });
+
+    return 'Correo enviado';
+});
+
+// Página para pedir verificación
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// URL que se llama cuando se verifica el correo
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/'); // Redirige al lugar deseado después de verificar
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Reenvío de correo de verificación
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Correo de verificación enviado.');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
 // Rutas públicas
