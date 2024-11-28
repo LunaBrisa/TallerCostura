@@ -146,6 +146,10 @@
 @endsection
 </body>
 <style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
     .card-hover:hover {
         transform: translateY(-10px); /* Desplazamiento hacia arriba */
         box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
