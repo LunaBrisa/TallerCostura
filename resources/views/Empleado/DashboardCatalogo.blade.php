@@ -15,7 +15,7 @@
 
         <div class="d-flex justify-content-between flex-wrap row-gap-4"> 
             <div class="gestion-div">
-                <h1 class="Titulo2">Prendas</h1>
+                <h1 class="Titulo2">Gestionar las prendas existentes</h1>
             </div>
             <div class="gestion-div">
 
