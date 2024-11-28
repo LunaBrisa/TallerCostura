@@ -123,11 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'providers' => [
-    // Otros proveedores...
-
-    App\Providers\FortifyServiceProvider::class, // Proveedor de Laravel Fortify
-    ],
 
 
 ];
