@@ -31,6 +31,32 @@
         .btn-add:hover {
             background-color: #ed9df6;
         }
+        <style>
+        .table-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+        }
+        .table-header {
+            background-color: #ef9ee3;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5rem;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-edit, .btn-delete, .btn-toggle {
+            margin: 0 5px;
+        }
+        .btn-add {
+            background-color: #c1a3f6;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        .btn-add:hover {
+            background-color: #ed9df6;
+        }
         
         :root {
             --navbar-bg-color: black;
@@ -91,14 +117,16 @@
         }
     
     </style>
+        
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <img src="http://127.0.0.1:8000/images/logo.png" width="155" height="85" alt="Logo">
+             <img src="{{ asset('images/logo.png') }}" width="155" height="85" alt="Logo">
 
             <div class="navbar-text">
-                Dashboard de Servicios 
+                Dashboard de Pedidos 
             </div>
 
             <div class="navbar-collapse">
@@ -109,6 +137,9 @@
             </div>
         </div>
     </nav>
+
+        </div>
+      </nav><br>
     <div class="container">
         <!-- Encabezado -->
         <h1 class="text-center mt-4">Gestión de Servicios</h1>
