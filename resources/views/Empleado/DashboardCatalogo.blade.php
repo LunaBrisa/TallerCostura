@@ -17,6 +17,14 @@
                 </div>
             </div><br>
 
+            <div class="row">
+                <div class="col">
+                    <h2 class="Subtitulo">
+                        Selecciona el modulo que deseas gestionar
+                    </h2>
+                </div>
+            </div>
+
             <div class="row g-4">
                 <!-- Card 1 -->
                 <div class="col-12 col-sm-6 col-lg-3">
@@ -71,11 +79,18 @@
 
     h1.Titulo1 {
         color: #E57D90;
+        -webkit-text-stroke: 1px #d0566c;
         font-size: 50px;
     }
 
     .card-title {
         color: black;
+    }
+
+    .Subtitulo {
+        color: #ff90a4;
+        font-size: 25px;
+        text-align: center;
     }
 
     /* Estilo base de las tarjetas */
