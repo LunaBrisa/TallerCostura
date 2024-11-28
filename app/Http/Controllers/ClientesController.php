@@ -5,6 +5,7 @@ use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Models\Persona;
 use App\Models\User;
+use App\Mail\WelcomeMail;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,7 @@ class ClientesController extends Controller
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -53,9 +54,9 @@ class ClientesController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
-    
+
         $user->sendEmailVerificationNotification();
-    
+
         $user_id = $user->id;
     
         $nombre = $request->input('nombre');
@@ -75,7 +76,6 @@ class ClientesController extends Controller
                 $compania,
                 $cargo,
             ]);
-    
             return redirect()->route('clientes.index')
                 ->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
         } catch (\Exception $e) {
@@ -93,7 +93,7 @@ public function update(Request $request, $id)
         'telefono' => 'required|string|max:10',
         'compania' => 'nullable|string|max:100',
         'cargo' => 'min:3|max:100',
-        'email' => 'required|email|exists:users,email',
+        'email' => 'required|email',
         'password' => 'nullable|string|min:6|confirmed', 
         'name' => 'required|string|max:255', 
     ]);
