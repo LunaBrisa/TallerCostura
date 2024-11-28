@@ -45,4 +45,36 @@ class TelaController extends Controller
 
         return redirect('/gestion/tela');
     }
+
+
+
+
+
+    public function mostrarVistaTelas()
+{
+    $telas = \App\Models\VistaTelas::all(); 
+
+    return view('Empleado/VistaTelas', compact('telas')); 
+}
+
+
+
+public function mostrarVistaMateriales()
+{
+    $materiales = \App\Models\VistaMaterialesTelas::all(); 
+    return view('Empleado/VistaMaterialesTelas', compact('materiales')); 
+}
+
+
+
+public function mostrarVistaTiposPrenda()
+{
+    $tipos = \App\Models\VistaTiposPrenda::all(); // Consultar datos de la vista
+    return view('Empleado/VistaTiposPrenda', compact('tipos')); // Enviar datos a la vista
+}
+
+
+
+
+
 }
