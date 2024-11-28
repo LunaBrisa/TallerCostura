@@ -30,9 +30,9 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Prendas</h3>
+                            <h3 class="card-title Titulo3">Gestión de Prendas</h3>
                             <p class="card-text">Agregar, modificar y ocultar prendas</p>
-                            <button class="btn btn-primary btn-gest">Acción 1</button>
+                            <button class="btn btn-gest2">Acción 1</button>
                         </div>
                     </div>
                 </div>
@@ -40,9 +40,9 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Tipos de Prendas</h3>
+                            <h3 class="card-title Titulo3">Gestión de Tipos de Prendas</h3>
                             <p class="card-text">Agregar y modificar tipos de prendas</p>
-                            <button class="btn btn-primary btn-gest">Acción 2</button>
+                            <button class="btn btn-gest2">Acción 2</button>
                         </div>
                     </div>
                 </div>
@@ -50,9 +50,9 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Telas</h3>
-                            <p class="card-text">Agregar y modificar tipo de telas</p>
-                            <button class="btn btn-primary btn-gest">Acción 3</button>
+                            <h3 class="card-title Titulo3">Gestión de Telas</h3>
+                            <p class="card-text">Agregar y modificar telas</p>
+                            <button class="btn btn-gest2">Acción 3</button>
                         </div>
                     </div>
                 </div>
@@ -60,9 +60,9 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
-                            <h3 class="card-title">Gestión de Materiales de Tela</h3>
+                            <h3 class="card-title Titulo3">Gestión de Materiales de Tela</h3>
                             <p class="card-text">Agregar y modificar materiales de tela</p>
-                            <button class="btn btn-primary btn-gest">Acción 4</button>
+                            <button class="btn btn-gest2">Acción 4</button>
                         </div>
                     </div>
                 </div>
@@ -92,6 +92,11 @@
         text-align: center;
     }
 
+    .Titulo3 {
+        color: #ff90a4;
+        font-size: 30px;
+    }
+
     /* Estilo base de las tarjetas */
     .card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,10 +106,6 @@
     .card-hover:hover {
         transform: translateY(-10px); /* Desplazamiento hacia arriba */
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
-    }
-
-    .card-hover:hover .card-title {
-        color: #007bff; /* Cambiar el color del título al pasar el mouse */
     }
 
     .card-hover:hover .btn {
