@@ -52,13 +52,11 @@
     <div class="row">
         <div class="col">
           @if ($errors->any())
-          <div class="alert alert-danger">
-              <ol>
-                  @foreach ($errors->all() as $error)
-                      <li><p class="p-error">{{ $error }}</p></li>
-                  @endforeach
-              </ol>
-          </div>
+              @foreach ($errors->all() as $error)
+              <div class="alert alert-danger">
+                  {{ $error }}
+              </div>
+              @endforeach
           @endif
             
           @if (session('success'))
