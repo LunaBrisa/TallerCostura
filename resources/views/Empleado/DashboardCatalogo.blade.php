@@ -15,25 +15,25 @@
         <div class="row gy-4">
 
             <!-- GESTION DE PRENDAS -->
-            <div class="col col-md-6">
+            <div class="col-md-6">
                 <div class="gestion-div">
 
                 </div>
             </div>
 
-            <div class="col col-md-6">
-                <div class="gestion-div">
-                    
-                </div>
-            </div>
-
-            <div class="col col-md-6">
+            <div class="col-md-6">
                 <div class="gestion-div">
                     
                 </div>
             </div>
 
-            <div class="col col-md-6">
+            <div class="col-md-6">
+                <div class="gestion-div">
+                    
+                </div>
+            </div>
+
+            <div class="col-md-6">
                 <div class="gestion-div">
                     
                 </div>
