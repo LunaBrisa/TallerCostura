@@ -52,6 +52,11 @@
         font-size: 50px;
     }
 
+    .container2{
+        margin: auto;
+        width: 80%;
+    }
+
     .gestion-div{
         height: 30vh;
         width: 200px;
