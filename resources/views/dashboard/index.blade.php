@@ -127,7 +127,7 @@
     <!-- Contenido Principal -->
     <div class="container my-5">
         <div class="row text-center">
-            <h1 class="mb-5">Selecciona el Módulo que deseas gestionar</h1>
+            <h1 class="mb-5">Selecciona el Módulo quee deseas gestionar</h1>
         </div>
         <div class="row">
             <!-- Card para Pedidos -->
