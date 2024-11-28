@@ -126,11 +126,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
     Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
     Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
-    
+
     Route::get('/dashboard', function (){ return view('dashboard.index');});
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
     Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+
     
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {
@@ -150,4 +151,16 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
+
+
+
+
+
+
+
+// Rutas Vistas Telas y Premndas
+
+Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
+Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
+Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
 
