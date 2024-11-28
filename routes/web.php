@@ -30,7 +30,6 @@ use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
-
 // Página para pedir verificación
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -114,11 +113,15 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     
     // Ruta para la vista de Gestión de Clientes
-    Route::resource('clientes', ClientesController::class);
+    Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+    Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');
+    Route::put('/clientes/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+    Route::get('/clientes/{id}', [ClientesController::class, 'show'])->name('clientes.show');
     
     Route::get('/dashboard', function (){ return view('dashboard.index');});
-    Route::resource('empleados', EmpleadosController::class);
-
+    Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
+    Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
+    Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
     
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {
@@ -138,25 +141,4 @@ Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController:
 
 Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->name('logout'); // Ruta para procesar el logout
-
-    // Ruta para mostrar todos los servicios
-Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
-
-// Rutas para crear, actualizar y eliminar servicios
-Route::post('/servicios', [ServiciosController::class, 'store'])->name('servicios.store');
-Route::put('/servicios/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
-Route::put('/servicios/toggle/{id}', [ServiciosController::class, 'toggle'])->name('servicios.toggle');
-
-// Nuevas rutas para ocultar y mostrar servicios
-Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
-Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
-    
-// Ruta para la vista de Inventario de Insumos y Telas
-Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
-Route::post('/inventario', [InventarioController::class, 'store'])->name('inventario.store');
-
-// Ruta para la vista de Gestión de Empleados
-Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
-Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
-Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
 
