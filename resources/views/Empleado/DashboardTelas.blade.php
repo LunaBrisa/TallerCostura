@@ -95,6 +95,8 @@
 
               <h1 class="card-det">{{$tela->materialTela->material_tela}}</h1>
 
+              <h1 class="card-det">{{$tela->precio}}</h1>
+
                           <!-- Button trigger modal -->
             <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalModif{{$tela->id}}">
                 Modificar
