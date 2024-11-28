@@ -10,7 +10,8 @@
 <body>
     @extends('layouts.nav')
     @section('content')
-        <div class="container py-5">
+    <div class="d-flex flex-column min-vh-100">
+        <div class="container py-5" >
             <div class="row">
                 <div class="col">
                     <h1 class="Titulo1">Gestión del Catálogo</h1>
@@ -68,13 +69,14 @@
                 </div>
             </div>
         </div>
+    </div>
         <br>
     @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <style>
     .container {
-        height: 100vh;
+       flex: 1;
     }
 
     h1.Titulo1 {
