@@ -25,6 +25,6 @@ class Servicio extends Model
 
     public function detalleReparaciones()
     {
-        return $this->belongsToMany(DetalleReparacion::class, 'reparaciones_servicios', 'servicio_id', 'detalle_reparacion_id');
+        return $this->belongsToMany(DetalleReparacion::class, 'REPARACIONES_SERVICIOS', 'servicio_id', 'detalle_reparacion_id');
     }
 }
