@@ -32,7 +32,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Prendas</h3>
                             <p class="card-text">Agregar, modificar y ocultar prendas</p>
-                            <a href=""><button class="btn btn-gest2">Gestionar</button></a>
+                            <a href="/gestion/prenda-confeccion"><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <div class="card-body text-center">
                             <h3 class="card-title Titulo3">Gestión de Telas</h3>
                             <p class="card-text">Agregar y modificar telas</p>
-                            <a href=""><button class="btn btn-gest2">Gestionar</button></a>
+                            <a href="/gestion/tela"><button class="btn btn-gest2">Gestionar</button></a>
                         </div>
                     </div>
                 </div>
