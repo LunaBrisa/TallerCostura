@@ -113,7 +113,7 @@
     }
 
     body{
-        background-color: #f9f7f6;
+        background-color: #fff3ed;
     }
 
     /* Estilo base de las tarjetas */
