@@ -38,15 +38,12 @@
 </body>
 
 <style>
-
-
-.container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
-      width: 90%;
-      max-width: 1200px;
-      height: 100vh;
+      padding: 20px;
     }
 
     .card {
@@ -57,7 +54,7 @@
       overflow: hidden;
       padding: 20px;
       text-align: center;
-      height: auto;
+      width: 280px; /* Ancho fijo para las tarjetas */
     }
 
     .card:hover {
