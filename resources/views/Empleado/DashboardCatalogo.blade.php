@@ -104,6 +104,7 @@
         background-color: #FFCDD4 !important; /* Cambiar el color del botón */
         color: #8A226F !important;
         border: solid #8A226F !important;
+        font-weight: 200;
     }
 
     .btn-gest2:hover{
