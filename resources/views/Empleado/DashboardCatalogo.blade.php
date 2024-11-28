@@ -46,7 +46,7 @@
       gap: 20px;
       width: 90%;
       max-width: 1200px;
-      height: auto;
+      height: 100vh;
     }
 
     .card {
