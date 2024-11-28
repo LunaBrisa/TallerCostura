@@ -11,10 +11,24 @@
     @extends('layouts.nav') <br>
     @section('content')
         <div class="container py-5">
+            <div class="row">
+                <div class="col">
+                    <h1 class="Titulo1">Gestión del Catálogo</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h2 class="Subtitulo">
+                        Selecciona el modulo que deseas gestionar
+                    </h2>
+                </div>
+            </div><br>
+
             <div class="row g-4">
                 <!-- Card 1 -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card shadow-sm h-100">
+                    <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Prendas</h3>
                             <p class="card-text">Descripción breve para la tarjeta 1.</p>
@@ -24,7 +38,7 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card shadow-sm h-100">
+                    <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Tipos de Prendas</h3>
                             <p class="card-text">Descripción breve para la tarjeta 2.</p>
@@ -34,7 +48,7 @@
                 </div>
                 <!-- Card 3 -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card shadow-sm h-100">
+                    <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Telas</h3>
                             <p class="card-text">Descripción breve para la tarjeta 3.</p>
@@ -44,7 +58,7 @@
                 </div>
                 <!-- Card 4 -->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card shadow-sm h-100">
+                    <div class="card shadow-sm h-100 card-hover">
                         <div class="card-body text-center">
                             <h3 class="card-title">Gestión de Materiales de Tela</h3>
                             <p class="card-text">Descripción breve para la tarjeta 4.</p>
@@ -61,6 +75,40 @@
 <style>
     .container {
         height: 100vh;
+    }
+
+    h1.Titulo1 {
+        color: #E57D90;
+        font-size: 50px;
+    }
+
+    .card-title {
+        color: black;
+    }
+
+    .Subtitulo {
+        color: #ff90a4;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    /* Estilo base de las tarjetas */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Efecto hover */
+    .card-hover:hover {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+    }
+
+    .card-hover:hover .card-title {
+        color: #007bff; /* Cambiar el color del título al pasar el mouse */
+    }
+
+    .card-hover:hover .btn {
+        background-color: #0056b3; /* Cambiar el color del botón */
     }
 </style>
 </html>
