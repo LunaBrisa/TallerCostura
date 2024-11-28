@@ -117,9 +117,9 @@
     }
 
     .card-hover:hover .btn {
-        background-color: #FFCDD4; /* Cambiar el color del botón */
-        color: #8A226F;
-        border: solid #8A226F;
+        background-color: #FFCDD4 !important; /* Cambiar el color del botón */
+        color: #8A226F !important;
+        border: solid #8A226F !important;
     }
 </style>
 </html>
