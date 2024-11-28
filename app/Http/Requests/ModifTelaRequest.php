@@ -23,8 +23,20 @@ class ModifTelaRequest extends FormRequest
     {
         return [
             'idtela' => ['required'],
-            'telilla' => ['required', 'max:50'],
-            'tipotelilla' => ['required', 'numeric', 'exists:MATERIALES_TELAS,id']
+            'telilla' => ['nullable', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:50'],
+            'tipotelilla' => ['nullable', 'numeric', 'exists:MATERIALES_TELAS,id'],
+            'preciotelilla' => ['nullable', 'decimal:2']
+        ];
+    }
+
+    public function messages(): array{
+        return [
+            'idtela.required' => 'La tela no es valida',
+            'telilla.max' => 'El campo nombre de la tela debe tener menos de 50 caracteres',
+            'telilla.regex' => 'El campo nombre de la tela solo puede contener letras y espacios',
+            'tipotelilla.exists' => 'El campo tipo de la tela es invalido',
+            'tipotelilla.numeric' => 'El tipo de tela es invalido',
+            'preciotelilla.decimal' => 'El formato del precio es invalido. Formato correcto: 0.00'
         ];
     }
 }

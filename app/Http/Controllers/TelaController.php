@@ -33,17 +33,23 @@ class TelaController extends Controller
     }
 
     public function modifTela(ModifTelaRequest $modifTelaRequest){
-        $telota = Tela::find($modifTelaRequest->get('idtela'));
+        $telota = Tela::find($modifTelaRequest->idtela);
 
-        if($telota){
-            $telota->nombre_tela = $modifTelaRequest->get('telilla');
-            $telota->material_tela_id = $modifTelaRequest->get('tipotelilla');
-            $telota->precio = $modifTelaRequest->get('preciotelilla');
-
-            $telota->save();
+        if ($modifTelaRequest->telilla != null){
+            $telota->nombre_tela = $modifTelaRequest->telilla;
         }
 
-        return redirect('/gestion/tela');
+        if ($modifTelaRequest->tipotelilla != null){
+            $telota->material_tela_id = $modifTelaRequest->tipotelilla;
+        }
+
+        if ($modifTelaRequest->preciotelilla != null){
+            $telota->precio = $modifTelaRequest->preciotelilla;
+        }
+
+        $telota -> save();
+
+        return redirect('/gestion/tela')->with('successmodif', '¡Se modifico la tela correctamente!');
     }
 
 
