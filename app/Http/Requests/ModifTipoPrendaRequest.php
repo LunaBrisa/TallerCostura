@@ -23,7 +23,7 @@ class ModifTipoPrendaRequest extends FormRequest
     {
         return [
             'idtp' => ['required'],
-            'tipoprendilla' => ['required', 'max:50']
+            'tipoprendilla' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:50'],
         ];
     }
 
@@ -31,7 +31,8 @@ class ModifTipoPrendaRequest extends FormRequest
         return [
             'idtp.required' => 'El tipo de prenda es invalido',
             'tipoprendilla.required' => 'El nombre del tipo de prenda es obligatorio. Intente de nuevo',
-            'tipoprendilla.max' => 'El nombre del tipo de prenda no puede tener mas de 50 caracteres'
+            'tipoprendilla.max' => 'El nombre del tipo de prenda no puede tener mas de 50 caracteres',
+            'tipoprendilla.regex' => 'El nombre del tipo de prenda solo puede contener letras y espacios'
         ];
     }
 }
