@@ -60,10 +60,14 @@
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="generote" id="Mujer" value="Mujer">
                     <label class="form-check-label" for="Mujer"><h2 class="radio-text">Mujer</h2></label>
-                  </div><br>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="generote" id="Infantil" value="Infantil">
+                    <label class="form-check-label" for="Infantil"><h2 class="radio-text">Infantil</h2></label>
+                  </div><br><br>
                   
                   <label for="imagensotaprenda"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                  <input class="form-control" type="file" name="imagensotaprenda">
+                  <input class="form-control" type="file" name="imagensotaprenda"><br>
 
                   <div class="row text-center">
                     <div class="col-12 col-md-6 mb-3">

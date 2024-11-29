@@ -149,7 +149,7 @@
         {{-- PRENDAS VISIBLES --}}
         <div class="row">
         @foreach ($misPrendas as $prenda)
-        <div class="card cardsing mb-4 mx-2" style="width: 18rem;">
+        <div class="card cardsing card-hover mb-4 mx-2" style="width: 18rem;">
           <div class="img-div">
             <img src="{{ asset($prenda -> ruta_imagen) }}" class="card-img-top" alt="...">
           </div>
@@ -250,7 +250,7 @@
       <div class="tab-pane fade" id="ocultos" role="tabpanel" aria-labelledby="ocultos-tab">
         <div class="row">
           @foreach ($misPrendasOcultas as $prenda)
-          <div class="card cardsing mb-4 mx-2" style="width: 18rem;">
+          <div class="card cardsing card-hover mb-4 mx-2" style="width: 18rem;">
             <div class="img-div">
               <img src="{{ asset($prenda -> ruta_imagen) }}" class="card-img-top" alt="...">
             </div>
@@ -432,6 +432,14 @@
   }
 } */
 
+.card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+        box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
+    }
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
