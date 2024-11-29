@@ -22,7 +22,15 @@ class SaveTipoPrendaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipoprendita' => ['required', 'max:50']
+            'tipoprendita' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:50'],
+        ];
+    }
+
+    public function messages(): array{
+        return [
+            'tipoprendita.required' => 'El nombre del tipo de prenda es obligatorio. Intente de nuevo',
+            'tipoprendita.regex' => 'El nombre del tipo de prenda solo puede contener letras y espacios',
+            'tipoprendita.max' => 'El nombre del tipo de prenda no puede tener mas de 50 caracteres'
         ];
     }
 }
