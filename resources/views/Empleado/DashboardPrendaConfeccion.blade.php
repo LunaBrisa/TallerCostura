@@ -129,7 +129,6 @@
 </div>
 
   <div class="row" style="padding-top: 25px;">
-    <ul class="nav nav-pills nav-fill mb-2" id="myTab" role="tablist">
       <ul class="nav nav-tabs mb-2 interactive-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="visibles-tab" data-bs-toggle="tab" href="#visibles" role="tab" aria-controls="visibles" aria-selected="true">
@@ -360,9 +359,8 @@
 <style>
 .interactive-tabs {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 15px;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .interactive-tabs .nav-link {
