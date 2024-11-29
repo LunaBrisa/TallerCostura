@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="{{asset('css/estiloOz.css')}}">
-    <title>Gestion Catalogo</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">     <title>Gestion Catalogo</title> 
 </head>
 <body>
 @extends('layouts.nav')
@@ -132,13 +130,20 @@
 
   <div class="row" style="padding-top: 25px;">
     <ul class="nav nav-pills nav-fill mb-2" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="visibles-tab" data-bs-toggle="tab" href="#visibles" role="tab" aria-controls="visibles" aria-selected="true">Visibles</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="ocultos-tab" data-bs-toggle="tab" href="#ocultos" role="tab" aria-controls="ocultos" aria-selected="false">Ocultos</a>
-      </li>
-    </ul>
+      <ul class="nav nav-tabs mb-2 interactive-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="visibles-tab" data-bs-toggle="tab" href="#visibles" role="tab" aria-controls="visibles" aria-selected="true">
+            Visibles
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="ocultos-tab" data-bs-toggle="tab" href="#ocultos" role="tab" aria-controls="ocultos" aria-selected="false">
+            Ocultos
+          </a>
+        </li>
+      </ul>
+    </div>
+      
     
     <div class="tab-content">
       <div class="tab-pane fade show active" id="visibles" role="tabpanel" aria-labelledby="visibles-tab">
@@ -353,22 +358,51 @@
 @endsection
 </body>
 <style>
-.nav-pills .nav-link.active {
-  background-color: #8A226F !important;
-  color: #F6B2DB !important;
+.interactive-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  border-bottom: 1px solid #eaeaea;
 }
 
-.nav-pills .nav-link {
-  background-color: #f8f9fa; /* Color de los tabs inactivos */
-  color: #8A226F;            /* Color del texto de los tabs inactivos */
-}
-.nav-pills .nav-link:hover {
-  background-color: #bc2e96; /* Color al pasar el mouse por encima */
-  color: #F6B2DB;
+.interactive-tabs .nav-link {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #6c757d; /* Gris neutro inicial */
+  background: none;
+  border: none;
+  position: relative;
+  padding: 5px 10px;
+  transition: color 0.3s ease-in-out;
 }
 
-.tamal {
-  width: 100px;
+.interactive-tabs .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff9cee, #a64db6); /* Rosa-morado interactivo */
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.interactive-tabs .nav-link:hover {
+  color: #a64db6; /* Morado más intenso */
+}
+
+.interactive-tabs .nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.interactive-tabs .nav-link.active {
+  color: #720d85; /* Morado oscuro */
+}
+
+.interactive-tabs .nav-link.active::after {
+  width: 100%;
+  left: 0;
 }
 
 .btn-intemodal {
