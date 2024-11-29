@@ -84,37 +84,41 @@
               Modificar
             </button>
   
-            <!-- Modal -->
-            <div class="modal fade" id="ModalModif{{$MaterialTelilla->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Material de Tela</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form action="/modif/material-tela" method="post">
-                      @csrf
-  
-                      <input type="hidden" name="idmate" value="{{$MaterialTelilla->id}}">
-  
-                      <label for="materialtelilla"><h3 class="h3-modal">Material de Tela</h3></label>
-                      <input type="text" name="materialtelilla" class="form-control"><br>
-                      
-                      <div class="btn-div">
-                        <input type="submit" class="btn btn-intemodal" value="Guardar">
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         @endforeach
     </div>
 </div>
 @endsection
+
+@foreach ($MisMaterialesTela as $MaterialTelilla)
+  <!-- Modal -->
+  <div class="modal fade" id="ModalModif{{$MaterialTelilla->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Material de Tela</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/modif/material-tela" method="post">
+            @csrf
+  
+            <input type="hidden" name="idmate" value="{{$MaterialTelilla->id}}">
+  
+            <label for="materialtelilla"><h3 class="h3-modal">Material de Tela</h3></label>
+            <input type="text" name="materialtelilla" class="form-control"><br>
+            
+            <div class="btn-div">
+              <input type="submit" class="btn btn-intemodal" value="Guardar">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+
 </body>
 <style>
   @media (max-width: 576px) {
