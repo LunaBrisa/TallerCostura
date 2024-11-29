@@ -67,7 +67,7 @@
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$prendaColor->id}}">
                           Eliminar
                         </button><br>
-
+                              
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -116,17 +116,16 @@
      }
 
      .btn-modal-sub {
-    margin: 5px auto; /* Centra los botones en todos los tamaños */
-    display: block; /* Asegura que el botón sea un bloque */
-    height: 40px;
-    max-width: 300px; /* Tamaño máximo del botón */
-    width: 100%; /* Ocupa todo el espacio posible */
+    margin: 10px auto; /* Centra el botón horizontalmente */
+    display: block; /* Garantiza que el botón sea un bloque */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 280px; /* Limita el ancho máximo */
+    height: 45px; /* Alto consistente del botón */
     background-color: #BE5A8C;
-    border: solid 2px;
-    border-color: #F99AAA;
+    border: 2px solid #F99AAA;
     color: #FFCDD4;
+    font-size: 16px;
     text-align: center;
-    font-size: 16px; /* Texto visible en todos los tamaños */
     padding: 0;
 }
 
@@ -135,12 +134,23 @@
     color: #BE5A8C;
 }
 
+.cardsing {
+    width: 100%; /* La tarjeta ocupará todo el ancho disponible */
+    max-width: 320px; /* Limita el tamaño máximo en pantallas más grandes */
+    margin: 0 auto; /* Centra la tarjeta */
+    padding: 10px;
+}
+
 @media (max-width: 576px) {
     .btn-modal-sub {
-        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
-        font-size: 14px; /* Tamaño de fuente menor */
+        font-size: 14px; /* Reduce el tamaño del texto en pantallas pequeñas */
+        height: 40px; /* Ajusta la altura del botón */
+        max-width: 100%; /* Se expande al 100% del contenedor */
+    }
+
+    .cardsing {
+        padding: 5px; /* Espaciado más pequeño */
     }
 }
 
- </style>
  
