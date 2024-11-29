@@ -236,7 +236,7 @@
       
                           <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                           @foreach ($prenda -> prendasColor as $color)
-                            <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br><br>
+                            <input class='form-control' style="background-color: {{ $color->color }}; margin: auto; width: 70%; text-align: center;" title="{{ $color->color }}" readonly><br><br>
                           @endforeach        
       
                           <div class="row">
@@ -318,7 +318,7 @@
         
                             <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                             @foreach ($prenda -> prendasColor as $color)
-                              <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br><br>
+                              <input class="form-control" style="background-color: {{ $color->color }}; margin: auto; width: 70%; text-align: center;" title="{{ $color->color }}" readonly><br><br>
                             @endforeach        
         
                             <div class="row">
@@ -364,6 +364,11 @@
 
 </body>
 <style>
+
+.h3-modal {
+  text-align: center;
+}
+
 .interactive-tabs {
   display: flex;
   justify-content: left;
