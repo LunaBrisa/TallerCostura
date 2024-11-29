@@ -55,6 +55,10 @@
                             <input class="form-check-input" type="radio" name="generito" id="Mujer" value="Mujer">
                             <label class="form-check-label" for="Mujer"><h2 class="radio-text">Mujer</h2></label>
                           </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="generito" id="Infantil" value="Infantil">
+                            <label class="form-check-label" for="Infantil"><h2 class="radio-text">Infantl</h2></label>
+                          </div>
                         <br><br>
 
                         <label for="tipoprendita"><h3 class="h3-modal">Tipo de Prenda</h3></label>
@@ -100,6 +104,30 @@
         </div>
         </div>
     </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+        @endforeach
+    @endif
+      
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('successmodif'))
+        <div class="alert alert-success" role="alert">
+            {{ session('successmodif') }}
+        </div>
+    @endif
+  </div>
 </div>
 
   <div class="row" style="padding-top: 25px;">

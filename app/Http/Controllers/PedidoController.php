@@ -77,17 +77,22 @@ class PedidoController extends Controller
         return view('pedidos.index', compact('pedidos', 'estadisticas'));
     }
 
-    public function detalles($id)
+    public function show($id)
     {
-        $pedido = Pedido::with(['empleado.persona', 'detallesConfecciones', 'detallesReparaciones.servicios', 'detallesLotes'])
-                        ->findOrFail($id);
-    
-        return view('Cliente.detalles', compact('pedido'));
+        $pedido = Pedido::with([
+            'detallesLotes',
+            'detallesReparaciones',
+            'detallesConfecciones'
+        ])->findOrFail($id);
+
+        return view('pedidos.show', compact('pedido'));
     }
+
+    
     
     
     public function store(Request $request)
-    {
+{
     $request->validate([
         'cliente' => 'required|exists:clientes,id',
         'empleado' => 'required|exists:empleados,id',
@@ -118,6 +123,7 @@ class PedidoController extends Controller
     // Verificación para agregar detalles_lote solo si no están vacíos
     if ($request->filled('detalles_lote')) {
         foreach ($request->detalles_lote as $detalle) {
+            logger($detalle); 
             if (!empty($detalle['prenda']) && !empty($detalle['precio_por_prenda']) && !empty($detalle['cantidad']) && !empty($detalle['anticipo'])) {
                 $pedido->detallesLotes()->create([
                     'prenda' => $detalle['prenda'],
@@ -128,6 +134,7 @@ class PedidoController extends Controller
             }
         }
     }
+    
 
     // Verificación para agregar detallesReparaciones solo si no están vacíos
     if ($request->filled('reparacion_prendas')) {

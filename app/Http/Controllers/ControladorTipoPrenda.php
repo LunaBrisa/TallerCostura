@@ -22,7 +22,7 @@ class ControladorTipoPrenda extends Controller
 
         $TipoPrendaNuevo -> save();
 
-        return redirect('/gestion/tipos-prendas');
+        return redirect('/gestion/tipos-prendas')->with('success', '¡Se agregó el tipo de prenda correctamente!');
     }
 
     public function modifTipoPrenda(ModifTipoPrendaRequest $modifTipoPrendaRequest){
@@ -33,7 +33,6 @@ class ControladorTipoPrenda extends Controller
             $tipoPrenda->save();
         }
 
-        return redirect('/gestion/tipos-prendas');
+        return redirect('/gestion/tipos-prendas')->with('successmodif', '¡Se modifico el tipo de prenda correctamente!');
     }
-
 }

@@ -1,0 +1,54 @@
+/* detalles.css */
+body {
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.detalles-pedido h2, .detalles-pedido h4 {
+    color: #F99AAA;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.detalles-pedido .detalle-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.detalles-pedido .detalle-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #F99AAA;
+    padding-bottom: 5px;
+}
+
+.detalles-pedido .tabla-flex {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #F99AAA;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.detalles-pedido .tabla-header {
+    display: flex;
+    background-color: #F99AAA;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+.detalles-pedido .tabla-row {
+    display: flex;
+    border-top: 1px solid #F99AAA;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.detalles-pedido .tabla-row:nth-child(even) {
+    background-color: #FEE9EC;
+}

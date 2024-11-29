@@ -51,8 +51,28 @@
     </div><br>
 
     <div class="row">
-        
-    </div><br>
+      <div class="col">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+            @endforeach
+        @endif
+          
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('successmodif'))
+            <div class="alert alert-success" role="alert">
+                <p class="p-success">{{ session('successmodif') }}</p>
+            </div>
+        @endif
+      </div>
+  </div>
     
     <div class="row">
       @foreach ($MisTiposPrenda AS $TipoPrendita)
@@ -64,44 +84,41 @@
           <button type="button" class="btn btn-elim" data-bs-toggle="modal" data-bs-target="#ModalModif{{$TipoPrendita->id}}">
             Modificar
           </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="ModalModif{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Tipo de Prenda</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form action="/modif/tipo-prenda" method="post">
-                    @csrf
-
-                    <input type="hidden" name="idtp" value="{{$TipoPrendita->id}}">
-
-                    <label for="tipoprendilla"><h3 class="h3-modal">Tipo de Prenda</h3></label>
-                    <input type="text" name="tipoprendilla" class="form-control"><br>
-                    
-                    <div class="btn-div">
-                      <input type="submit" class="btn btn-intemodal" value="Guardar">
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
   @endforeach
     </div>
-
-    <div class="row">
-        <div class="col">
-            
-        </div>
-    </div>
 </div>
 @endsection 
+
+@foreach ($MisTiposPrenda AS $TipoPrendita)
+  <!-- Modal -->
+  <div class="modal fade" id="ModalModif{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Tipo de Prenda</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/modif/tipo-prenda" method="post">
+            @csrf
+  
+            <input type="hidden" name="idtp" value="{{$TipoPrendita->id}}">
+  
+            <label for="tipoprendilla"><h3 class="h3-modal">Tipo de Prenda</h3></label>
+            <input type="text" name="tipoprendilla" class="form-control"><br>
+            
+            <div class="btn-div">
+              <input type="submit" class="btn btn-intemodal" value="Guardar">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+
 </body>
 <style>
   @media (max-width: 576px) {

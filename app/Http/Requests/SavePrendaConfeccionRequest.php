@@ -22,11 +22,29 @@ class SavePrendaConfeccionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombreprendita' => ['required', 'max:50'],
-            'descripcionprendita' => ['required', 'max:250'],
+            'nombreprendita' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:50'],
+            'descripcionprendita' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:255'],
             'precio_obra_prendita' => ['required', 'decimal:2'],
-            'generito' => ['required', 'in:Hombre,Mujer'],
+            'generito' => ['required', 'in:Hombre,Mujer,Infantil'],
             'tipoprendita' => ['required', 'exists:TIPOS_PRENDAS,id', 'numeric']
+        ];
+    }
+
+    public function messages(): array{
+        return [
+            'nombreprendita.required' => 'El nombre de la prenda es obligatorio. Intente de nuevo',
+            'nombreprendita.regex' => 'El nombre de la prenda solo puede contener letras y espacios',
+            'nombreprendita.max' => 'El nombre de la prenda no puede tener mas de 50 caracteres',
+            'descripcionprendita.required' => 'La descripcion de la prenda es obligatoria. Intente de nuevo',
+            'descripcionprendita.regex' => 'La descripcion de la prenda solo puede contener letras y espacios',
+            'descripcionprendita.max' => 'La descripcion de la prenda no puede tener mas de 255 caracteres',
+            'precio_obra_prendita.required' => 'El precio de la prenda es obligatorio. Intente de nuevo',
+            'precio_obra_prendita.decimal' => 'El formato del precio es invalido. Formato correcto: 0.00',
+            'tipoprendita.required' => 'El tipo de prenda es invalido',
+            'tipoprendita.exists' => 'El tipo de prenda es invalido',
+            'tipoprendita.numeric' => 'El tipo de prenda es invalido',
+            'generito.required' => 'El genero de la prenda es invalido',
+            'generito.in' => 'El genero de la prenda es invalido'
         ];
     }
 }
