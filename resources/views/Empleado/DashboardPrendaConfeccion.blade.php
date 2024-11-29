@@ -161,86 +161,7 @@
               <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}"> Ver Mas </button>
               <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
             </div>
-    
-            <!-- Modal -->
-            <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Datos de la Prenda</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="conteform">
-                      <form action="">
-                        
-                        <label for="prenda"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
-                        <input type="text" class="form-control" name="prenda" placeholder="{{$prenda -> nombre_prenda}}" readonly><br>
-    
-                        <label for="descripcion"> <h3 class="h3-modal">Descripcion de la Prenda</h3></label>
-                        <textarea class="form-control" name="descripcion" rows="3" readonly>{{$prenda -> descripcion}}</textarea><br>
-    
-                        <div class="row">
-                          <div class="col">
-                            <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
-                            <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
-                          </div>
-                          <div class="col">
-                            <label for="precio_telillas"><h3 class="h3-modal">Precio de las Telas</h3></label>
-                            <input type="number" class="form-control" name="precio_telillas" placeholder="${{$prenda -> precio_telas}}" readonly><br>
-                          </div>
-                        </div>
-
-                        <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
-                        <input type="text" class="form-control" name="genero" placeholder="{{$prenda -> genero}}" readonly><br>
-    
-                        <label for="tipoprenda"><h3 class="h3-modal">Tipo de Prenda</h3></label>
-                        <input type="text" class="form-control" name="tipoprenda" placeholder="{{$prenda -> tipoPrenda->tipo_prenda}}" readonly><br>
-    
-                        <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
-                        @foreach ($prenda -> prendasColor as $color)
-                          <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br><br>
-                        @endforeach        
-    
-                        <div class="row">
-                          <div class="col">
-                            <label for="telotas"><h3 class="h3-modal">Telas de la Prenda</h3></label>
-                            @foreach ($prenda -> prendasTelas as $tela)
-                              <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
-                            @endforeach
-                          </div>
-    
-                          <div class="col">
-                            <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
-                            @foreach ($prenda -> prendasTelas as $tela)
-                              <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}" readonly><br>
-                            @endforeach
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <div class="row mb-1" style="text-align: center; margin: auto">
-                      <div class="col mb-3">
-                        <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Prenda</button></a>
-                      </div>
-                      <div class="col mb-3">
-                        <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Telas</button></a>
-                      </div>
-                    </div><br>
-                    <div class="row" style="margin: auto">
-                      <div class="col mb-3">
-                        <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Colores</button></a>
-                      </div>
-                      <div class="col mb-3">
-                        <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 150px !important">Cerrar</button>
-                      </div>
-                    </div><br>
-                  </div>
-                </div>
-              </div>
-            </div>
+  
           </div>
         </div>
         @endforeach    
@@ -265,7 +186,19 @@
       
                 <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
               </div>
-      
+            </div>
+          </div>
+          @endforeach    
+          </div>  
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+@endsection
+
+@foreach ($misPrendas as $prenda)
               <!-- Modal -->
               <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
@@ -277,6 +210,7 @@
                     <div class="modal-body">
                       <div class="conteform">
                         <form action="">
+                          
                           <label for="prenda"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
                           <input type="text" class="form-control" name="prenda" placeholder="{{$prenda -> nombre_prenda}}" readonly><br>
       
@@ -289,11 +223,11 @@
                               <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
                             </div>
                             <div class="col">
-                              <label for="precio_telas"><h3 class="h3-modal">Precio de las Telas</h3></label>
-                              <input type="number" class="form-control" name="precio_telas" placeholder="${{$prenda -> precio_telas}}" readonly><br>
+                              <label for="precio_telillas"><h3 class="h3-modal">Precio de las Telas</h3></label>
+                              <input type="number" class="form-control" name="precio_telillas" placeholder="${{$prenda -> precio_telas}}" readonly><br>
                             </div>
                           </div>
-
+  
                           <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
                           <input type="text" class="form-control" name="genero" placeholder="{{$prenda -> genero}}" readonly><br>
       
@@ -340,21 +274,94 @@
                           <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 150px !important">Cerrar</button>
                         </div>
                       </div><br>
-                  </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          @endforeach    
-          </div>  
-      </div>
-    </div>
-    
-  </div>
+@endforeach
 
-</div>
-@endsection
+
+@foreach ($misPrendasOcultas as $prenda)
+                <!-- Modal -->
+                <div class="modal fade modal-prendas" id="exampleModalvermas{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Datos de la Prenda</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="conteform">
+                          <form action="">
+                            <label for="prenda"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
+                            <input type="text" class="form-control" name="prenda" placeholder="{{$prenda -> nombre_prenda}}" readonly><br>
+        
+                            <label for="descripcion"> <h3 class="h3-modal">Descripcion de la Prenda</h3></label>
+                            <textarea class="form-control" name="descripcion" rows="3" readonly>{{$prenda -> descripcion}}</textarea><br>
+        
+                            <div class="row">
+                              <div class="col">
+                                <label for="precio"><h3 class="h3-modal">Precio de la Prenda</h3></label>
+                                <input type="number" class="form-control" name="precio" placeholder="${{$prenda -> precio_obra}}" readonly><br>
+                              </div>
+                              <div class="col">
+                                <label for="precio_telas"><h3 class="h3-modal">Precio de las Telas</h3></label>
+                                <input type="number" class="form-control" name="precio_telas" placeholder="${{$prenda -> precio_telas}}" readonly><br>
+                              </div>
+                            </div>
+  
+                            <label for="genero"><h3 class="h3-modal">Genero de la Prenda</h3></label>
+                            <input type="text" class="form-control" name="genero" placeholder="{{$prenda -> genero}}" readonly><br>
+        
+                            <label for="tipoprenda"><h3 class="h3-modal">Tipo de Prenda</h3></label>
+                            <input type="text" class="form-control" name="tipoprenda" placeholder="{{$prenda -> tipoPrenda->tipo_prenda}}" readonly><br>
+        
+                            <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
+                            @foreach ($prenda -> prendasColor as $color)
+                              <input style="background-color: {{ $color->color }}" title="{{ $color->color }}" readonly><br><br>
+                            @endforeach        
+        
+                            <div class="row">
+                              <div class="col">
+                                <label for="telotas"><h3 class="h3-modal">Telas de la Prenda</h3></label>
+                                @foreach ($prenda -> prendasTelas as $tela)
+                                  <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
+                                @endforeach
+                              </div>
+        
+                              <div class="col">
+                                <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
+                                @foreach ($prenda -> prendasTelas as $tela)
+                                  <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}" readonly><br>
+                                @endforeach
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="row mb-1" style="text-align: center; margin: auto">
+                          <div class="col mb-3">
+                            <a href="/modificar/prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Prenda</button></a>
+                          </div>
+                          <div class="col mb-3">
+                            <a href="/modificar/telas-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Telas</button></a>
+                          </div>
+                        </div><br>
+                        <div class="row" style="margin: auto">
+                          <div class="col mb-3">
+                            <a href="/modificar/colores-prenda/{{$prenda -> id}}"><button type="button" class="btn btn-intemodal" style="width: 150px !important">Gestionar Colores</button></a>
+                          </div>
+                          <div class="col mb-3">
+                            <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal" style="width: 150px !important">Cerrar</button>
+                          </div>
+                        </div><br>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+@endforeach
+
 </body>
 <style>
 .interactive-tabs {
