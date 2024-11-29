@@ -76,6 +76,7 @@
     <div>
         @yield('content')
     </div>
+
     <div class="footer">
        <div style="margin-left: 50px"> 
         <img src="{{ asset('images/telefono.jpg') }}" width="30px" height="30px">

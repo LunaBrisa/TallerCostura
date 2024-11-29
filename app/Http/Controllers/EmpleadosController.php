@@ -36,8 +36,8 @@ class EmpleadosController extends Controller
             $roles = Rol::where('nombre_rol', '!=', 'Cliente')->get();
         return view('empleados.index', compact('empleados', 'pedidosPorEmpleado', 'empleados2', 'roles'));
     }
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
     $request->validate([
         'nombre' => 'required|string|min:3|max:100',
         'apellido_p' => 'required|min:3|string|max:60',
