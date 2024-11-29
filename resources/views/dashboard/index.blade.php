@@ -146,7 +146,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-people" style="font-size: 3rem; color:  #FFCDD4;"></i>
+                        <i class="bi bi-people" style="font-size: 3rem; color:  #BE5A8C;"></i>
                         <h5 class="card-title mt-3">Clientes</h5>
                         <p class="card-text">Administra la información de tus clientes.</p>
                         <a href="/clientes" class="btn btn-primary">Clientes</a>
@@ -158,7 +158,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-person-badge" style="font-size: 3rem; color:  #FFCDD4;"></i>
+                        <i class="bi bi-person-badge" style="font-size: 3rem; color:  #BE5A8C;"></i>
                         <h5 class="card-title mt-3">Empleados</h5>
                         <p class="card-text">Gestiona los datos y roles de tus empleados.</p>
                         <a href="/empleados" class="btn btn-primary">Empleados</a>
@@ -170,7 +170,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-boxes" style="font-size: 3rem; color: #FFCDD4;"></i>
+                        <i class="bi bi-boxes" style="font-size: 3rem; color: #BE5A8C;"></i>
                         <h5 class="card-title mt-3">Insumos</h5>
                         <p class="card-text">Administra los insumos.</p>
                         <a href="/inventario" class="btn btn-primary">Insumos</a>
@@ -182,7 +182,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-scissors" style="font-size: 3rem; color: #FFCDD4;"></i>
+                        <i class="bi bi-scissors" style="font-size: 3rem; color: #BE5A8C;"></i>
                         <h5 class="card-title mt-3">Servicios</h5>
                         <p class="card-text">Administra los servicios.</p>
                         <a href="{{ route('servicios.index') }}" class="btn btn-primary">Servicios</a>
@@ -195,7 +195,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-collection" style="font-size: 3rem; color:  #FFCDD4;"></i>
+                        <i class="bi bi-collection" style="font-size: 3rem; color:  #BE5A8C;"></i>
                         <h5 class="card-title mt-3">Catálogo</h5>
                         <p class="card-text">Gestiona los productos del catálogo.</p>
                         <a href="/gestion/catalogo" class="btn btn-primary">Catálogo</a>
