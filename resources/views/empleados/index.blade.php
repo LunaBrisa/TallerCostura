@@ -169,6 +169,8 @@ input.form-control:focus {
                     <td>{{ $empleado->persona->user->roles->first()->nombre_rol }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
+                        
+                        <a href="{{ route('empleados.show', $empleado->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver</a>               
                     </td>
                     
                 </tr>
@@ -201,8 +203,8 @@ input.form-control:focus {
                                         <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $empleado->persona->telefono }}" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="correo" class="form-label">Correo</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" value="{{ $empleado->persona->user->email }}" required>
+                                        <label for="email" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ $empleado->persona->user->email }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rol" class="form-label">Rol</label>

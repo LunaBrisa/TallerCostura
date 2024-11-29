@@ -113,6 +113,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
+    Route::post('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiarEstado');
+
 
     
     // Ruta para la vista de Gestión de Clientes
@@ -125,6 +127,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
     Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+    Route::get('/empleados/{id}', [EmpleadosController::class, 'show'])->name('empleados.show');
   
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {

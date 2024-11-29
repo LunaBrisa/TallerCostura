@@ -78,15 +78,21 @@ class PedidoController extends Controller
     }
 
     public function show($id)
-    {
-        $pedido = Pedido::with([
-            'detallesLotes',
-            'detallesReparaciones',
-            'detallesConfecciones'
-        ])->findOrFail($id);
+{
+    $pedido = Pedido::with([
+        'detallesLotes',
+        'detallesReparaciones',
+        'detallesConfecciones'
+    ])->findOrFail($id);
 
-        return view('pedidos.show', compact('pedido'));
+    // Guardar la URL previa en la sesión (solo si no está ya configurada)
+    if (!session()->has('backUrl')) {
+        session(['backUrl' => url()->previous()]);
     }
+
+    return view('pedidos.show', compact('pedido'));
+}
+
 
     
     
@@ -164,5 +170,19 @@ class PedidoController extends Controller
 
     return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
+public function cambiarEstado($id)
+{
+    $pedido = Pedido::findOrFail($id);
+
+    // Cambiar el estado
+    $nuevoEstado = $pedido->estado === 'Pendiente' ? 'Completado' : 'Pendiente';
+    $pedido->estado = $nuevoEstado;
+    $pedido->save();
+
+    // Redirigir a la URL previa desde la sesión o a una ruta predeterminada
+    return redirect(session()->pull('backUrl', route('pedidos.index')))
+        ->with('success', 'Estado del pedido actualizado a: ' . $nuevoEstado);
+}
+
 
 }

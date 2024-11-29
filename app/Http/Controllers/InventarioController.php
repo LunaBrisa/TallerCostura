@@ -10,13 +10,19 @@ class InventarioController extends Controller
 {
     public function index(Request $request)
     {
-        $insumosMenosStock = Insumo::orderBy('cantidad_stock', 'asc')
-    ->limit(3)
-    ->get();
+        $insumosMenosStock = Insumo::select('insumo as Insumo', 'cantidad_stock as Cantidad_en_Stock', 'precio_unitario as Precio_Unitario')
+        ->where('cantidad_stock', function ($query) {
+            $query->selectRaw('MIN(cantidad_stock)')
+                  ->from('insumos');
+        })
+        ->limit(3)
+        ->get();
 
-    $insumosMasUtilizados = DB::table('DETALLE_INSUMO')
+        $insumosMasUtilizados = DB::table('DETALLE_INSUMO')
         ->join('INSUMOS', 'DETALLE_INSUMO.insumo_id', '=', 'INSUMOS.id')
         ->select('INSUMOS.insumo', DB::raw('SUM(DETALLE_INSUMO.cantidad_insumo) as total_usado'))
+        ->whereMonth('DETALLE_INSUMO.created_at', now()->month) // Mes actual
+        ->whereYear('DETALLE_INSUMO.created_at', now()->year)   // Año actual
         ->groupBy('INSUMOS.insumo')
         ->orderBy('total_usado', 'desc')
         ->limit(3)
