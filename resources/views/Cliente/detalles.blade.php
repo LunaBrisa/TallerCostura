@@ -9,59 +9,57 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Detalles del Pedido #{{ $pedido->id }}</h2>
-        <table class="table tabla-detalles">
-            <tr>
-                <th>Empleado</th>
-                <td>{{ $pedido->empleado->persona->nombre }} {{ $pedido->empleado->persona->apellido_p }}</td>
-            </tr>
-            <tr>
-                <th>Estado</th>
-                <td>{{ $pedido->estado }}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>${{ number_format($pedido->total, 2) }}</td>
-            </tr>
-        </table>
+        <div class="detalle-pedido">
+            <h2>Detalles del Pedido #{{ $pedido->id }}</h2>
+            <div class="detalle-info">
+                <div class="detalle-item">
+                    <span class="detalle-label">Empleado:</span>
+                    <span class="detalle-value">{{ $pedido->empleado->persona->nombre }} {{ $pedido->empleado->persona->apellido_p }}</span>
+                </div>
+                <div class="detalle-item">
+                    <span class="detalle-label">Estado:</span>
+                    <span class="detalle-value">{{ $pedido->estado }}</span>
+                </div>
+                <div class="detalle-item">
+                    <span class="detalle-label">Total:</span>
+                    <span class="detalle-value">${{ number_format($pedido->total, 2) }}</span>
+                </div>
+            </div>
+        </div>
 
-        <h4>Confecciones</h4>
-        <table class="table tabla-detalles">
-            <thead>
-                <tr>
-                    <th>Prenda</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="seccion-detalles">
+            <h4>Confecciones</h4>
+            <div class="tabla-flex">
+                <div class="tabla-header">
+                    <span class="tabla-col">Prenda</span>
+                    <span class="tabla-col">Descripción</span>
+                </div>
                 @foreach($pedido->detallesConfecciones as $detalle)
-                <tr>
-                    <td>{{ $detalle->prendaConfeccion->nombre_prenda }}</td>
-                    <td>{{ $detalle->prendaConfeccion->descripcion }}</td>
-                </tr>
+                <div class="tabla-row">
+                    <span class="tabla-col">{{ $detalle->prendaConfeccion->nombre_prenda }}</span>
+                    <span class="tabla-col">{{ $detalle->prendaConfeccion->descripcion }}</span>
+                </div>
                 @endforeach
-            </tbody>
-        </table>
+            </div>
+        </div>
 
-        <h4>Reparaciones</h4>
-        <table class="table tabla-detalles">
-            <thead>
-                <tr>
-                    <th>Prenda</th>
-                    <th>Descripción del Problema</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="seccion-detalles">
+            <h4>Reparaciones</h4>
+            <div class="tabla-flex">
+                <div class="tabla-header">
+                    <span class="tabla-col">Prenda</span>
+                    <span class="tabla-col">Descripción del Problema</span>
+                </div>
                 @foreach($pedido->detallesReparaciones as $detalle)
-                <tr>
-                    <td>{{ $detalle->prenda }}</td>
-                    <td>{{ $detalle->descripcion_problema }}</td>
-                </tr>
+                <div class="tabla-row">
+                    <span class="tabla-col">{{ $detalle->prenda }}</span>
+                    <span class="tabla-col">{{ $detalle->descripcion_problema }}</span>
+                </div>
                 @endforeach
-            </tbody>
-        </table>
+            </div>
+        </div>
 
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mt-4">Volver</a>
+        <a href="{{ url()->previous() }}" class="btn btn-volver mt-4">Volver</a>
     </div>
 </body>
 </html>
