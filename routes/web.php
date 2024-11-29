@@ -123,6 +123,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
     Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
+    Route::get('/empleados/{id}', [EmpleadosController::class, 'show'])->name('empleados.show');
   
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {

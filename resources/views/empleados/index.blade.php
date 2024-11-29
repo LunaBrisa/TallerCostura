@@ -169,6 +169,8 @@ input.form-control:focus {
                     <td>{{ $empleado->persona->user->roles->first()->nombre_rol }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
+                        
+                        <a href="{{ route('empleados.show', $empleado->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver</a>               
                     </td>
                     
                 </tr>
