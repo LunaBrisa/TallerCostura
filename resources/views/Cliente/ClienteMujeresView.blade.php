@@ -10,6 +10,7 @@
 <body>
     @extends('layouts.nav')
     @section('content')
+    <div class="d-flex flex-column min-vh-100">
     <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/Cliente/PcatalogoView">Catálogo</a>
@@ -20,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/Cliente/ClienteHombresView">Hombres</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Cliente/ClienteHombresView">Infantiles</a>
+        </li>
       </ul>
 
       <div class="container mt-4">
@@ -27,12 +31,10 @@
             <div class="col-md-2">
                 <div class="sidebar">
                     <h5 class="px-3">Categoría</h5>
-                    <a href="#">Blusas</a>
-                    <a href="#">Faldas</a>
-                    <a href="#">Pantalones</a>
-                    <a href="#">Short</a>
-                    <a href="#">Sudaderas</a>
-
+                    @foreach ($tiposPrenda as $tipo)
+                        <a href="{{ route('Cliente.ClienteMujeresView', ['tipo_prenda' => $tipo->tipo_prenda]) }}">{{ $tipo->tipo_prenda }}</a>
+                    @endforeach
+        
                 </div>
             </div>
             <div class="col-md-10">
@@ -56,6 +58,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
   @endsection
 <script 

@@ -105,6 +105,12 @@
     }
     </style>
 <div class="container">
+    @if (session('success'))
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
+@endif
+
     <div class="row mb-4">
         <div class="col-md-12">
             <h3>Información del Pedido</h3>
@@ -116,6 +122,10 @@
                 <li class="list-group-item"><strong>Estado:</strong> {{ $pedido->estado }}</li>
                 <li class="list-group-item"><strong>Total:</strong> {{ number_format($pedido->total, 2) }} {{ $pedido->moneda ?? 'MXN' }}</li>
             </ul>
+            <form action="{{ route('pedidos.cambiarEstado', $pedido->id) }}" method="POST" class="mt-3">
+                @csrf
+                <button type="submit" class="btn btn-secondary">Cambiar Estado</button>
+            </form>
         </div>
     </div>
 
@@ -206,7 +216,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Volver</a>
+            <a href="{{ session('backUrl', route('pedidos.index')) }}" class="btn btn-secondary">Volver</a>
         </div>
     </div>
     

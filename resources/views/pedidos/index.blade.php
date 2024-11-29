@@ -392,30 +392,23 @@ body {
 <script>
     // Función para añadir una nueva fila en una tabla específica
     function addRow(tableId) {
-        const table = document.getElementById(tableId);
-        const newRow = table.rows[1].cloneNode(true); // Clonamos la segunda fila (la primera es el encabezado)
+    const table = document.getElementById(tableId);
+    const newRow = table.rows[1].cloneNode(true); // Clona la segunda fila (primera fila de datos)
+    const rowIndex = table.rows.length - 1; // Índice de la nueva fila basado en el número total de filas
 
-        // Obtiene el índice de la nueva fila
-        const rowCount = table.rows.length;
+    // Actualiza los nombres de los inputs para reflejar el nuevo índice
+    newRow.querySelectorAll('input').forEach(input => {
+        if (input.name) {
+            input.name = input.name.replace(/\[\d+\]/, `[${rowIndex}]`); // Sustituye el índice con el nuevo
+        }
+        input.value = ''; // Limpia los valores de los inputs
+    });
 
-        // Actualiza los índices en los inputs para que sean únicos en el array del backend
-        newRow.querySelectorAll('input').forEach(input => {
-            // Encontrar el índice actual en el nombre del input y actualizarlo
-            const name = input.name;
-            const matches = name.match(/\[(\d+)\]/); // Busca el índice actual (por ejemplo, [0], [1])
-            if (matches) {
-                const index = parseInt(matches[1]);
-                const newIndex = rowCount - 2; // El nuevo índice será la cantidad de filas menos 1, porque el encabezado cuenta
-                input.name = name.replace(`[${index}]`, `[${newIndex}]`);
-            }
-        });
+    // Agrega la nueva fila al tbody
+    table.querySelector('tbody').appendChild(newRow);
+}
 
-        // Limpiar los valores de los inputs
-        newRow.querySelectorAll('input').forEach(input => input.value = '');
 
-        // Añadir la nueva fila al final de la tabla
-        table.appendChild(newRow);
-    }
 
     // Función para eliminar una fila específica
     function removeRow(button, tableId) {

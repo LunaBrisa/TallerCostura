@@ -78,20 +78,27 @@ class PedidoController extends Controller
     }
 
     public function show($id)
-    {
-        $pedido = Pedido::with([
-            'detallesLotes',
-            'detallesReparaciones',
-            'detallesConfecciones'
-        ])->findOrFail($id);
+{
+    $pedido = Pedido::with([
+        'detallesLotes',
+        'detallesReparaciones',
+        'detallesConfecciones'
+    ])->findOrFail($id);
 
-        return view('pedidos.show', compact('pedido'));
+    // Guardar la URL previa en la sesión (solo si no está ya configurada)
+    if (!session()->has('backUrl')) {
+        session(['backUrl' => url()->previous()]);
     }
+
+    return view('pedidos.show', compact('pedido'));
+}
+
+
     
     
     
     public function store(Request $request)
-    {
+{
     $request->validate([
         'cliente' => 'required|exists:clientes,id',
         'empleado' => 'required|exists:empleados,id',
@@ -122,6 +129,7 @@ class PedidoController extends Controller
     // Verificación para agregar detalles_lote solo si no están vacíos
     if ($request->filled('detalles_lote')) {
         foreach ($request->detalles_lote as $detalle) {
+            logger($detalle); 
             if (!empty($detalle['prenda']) && !empty($detalle['precio_por_prenda']) && !empty($detalle['cantidad']) && !empty($detalle['anticipo'])) {
                 $pedido->detallesLotes()->create([
                     'prenda' => $detalle['prenda'],
@@ -132,6 +140,7 @@ class PedidoController extends Controller
             }
         }
     }
+    
 
     // Verificación para agregar detallesReparaciones solo si no están vacíos
     if ($request->filled('reparacion_prendas')) {
@@ -161,5 +170,19 @@ class PedidoController extends Controller
 
     return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
+public function cambiarEstado($id)
+{
+    $pedido = Pedido::findOrFail($id);
+
+    // Cambiar el estado
+    $nuevoEstado = $pedido->estado === 'Pendiente' ? 'Completado' : 'Pendiente';
+    $pedido->estado = $nuevoEstado;
+    $pedido->save();
+
+    // Redirigir a la URL previa desde la sesión o a una ruta predeterminada
+    return redirect(session()->pull('backUrl', route('pedidos.index')))
+        ->with('success', 'Estado del pedido actualizado a: ' . $nuevoEstado);
+}
+
 
 }
