@@ -139,7 +139,7 @@
                         <h5 class="card-title">Insumos con menos stock</h5>
                         <ul>
                             @foreach ($insumosMenosStock as $insumo)
-                                <li>{{ $insumo->insumo }} - Stock: {{ $insumo->cantidad_stock }}</li>
+                                <li>{{ $insumo->Insumo }} - Stock: {{ $insumo->Cantidad_en_Stock }}</li>
                             @endforeach
                         </ul>
                     </div>
