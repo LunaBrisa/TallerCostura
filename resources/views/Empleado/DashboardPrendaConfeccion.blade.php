@@ -108,7 +108,7 @@
 
 <div class="row">
   <div class="col">
-    @if ($errors->any())
+    @if ($errors->any())                         
         @foreach ($errors->all() as $error)
         <div class="alert alert-danger">
             {{ $error }}
@@ -154,10 +154,7 @@
             <p class="card-text p-card">{{$prenda -> descripcion}}</p>
             <!-- Button trigger modal -->
             <div class="btn-div2">
-              <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
-                Ver Mas
-              </button>
-    
+              <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}"> Ver Mas </button>
               <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
             </div>
     

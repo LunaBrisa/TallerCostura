@@ -1,10 +1,10 @@
-
-h1.Titulo1{
+/* Estilos generales para los títulos */
+h1.Titulo1 {
     color: #E57D90;
     font-size: 50px;
 }
 
-h1.Titulo2{
+h1.Titulo2 {
     color: #E57D90;
     font-style: italic;
     font-size: 35px;
@@ -12,350 +12,72 @@ h1.Titulo2{
 }
 
 @media (max-width: 576px) {
-    h1.Titulo2{
-        color: #E57D90;
-        font-style: italic;
+    h1.Titulo2 {
         font-size: 30px;
         padding-top: 5px;
     }
 }
 
-.row{
-    text-align: center;
-}
-
-.container2{
-    width: 60%;
-    min-height: 100vh;
-    margin: auto;
-    text-align: center;
-
-}
-
-.cuadradito{
-    height: 30vh;
-    width: 100%;
-    background-color: #FFCDD4;
-    margin: auto;
-    border-radius: 20%;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.cuadradito-solo{
-    height: 30vh;
-    width: 50%;
-    background-color: #FFCDD4;
-    margin: auto;
-    border-radius: 20%;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.btn-div{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 90%;
-}
-
-.btn-div2{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    width: 90%;
-    padding: 0%;
-}
-
-.btn-gest{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 250px;
-    padding-top: 20px;
+/* Estilo de los botones generales */
+.btn-gest, 
+.btn-agregprenda, 
+.btn-modal-sub, 
+.btn-elim, 
+.btn-intemodal {
+    width: 80%; /* Ajuste fluido del ancho */
+    max-width: 300px; /* Limita el ancho máximo */
+    height: auto; /* Altura ajustable */
+    padding: 10px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de texto adaptable */
     background-color: #F6B2DB;
-    border: solid 2px;
-    border-color: #BE5A8C ;
+    border: solid 2px #BE5A8C;
+    color: #8A226F;
     text-align: center;
-    padding: 0%;
+    margin: 10px auto; /* Centra los botones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn-gest:hover{
+.btn-gest:hover, 
+.btn-agregprenda:hover, 
+.btn-modal-sub:hover, 
+.btn-elim:hover, 
+.btn-intemodal:hover {
     background-color: #BE5A8C;
-    border-color: #F6B2DB;
-    color:#F6B2DB;
+    color: #F6B2DB;
 }
 
-.p-btn {
-    margin: 0;
-    font-style: italic;
-    font-size: 25px;
-    text-align: center;
+/* Media queries para adaptabilidad en pantallas pequeñas */
+@media (max-width: 768px) {
+    .btn-gest, 
+    .btn-agregprenda, 
+    .btn-modal-sub, 
+    .btn-elim, 
+    .btn-intemodal {
+        width: 90%; /* Botones más anchos */
+        font-size: 0.9rem; /* Texto más pequeño */
+    }
 }
 
 @media (max-width: 576px) {
-    .p-btn {
-        margin: 0;
-        font-style: italic;
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .btn-gest{
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        width: 250px;
-        padding-top: 20px;
-        background-color: #F6B2DB;
-        border: solid 2px;
-        border-color: #BE5A8C ;
-        text-align: center;
-        padding: 0%;
+    .btn-gest, 
+    .btn-agregprenda, 
+    .btn-modal-sub, 
+    .btn-elim, 
+    .btn-intemodal {
+        width: 100%; /* Ocupan todo el ancho disponible */
+        font-size: 0.8rem; /* Texto aún más pequeño */
+        padding: 8px; /* Menos espaciado interno */
     }
 }
 
-.p-btn-agg {
-    margin: 0;
-    font-style: italic;
-    font-size: 18px;
-    text-align: center;
-}
-
-.btn-agregprenda {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 40px;
-    width: 280px;
-    background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0;
-}
-
-.btn-agregprenda:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
-}
- 
+/* Estilo de enlaces */
 a {
     color: black;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
-a:visited {
-    color:unset; 
-}
-
-a:hover,
-a:active {
-    color: black; 
-}
-
-.modal-header,.modal-footer{
-    background-color: #F99AAA;
-}
-
-.modal-body{
-    background-color: #FFCDD4;
-}
-
-h1.Titulomodal{
-    color: #FFE0E6;
-    font-style: italic;
-}
-
-.h3-modal{
+a:hover {
     color: #BE5A8C;
 }
-
-.btn-modal-sub {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 40px;
-    width: 280px;
-    background-color: #BE5A8C;
-    border: solid 2px;
-    border-color: #F99AAA;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
-}
-
-.btn-modal-sub:hover{
-    background-color: #F99AAA;
-    color: #b9437e;
-}
-
-.card-reg{
-    background-color: #E4BCD4;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.card-title{
-    color: #8A226F;
-}
-
-.btn-intemodal {
-    margin: 0 4px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 40px;
-    width: 100px !important;
-    background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
-}
-
-.btn-intemodal:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
-}
-
-.btn-elim {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 40px;
-    width: 150px;
-    background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
-}
-
-.btn-elim:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
-}
-
-.list-title{
-    color: #BE5A8C;
-    font-weight: 700;
-    font-size: 25px;
-    text-align: center;
-}
-
-.cardsing{
-    background-color:#ffe2f3;
-    border: none;
-}
-
-.card-det{
-    color: #BE5A8C;
-    font-weight: 500;
-    font-size: 18px;
-}
-
-.radio-text{
-    font-size: 20px;
-    color: #BE5A8C;
-}
-
-.p-card{
-    color: #BE5A8C;
-    height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
-}
-
-.img-div {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 25px;
-    border: solid 2px;
-    border-color:#8A226F ;
-    margin-top: auto;
-}
-
-.img-div img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-}
-
-.card{
-    padding: 10px;
-}
-.card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 10%;
-}
-
-.containerModif{
-    margin: auto;
-    width: 70vw;
-    background-color: #FFCDD4;
-    padding-top: 25px;
-    border: solid 2px;
-    border-color: #8A226F;  
-    border-radius: 40px;
-}
-
-.h1-modif{
-    color:#8A226F;
-    font-size: 35px;
-}   
-
-.conteform{
-    margin: auto;
-    width: 80%;
-    background-color: #FFCDD4;  
-    padding-top: 25px;
-}
-
-.advert{
-    color: #BE5A8C;
-    font-size: 20px;
-    text-align: center;
-    font-style: italic;
-    font-weight: bold;
-}
-
-
-.nav-pills .nav-link.active {
-  background-color: #8A226F;
-  color: #F6B2DB;           
-}
-.nav-pills .nav-link {
-  background-color: #f8f9fa; 
-  color: #8A226F;            
-}
-.nav-pills .nav-link:hover {
-  background-color: #bc2e96; 
-  color: #F99AAA;
-}
-
-
-
