@@ -11,7 +11,7 @@
 <body>
 @extends('layouts.nav')
 @section('content')
-<div class="container2">
+<div class="container2" >
   <div class="row" style="padding-top: 20px;">
     <div class="col">
         <h1 class="Titulo1">Gestion de Prendas</h1>

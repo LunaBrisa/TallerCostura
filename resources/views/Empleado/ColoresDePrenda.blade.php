@@ -13,7 +13,7 @@
 @extends('layouts.nav')
 @section('content')
 
-<div class="container2">
+<div class="container2" style="height: 100vh;">
     <div class="row">
       <div class="col">
         <h1 class="Titulo1">Colores de la Prenda</h1>

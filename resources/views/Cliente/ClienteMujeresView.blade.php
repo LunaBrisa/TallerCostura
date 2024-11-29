@@ -10,6 +10,7 @@
 <body>
     @extends('layouts.nav')
     @section('content')
+    <div class="d-flex flex-column min-vh-100">
     <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/Cliente/PcatalogoView">Catálogo</a>
@@ -57,6 +58,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
   @endsection
 <script 
