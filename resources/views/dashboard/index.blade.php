@@ -39,7 +39,7 @@
         }
 
         .card-title {
-            color:  #FFCDD4; /* Rosa oscuro */
+            color:  #d6336c; /* Rosa oscuro */
             font-weight: bold;
         }
 
