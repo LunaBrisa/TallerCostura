@@ -120,7 +120,6 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
-    Route::get('/pedidos/{id}', [PedidoController::class, 'detalles'])->name('pedidos.detalles');
 
     
     // Ruta para la vista de Gestión de Clientes
