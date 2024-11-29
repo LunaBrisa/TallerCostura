@@ -44,7 +44,7 @@
         }
 
         .btn-primary {
-            background-color:  #FFCDD4; /* Rosa oscuro */
+            background-color:  #BE5A8C; /* Rosa oscuro */
             border: none;
             border-radius: 12px;
             padding: 10px 20px;
