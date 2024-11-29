@@ -106,6 +106,30 @@
     </div>
 </div>
 
+<div class="row">
+  <div class="col">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+        @endforeach
+    @endif
+      
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('successmodif'))
+        <div class="alert alert-success" role="alert">
+            {{ session('successmodif') }}
+        </div>
+    @endif
+  </div>
+</div>
+
   <div class="row" style="padding-top: 25px;">
     <ul class="nav nav-pills nav-fill mb-2" id="myTab" role="tablist">
       <li class="nav-item">

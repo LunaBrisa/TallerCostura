@@ -78,7 +78,7 @@ class PrendaConfeccionController extends Controller
             $savePrendaConfeccionRequest -> cantidadsitadetela,
         ]);
 
-        return redirect('/gestion/prenda-confeccion');
+        return redirect('/gestion/prenda-confeccion')->with('success', '¡Se agregó la prenda correctamente!');
     }
 
     public function vistaPrendasConfeccion($id){
