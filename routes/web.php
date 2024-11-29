@@ -29,6 +29,8 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Auth\VerifiedEmailController;
+
 // Página para pedir verificación
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
