@@ -262,7 +262,7 @@
                   Ver Mas
                 </button>
       
-                <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
+                <a href="/mostrar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Mostrar</button></a>
               </div>
       
               <!-- Modal -->
