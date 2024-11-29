@@ -18,7 +18,7 @@
             left: 0;
             width: 100%;
             height: 50px;
-            background-color: #eac1c1; /* Rosa pastel */
+            background-color: #BE5A8C; /* Rosa pastel */
             color: white;
             text-align: center;
             font-size: 18px;
@@ -52,12 +52,12 @@
         }
 
         .btn-primary:hover {
-            background-color:  #FFCDD4; /* Rosa más intenso */
+            background-color:  #BE5A8C; /* Rosa más intenso */
             color: white;
         }
 
         h1 {
-            color:  #FFCDD4; /* Rosa oscuro */
+            color:  #BE5A8C; /* Rosa oscuro */
             font-weight: bold;
         }
 
