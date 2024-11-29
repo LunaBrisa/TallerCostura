@@ -18,6 +18,16 @@
       <h1 class="Titulo1">Modificacion de Prenda</h1>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+          {{ $error }}
+        </div>
+      @endforeach
+    </div>
+  </div>
 </div><br>
 
 <div class="containerModif">
