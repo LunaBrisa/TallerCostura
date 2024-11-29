@@ -94,12 +94,7 @@ public function update(Request $request, $id)
         'apellido_p' => 'required|string|max:100',
         'apellido_m' => 'required|string|max:100',
         'telefono' => 'required|string|max:10',
-        'correo' => 'required|email|max:100',
-        'fecha_nacimiento' => 'required|date',
-        'rfc' => 'required|string|max:20',
-        'nss' => 'required|string|max:20',
-        'name' => 'required|string|max:100',
-        'password' => 'nullable|string|min:6',
+        'email' => 'required|email|max:100',
         'rol_id' => 'required|exists:roles,id', 
     ]);
 
@@ -112,16 +107,9 @@ public function update(Request $request, $id)
         'telefono' => $request->telefono,
     ]);
 
-    $empleado->update([
-        'fecha_nacimiento' => $request->fecha_nacimiento,
-        'rfc' => $request->rfc,
-        'nss' => $request->nss,
-    ]);
-
-    $usuario = $empleado->persona->usuario;
+    $usuario = $empleado->persona->user;
     $usuario->update([
-        'name' => $request->name,
-        'password' => $request->filled('password') ? Hash::make($request->password) : $usuario->password,
+        'email' => $request->email,
     ]);
 
     $usuario->roles()->sync([$request->rol_id]);
