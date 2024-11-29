@@ -14,7 +14,7 @@
 <div class="container2">
     <div class="row" style="padding-top: 20px;">
         <div class="col">
-            <h1 class="Titulo1 shadow-sm">Gestion de Telas</h1>
+            <h1 class="Titulo1">Gestion de Telas</h1>
         </div>
 
         <div class="col" style="padding-top: 14px;">
