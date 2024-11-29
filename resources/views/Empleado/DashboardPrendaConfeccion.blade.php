@@ -158,12 +158,13 @@
             <p class="card-text p-card">{{$prenda -> descripcion}}</p>
             <!-- Button trigger modal -->
             <div class="btn-div2">
-              <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
-                Ver Mas
+              <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}">
+                Ver Más
               </button>
-    
-              <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
-            </div>
+              <a href="/mostrar/prenda/{{$prenda -> id}}">
+                <button class="btn btn-intemodal">Mostrar</button>
+              </a>
+            </div>            
           </div>
         </div>
         @endforeach    
@@ -455,6 +456,20 @@
     max-width: 200px;
   }
 } */
+
+.btn-div2 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Permite que los botones se ajusten en pantallas pequeñas */
+  gap: 10px;
+  padding: 10px;
+}
+
+.btn-div2 button,
+.btn-div2 a {
+  flex: 1 1 auto; /* Ajusta el tamaño de los botones automáticamente */
+  max-width: 150px; /* Establece un tamaño máximo para evitar estiramiento excesivo */
+}
 
 
 </style>
