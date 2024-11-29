@@ -356,3 +356,44 @@ h1.Titulomodal{
   background-color: #bc2e96; 
   color: #F99AAA;
 }
+
+
+
+/*Estilo de la vista de detalles*/
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+h2, h4 {
+    color: #F99AAA;
+}
+
+.tabla-detalles {
+    margin-top: 20px;
+    border: 1px solid #F99AAA;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tabla-detalles th {
+    background-color: #F99AAA;
+    color: #fff;
+}
+
+.tabla-detalles td {
+    border: 1px solid #F99AAA;
+    background-color: #fff;
+}
+
+.btn-secondary {
+    background-color: #F99AAA;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #e68b94;
+}
