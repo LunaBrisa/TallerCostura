@@ -37,15 +37,18 @@ class EmpleadosController extends Controller
         return view('empleados.index', compact('empleados', 'pedidosPorEmpleado', 'empleados2', 'roles'));
     }
     public function store(Request $request){
+
     $request->validate([
         'nombre' => 'required|string|min:3|max:100',
         'apellido_p' => 'required|min:3|string|max:60',
         'apellido_m' => 'nullable|min:3|string|max:60',
         'telefono' => 'required|string|max:10',
-        'email' => 'required|email|exists:users,email|unique:users',
         'fecha_nacimiento' => 'required|date',
         'rfc' => 'required|string|max:20',
         'nss' => 'required|string|max:20',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8|confirmed',
     ],);
 
     $user = User::create([
@@ -55,8 +58,7 @@ class EmpleadosController extends Controller
     ]);
 
     $user->sendEmailVerificationNotification();
-    
-    // Obtener el ID del usuario recién creado
+
     $user_id = $user->id;
 
     $nombre = $request->input('nombre');
@@ -84,6 +86,7 @@ class EmpleadosController extends Controller
         return redirect()->back()->with('error', 'Error al crear el empleado: ' . $e->getMessage());
     }
 }
+
 public function update(Request $request, $id)
 {
     $request->validate([
@@ -95,8 +98,8 @@ public function update(Request $request, $id)
         'fecha_nacimiento' => 'required|date',
         'rfc' => 'required|string|max:20',
         'nss' => 'required|string|max:20',
-        'nombre_usuario' => 'required|string|max:100',
-        'contrasena' => 'nullable|string|min:6',
+        'name' => 'required|string|max:100',
+        'password' => 'nullable|string|min:6',
         'rol_id' => 'required|exists:roles,id', 
     ]);
 
@@ -107,7 +110,6 @@ public function update(Request $request, $id)
         'apellido_p' => $request->apellido_p,
         'apellido_m' => $request->apellido_m,
         'telefono' => $request->telefono,
-        'correo' => $request->correo,
     ]);
 
     $empleado->update([
@@ -118,8 +120,8 @@ public function update(Request $request, $id)
 
     $usuario = $empleado->persona->usuario;
     $usuario->update([
-        'nombre_usuario' => $request->nombre_usuario,
-        'contrasena' => $request->filled('contrasena') ? Hash::make($request->contrasena) : $usuario->contrasena,
+        'name' => $request->name,
+        'password' => $request->filled('password') ? Hash::make($request->password) : $usuario->password,
     ]);
 
     $usuario->roles()->sync([$request->rol_id]);
