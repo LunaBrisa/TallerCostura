@@ -11,6 +11,6 @@ class TipoPrenda extends Model
 
     public function prendasConfeccion()
     {
-        return $this->hasMany(PrendaConfeccion::class);
+        return $this->hasMany(PrendaConfeccion::class, 'tp_id');
     }
 }

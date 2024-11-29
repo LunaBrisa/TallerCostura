@@ -21,6 +21,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/Cliente/ClienteHombresView">Hombres</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Cliente/ClienteHombresView">Infantiles</a>
+        </li>
       </ul>
 
       <div class="container mt-4">
@@ -28,10 +31,9 @@
             <div class="col-md-2">
                 <div class="sidebar">
                     <h5 class="px-3">Categoría</h5>
-                    <a href="#">Playeras</a>
-                    <a href="#">Sudadeas</a>
-                    <a href="#">Pantalones</a>
-                    <a href="#">Chamarras</a>
+                    @foreach ($tiposPrenda as $tipo)
+                    <a href="{{ route('Cliente.ClienteHombresView', ['tipo_prenda' => $tipo->tipo_prenda]) }}">{{ $tipo->tipo_prenda }}</a>
+                   @endforeach
                 </div>
             </div>
             <div class="col-md-10">

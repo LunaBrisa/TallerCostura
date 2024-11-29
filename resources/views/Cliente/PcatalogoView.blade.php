@@ -20,6 +20,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/Cliente/ClienteHombresView">Hombres</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Cliente/ClienteHombresView">Infantiles</a>
+        </li>
         
       </ul>
 
