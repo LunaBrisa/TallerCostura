@@ -128,6 +128,11 @@ public function update(Request $request, $id)
 
     return redirect()->route('empleados.index')->with('success', 'Empleado actualizado correctamente.');
 }
-
+public function show($id)
+{
+    $empleado = Empleado::with(['persona', 'persona.user', 'pedidos'])->findOrFail($id);
+    
+    return view('empleados.show', compact('empleado'));
+}
 }
 
