@@ -203,8 +203,8 @@ input.form-control:focus {
                                         <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $empleado->persona->telefono }}" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="correo" class="form-label">Correo</label>
-                                        <input type="email" class="form-control" id="correo" name="correo" value="{{ $empleado->persona->user->email }}" required>
+                                        <label for="email" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ $empleado->persona->user->email }}" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="rol" class="form-label">Rol</label>
