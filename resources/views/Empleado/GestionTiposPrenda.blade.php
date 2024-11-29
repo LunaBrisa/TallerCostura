@@ -13,7 +13,7 @@
 <div class="container2">
     <div class="row" style="padding-top: 20px;">
         <div class="col">
-            <h1 class="Titulo1">Gestion de Tipos de Prenda</h1>
+            <h1 class="Titulo1 shadow-sm">Gestion de Tipos de Prenda</h1>
         </div>
 
         <div class="col" style="padding-top: 43px;">
@@ -51,8 +51,28 @@
     </div><br>
 
     <div class="row">
-        
-    </div><br>
+      <div class="col">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+            @endforeach
+        @endif
+          
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('successmodif'))
+            <div class="alert alert-success" role="alert">
+                <p class="p-success">{{ session('successmodif') }}</p>
+            </div>
+        @endif
+      </div>
+  </div>
     
     <div class="row">
       @foreach ($MisTiposPrenda AS $TipoPrendita)
@@ -66,7 +86,7 @@
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="ModalModif{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal" id="ModalModif{{$TipoPrendita->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -93,12 +113,6 @@
         </div>
       </div>
   @endforeach
-    </div>
-
-    <div class="row">
-        <div class="col">
-            
-        </div>
     </div>
 </div>
 @endsection 
