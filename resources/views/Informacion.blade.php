@@ -51,7 +51,6 @@
                 <table class="table table-white table-hover">
                     @foreach($datos as $dato)
                      @if(auth()->check()) 
-                     @if(auth()->user()->hasRole('Admin') or auth()->user()->hasRole('Cliente') or auth()->user()->hasRole('Empleado'))
                         <tr>
                             <td><strong>Nombre de Usuario:</strong></td>
                             <td>{{ $dato->NombreUsuario }}</td>
@@ -72,7 +71,7 @@
                             <td>{{ $dato->Telefono }}</td>
                             <td><a href=""><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
                         </tr>
-                            @elseif(auth()->user()->hasRole('Cliente'))
+                            @if(auth()->user()->hasRole('Cliente'))
                          <tr>
                             <td><strong>Compañía:</strong></td>
                             <td>{{ $dato->Compañia ?? 'N/A' }}</td>
