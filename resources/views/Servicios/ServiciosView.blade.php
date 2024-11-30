@@ -137,6 +137,15 @@
             </div>
         </div>
     </nav>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ingresos Generados</h5>
+                <p>Total: ${{ number_format($estadisticas['totalIngresos'], 2) }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
         </div>
       </nav><br>

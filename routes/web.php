@@ -77,7 +77,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 //RUTAS PARA TIPOS DE PRENDA
     Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
     Route::post('agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
-    Route::post('/modif/tipo-prenda', [ControladorTipoPrenda::class, 'modifTipoPrenda']);
+
 
 //RUTAS PARA TELAS
     Route::get('/gestion/tela', [TelaController::class, 'getTelas']);   
@@ -120,7 +120,6 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
-
     
     // Ruta para la vista de Gestión de Clientes
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');

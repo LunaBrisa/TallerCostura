@@ -170,7 +170,6 @@ input.form-control:focus {
                     <td>
                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarEmpleadoModal{{ $empleado->id }}">Editar</button>
                     </td>
-                    
                 </tr>
                 <!-- Modal para Editar Empleado -->
                 <div class="modal fade" id="editarEmpleadoModal{{ $empleado->id }}" tabindex="-1" aria-labelledby="editarEmpleadoLabel" aria-hidden="true">
