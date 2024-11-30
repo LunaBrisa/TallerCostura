@@ -116,13 +116,31 @@
       
     @if (session('success'))
         <div class="alert alert-success" role="alert">
-            {{ session('success') }}
+            {{ session('success') }}                     <!-- AL REGISTRAR UNA PRENDA -->
         </div>
     @endif
 
     @if (session('successmodif'))
         <div class="alert alert-success" role="alert">
-            {{ session('successmodif') }}
+            {{ session('successmodif') }}                <!-- AL MODIFICAR UNA PRENDA -->
+        </div>
+    @endif
+
+    @if (session('successPrendaTela'))
+        <div class="alert alert-success" role="alert">
+            {{ session('successPrendaTela') }}           <!-- AL AGREGAR UNA TELA A UNA PRENDA -->
+        </div>
+    @endif
+
+    @if (session('successCantidadTela'))
+        <div class="alert alert-success" role="alert">
+            {{ session('successCantidadTela') }}         <!-- AL MODIFICAR LA CANTIDAD DE TELA DE LA PRENDA -->
+        </div>
+    @endif
+
+    @if (session('successEliminarTela'))
+        <div class="alert alert-success" role="alert">
+            {{ session('successEliminarTela') }}         <!-- AL ELIMINAR UNA TELA DE LA PRENDA -->
         </div>
     @endif
   </div>
