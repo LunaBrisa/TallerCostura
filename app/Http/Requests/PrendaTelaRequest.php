@@ -26,4 +26,14 @@ class PrendaTelaRequest extends FormRequest
             'cantidadtelitaprenda' => ['required', 'numeric']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'telitaprendita.required' => 'Se debe de seleccionar una tela.',
+            'telitaprendita.exists' => 'La tela seleccionada no es valida.',
+            'cantidadtelitaprenda.required' => 'Se debe de ingresar una cantidad de tela.',
+            'cantidadtelitaprenda.numeric' => 'La cantidad debe ser un numero entero',
+        ];
+    }
 }

@@ -24,7 +24,7 @@ class PrendasTelasController extends Controller
         ]);
     }
 
-    public function saveTelaPrenda(PrendaTelaRequest $prendaTelaRequest){
+    public function saveTelaPrenda(PrendaTelaRequest $prendaTelaRequest){ //VALIDADO
         $prendaTela = new PrendaTela();
         $prendaTela -> prenda_confeccion_id = $prendaTelaRequest -> idprenda;
         $prendaTela -> tela_id = $prendaTelaRequest -> telitaprendita;
@@ -32,14 +32,14 @@ class PrendasTelasController extends Controller
 
         $prendaTela -> save();
 
-        return redirect('/gestion/prenda-confeccion');
+        return redirect('/gestion/prenda-confeccion')->with('successPrendaTela', '¡Se agregó la tela a la prenda correctamente!');
     }
 
     public function modifCantidadTelaPrenda(modifCantidadTelaRequest $modifCantidadTelaRequest){
         $prendaTela = PrendaTela::find($modifCantidadTelaRequest->get('idtela'));
         $prendaTela->cantidad_tela = $modifCantidadTelaRequest->get('cantidadsota');
         $prendaTela->save();
-        return redirect('/gestion/prenda-confeccion');
+        return redirect('/gestion/prenda-confeccion')->with('successCantidadTela', '¡Se modificó la cantidad de tela correctamente!');
     }
 
     public function eliminarTelaPrenda($id){
