@@ -30,12 +30,12 @@ class PrendasColoresController extends Controller
         
         $prendaColor -> save();
         
-        return redirect('/gestion/prenda-confeccion');
+        return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
     }
 
     public function eliminarColorPrenda($id){
         $prendaColor = PrendaColor::find($id);
         $prendaColor->delete();
-        return redirect('/gestion/prenda-confeccion');
+        return redirect('/gestion/prenda-confeccion')->with('successEliminarColor', '¡Se eliminó correctamente el color!');
     }
 }

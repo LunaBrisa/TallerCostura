@@ -143,6 +143,18 @@
             {{ session('successEliminarTela') }}         <!-- AL ELIMINAR UNA TELA DE LA PRENDA -->
         </div>
     @endif
+
+    @if (session('successColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successColor') }}         <!-- AL AGREGAR COLOR A UNA PRENDA -->
+      </div>
+    @endif
+
+    @if (session('successEliminarColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successEliminarColor') }}         <!-- AL ELIMINAR COLOR DE UNA PRENDA -->
+      </div>
+    @endif
   </div>
 </div>
 

@@ -46,6 +46,9 @@
                       @endforeach
                     </select><br>
 
+                    <label for="imagencolorsote"><h3 class="h3-modal">Imagen de la Prenda con el Color</h3></label>
+                    <input class="form-control" type="file" name="imagencolorsote"><br>
+
                     <div class="btn-div">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
                     </div>
@@ -58,9 +61,19 @@
       </div>  
     </div>
 
+    <div class="row">
+      <div class="col">
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+      @endforeach
+      </div>
+    </div>
+
     <div class="row" style="padding-top: 25px">
             @foreach ($misPrendasColores as $prendaColor)
-                    <div class="card mb-4 cardsing">
+                    <div class="card mb-4 shadow-md card-hover cardsing">
                         <div class="card-body">
                             <h1 class="list-title">{{$prendaColor->color->color}}</h1> 
                         <!-- Button trigger modal -->
@@ -95,10 +108,41 @@
     </div>
 </div>
 @endsection
+
+@foreach ($misPrendasColores as $prendaColor)
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }} " class="img-cent">
+          <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar este color de la prenda?</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
+          <a href="/elim/color/prenda/{{$prendaColor->id}}" class="btn btn-intemodal">Eliminar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
 <style>
+
+.img-cent { /* Centra la imagen */
+        margin: auto !important;
+        text-align: center !important;
+        display: block;
+
+    }
     .navbar {
          background-color: black;
      }
@@ -114,6 +158,15 @@
      .navbar-toggler-icon {
          filter: invert(1);
      }
+
+     .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+        box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
+    }
 
      .btn-modal-sub {
     margin: 5px auto; /* Centra los botones en todos los tamaños */

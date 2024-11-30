@@ -12,6 +12,7 @@ use App\Models\TipoPrenda;
 use App\Models\Tela;
 use App\Models\Color;
 use App\Http\Requests\SavePrendaConfeccionRequest;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class PrendaConfeccionController extends Controller
@@ -69,7 +70,7 @@ class PrendaConfeccionController extends Controller
         }
 
         if ($modifPrendaRequest -> precioprendota != null){
-            $prendaconfeccion -> precio = $modifPrendaRequest -> precioprendota;
+            $prendaconfeccion -> precio_obra = $modifPrendaRequest -> precioprendota;
         }
 
         if ($modifPrendaRequest -> generote != null){
@@ -87,13 +88,13 @@ class PrendaConfeccionController extends Controller
         $prenditasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> get();
         $colores = Color::all();
         $telas = Tela::all();
+        session()->flash('successmodif', '¡Se modificaron correctamente los datos!');
         return view('Empleado.DashboardPrendaConfeccion') -> with([
             'misPrendas' => $prenditas,
             'misPrendasOcultas' => $prenditasOcultas,
             'misTiposPrendas' => $tiposPrendas,
             'misColores' => $colores,
-            'misTelas' => $telas,
-            'successmodif' => '¡Se modificaron correctamente los datos!'
+            'misTelas' => $telas
         ]);
     }
 
