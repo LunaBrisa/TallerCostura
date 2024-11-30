@@ -15,7 +15,7 @@
             @if($pedidos->isEmpty())
                 <p>No tienes pedidos registrados.</p>
             @else
-                <table class="table table-hover">
+                <table class="tabla-flex">
                     <thead class="table-header">
                         <tr>
                             <th scope="col">#Orden</th>

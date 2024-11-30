@@ -26,4 +26,15 @@ class modifCantidadTelaRequest extends FormRequest
             'cantidadsota' => ['required', 'numeric']
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'idtela.required' => 'Se debe de seleccionar una tela.',
+            'idtela.exists' => 'La tela seleccionada no es valida.',
+            'idtela.numeric' => 'La tela seleccionada no es valida.',
+            'cantidadsota.required' => 'Se debe de ingresar una cantidad de tela.',
+            'cantidadsota.numeric' => 'La cantidad debe ser un numero entero',
+        ];
+    }
 }

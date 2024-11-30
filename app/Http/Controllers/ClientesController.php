@@ -9,6 +9,8 @@ use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+ 
 
 class ClientesController extends Controller
 {
@@ -44,7 +46,7 @@ class ClientesController extends Controller
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|exists:users,email|unique:users',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -75,6 +77,7 @@ class ClientesController extends Controller
                 $compania,
                 $cargo,
             ]);
+            event(new Registered($user));
             return redirect()->route('clientes.index')
                 ->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
         } catch (\Exception $e) {

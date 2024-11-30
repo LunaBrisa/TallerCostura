@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\PrendaConfeccion as prenda;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
+USE App\Models\TipoPrenda;
 
 
 class ClienteCatalogoController extends Controller
@@ -13,13 +14,40 @@ class ClienteCatalogoController extends Controller
     $prenda = prenda::where('visible', true)->get();
     return view('Cliente.PcatalogoView',compact('prenda'));
   }
-  public function MostrarMujeres(){
-    $prenda = prenda::where('genero','=','Mujer',)->where('visible', true)->get();
-    return view('Cliente.ClienteMujeresView',compact('prenda'));
-  }
-  public function MostrarHombres(){
-    $prenda = prenda::where('genero','=','Hombre')->where('visible', true)->get();
-    return view('Cliente.ClienteHombresView',compact('prenda'));
+
+  public function MostrarMujeres(Request $request){
+    $tiposPrenda = TipoPrenda::whereHas('prendasConfeccion', function ($query) {
+      $query->where('genero', 'Mujer');
+        })->get();
+
+    $tipoSeleccionado = $request->input('tipo_prenda'); 
+    $prenda = Prenda::where('genero', 'Mujer')
+        ->where('visible', true)
+        ->when($tipoSeleccionado, function ($query) use ($tipoSeleccionado) {
+            $query->whereHas('tipoPrenda', function ($q) use ($tipoSeleccionado) {
+                $q->where('tipo_prenda', $tipoSeleccionado);
+            });
+        })
+        ->get();
+
+    return view('Cliente.ClienteMujeresView', compact('tiposPrenda', 'prenda', 'tipoSeleccionado'));
+}
+  
+  public function MostrarHombres(Request $request){
+    $tiposPrenda = TipoPrenda::whereHas('prendasConfeccion', function ($query) {
+      $query->where('genero', 'Hombre');
+    })->get();
+
+    $tipoSeleccionado = $request->input('tipo_prenda'); 
+    $prenda = Prenda::where('genero', 'Hombre')
+        ->where('visible', true)
+        ->when($tipoSeleccionado, function ($query) use ($tipoSeleccionado) {
+            $query->whereHas('tipoPrenda', function ($q) use ($tipoSeleccionado) {
+                $q->where('tipo_prenda', $tipoSeleccionado);
+            });
+        })
+        ->get();
+    return view('Cliente.ClienteHombresView',compact('tiposPrenda', 'prenda', 'tipoSeleccionado'));
   }
 
   public function DetallePrenda(Request $request){
@@ -41,8 +69,7 @@ class ClienteCatalogoController extends Controller
       return view('Cliente.MisPedidos', compact('pedidos'));
   }
   public function MostrarDetallesPedido($id)
-  {
-      
+  {  
       $pedido = Pedido::with([
           'cliente.persona',
           'empleado.persona',

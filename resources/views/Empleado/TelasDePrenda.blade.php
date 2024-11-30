@@ -56,9 +56,19 @@
               </div>
         </div>
     </div><br>
+    
+    @if ($errors->any())                         
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+        @endforeach
+    @endif
+
+    <br>
     <div class="row">
             @foreach ($misPrendasTelas as $tela)                                                                                                                   
-                <div class="card cardsing mb-4">
+                <div class="card cardsing shadow-md card-hover mb-4">
                     <div class="card-body">
                         <h1 class="list-title">{{$tela-> tela->nombre_tela}}</h1>
                         <h1 class="card-det">Metros: {{$tela->cantidad_tela}}</h1>
@@ -70,79 +80,86 @@
                               <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$tela->id}}">
                                 Eliminar
                               </button><br>
-    
-                              <!-- Modal -->
-                              <div class="modal fade" id="exampleModalElim{{$tela->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                      <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}">
-                                      <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar esta tela de la prenda?</p>
-    
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                                      <a href="/elim/tela/prenda/{{$tela->id}}" class="btn btn-intemodal">Eliminar</a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
                             </div>
                             <div class="col">
                             <!-- Button trigger modal CAMBIAR CANTIDAD -->
                             <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalModif{{$tela->id}}">
                               Cambiar Metros
                             </button>
-                          
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalModif{{$tela->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Metros de la Tela</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                      <form action="/modif/cantidad-tela" method="post">
-                                          @csrf
-                                          <input type="hidden" name="idtela" value="{{$tela->id}}">
-                                      
-                                          <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
-                                          <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}"><br>
-                                          <div class="row text-center">
-                                            <div class="col-12 col-md-6">
-                                              <input type="submit" class="btn btn-modal-sub-interior" value="Guardar">
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                              <button class="btn btn-modal-sub-interior" data-bs-dismiss="modal">Cancelar</button>
-                                            </div>
-                                          </div>
-                                          
-                                      </form>
-                                  </div>
-                                </div>
-                              </div>
-                              </div>
                             </div>
                         </div>
-
-                          
-
-
                     </div>
                 </div>
             @endforeach
     </div>
 </div>
 @endsection
+
+@foreach ($misPrendasTelas as $tela)
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalModif{{$tela->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Modificacion de Metros de la Tela</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/modif/cantidad-tela" method="post">
+                @csrf
+                <input type="hidden" name="idtela" value="{{$tela->id}}">
+            
+                <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
+                <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}"><br>
+                <div class="row text-center">
+                  <div class="col-12 col-md-6">
+                    <input type="submit" class="btn btn-modal-sub-interior" value="Guardar">
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <button type="button" class="btn btn-modal-sub-interior" data-bs-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+                
+            </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalElim{{$tela->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}" class="img-cent" style="margin: auto !important; text-align: center !important;">
+            <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar esta tela de la prenda?</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
+            <a href="/elim/tela/prenda/{{$tela->id}}" class="btn btn-intemodal">Eliminar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+@endforeach
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
 <style>
+    .img-cent { /* Centra la imagen */
+        margin: auto !important;
+        text-align: center !important;
+        display: block;
+
+    }
+
     .navbar {
          background-color: black;
      }
@@ -158,6 +175,15 @@
      .navbar-toggler-icon {
          filter: invert(1);
      }
+
+     .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px); /* Desplazamiento hacia arriba */
+        box-shadow: 10px 10px 20px rgba(0, 0.2, 0.2, 0.2); /* Sombra más intensa */
+    }
 
      .btn-modal-sub {
     margin: 5px auto; /* Centra los botones en todos los tamaños */

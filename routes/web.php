@@ -28,16 +28,8 @@ use App\Http\Middleware\EmpleadoMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-Route::get('/test-email', function () {
-    Mail::raw('HOLAAAAAAAAAAAAAAAAA, Este es un correo de prueba', function ($message) {
-        $message->to('brisa.luna@bateil.edu.mx')
-                ->subject('Correo de prueba');
-    });
-
-    return 'Correo enviado';
-});
+use App\Http\Controllers\Auth\VerifiedEmailController;
 
 // Página para pedir verificación
 Route::get('/email/verify', function () {
@@ -64,6 +56,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
     Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
+    Route::get('/Cliente/ClienteInfantilesView', [ClienteCatalogoController::class, 'MostrarInfantiles'])->name('Cliente.ClienteInfantilesView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
 
     // Rutas protegidas para admin
@@ -120,6 +113,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedidos.index');
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
+<<<<<<< HEAD
+=======
+    Route::post('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiarEstado');
+
+
+>>>>>>> f1c2df12aa8cfec065080b6ac1191b5c08d35cb1
     
     // Ruta para la vista de Gestión de Clientes
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
@@ -131,8 +130,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/empleados', [EmpleadosController::class, 'store'])->name('empleados.store');
     Route::get('/empleados', [EmpleadosController::class, 'index'])->name('empleados.index');
     Route::put('/empleados/{empleado}', [EmpleadosController::class, 'update'])->name('empleados.update');
-
-    
+    Route::get('/empleados/{id}', [EmpleadosController::class, 'show'])->name('empleados.show');
+  
 //});
 //Route::middleware([ClienteMiddleware::class])->group(function () {
 Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
