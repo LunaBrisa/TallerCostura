@@ -40,10 +40,10 @@ class PrendaConfeccionController extends Controller
         if ($file && $file->isValid()) {
             $filename = str_replace(' ', '_', basename($file->getClientOriginalName()));
     
-            $destino = public_path('public_html/images');
+            $destino = public_path('/files/public_html/images');
     
             $file->move($destino, $filename);
-    
+            
             $filePath = 'images/' . $filename;
     
             DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
