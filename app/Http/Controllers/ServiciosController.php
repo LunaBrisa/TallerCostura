@@ -16,7 +16,7 @@ public function index()
         ->select('servicio_id', DB::raw('count(*) as cantidad_usos'))
         ->groupBy('servicio_id')
         ->orderBy('cantidad_usos', 'desc')
-        ->limit(5)
+        ->limit(3)
         ->get();
 
     // Adjuntar información del servicio (nombre, descripción, etc.)
