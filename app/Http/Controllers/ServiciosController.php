@@ -4,14 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Servicio;
+use Illuminate\Support\Facades\DB;
 
 class ServiciosController extends Controller
 {
-    public function index()
-    {
-        $servicios = Servicio::all(); // Obtiene todos los servicios
-        return view('Servicios.ServiciosView', compact('servicios')); // Pasa la variable a la vista
-    }
+
+public function index()
+{
+    // Obtener los servicios más usados
+    $serviciosMasUsados = DB::table('REPARACIONES_SERVICIOS')
+        ->select('servicio_id', DB::raw('count(*) as cantidad_usos'))
+        ->groupBy('servicio_id')
+        ->orderBy('cantidad_usos', 'desc')
+        ->limit(5)
+        ->get();
+
+    // Adjuntar información del servicio (nombre, descripción, etc.)
+    $serviciosMasUsados = $serviciosMasUsados->map(function ($item) {
+        $servicio = Servicio::find($item->servicio_id);
+        return [
+            'servicio' => $servicio->servicio, // Nombre del servicio
+            'cantidad_usos' => $item->cantidad_usos, // Cantidad de veces usado
+        ];
+    });
+
+    // Obtener todos los servicios (para la tabla general)
+    $servicios = Servicio::all();
+
+    // Pasar las variables a la vista
+    return view('Servicios.ServiciosView', compact('servicios', 'serviciosMasUsados'));
+}
 
     public function store(Request $request)
     {
@@ -74,5 +96,7 @@ public function muestraServicio($id)
     }
     return redirect()->route('servicios.index');
 }
+
+
 
 }
