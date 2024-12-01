@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Rules\ValidEmailMX;
  
 
 class ClientesController extends Controller
@@ -39,14 +40,14 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:100',
-            'apellido_p' => 'required|string|max:60',
-            'apellido_m' => 'required|string|max:60',
-            'telefono' => 'required|string|max:10',
+            'nombre' => 'required|string|max:100|min:3',
+            'apellido_p' => 'required|string|max:60|min:3',
+            'apellido_m' => 'required|string|max:60|min:3',
+            'telefono' => 'required|digits:10|unique:personas,telefono',
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => ['required', 'email', 'unique:users,email', new ValidEmailMX],
             'password' => 'required|string|min:8|confirmed',
         ]);
 

@@ -267,6 +267,15 @@
             <div class="modal-body" style="background-color: #F5C6C6;">
                 <form action="{{ route('clientes.store') }}" method="post">
                     @csrf
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     <div class="row mb-3">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre de Usuario</label>
