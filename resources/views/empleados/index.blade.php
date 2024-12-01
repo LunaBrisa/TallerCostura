@@ -125,7 +125,7 @@ input.form-control:focus {
                     <h5 class="card-title">Empleados con más pedidos</h5>
                     <ul>
                         @foreach ($pedidosPorEmpleado as $empleado)
-                            <li>{{ $empleado->empleado->persona->nombre }} - {{ $empleado->cantidad_pedidos }} pedidos</li>
+                            <li>{{ $empleado->empleado }} - {{ $empleado->cantidad_pedidos }} pedidos</li>
                         @endforeach
                     </ul>
                 </div>

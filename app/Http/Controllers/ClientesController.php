@@ -16,9 +16,17 @@ class ClientesController extends Controller
 {
     public function index(Request $request)
     {
-        $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
+            $pedidosPorCliente = DB::table('PEDIDOS')
+            ->join('CLIENTES', 'PEDIDOS.cliente_id', '=', 'CLIENTES.id')
+            ->join('PERSONAS', 'CLIENTES.persona_id', '=', 'PERSONAS.id')
+            ->select(
+                DB::raw("PERSONAS.nombre AS cliente"),
+                DB::raw('COUNT(PEDIDOS.id) as cantidad_pedidos')
+            )
+            ->whereMonth('PEDIDOS.fecha_pedido', now()->month)   
+            ->whereYear('PEDIDOS.fecha_pedido', now()->year)    
+            ->groupBy('cliente')
+            ->orderBy('cantidad_pedidos', 'desc')
             ->limit(3)
             ->get();
         

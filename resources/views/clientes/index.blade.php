@@ -100,7 +100,7 @@
                     <h5 class="card-title">Clientes con más pedidos</h5>
                     <ul>
                         @foreach ($pedidosPorCliente as $cliente)
-                            <li>{{ $cliente->cliente->persona->nombre }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
+                            <li>{{ $cliente->cliente }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
                         @endforeach
                     </ul>
                 </div>

@@ -185,7 +185,6 @@ body {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Número de Pedidos</h5>
-                        <p>Total: {{ $estadisticas['totalPedidos'] }}</p>
                         <p>Pendientes: {{ $estadisticas['pedidosEnProceso'] }}</p>
                         <p>Completados: {{ $estadisticas['pedidosCompletados'] }}</p>
                     </div>

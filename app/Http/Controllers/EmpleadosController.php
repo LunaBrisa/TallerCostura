@@ -15,11 +15,22 @@ class EmpleadosController extends Controller
 {
     public function index(Request $request)
     {
-        $pedidosPorEmpleado = Pedido::select('empleado_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('empleado_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
-            ->limit(3)
-            ->get();
+        $pedidosPorEmpleado = DB::table('PEDIDOS')
+    ->join('EMPLEADOS', 'PEDIDOS.empleado_id', '=', 'EMPLEADOS.id')
+    ->join('PERSONAS', 'EMPLEADOS.persona_id', '=', 'PERSONAS.id')
+    ->select(
+        DB::raw("PERSONAS.nombre AS empleado"),
+        DB::raw('COUNT(PEDIDOS.id) as cantidad_pedidos')
+    )
+    ->whereMonth('PEDIDOS.fecha_pedido', now()->month)   // Filtrar por el mes actual
+    ->whereYear('PEDIDOS.fecha_pedido', now()->year)     // Filtrar por el año actual
+    ->groupBy('empleado')
+    ->orderBy('cantidad_pedidos', 'desc')
+    ->limit(3)
+    ->get();
+
+    
+
             $query = Empleado::query();
             if ($request->has('empleado')) {
                 $empleado = $request->empleado;
