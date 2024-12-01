@@ -23,4 +23,7 @@ class DetalleReparacion extends Model
     return $this->belongsToMany(Servicio::class, 'REPARACIONES_SERVICIOS', 'detalle_reparacion_id', 'servicio_id');
     }
 
+
+    
+
 }

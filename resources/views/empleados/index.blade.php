@@ -172,7 +172,6 @@ input.form-control:focus {
                         
                         <a href="{{ route('empleados.show', $empleado->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver</a>               
                     </td>
-                    
                 </tr>
                 <!-- Modal para Editar Empleado -->
                 <div class="modal fade" id="editarEmpleadoModal{{ $empleado->id }}" tabindex="-1" aria-labelledby="editarEmpleadoLabel" aria-hidden="true">

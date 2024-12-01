@@ -70,7 +70,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 //RUTAS PARA TIPOS DE PRENDA
     Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
     Route::post('agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
-    Route::post('/modif/tipo-prenda', [ControladorTipoPrenda::class, 'modifTipoPrenda']);
+
 
 //RUTAS PARA TELAS
     Route::get('/gestion/tela', [TelaController::class, 'getTelas']);   
