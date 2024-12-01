@@ -25,23 +25,23 @@
     }
 
     .btn-primary {
-        background-color: #d7b5bf; /* Azul pastel */
+        background-color: #d5889f; /* Azul pastel */
         border: none;
         color: #ffffff;
     }
 
     .btn-primary:hover {
-        background-color: #cca0ab;
+        background-color: #b14560;
     }
 
     .btn-success {
-        background-color: #d5bfa8; /* Verde pastel */
+        background-color: #d4a36e; /* Verde pastel */
         border: none;
         color: #ffffff;
     }
 
     .btn-success:hover {
-        background-color: #c9a498;
+        background-color: #cb7051;
     }
 
     .btn-close {
@@ -66,7 +66,7 @@
     }
 
     .table-dark {
-        background-color: #B5C5D7;
+        background-color: #79a3d3;
         color: #ffffff;
     }
 
@@ -97,10 +97,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Clientes con más pedidos</h5>
+                    <h5 class="card-title">Clientes con más pedidos en el mes</h5>
                     <ul>
                         @foreach ($pedidosPorCliente as $cliente)
-                            <li>{{ $cliente->cliente->persona->nombre }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
+                            <li>{{ $cliente->cliente }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
                         @endforeach
                     </ul>
                 </div>
@@ -354,7 +354,7 @@
                                 </div>
                                 <input type="hidden" name="cliente_id" value="nuevo">
             
-                                <button type="submit" class="btn btn-success" style="background-color: #B5C5D7">Agregar Cliente</button>
+                                <button type="submit" class="btn btn-success" style="background-color: #7fa9d8">Agregar Cliente</button>
                             </form>
             </div>
         </div>

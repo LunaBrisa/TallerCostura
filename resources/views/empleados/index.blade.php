@@ -122,10 +122,10 @@ input.form-control:focus {
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Empleados con más pedidos</h5>
+                    <h5 class="card-title">Empleados con más pedidos en el mes</h5>
                     <ul>
                         @foreach ($pedidosPorEmpleado as $empleado)
-                            <li>{{ $empleado->empleado->persona->nombre }} - {{ $empleado->cantidad_pedidos }} pedidos</li>
+                            <li>{{ $empleado->empleado }} - {{ $empleado->cantidad_pedidos }} pedidos</li>
                         @endforeach
                     </ul>
                 </div>
@@ -172,7 +172,6 @@ input.form-control:focus {
                         
                         <a href="{{ route('empleados.show', $empleado->id) }}" class="text-decoration-none"><i class="bi bi-eye"></i>Ver</a>               
                     </td>
-                    
                 </tr>
                 <!-- Modal para Editar Empleado -->
                 <div class="modal fade" id="editarEmpleadoModal{{ $empleado->id }}" tabindex="-1" aria-labelledby="editarEmpleadoLabel" aria-hidden="true">

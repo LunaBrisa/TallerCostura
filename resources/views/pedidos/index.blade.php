@@ -184,8 +184,7 @@ body {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Número de Pedidos</h5>
-                        <p>Total: {{ $estadisticas['totalPedidos'] }}</p>
+                        <h5 class="card-title">Pedidos Del Mes</h5>
                         <p>Pendientes: {{ $estadisticas['pedidosEnProceso'] }}</p>
                         <p>Completados: {{ $estadisticas['pedidosCompletados'] }}</p>
                     </div>
@@ -194,7 +193,7 @@ body {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Ingresos Generados</h5>
+                        <h5 class="card-title">Ingresos Del Mes</h5>
                         <p>Total: ${{ number_format($estadisticas['totalIngresos'], 2) }}</p>
                     </div>
                 </div>

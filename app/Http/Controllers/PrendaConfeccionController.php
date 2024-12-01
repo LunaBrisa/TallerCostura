@@ -40,9 +40,9 @@ class PrendaConfeccionController extends Controller
         if ($file && $file->isValid()) {
             $filename = basename($file->getClientOriginalName());
 
-            $destinationPath = public_path('images');
+            $destino = public_path('images');
 
-            $file->move($destinationPath, $filename);
+            $file->move($destino, $filename);
 
             $url = asset('images/' . $filename);
 
