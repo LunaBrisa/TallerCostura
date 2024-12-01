@@ -67,6 +67,11 @@
                           @endforeach
                         </select><br>
 
+                        <div class="mb-3">
+                          <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
+                          <input class="form-control" type="file" id="imagencita">
+                        </div>
+
                         <label for="colorprendita"><h3 class="h3-modal">Color de la Prenda</h3></label>
                         <select name="colorprendita" class="form-select" aria-label="Default select example">
                           <option selected>Seleccionar el Color de la Prenda</option>
@@ -74,6 +79,11 @@
                             <option value="{{$color->id}}">{{$color->color}}</option>
                           @endforeach
                         </select><br>
+
+                        <div class="mb-3">
+                          <label for="imagencitacolor" class="form-label"><h3 class="h3-modal">Imagen del color de la Prenda</h3></label>
+                          <input class="form-control" type="file" id="imagencitacolor">
+                        </div>
 
                         <label for="telitas"><h3 class="h3-modal">Tela Base de la Prenda</h3></label>
                         <select name="telitas" class="form-select" aria-label="Default select example">
@@ -85,11 +95,6 @@
 
                         <label for="cantidadsitadetela"><h3 class="h3-modal">Metros la Tela</h3></label>
                         <input type="number" class="form-control" name="cantidadsitadetela" placeholder="0"><br>
-
-                        <div class="mb-3">
-                          <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencita">
-                        </div>
 
                         <div class="btn-div">
                           <input type="submit" class="btn btn-modal-sub" value="Guardar">
@@ -143,6 +148,18 @@
             {{ session('successEliminarTela') }}         <!-- AL ELIMINAR UNA TELA DE LA PRENDA -->
         </div>
     @endif
+
+    @if (session('successColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successColor') }}         <!-- AL AGREGAR COLOR A UNA PRENDA -->
+      </div>
+    @endif
+
+    @if (session('successEliminarColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successEliminarColor') }}         <!-- AL ELIMINAR COLOR DE UNA PRENDA -->
+      </div>
+    @endif
   </div>
 </div>
 
@@ -166,25 +183,34 @@
       <div class="tab-pane fade show active" id="visibles" role="tabpanel" aria-labelledby="visibles-tab">
         {{-- PRENDAS VISIBLES --}}
         <div class="row">
-        @foreach ($misPrendas as $prenda)
-        <div class="card cardsing card-hover mb-4 mx-2" style="width: 18rem;">
-          <div class="img-div">
-            <img src="{{ asset($prenda -> ruta_imagen) }}" class="card-img-top" alt="...">
+          @foreach ($misPrendas as $prenda)
+          <div class="card cardsing card-hover mb-4 mx-2" style="width: 18rem;">
+              <div class="img-div">
+                  <img src="{{ asset($prenda->ruta_imagen) }}" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                  <h5 class="card-title">{{ $prenda->nombre_prenda }}</h5>
+                  <p class="card-text p-card">{{ $prenda->descripcion }}</p>
+                  <div class="btn-div2">
+                      <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{ $prenda->id }}">Ver Más</button>
+                      <a href="/ocultar/prenda/{{ $prenda->id }}"><button class="btn btn-intemodal">Ocultar</button></a>
+                  </div>
+              </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{$prenda -> nombre_prenda}}</h5>
-            <p class="card-text p-card">{{$prenda -> descripcion}}</p>
-            <!-- Button trigger modal -->
-            <div class="btn-div2">
-              <button type="button" class="btn btn-intemodal " data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{$prenda -> id}}"> Ver Mas </button>
-              <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
-            </div>
-  
-          </div>
-        </div>
-        @endforeach    
-        </div>
+          @endforeach
       </div>
+      
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-center mt-4">
+            {{ $misPrendas->links('pagination::default') }}
+          </div>
+        </div>
+    </div>
+    
+
+  </div>
+
       {{-- PRENDAS OCULTAS --}}
       <div class="tab-pane fade" id="ocultos" role="tabpanel" aria-labelledby="ocultos-tab">
         <div class="row">
@@ -207,7 +233,11 @@
             </div>
           </div>
           @endforeach    
-          </div>  
+          </div> 
+          
+          <div class="d-flex justify-content-center mt-4">
+            {{ $misPrendasOcultas->links('pagination::default') }}
+        </div>
       </div>
     </div>
     
@@ -382,6 +412,30 @@
 
 </body>
 <style>
+
+.pagination li a {
+        font-size: 12px; /* Ajusta el tamaño del texto */
+        padding: 5px 10px; /* Reduce el padding */
+    }
+
+    .pagination li {
+        margin: 0 2px; /* Reduce el espacio entre los elementos */
+    }
+
+    .pagination li a:hover {
+        background-color: #f0f0f0; /* Estilo al pasar el mouse */
+    }
+
+    .pagination .page-link[aria-hidden="true"] {
+        font-size: 12px; /* Reduce solo las flechas */
+        padding: 3px 8px; /* Reduce el espacio interno de las flechas */
+    }
+
+    .pagination .page-item.disabled .page-link[aria-hidden="true"] {
+        opacity: 0.5; /* Opcional: estilo más tenue para flechas deshabilitadas */
+    }
+
+
 
 .h3-modal {
   text-align: center;
