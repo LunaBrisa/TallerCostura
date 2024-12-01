@@ -38,16 +38,12 @@ class PrendaConfeccionController extends Controller
         $file = $savePrendaConfeccionRequest->file('ruta_imagen');
 
         if ($file && $file->isValid()) {
-            // Obtener el nombre original del archivo
-            $filename = basename($file->getClientOriginalName());
-    
-            // Definir la ruta de destino directamente en 'public/images'
+            $filename = str_replace(' ', '_', basename($file->getClientOriginalName()));
+
             $destino = assert(public_path('images'));   
     
-            // Mover el archivo a la carpeta destino
             $file->move($destino, $filename);
     
-            // Guardamos solo la ruta relativa en la base de datos
             $filePath = 'images/' . $filename; 
 
         DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
