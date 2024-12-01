@@ -40,7 +40,7 @@ class PrendaConfeccionController extends Controller
         if ($file && $file->isValid()) {
             $filename = str_replace(' ', '_', basename($file->getClientOriginalName()));
     
-            $destino = '/files/public_html/images/';
+            $destino = '/home/u769404724/public_html/images';
     
             $file->move($destino, $filename);
             
