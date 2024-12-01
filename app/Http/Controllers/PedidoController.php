@@ -7,45 +7,41 @@ use App\Models\Pedido;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PedidoController extends Controller
 {
     private function obtenerEstadisticas()
     {
-        $totalPedidos = Pedido::count();
+        $inicioMes = Carbon::now()->startOfMonth(); // Primer día del mes actual
+        $finMes = Carbon::now()->endOfMonth(); // Último día del mes actual
+    
+        // Contar pedidos pendientes sin importar la fecha
         $pedidosEnProceso = Pedido::where('estado', 'pendiente')->count();
-        $pedidosCompletados = Pedido::where('estado', 'completado')->count();
-        $totalEnProceso = Pedido::where('estado', 'pendiente')->sum('total');
-        $totalIngresos = Pedido::where('estado', 'completado')->sum('total');
-
-        // Consultas adicionales
-        $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc')
-            ->limit(3)
-            ->get();
-
-        $pedidosPorEmpleado = Pedido::select('empleado_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('empleado_id')
-            ->orderBy('cantidad_pedidos', 'desc')
-            ->limit(3)
-            ->get();
-
+    
+    
+        // Contar completados solo del mes
+        $pedidosCompletados = Pedido::where('estado', 'completado')
+            ->whereBetween('updated_at', [$inicioMes, $finMes])
+            ->count();
+    
+        // Calcular ingresos solo del mes
+        $totalIngresos = Pedido::where('estado', 'completado')
+            ->whereBetween('updated_at', [$inicioMes, $finMes])
+            ->sum('total');
+    
         $clientes = Cliente::all();
         $empleados = Empleado::all();
-
+    
         return [
-            'totalPedidos' => $totalPedidos,
             'pedidosEnProceso' => $pedidosEnProceso,
             'pedidosCompletados' => $pedidosCompletados,
             'totalIngresos' => $totalIngresos,
-            'totalEnProceso' => $totalEnProceso,
-            'pedidosPorCliente' => $pedidosPorCliente,
-            'pedidosPorEmpleado' => $pedidosPorEmpleado,
             'clientes' => $clientes,
-            'empleados' => $empleados
+            'empleados' => $empleados,
         ];
     }
+
 
     public function index(Request $request)
     {

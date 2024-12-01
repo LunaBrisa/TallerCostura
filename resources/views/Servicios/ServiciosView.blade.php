@@ -6,56 +6,146 @@
     <title>Gestión de Servicios</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .table-container {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
+
+
+/* Estilo general del cuerpo */
+body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
+    
+        .dashboard-btn {
+            background-color: #ffb6b9;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .dashboard-btn:hover {
+            background-color: #ff9295;
+        }
+    
+        /* Contenedor general */
+        .container {
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+    
+        /* Card centrada */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+    
+      
+
+        .card {
+       border-radius: 15px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       background-color: #f9f4f4;}
+    
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+    
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4c4c4c;
+        }
+    
+        /* Tabla centrada */
+        .table-container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+        }
+    
         .table-header {
-            background-color: #ef9ee3;
+            background-color: #ff9295;
             color: white;
             text-align: center;
             padding: 10px;
             font-size: 1.5rem;
             border-radius: 10px 10px 0 0;
         }
-        .btn-edit, .btn-delete, .btn-toggle {
-            margin: 0 5px;
+    
+        .table {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-add {
-            background-color: #c1a3f6;
-            color: white;
-            font-weight: bold;
-            border-radius: 20px;
-        }
-        .btn-add:hover {
-            background-color: #ed9df6;
-        }
-        <style>
-        .table-container {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
-        }
-        .table-header {
-            background-color: #ef9ee3;
+    
+        .table th {
+            background-color: #ffb6b9;
             color: white;
             text-align: center;
-            padding: 10px;
-            font-size: 1.5rem;
-            border-radius: 10px 10px 0 0;
+            font-weight: bold;
         }
+    
+        .table tbody tr:nth-child(odd) {
+            background-color: #ffe4e6;
+        }
+    
+        .table tbody tr:nth-child(even) {
+            background-color: #fff5f6;
+        }
+    
+        .table-hover tbody tr:hover {
+            background-color: #ffd6d9;
+            transition: background-color 0.3s ease;
+        }
+    
+        /* Botones */
         .btn-edit, .btn-delete, .btn-toggle {
             margin: 0 5px;
         }
-        .btn-add {
+    
+        .btn-edit {
             background-color: #c1a3f6;
             color: white;
             font-weight: bold;
             border-radius: 20px;
+            padding: 5px 10px;
         }
+    
+        .btn-edit:hover {
+            background-color: #a085e0;
+        }
+    
+        .btn-toggle {
+            background-color: #ffb6b9;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+    
+        .btn-toggle:hover {
+            background-color: #ff9295;
+        }
+    
+        .btn-add {
+            background-color: #4caf50;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 10px 20px;
+            display: block;
+            margin: 20px auto;
+        }
+    
         .btn-add:hover {
-            background-color: #ed9df6;
+            background-color: #43a047;
         }
         
         :root {
@@ -115,9 +205,6 @@
             display: flex;
             justify-content: flex-end;
         }
-    
-    </style>
-        
     </style>
 </head>
 <body>
@@ -141,6 +228,24 @@
         </div>
       </nav><br>
     <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Servicios mas usados</h5>
+                        <ul class="list-group">
+                            @forelse($serviciosMasUsados as $servicio)
+                                <li class="list-group-item">
+                                    {{ $servicio['servicio'] }} - Usado {{ $servicio['cantidad_usos'] }} veces
+                                </li>
+                            @empty
+                                <li class="list-group-item">No hay datos disponibles</li>
+                            @endforelse
+                        </ul>
+                    </div>
+                </div>
+            </div>
         <!-- Encabezado -->
         <h1 class="text-center mt-4">Gestión de Servicios</h1>
         

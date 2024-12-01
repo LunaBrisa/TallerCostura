@@ -13,36 +13,36 @@
    
    /* Botones */
    .btn-primary {
-       background-color: #a3d2ca;
+       background-color: #3ccdb7;
        border-color: #a3d2ca;
        color: #fff;
        transition: 0.3s;
    }
    
    .btn-primary:hover {
-       background-color: #80cbc4;
+       background-color: #19b1a2;
        border-color: #80cbc4;
    }
    
    .btn-success {
-       background-color: #ffb6b9;
+       background-color: #f65a5f;
        border-color: #ffb6b9;
        transition: 0.3s;
    }
    
    .btn-success:hover {
-       background-color: #ff9295;
+       background-color: hsl(358, 98%, 75%);
        border-color: #ff9295;
    }
    
    .btn-warning {
-       background-color: #fce2b2;
+       background-color: #f6c66e;
        border-color: #fce2b2;
        transition: 0.3s;
    }
    
    .btn-warning:hover {
-       background-color: #f1d18b;
+       background-color: #f1d392;
        border-color: #f1d18b;
    }
    
@@ -63,7 +63,7 @@
    /* Modales */
    .modal-content {
        border-radius: 15px;
-       background: linear-gradient(to bottom, #fceff1, #fdfbfb);
+       background: linear-gradient(to bottom, #fe9dac, #fdfbfb);
    }
    
    /* Encabezados */
@@ -148,7 +148,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Insumos más utilizados</h5>
+                        <h5 class="card-title">Insumos más utilizados en el mes</h5>
                         <ul>
                             @foreach ($insumosMasUtilizados as $insumo)
                             <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>

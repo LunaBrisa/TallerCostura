@@ -76,7 +76,7 @@
     }
 
     .btn-secondary:hover {
-        background-color: #ff6f61;
+        background-color: #ff857a;
         transform: translateY(-2px);
     }
 

@@ -10,15 +10,24 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Rules\ValidEmailMX;
  
 
 class ClientesController extends Controller
 {
     public function index(Request $request)
     {
-        $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
+            $pedidosPorCliente = DB::table('PEDIDOS')
+            ->join('CLIENTES', 'PEDIDOS.cliente_id', '=', 'CLIENTES.id')
+            ->join('PERSONAS', 'CLIENTES.persona_id', '=', 'PERSONAS.id')
+            ->select(
+                DB::raw("PERSONAS.nombre AS cliente"),
+                DB::raw('COUNT(PEDIDOS.id) as cantidad_pedidos')
+            )
+            ->whereMonth('PEDIDOS.fecha_pedido', now()->month)   
+            ->whereYear('PEDIDOS.fecha_pedido', now()->year)    
+            ->groupBy('cliente')
+            ->orderBy('cantidad_pedidos', 'desc')
             ->limit(3)
             ->get();
         
@@ -39,14 +48,14 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:100',
-            'apellido_p' => 'required|string|max:60',
-            'apellido_m' => 'required|string|max:60',
-            'telefono' => 'required|string|max:10',
+            'nombre' => 'required|string|max:100|min:3',
+            'apellido_p' => 'required|string|max:60|min:3',
+            'apellido_m' => 'required|string|max:60|min:3',
+            'telefono' => 'required|digits:10|unique:personas,telefono',
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => ['required', 'email', 'unique:users,email', new ValidEmailMX],
             'password' => 'required|string|min:8|confirmed',
         ]);
 
