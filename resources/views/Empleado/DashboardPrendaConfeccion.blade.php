@@ -79,11 +79,6 @@
                           @endforeach
                         </select><br>
 
-                        <div class="mb-3">
-                          <label for="imagencitacolor" class="form-label"><h3 class="h3-modal">Imagen del color de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencitacolor">
-                        </div>
-
                         <label for="telitas"><h3 class="h3-modal">Tela Base de la Prenda</h3></label>
                         <select name="telitas" class="form-select" aria-label="Default select example">
                           <option selected>Seleccionar la Tela Base de la Prenda</option>
