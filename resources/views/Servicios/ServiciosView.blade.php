@@ -44,15 +44,12 @@ body {
             margin-bottom: 30px;
         }
     
+      
+
         .card {
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            padding: 20px;
-            max-width: 400px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+       border-radius: 15px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       background-color: #f9f4f4;}
     
         .card:hover {
             transform: translateY(-5px);
