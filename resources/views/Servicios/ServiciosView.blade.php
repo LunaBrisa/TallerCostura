@@ -205,6 +205,80 @@ body {
             display: flex;
             justify-content: flex-end;
         }
+
+        /* Estilos para las pestañas */
+.nav-tabs {
+    border: none;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d;
+    border: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #ff9295;
+    border-color: #ff9295;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #ffffff;
+    background-color: #ff9295;
+    border-color: #ff9295;
+}
+
+/* Estilos para las tablas */
+.table-container {
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+   
+}
+
+.table-header {
+    background-color: #ff9295;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #ffb6b9;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #ffe4e6;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #fff5f6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #ffd6d9;
+    transition: background-color 0.3s ease;
+}
+
     </style>
 </head>
 <body>
@@ -248,10 +322,26 @@ body {
             </div>
         <!-- Encabezado -->
         <h1 class="text-center mt-4">Gestión de Servicios</h1>
+        <div class="row" style="padding-top: 25px;">
+            <ul class="nav nav-tabs mb-2 interactive-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="visibles-tab" data-bs-toggle="tab" href="#visibles" role="tab" aria-controls="visibles" aria-selected="true">
+                        Visibles
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="ocultos-tab" data-bs-toggle="tab" href="#ocultos" role="tab" aria-controls="ocultos" aria-selected="false" tabindex="-1">
+                        Ocultos
+                    </a>
+                </li>
+            </ul>
+        </div>
         
-        <!-- Tabla de servicios -->
+      <div class="tab-content" id="myTabContent">
+    <!-- Tab Visibles -->
+    <div class="tab-pane fade show active" id="visibles" role="tabpanel" aria-labelledby="visibles-tab">
         <div class="table-container">
-            <div class="table-header">Listado de Servicios</div>
+            <div class="table-header">Servicios Visibles</div>
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
@@ -263,51 +353,69 @@ body {
                 </thead>
                 <tbody>
                     @foreach ($servicios as $servicio)
-                    @if ($servicio->visible)
-                        <tr>
-                            <td>{{ $servicio->servicio }}</td>
-                            <td>{{ $servicio->descripcion }}</td>
-                            <td>${{ number_format($servicio->precio, 2) }}</td>
+                        @if ($servicio->visible)
+                            <tr>
+                                <td>{{ $servicio->servicio }}</td>
+                                <td>{{ $servicio->descripcion }}</td>
+                                <td>${{ number_format($servicio->precio, 2) }}</td>
                                 <td>
-                                    <!-- Botón para abrir el modal de editar servicio -->
                                     <button class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-{{ $servicio->id }}">
                                         Editar
                                     </button>
-                                
-                                    <!-- Mostrar u ocultar servicio -->
-                                    <form action="{{ $servicio->visible ? route('servicios.ocultar', $servicio->id) : route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('servicios.ocultar', $servicio->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-{{ $servicio->visible ? 'warning' : 'success' }} btn-sm btn-toggle" type="submit">
-                                            {{ $servicio->visible ? 'Ocultar' : 'Mostrar' }}
+                                        <button class="btn btn-warning btn-sm btn-toggle" type="submit">
+                                            Ocultar
                                         </button>
                                     </form>
                                 </td>
-                                
-                                </form>
-                            </td>
-                        </tr>
-                    @else
-                        <!-- Si el servicio no es visible, no mostrar la fila -->
-                        <tr style="display:none;">
-                            <td>{{ $servicio->servicio }}</td>
-                            <td>{{ $servicio->descripcion }}</td>
-                            <td>${{ number_format($servicio->precio, 2) }}</td>
-                            <td>
-                                <form action="{{ route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="btn btn-success btn-sm btn-toggle" type="submit">
-                                        Mostrar
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-                
+                            </tr>
+                        @endif
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Tab Ocultos -->
+    <div class="tab-pane fade" id="ocultos" role="tabpanel" aria-labelledby="ocultos-tab">
+        <div class="table-container">
+            <div class="table-header">Servicios Ocultos</div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($servicios as $servicio)
+                        @if (!$servicio->visible)
+                            <tr>
+                                <td>{{ $servicio->servicio }}</td>
+                                <td>{{ $servicio->descripcion }}</td>
+                                <td>${{ number_format($servicio->precio, 2) }}</td>
+                                <td>
+                                    <form action="{{ route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-success btn-sm btn-toggle" type="submit">
+                                            Mostrar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
             <!-- Botón para agregar un nuevo servicio -->
             <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addModal">Agregar Servicio</button>
@@ -443,7 +551,6 @@ body {
     </div>
 </div>
 @endforeach
-
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

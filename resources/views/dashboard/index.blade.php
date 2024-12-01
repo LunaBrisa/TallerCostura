@@ -11,7 +11,7 @@
         .card {
             background-color: #ffffff; /* Fondo blanco */
             border: none;
-            border-radius: 15px;
+            border-radius: 25px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
             transition: transform 0.2s, box-shadow 0.2s;
         }
