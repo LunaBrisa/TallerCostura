@@ -26,7 +26,8 @@ class SavePrendaConfeccionRequest extends FormRequest
             'descripcionprendita' => ['required', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', 'max:255'],
             'precio_obra_prendita' => ['required', 'decimal:2'],
             'generito' => ['required', 'in:Hombre,Mujer,Infantil'],
-            'tipoprendita' => ['required', 'exists:TIPOS_PRENDAS,id', 'numeric']
+            'tipoprendita' => ['required', 'exists:TIPOS_PRENDAS,id', 'numeric'],
+            'ruta_imagen' => ['required', 'image', 'max:2048'],
         ];
     }
 
@@ -44,7 +45,10 @@ class SavePrendaConfeccionRequest extends FormRequest
             'tipoprendita.exists' => 'El tipo de prenda es invalido',
             'tipoprendita.numeric' => 'El tipo de prenda es invalido',
             'generito.required' => 'El genero de la prenda es invalido',
-            'generito.in' => 'El genero de la prenda es invalido'
+            'generito.in' => 'El genero de la prenda es invalido',
+            'ruta_imagen.required' => 'La imagen de la prenda es obligatoria. Intente de nuevo',
+            'ruta_imagen.image' => 'La imagen de la prenda es invalido. Formato incorrecto',
+            'ruta_imagen.max' => 'La imagen de la prenda es invalido. El tamaño de la imagen es invalido',
         ];
     }
 }

@@ -33,14 +33,26 @@ class PrendaConfeccionController extends Controller
         ]);
     }
 
-    public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest){
+    public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest)
+    {
+        $file = $savePrendaConfeccionRequest->file('ruta_imagen');
+
+        if ($file && $file->isValid()) {
+            $filename = basename($file->getClientOriginalName());
+
+            $destino = public_path('images');
+
+            $file->move($destino, $filename);
+
+            $url = asset('images/' . $filename);
+
         DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
             $savePrendaConfeccionRequest -> nombreprendita,
             $savePrendaConfeccionRequest -> descripcionprendita,
             $savePrendaConfeccionRequest -> precio_obra_prendita,
             $savePrendaConfeccionRequest -> generito,
             $savePrendaConfeccionRequest -> tipoprendita,
-            'pormientras',
+            $url,
             $savePrendaConfeccionRequest -> colorprendita,
             'pormientras',
             $savePrendaConfeccionRequest -> telitas,
@@ -49,6 +61,7 @@ class PrendaConfeccionController extends Controller
 
         return redirect('/gestion/prenda-confeccion')->with('success', '¡Se agregó la prenda correctamente!');
     }
+}
 
     public function vistaPrendasConfeccion($id){
         return view('Empleado/ModificacionPrendaConfeccion')->with([

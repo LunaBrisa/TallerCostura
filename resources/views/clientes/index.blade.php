@@ -97,10 +97,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Clientes con más pedidos</h5>
+                    <h5 class="card-title">Clientes con más pedidos en el mes</h5>
                     <ul>
                         @foreach ($pedidosPorCliente as $cliente)
-                            <li>{{ $cliente->cliente->persona->nombre }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
+                            <li>{{ $cliente->cliente }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
                         @endforeach
                     </ul>
                 </div>
@@ -267,6 +267,15 @@
             <div class="modal-body" style="background-color: #F5C6C6;">
                 <form action="{{ route('clientes.store') }}" method="post">
                     @csrf
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     <div class="row mb-3">
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre de Usuario</label>

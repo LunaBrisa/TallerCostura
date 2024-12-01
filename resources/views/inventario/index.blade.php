@@ -148,7 +148,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Insumos más utilizados</h5>
+                        <h5 class="card-title">Insumos más utilizados en el mes</h5>
                         <ul>
                             @foreach ($insumosMasUtilizados as $insumo)
                             <li>{{ $insumo->insumo }} - Total Usado: {{ $insumo->total_usado }}</li>
