@@ -36,16 +36,21 @@ class PrendaConfeccionController extends Controller
     public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest)
     {
         $file = $savePrendaConfeccionRequest->file('ruta_imagen');
-    
+
         if ($file && $file->isValid()) {
+            // Reemplazar espacios en el nombre del archivo
             $filename = str_replace(' ', '_', basename($file->getClientOriginalName()));
-    
+        
+            // Ruta absoluta de destino
             $destino = '/home/u769404724/public_html/images';
-    
+        
+            // Mover archivo al destino
             $file->move($destino, $filename);
-            
+        
+            // Generar la ruta relativa para guardar en la base de datos
             $filePath = 'images/' . $filename;
-    
+
+
             DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
                 $savePrendaConfeccionRequest->nombreprendita,
                 $savePrendaConfeccionRequest->descripcionprendita,
