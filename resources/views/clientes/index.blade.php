@@ -97,7 +97,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Clientes con más pedidos</h5>
+                    <h5 class="card-title">Clientes con más pedidos en el mes</h5>
                     <ul>
                         @foreach ($pedidosPorCliente as $cliente)
                             <li>{{ $cliente->cliente }} - {{ $cliente->cantidad_pedidos }} pedidos</li>
