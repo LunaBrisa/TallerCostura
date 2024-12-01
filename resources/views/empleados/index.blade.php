@@ -29,7 +29,7 @@ body {
 
 /* Botones */
 .btn-primary {
-    background-color: #a3d2ca;
+    background-color: #48cbb5;
     border-color: #a3d2ca;
     color: #fff;
     padding: 10px 20px;
@@ -39,13 +39,13 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #80cbc4;
+    background-color: #35cdbe;
     border-color: #80cbc4;
     transform: translateY(-2px);
 }
 
 .btn-success {
-    background-color: #ffb6b9;
+    background-color: #f97074;
     border-color: #ffb6b9;
     padding: 10px 20px;
     border-radius: 50px;
@@ -60,7 +60,7 @@ body {
 }
 
 .btn-warning {
-    background-color: #fce2b2;
+    background-color: #fcca6e;
     border-color: #fce2b2;
     padding: 10px 20px;
     border-radius: 50px;
@@ -85,7 +85,7 @@ body {
 
 .table thead {
     background-color: #ffe2e2;
-    color: #333;
+    color: #fd8383;
 }
 
 .table-striped tbody tr:nth-child(odd) {

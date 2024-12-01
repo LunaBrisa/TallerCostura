@@ -2,178 +2,91 @@
 @section('title', 'Dashboard de Pedidos')
 @section('dashboard_name', 'Dashboard de Pedidos')
 @section('content')
-
 <style>
     /* Estilo general */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5; /* Fondo claro y neutro */
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-/* Tarjetas */
-.card {
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff; /* Fondo blanco para destacar contenido */
-    padding: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Sombra más fuerte en hover */
-}
-
-/* Encabezados de tarjeta */
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #4c4c4c;
-    margin-bottom: 10px;
-}
-
-/* Botones */
-.btn-primary {
-    background-color: #a3d2ca;
-    border-color: #a3d2ca;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
-
-.btn-primary:hover {
-    background-color: #80cbc4;
-    border-color: #80cbc4;
-    transform: translateY(-2px); /* Efecto sutil de elevación */
-}
-
-.btn-success {
-    background-color: #ffb6b9;
-    border-color: #ffb6b9;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
-
-.btn-success:hover {
-    background-color: #ff9295;
-    border-color: #ff9295;
-    transform: translateY(-2px);
-}
-
-.btn-warning {
-    background-color: #fce2b2;
-    border-color: #fce2b2;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
-
-.btn-warning:hover {
-    background-color: #f1d18b;
-    border-color: #f1d18b;
-    transform: translateY(-2px);
-}
-
-/* Tabla */
-.table {
-    width: 100%;
-    margin-bottom: 20px;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden; /* Para bordes redondeados */
-}
-
-.table thead {
-    background-color: #ffe2e2;
-    color: #333;
-}
-
-.table-striped tbody tr:nth-child(odd) {
-    background-color: #fceae8;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #fceae8;
-    transition: background-color 0.3s ease;
-}
-
-/* Inputs */
-input.form-control {
-    border-radius: 10px;
-    border: 1px solid #ced4da;
-    padding: 12px 15px;
-    transition: 0.3s ease;
-    background-color: #fff;
-}
-
-input.form-control:focus {
-    border-color: #a3d2ca;
-    box-shadow: 0 0 5px rgba(163, 210, 202, 0.4);
-}
-
-/* Modales */
-.modal-content {
-    border-radius: 15px;
-    background: linear-gradient(to bottom, #fceff1, #fdfbfb);
-    padding: 20px;
-}
-
-.modal-header {
-    background-color: #a3d2ca;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    padding: 10px 20px;
-}
-
-/* Ajustes generales de la vista */
-.d-flex .btn {
-    margin-right: 15px;
-    margin-left: 5px;
-}
-
-.form-control, .btn {
-    margin-bottom: 15px;
-}
-
-/* Ajustes en la vista de dispositivos pequeños */
-@media (max-width: 768px) {
-    .d-flex {
-        flex-direction: column;
-        align-items: flex-start;
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
     }
 
-    .table-responsive {
-        overflow-x: scroll;
+    /* Botones */
+    .btn {
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.3s ease-in-out;
+        color: #fff; /* Texto blanco para contraste */
     }
-}
 
-/* Títulos y texto en general */
-h5.card-title {
-    color: #6c757d;
-    font-weight: bold;
-}
+    /* Botones pastel */
+    .btn-primary {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+    }
 
-/* Encabezado y pies de tabla */
-th {
-    text-align: center;
-    font-weight: bold;
-}
+    .btn-primary:hover {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+        transform: translateY(-2px);
+    }
 
-/* Fondo de página */
-body {
-    background-color: #f5f5f5;
-    color: #333;
-}
-    </style>
+    .btn-success {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+    }
+
+    .btn-success:hover {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+        transform: translateY(-2px);
+    }
+
+    .btn-warning {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+       
+    }
+
+    .btn-warning:hover {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+        background-color: #dc6381;
+        border-color: #d47b8c;
+        transform: translateY(-2px);
+    }
+
+    /* Botón centrado */
+    button.btn {
+        display: block;
+        width: 100%; /* Ajustar ancho según lo necesario */
+        margin-bottom: 15px;
+    }
+    .card {
+       border-radius: 15px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       background-color: #f9f4f4;
+    }
+
+    /* Otros elementos visuales */
+    .card-title {
+        color: #6c757d;
+        font-weight: bold;
+    }
 </style>
+
 @if (session('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('success') }}
@@ -200,18 +113,26 @@ body {
                 </div>
             </div>
         </div>
-        <form method="GET" action="{{ route('pedidos.index') }}">
-            <div class="d-flex">
-                <input type="text" class="form-control" name="orden" placeholder="Buscar por Orden" value="{{ request()->input('orden') }}">
-                <input type="text" class="form-control ml-2" name="cliente" placeholder="Buscar por Cliente" value="{{ request()->input('cliente') }}">
-                <button type="submit" class="btn btn-primary ml-2">Buscar</button>
-            </div>
-        </form>
+        <div class="buscar" style="margin-top: 30px; padding: 20px;">
+            <form method="GET" action="{{ route('pedidos.index') }}">
+                <div class="form-group">
+                    <label for="orden">Buscar por Orden</label>
+                    <input type="text" id="orden" class="form-control" name="orden" placeholder="Buscar por Orden" value="{{ request()->input('orden') }}">
+                    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+                </div>
+                <div class="form-group">
+                    <label for="cliente">Buscar por Cliente</label>
+                    <input type="text" id="cliente" class="form-control" name="cliente" placeholder="Buscar por Cliente" value="{{ request()->input('cliente') }}">
+                    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+                </div>
+            </form>
+        </div>
+        
         <div class="d-flex mb-4">
             <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('lote')">
                 Crear Pedido de Lotes
             </button>
-            <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('reparacion')">
+            <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('reparacion')" >
                 Crear Pedido de Reparaciones
             </button>
             <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('confeccion')">
