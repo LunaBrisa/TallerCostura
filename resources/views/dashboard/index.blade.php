@@ -6,6 +6,8 @@
     <title>Dashboard Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
 
         .card {
@@ -66,7 +68,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-people" style="font-size: 3rem; color:  #BE5A8C;"></i>
+                        <i class="bi bi-person-badge" style="font-size: 3rem; color:  #BE5A8C;"></i>
                         <h5 class="card-title mt-3" style=" color:  #d6336c; font-weight: bold;">Clientes</h5>
                         <p class="card-text">Administra la información de tus clientes.</p>
                         <a href="/clientes" class="btn btn-primary" style=" background-color:  #BE5A8C; border: none; border-radius: 12px;  padding: 10px 20px;">Clientes</a>
@@ -78,7 +80,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-person-badge" style="font-size: 3rem; color:  #BE5A8C;"></i>
+                        <i class="bi bi-people" style="font-size: 3rem; color:  #BE5A8C;"></i>
                         <h5 class="card-title mt-3" style=" color:  #d6336c; font-weight: bold;">Empleados</h5>
                         <p class="card-text">Gestiona los datos y roles de tus empleados.</p>
                         <a href="/empleados" class="btn btn-primary" style=" background-color:  #BE5A8C; border: none; border-radius: 12px;  padding: 10px 20px;">Empleados</a>
@@ -90,7 +92,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-boxes" style="font-size: 3rem; color: #BE5A8C;"></i>
+                        <i class="bi bi-inboxes-fill" style="font-size: 3rem; color: #BE5A8C;"></i>
                         <h5 class="card-title mt-3" style=" color:  #d6336c; font-weight: bold;">Insumos</h5>
                         <p class="card-text">Administra los insumos.</p>
                         <a href="/inventario" class="btn btn-primary" style=" background-color:  #BE5A8C; border: none; border-radius: 12px;  padding: 10px 20px;">Insumos</a>
@@ -115,7 +117,7 @@
             <div class="col-md-4 mt-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <i class="bi bi-collection" style="font-size: 3rem; color:  #BE5A8C;"></i>
+                        <i class="bi bi-book" style="font-size: 3rem; color: #BE5A8C;"></i>
                         <h5 class="card-title mt-3" style=" color:  #d6336c; font-weight: bold;">Catálogo</h5>
                         <p class="card-text">Gestiona los productos del catálogo.</p>
                         <a href="/gestion/catalogo" class="btn btn-primary" style=" background-color:  #BE5A8C; border: none; border-radius: 12px;  padding: 10px 20px;">Catálogo</a>
@@ -128,5 +130,6 @@
     </div>
 @endsection
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
