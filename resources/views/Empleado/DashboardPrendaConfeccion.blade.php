@@ -32,7 +32,7 @@
               <!-- BODY -->
               <div class="modal-body">
                 <div class="conteform">
-                <form action="/agg/prenda-confeccion" method="post">
+                <form action="/agg/prenda-confeccion" method="post" enctype="multipart/form-data">
                         @csrf
                         <label for="nombreprendita"><h3 class="h3-modal">Nombre de la Prenda</h3></label>
                         <input type="text" class="form-control" name="nombreprendita"><br>
@@ -66,10 +66,9 @@
                             <option value="{{$tipoPrenda->id}}">{{$tipoPrenda->tipo_prenda}}</option>
                           @endforeach
                         </select><br>
-
-                        <div class="mb-3">
+                        <div class="form-group">
                           <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencita">
+                          <input class="form-control" type="file" name="ruta_imagen" id="imagencita" accept="image/*" required>
                         </div>
 
                         <label for="colorprendita"><h3 class="h3-modal">Color de la Prenda</h3></label>
@@ -79,11 +78,6 @@
                             <option value="{{$color->id}}">{{$color->color}}</option>
                           @endforeach
                         </select><br>
-
-                        <div class="mb-3">
-                          <label for="imagencitacolor" class="form-label"><h3 class="h3-modal">Imagen del color de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencitacolor">
-                        </div>
 
                         <label for="telitas"><h3 class="h3-modal">Tela Base de la Prenda</h3></label>
                         <select name="telitas" class="form-select" aria-label="Default select example">
@@ -228,7 +222,7 @@
                   Ver Mas
                 </button>
       
-                <a href="/ocultar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Ocultar</button></a>
+                <a href="/mostrar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Mostrar</button></a>
               </div>
             </div>
           </div>
