@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\saveEmpleadosRequest;
 
 class EmpleadosController extends Controller
 {
@@ -47,38 +48,26 @@ class EmpleadosController extends Controller
             $roles = Rol::where('nombre_rol', '!=', 'Cliente')->get();
         return view('empleados.index', compact('empleados', 'pedidosPorEmpleado', 'empleados2', 'roles'));
     }
-    public function store(Request $request)
+    public function store(saveEmpleadosRequest $saveEmpleadosRequest)
     {
-    $request->validate([
-        'nombre' => 'required|string|min:3|max:100',
-        'apellido_p' => 'required|min:3|string|max:60',
-        'apellido_m' => 'nullable|min:3|string|max:60',
-        'telefono' => 'required|string|max:10',
-        'fecha_nacimiento' => 'required|date',
-        'rfc' => 'required|string|max:20',
-        'nss' => 'required|string|max:20',
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|string|min:8|confirmed',
-    ],);
-
+        
     $user = User::create([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => bcrypt($request->input('password')),
+        'name' => $saveEmpleadosRequest->input('name'),
+        'email' => $saveEmpleadosRequest->input('email'),
+        'password' => bcrypt($saveEmpleadosRequest->input('password')),
     ]);
 
     $user->sendEmailVerificationNotification();
 
     $user_id = $user->id;
 
-    $nombre = $request->input('nombre');
-    $apellido_p = $request->input('apellido_p');
-    $apellido_m = $request->input('apellido_m');
-    $telefono = $request->input('telefono');
-    $fecha_nacimiento = $request->input('fecha_nacimiento');
-    $rfc = $request->input('rfc');
-    $nss = $request->input('nss');
+    $nombre = $saveEmpleadosRequest->input('nombre');
+    $apellido_p = $saveEmpleadosRequest->input('apellido_p');
+    $apellido_m = $saveEmpleadosRequest->input('apellido_m');
+    $telefono = $saveEmpleadosRequest->input('telefono');
+    $fecha_nacimiento = $saveEmpleadosRequest->input('fecha_nacimiento');
+    $rfc = $saveEmpleadosRequest->input('rfc');
+    $nss = $saveEmpleadosRequest->input('nss');
 
     try {
         DB::statement('CALL crear_empleado(?, ?, ?, ?, ?, ?, ?, ?)', [
