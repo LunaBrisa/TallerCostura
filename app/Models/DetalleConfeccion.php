@@ -20,9 +20,9 @@ class DetalleConfeccion extends Model
     }
 
     public function medidas()
-    {
-        return $this->hasMany(Medida::class);
-    }
+{
+    return $this->hasOne(Medida::class, 'detalle_confeccion_id');
+}
 
     public function detallesInsumo()
     {
