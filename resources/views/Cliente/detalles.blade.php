@@ -9,25 +9,7 @@
 
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="detalle-pedido">
-            <h2>Detalles del Pedido #{{ $pedido->id }}</h2>
-            <div class="detalle-info">
-                <div class="detalle-item">
-                    <span class="detalle-label">Empleado:</span>
-                    <span class="detalle-value">{{ $pedido->empleado->persona->nombre }} {{ $pedido->empleado->persona->apellido_p }}</span>
-                </div>
-                <div class="detalle-item">
-                    <span class="detalle-label">Estado:</span>
-                    <span class="detalle-value">{{ $pedido->estado }}</span>
-                </div>
-                <div class="detalle-item">
-                    <span class="detalle-label">Total:</span>
-                    <span class="detalle-value">${{ number_format($pedido->total, 2) }}</span>
-                </div>
-            </div>
-        </div>
-
+    @extends('layouts.nav')
         <div class="seccion-detalles">
             <h4>Confecciones</h4>
             <div class="tabla-flex">
@@ -62,5 +44,6 @@
 
         <a href="{{ url()->previous() }}" class="btn btn-volver mt-4">Volver</a>
     </div>
+    @endsection
 </body>
 </html>
