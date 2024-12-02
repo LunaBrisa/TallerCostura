@@ -78,7 +78,7 @@
 
 <!-- Colección -->
 <section class="container coleccion mt-4">
-    <h1 class="text-black text-center p-2" >
+    <h1 class="text-black text-center p-2" style="text-shadow: 2px 2px 0px #f48ed5;">
         Colección de ropa
     </h1>
     <hr class="w-25 mx-auto">
