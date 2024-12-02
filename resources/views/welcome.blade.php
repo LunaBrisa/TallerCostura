@@ -17,9 +17,11 @@
 <section class="servicio d-flex position-relative p-5">
     <div class="overlay"></div>  
     <div class="contenido text-center justify-content-center d-flex w-100 h-100 position-relative">
-        <h1 class="p-2 display-3" style="z-index: 1; font-size: 7rem; color: white; font-family: 'Junigarden Swash'; text-shadow: 4px 4px 1px #7e065a; margin-top: 10vh;">
+       <div class="d-flex justify-content-center align-items-center" style="width: 500px; height: 400px; margin-top: 10vh;">
+        <h1 class="p-2 display-3" style="z-index: 1; font-size:80px; color: white; font-family: 'Junigarden Swash'; text-shadow: 4px 4px 1px #7e065a; margin-top: 10vh;">
             ¡Bienvenido<br> al Taller de Costura! <br> Luna Cast.! 
-        </h1> 
+        </h1>
+     </div>
     </div>
 </section>
 
@@ -27,13 +29,13 @@
 <section class="container d-flex justify-content-center align-items-center position-relative p-5">
     <div class="historia position-relative">
         <div class="overlay"></div>
-        <h1 class="text-white text-center p-2" style="font-size: 1.25rem; position: relative; z-index: 2;">
+        <h2 class="text-white text-center p-2" style="font-size: 1.25rem; position: relative; z-index: 2;">
             " Nuestra Historia "<br>
             Nuestro Taller comenzó desde que yo era muy pequeña, 
             ya que siempre me llamó la atención las máquinas y
             el poder hacer que las demás personas luzcan unos conjuntos muy bonitos
             y hechos por mí.
-        </h1>
+        </h2>
     </div>
 </section>
 
@@ -142,104 +144,103 @@
 </html>
 
 <style>
-  /* Sección de bienvenida */
-.servicio {
-    background-image: url('/images/Fondo2.png');
-    height: 87vh;
-    background-size: cover;
-    background-position: center;
-}
+    .texto1 {
+        background-color: blanchedalmond;
+        z-index: 1;
+        opacity: 30%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    .servicios-texto {
+        color: #8A226F;
+    }
 
-/* Historia */
-.historia {
-    background-image: url('/images/FondoH.png');
-    height: 300px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 10px;
-}
+    .servicio {
+        background-image: url('/images/Fondo2.png');
+        height: 87vh;
+        background-size: cover;
+        background-position: center;
+    }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.6;
-    border-radius: 10px;
-}
+    .historia {
+        background-image: url('/images/FondoH.png');
+        height: 300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 10px;
+    }
 
-.texto1 {
-    background-color: blanchedalmond;
-    z-index: 1;
-    opacity: 30%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.6;
+        border-radius: 10px;
+    }
 
-/* Carrusel de productos */
-.img-div {
+    .btn-outline-light {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .img-div {
     width: 100%;
     height: 300px;
     overflow: hidden;
     border-radius: 25px;
     border: solid 2px;
-    border-color: #8A226F;
+    border-color:#8A226F ;
     margin-top: auto;
-}
+    }
 
-.img-div img {
+    .img-div img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
+    object-fit: fill;
+    }
 
-.card {
+    .card {
     border-radius: 15px;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    }
 
-.card:hover {
-    transform: translateY(-10px);
-}
+    .card:hover {
+    transform: translateY(-10px); 
+    }
 
-.card-body {
+    .card-body {
     padding: 15px;
-}
+    }
 
-.card-title {
+    .card-title {
     font-size: 1.1rem;
     font-weight: bold;
-}
+    }
 
-.card-text {
+    .card-text {
     font-size: 0.9rem;
     color: #555;
-}
+    }
 
-.card-img-top {
+    .card-img-top {
     width: 100%;
     height: 250px;
     object-fit: cover;
-}
+    }
 
-.servicios-texto {
-    color: #8A226F;
-}
-
-/* Animaciones */
-@keyframes slideIn {
+    @keyframes slideIn {
     0% {
         opacity: 0;
         transform: translateY(-50px);
@@ -248,144 +249,14 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
+    }
 
-.contenido h1 {
-    animation: slideIn 1.5s ease-out;
-    animation-delay: 0.3s;
+    .contenido h1 {
+    animation: slideIn 1.5s ease-out; /* Aplica la animación */
+    animation-delay: 0.3s; /* Opcional: retrasar la animación para que no sea inmediata */
     font-family: 'Junigarden Swash', sans-serif;
     text-shadow: 4px 4px 1px #7e065a;
-    font-size: 8vw; /* Ajuste para pantallas grandes */
-}
-
-/* Sección de servicios y Colección */
-.servicios-texto {
-    color: #8A226F;
-}
-
-h2, h3, h1 {
-    font-size: 3rem;
-    text-align: center;
-    text-shadow: 2px 2px 0px #f48ed5;
-}
-
-hr {
-    width: 25%;
-    margin: 20px auto;
-}
-
-@media (max-width: 992px) {
-    /* Para tablets y pantallas medianas */
-    .servicio .contenido h1 {
-        font-size: 5rem;
+    font-size: 8rem;
     }
-
-    .card-body {
-        padding: 12px;
-    }
-
-    .card-title {
-        font-size: 1rem;
-    }
-
-    .card-text {
-        font-size: 0.8rem;
-    }
-
-    .img-div {
-        height: 250px;
-    }
-
-    .historia h1 {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Para pantallas pequeñas (tabletas y móviles medianos) */
-    .servicio {
-        height: 75vh;
-    }
-
-    .historia {
-        height: 200px;
-    }
-
-    .card-img-top {
-        height: 200px;
-    }
-
-    .contenido h1 {
-        font-size: 6vw; /* Ajuste aún mayor en móviles */
-    }
-
-    .servicio .contenido h1 {
-        font-size: 4rem;
-    }
-
-    .img-div {
-        height: 200px;
-    }
-
-    .card-body {
-        padding: 8px;
-    }
-
-    .card-title {
-        font-size: 0.9rem;
-    }
-
-    .card-text {
-        font-size: 0.8rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 576px) {
-    /* Para dispositivos móviles pequeños */
-    .servicio {
-        height: 60vh;
-    }
-
-    .historia {
-        height: 180px;
-    }
-
-    .img-div {
-        height: 180px;
-    }
-
-    .contenido h1 {
-        font-size: 6vw; /* Mayor ajuste en móviles pequeños */
-    }
-
-    .card-img-top {
-        height: 180px;
-    }
-
-    .card-body {
-        padding: 5px;
-    }
-
-    .card-title {
-        font-size: 0.8rem;
-    }
-
-    .card-text {
-        font-size: 0.7rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    h3 {
-        font-size: 1.25rem;
-    }
-}
-
 
 </style>
