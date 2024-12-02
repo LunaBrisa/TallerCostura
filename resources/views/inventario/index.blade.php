@@ -252,17 +252,6 @@
             </tbody>
         </table>
 
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
-        
     </div>
     <!-- Modal para Agregar Insumos -->
 <div class="modal fade" id="agregarInsumoModal" tabindex="-1" aria-labelledby="agregarInsumoLabel">
