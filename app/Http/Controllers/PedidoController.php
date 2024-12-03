@@ -96,9 +96,11 @@ class PedidoController extends Controller
 }
 public function store(Request $request)
 {
+    dd($request->all());
+
     // Reindexar arrays para evitar problemas de índices no consecutivos
-    $detallesLote = $request->filled('DETALLES_LOTE') ? array_values($request->input('DETALLES_LOTE')) : [];
-    $detallesReparaciones = $request->filled('DETALLES_REPARACIONES') ? array_values($request->input('DETALLES_REPARACIONES')) : [];
+    $detallesLote = $request->filled('detalles_lote') ? array_values($request->input('detalles_lote')) : [];
+    $detallesReparaciones = $request->filled('detalles_reparaciones') ? array_values($request->input('detalles_reparaciones')) : [];
     
     // Validar los datos del formulario
     $request->validate([
