@@ -221,96 +221,6 @@
                         <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
                     </div>
                     <!-- Detalles de Lotes -->
-<<<<<<< HEAD
-<div id="lotesSection">
-    <h5>Detalles de Lotes</h5>
-    <table class="table table-bordered" id="lotesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Precio por prenda</th>
-                <th>Cantidad</th>
-                <th>Anticipo</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <select name="prenda_confeccion" id="prenda_confeccion" class="form-control select2" required>
-                    <option value="">Seleccione una prenda</option>
-                    @foreach($prendas as $prenda)
-                        <option>{{ $prenda->nombre_prenda }}</option>
-                    @endforeach
-                </select>
-                <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
-                <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-                <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
-                <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
-                <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('lotesDetailsTable')">Agregar Lote</button>
-</div>
-
-<!-- Sección Detalles de Reparaciones -->
-<div id="reparacionesSection" style="display: none;">
-    <h5>Detalles de Reparaciones</h5>
-    <table class="table table-bordered" id="reparacionesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Descripción Problema</th>
-                <th>Servicio</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="reparacion_prendas[]" class="form-control"></td>
-                <td><input type="text" name="reparacion_descripciones[]" class="form-control"></td>
-                <td><input type="text" name="reparacion_servicios[]" class="form-control"></td>
-                <td><input type="number" name="reparacion_cantidades[]" class="form-control"></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('reparacionesDetailsTable')">Agregar Reparación</button>
-</div>
-
-<!-- Sección Detalles de Confecciones -->
-<div id="confeccionesSection" style="display: none;">
-    <h5>Detalles de Confecciones</h5>
-    <table class="table table-bordered" id="confeccionesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
-                <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
-                <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
-</div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar Pedido</button>
-            </div>
-=======
                     <div id="lotesSection">
                         <h5>Detalles de Lotes</h5>
                         <table class="table table-bordered" id="lotesDetailsTable">
@@ -342,7 +252,6 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Guardar Pedido</button>
                 </div>
->>>>>>> 1b84c1ef67e584cdc192a5bfb2c369c6274d12c0
             </form>
         </div>
     </div>
