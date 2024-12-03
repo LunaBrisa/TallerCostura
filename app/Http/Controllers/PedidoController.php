@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\Empleado;
 use App\Models\Pedido;
 use App\Models\Cliente;
@@ -150,10 +150,14 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
                 'descripcion_problema' => $detalle['descripcion_problema'] ?? null,
                 'cantidad_prenda' => $detalle['cantidad'],
             ]);
-            dd($detalleReparacion->id, $detalle['servicio']);
-
             // Asociar el servicio al detalle de reparación
-            $detalleReparacion->servicios()->attach($detalle['servicio']);
+            try {
+                $detalleReparacion->servicios()->attach($detalle['servicio']);
+            } catch (\Exception $e) {
+                Log::error('Error al asociar servicio con detalle_reparacion: ' . $e->getMessage());
+                dd($e);  // Para ver el error completo
+            }
+            
         }
     }
     return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
