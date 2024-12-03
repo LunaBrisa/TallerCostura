@@ -37,7 +37,7 @@
                             <td>{{ $pedido->total }}</td>
                             <td>{{ $pedido->estado }}</td>
                             <td>
-                                <a href="{{ route('pedido.detalles', $pedido->id) }}" class="btn btn-info">Ver Detalles</a>
+                                <a href="{{ route('Cliente.DetallesPedidos', $pedido->id) }}" class="btn btn-info">Ver Detalles</a>
 
                             </td>
                             
