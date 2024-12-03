@@ -86,21 +86,6 @@ class ClienteCatalogoController extends Controller
   }
 
 
-  
-    public function MostrarDetallesPedidos($id)
-    {
-        // Cargar el pedido con sus relaciones
-        $pedido = Pedido::with([
-            'empleado.persona', 
-            'detallesConfecciones.prendaConfeccion', 
-            'detallesReparaciones.servicios',
-            'detallesLotes'
-        ])->findOrFail($id);  // Buscar el pedido por id, o devolver error 404 si no se encuentra
-
-        // Retornar la vista con los detalles del pedido
-        return view('Cliente.DetallesPedidos', compact('pedido'));
-    }
-
   public function MostrarPrendasMasVendidas()
   {
       $prendasMasVendidas = DB::table('PrendasMasVendidas')->get();
