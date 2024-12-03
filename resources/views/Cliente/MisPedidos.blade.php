@@ -43,11 +43,10 @@
                                 data-bs-target="#modalPedido{{ $pedido->id }}">
                                 Ver Detalles
                              </a>
-                             
-                            </td>
-                            
-                        </tr>
 
+                            </td>
+
+                        </tr>
                         <!-- Modal para cada pedido -->
                         <div class="modal fade" id="modalPedido{{ $pedido->id }}" tabindex="-1" aria-labelledby="modalPedidoLabel{{ $pedido->id }}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -65,7 +64,6 @@
                                                 <p><strong>Total:</strong> {{ $pedido->total }}</p>
                                             </div>
                                         </div>
-
                                         <!-- Detalles de Confecciones -->
                                         @if($pedido->detallesConfecciones->isNotEmpty())
                                         <div class="card mb-4">
@@ -83,7 +81,6 @@
                                             </div>
                                         </div>
                                         @endif
-
                                         <!-- Detalles de Reparaciones -->
                                         @if($pedido->detallesReparaciones->isNotEmpty())
                                         <div class="card mb-4">
@@ -112,7 +109,6 @@
                                         </div>
                                     @endif
                                     
-
                                         <!-- Detalles de Lotes -->
                                         @if($pedido->detallesLotes->isNotEmpty())
                                         <div class="card mb-4">
