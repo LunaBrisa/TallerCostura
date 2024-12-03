@@ -116,7 +116,7 @@ public function store(Request $request)
         'detalles_reparaciones.*.prenda' => 'required|string|max:100',
         'detalles_reparaciones.*.cantidad' => 'required|integer|min:1',
         'detalles_reparaciones.*.descripcion_problema' => 'nullable|string|max:500',
-        'detalles_reparaciones.*.servicio' => 'required|exists:servicios,id',
+        'detalles_reparaciones.*.servicio' => 'required|exists:SERVICIOS,id',
         'detalles_reparaciones.*.precio_prenda' => 'nullable|numeric|min:0',
     ]);
 
