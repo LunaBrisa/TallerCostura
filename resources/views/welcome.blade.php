@@ -148,10 +148,13 @@
 <style>
     .texto1 {
         z-index: 1;
-        padding: 30px;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
+        font-size: clamp(2rem, 5vw, 4rem); /* Escala el texto según el ancho de la pantalla */
+        color: white;
+        font-family: 'Junigarden Swash', sans-serif;
+        text-shadow: 4px 4px 1px #7e065a;
+        margin: 0; /* Elimina márgenes que puedan causar desbordamientos */
+        overflow-wrap: break-word; /* Evita que el texto se salga del contenedor */
+        word-break: break-word;
     }
     .servicios-texto {
         color: #8A226F;
@@ -159,9 +162,15 @@
 
     .servicio {
         background-image: url('/images/Fondo2.png');
-        height: 87vh;
+        min-height: 100vh; /* Asegura que siempre cubra la vista completa */
         background-size: cover;
         background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+
+   
     }
 
     .historia {
