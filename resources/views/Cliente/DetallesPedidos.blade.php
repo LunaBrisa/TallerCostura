@@ -1,4 +1,4 @@
-@extends('layouts.MisPedidos') 
+@extends('layouts.MisPedidos')
 
 @section('content')
 <div class="container">
