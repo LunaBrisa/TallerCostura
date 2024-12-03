@@ -9,13 +9,14 @@ class ReparacionServicio extends Model
     protected $table = 'REPARACIONES_SERVICIOS';
     protected $fillable = ['detalle_reparacion_id', 'servicio_id', 'insumo_id', 'cantidad_insumo'];
 
-    public function DetalleReparacion()
-    {
-        return $this->belongsTo(DetalleReparacion::class);
-    }
+    public function detalleReparacion()
+{
+    return $this->belongsTo(DetalleReparacion::class, 'detalle_reparacion_id');
+}
 
-    public function Servicio()
-    {
-        return $this->belongsTo(Servicio::class);
-    }
+public function servicio()
+{
+    return $this->belongsTo(Servicio::class, 'servicio_id');
+}
+
 }

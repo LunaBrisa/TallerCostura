@@ -7,7 +7,8 @@ use App\Models\PrendaConfeccion as prenda;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
 USE App\Models\TipoPrenda;
-
+use App\Models\Servicio;
+use App\Models\DetalleLote;
 
 class ClienteCatalogoController extends Controller
 {
@@ -82,13 +83,18 @@ class ClienteCatalogoController extends Controller
           'detallesLotes'
       ])->findOrFail($id);
 
-      return view('Cliente.detalles', compact('pedido'));
+      return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
 
   public function MostrarPrendasMasVendidas()
   {
       $prendasMasVendidas = DB::table('PrendasMasVendidas')->get();
-      return view('welcome', compact('prendasMasVendidas'));
+
+      $tiposPrenda = TipoPrenda::all();
+      $Servicios = Servicio::all();
+      $DetalleLote = DetalleLote::all();
+      return view('welcome', compact('prendasMasVendidas','tiposPrenda','Servicios', 'DetalleLote'));
+
   }
 
 }

@@ -183,8 +183,8 @@
         <td>{{ $detalle->cantidad_prenda }}</td>
         <td>{{ number_format($detalle->subtotal, 2) }}</td>
         <td>
-            @foreach ($detalle->reparacion_servicio as $reparacion)
-                {{ $reparacion->servicio->servicio ?? 'N/A' }}
+            @foreach ($detalle->servicios as $reparacion)
+                {{ $reparacion->servicio ?? 'N/A' }}
             @endforeach
         </td>
     </tr>
