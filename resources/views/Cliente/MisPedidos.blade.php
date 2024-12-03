@@ -37,13 +37,9 @@
                             <td>{{ $pedido->total }}</td>
                             <td>{{ $pedido->estado }}</td>
                             <td>
-                                <a href="#" 
-                                class="btn btn-info" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#modalPedido{{ $pedido->id }}">
-                                Ver Detalles
-                             </a>
-                             
+                                <a href="{{ route('Cliente.MostrarDetallesPedido', $pedido->id) }}" class="btn btn-info">
+                                    Ver Detalles
+                                </a>                                
                             </td>
                             
                         </tr>

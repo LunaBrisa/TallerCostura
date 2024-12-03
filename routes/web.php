@@ -133,6 +133,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 //Route::middleware([ClienteMiddleware::class])->group(function () {
 Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
 Route::get('/detallepedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
+Route::get('/pedidos/{id}/detalles', [ClienteCatalogoController::class, 'mostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
 //});
 
 //Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class, ClienteMiddleware::class])->group(function () {
