@@ -18,13 +18,9 @@ class Servicio extends Model
         'visible'
     ];
 
-    public function prendasReparaciones()
-    {
-        return $this->hasMany(PrendaReparacion::class);
-    }
-
     public function detalleReparaciones()
     {
         return $this->belongsToMany(DetalleReparacion::class, 'REPARACIONES_SERVICIOS', 'servicio_id', 'detalle_reparacion_id');
     }
+
 }

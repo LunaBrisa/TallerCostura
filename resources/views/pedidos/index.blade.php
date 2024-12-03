@@ -128,13 +128,13 @@
         </div>
         
         <div class="d-flex mb-4">
-            <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('lote')">
+            <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#loteModal">
                 Crear Pedido de Lotes
             </button>
-            <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('reparacion')" >
+            <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#reparacionModal">
                 Crear Pedido de Reparaciones
             </button>
-            <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#createOrderModal" onclick="setOrderType('confeccion')">
+            <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#confeccionModal">
                 Crear Pedido de Confecciones
             </button>
         </div>
@@ -177,13 +177,12 @@
             </table>
             
         </div>
-<!-- Modal Crear Pedido -->
-<div class="modal fade" id="createOrderModal" tabindex="-1" aria-labelledby="createOrderModalLabel" aria-hidden="true">
-    
+        <!-- Modal para Crear Pedido de Lotes -->
+<div class="modal fade" id="loteModal" tabindex="-1" aria-labelledby="loteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createOrderModalLabel">Crear Pedido</h5>
+                <h5 class="modal-title" id="loteModalLabel">Crear Pedido de Lotes</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('pedidos.store') }}" method="POST">
@@ -221,123 +220,282 @@
                         <label for="descripcion" class="form-label">Descripción</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
                     </div>
-                    
                     <!-- Detalles de Lotes -->
-<div id="lotesSection">
-    <h5>Detalles de Lotes</h5>
-    <table class="table table-bordered" id="lotesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Precio por prenda</th>
-                <th>Cantidad</th>
-                <th>Anticipo</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
-                <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-                <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
-                <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
-                <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('lotesDetailsTable')">Agregar Lote</button>
-</div>
-
-<!-- Sección Detalles de Reparaciones -->
-<div id="reparacionesSection" style="display: none;">
-    <h5>Detalles de Reparaciones</h5>
-    <table class="table table-bordered" id="reparacionesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Descripción Problema</th>
-                <th>Servicio</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="reparacion_prendas[]" class="form-control"></td>
-                <td><input type="text" name="reparacion_descripciones[]" class="form-control"></td>
-                <td><input type="text" name="reparacion_servicios[]" class="form-control"></td>
-                <td><input type="number" name="reparacion_cantidades[]" class="form-control"></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('reparacionesDetailsTable')">Agregar Reparación</button>
-</div>
-
-<!-- Sección Detalles de Confecciones -->
-<div id="confeccionesSection" style="display: none;">
-    <h5>Detalles de Confecciones</h5>
-    <table class="table table-bordered" id="confeccionesDetailsTable">
-        <thead>
-            <tr>
-                <th>Prenda</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
-                <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
-                <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
-                <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
-</div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar Pedido</button>
-            </div>
+                    <div id="lotesSection">
+                        <h5>Detalles de Lotes</h5>
+                        <table class="table table-bordered" id="lotesDetailsTable">
+                            <thead>
+                                <tr>
+                                    <th>Prenda</th>
+                                    <th>Precio por prenda</th>
+                                    <th>Cantidad</th>
+                                    <th>Anticipo</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
+                                    <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
+                                    <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
+                                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-secondary" onclick="addRow('lotesDetailsTable', loteRowTemplate);">Agregar Lote</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<!-- Modal para Crear Pedido de Reparaciones -->
+<div class="modal fade" id="reparacionModal" tabindex="-1" aria-labelledby="reparacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reparacionModalLabel">Crear Pedido de Reparaciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('pedidos.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <!-- Información del Pedido -->
+                    <div class="mb-3">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select name="cliente" id="cliente" class="form-control select2" required>
+                            <option value="">Seleccione un Cliente</option>
+                            @foreach($estadisticas['clientes'] as $cliente)
+                                <option value="{{ $cliente->id }}">{{ $cliente->persona->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="empleado" class="form-label">Empleado</label>
+                        <select name="empleado" id="empleado" class="form-control select2" required>
+                            <option value="">Seleccione un Empleado</option>
+                            @foreach($estadisticas['empleados'] as $empleado)
+                                <option value="{{ $empleado->id }}">{{ $empleado->persona->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
+                        <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+                        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    <!-- Detalles de Reparaciones -->
+                    <div id="reparacionesSection">
+                        <h5>Detalles de Reparaciones</h5>
+                        <table class="table table-bordered" id="reparacionesDetailsTable">
+                            <thead>
+                                <tr>
+                                    <th>Prenda</th>
+                                    <th>Cantidad</th>
+                                    <th>Descripción Problema</th>
+                                    <th>Servicio</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="detalles_reparaciones[0][prenda]" class="form-control"></td>
+<td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+<td><input type="text" name="detalles_reparaciones[0][descripcion_problema]" class="form-control"></td>
+<td>
+    <select name="detalles_reparaciones[0][servicio]" class="form-control" onchange="updatePrecio(this)" required>
+        <option value="" disabled selected>Seleccione un servicio...</option>
+        @foreach ($servicios as $servicio)
+        <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
+            {{ $servicio->servicio }}
+        </option>
+        @endforeach
+    </select>
+</td>
+<td><input type="number" name="detalles_reparaciones[0][precio_prenda]" class="form-control" readonly></td>
+<td><input type="number" name="detalles_reparaciones[0][subtotal]" class="form-control" readonly></td>
+                                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-secondary" onclick="addRow('reparacionesDetailsTable', reparacionRowTemplate);">Agregar Reparación</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal para Crear Pedido de Confecciones -->
+<div class="modal fade" id="confeccionModal" tabindex="-1" aria-labelledby="confeccionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confeccionModalLabel">Crear Pedido de Confecciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('pedidos.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <!-- Información del Pedido -->
+                    <div class="mb-3">
+                        <label for="cliente" class="form-label">Cliente</label>
+                        <select name="cliente" id="cliente" class="form-control select2" required>
+                            <option value="">Seleccione un Cliente</option>
+                            @foreach($estadisticas['clientes'] as $cliente)
+                                <option value="{{ $cliente->id }}">{{ $cliente->persona->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="empleado" class="form-label">Empleado</label>
+                        <select name="empleado" id="empleado" class="form-control select2" required>
+                            <option value="">Seleccione un Empleado</option>
+                            @foreach($estadisticas['empleados'] as $empleado)
+                                <option value="{{ $empleado->id }}">{{ $empleado->persona->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
+                        <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
+                        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+                    </div>
+                    <!-- Detalles de Confecciones -->
+                    <div id="confeccionesSection">
+                        <h5>Detalles de Confecciones</h5>
+                        <table class="table table-bordered" id="confeccionesDetailsTable">
+                            <thead>
+                                <tr>
+                                    <th>Prenda</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
+                                    <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
+                                    <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
+                                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
+    // Actualiza el precio de la prenda según el servicio seleccionado
+    function updatePrecio(selectElement) {
+        const row = selectElement.closest('tr');
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        const precio = selectedOption.dataset.precio || 0;
+        row.querySelector('input[name*="[precio_prenda]"]').value = precio;
+        updateSubtotal(selectElement);
+    }
+
+    // Calcula y actualiza el subtotal
+    function updateSubtotal(element) {
+        const row = element.closest('tr');
+        const cantidad = row.querySelector('input[name*="[cantidad]"]').value || 0;
+        const precio = row.querySelector('input[name*="[precio_prenda]"]').value || 0;
+        const subtotal = cantidad * precio;
+        row.querySelector('input[name*="[subtotal]"]').value = subtotal.toFixed(2);
+    }
+    const loteRowTemplate = `
+    <td><input type="text" name="detalles_lote[__rowCount__][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][subtotal]" class="form-control" readonly></td>
+    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
+`;
+
+const reparacionRowTemplate = `
+    <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+    <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>
+    <td>
+        <select name="detalles_reparaciones[__rowCount__][servicio]" class="form-control" onchange="updatePrecio(this)" required>
+            <option value="" disabled selected>Seleccione un servicio...</option>
+            @foreach ($servicios as $servicio)
+            <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
+                {{ $servicio->servicio }}
+            </option>
+            @endforeach
+        </select>
+    </td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][precio_prenda]" class="form-control" readonly></td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][subtotal]" class="form-control" readonly></td>
+    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
+`;
+
+
     // Función para añadir una nueva fila en una tabla específica
-    function addRow(tableId) {
+    function addRow(tableId, rowTemplate) {
     const table = document.getElementById(tableId);
-    const newRow = table.rows[1].cloneNode(true); // Clona la segunda fila (primera fila de datos)
-    const rowIndex = table.rows.length - 1; // Índice de la nueva fila basado en el número total de filas
-
-    // Actualiza los nombres de los inputs para reflejar el nuevo índice
-    newRow.querySelectorAll('input').forEach(input => {
-        if (input.name) {
-            input.name = input.name.replace(/\[\d+\]/, `[${rowIndex}]`); // Sustituye el índice con el nuevo
-        }
-        input.value = ''; // Limpia los valores de los inputs
-    });
-
-    // Agrega la nueva fila al tbody
-    table.querySelector('tbody').appendChild(newRow);
+    const rowCount = table.rows.length; // Número de filas existentes
+    const newRow = table.insertRow(); // Crear nueva fila
+    newRow.innerHTML = rowTemplate.replace(/__rowCount__/g, rowCount); // Reemplaza el marcador
 }
 
+function removeRow(button, tableId) {
+    const table = document.getElementById(tableId);
+    const row = button.closest('tr');
+    table.deleteRow(row.rowIndex); // Eliminar la fila seleccionada
 
+    updateRowIndices(table); // Reindexar después de eliminar
+}
 
-    // Función para eliminar una fila específica
-    function removeRow(button, tableId) {
-        const table = document.getElementById(tableId);
-        if (table.rows.length > 2) { // Asegúrate de que no quede solo el encabezado
-            const row = button.closest('tr');
-            row.remove();
-        }
-    }
+function updateRowIndices(table) {
+    const rows = table.querySelectorAll('tbody tr'); // Seleccionar todas las filas del cuerpo de la tabla
+    rows.forEach((row, index) => {
+        const inputs = row.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            const name = input.name; // Obtener el nombre original
+            const newName = name.replace(/\[\d+\]/, `[${index}]`); // Reemplazar el índice actual por el nuevo
+            input.name = newName; // Asignar el nuevo nombre
+        });
+    });
+}
 
     // Funciones para actualizar los totales en las filas de lotes y confecciones
     function updateLoteTotal(input) {
@@ -354,22 +512,8 @@
     row.querySelector('input[name$="[subtotal]"]').value = subtotal.toFixed(2);
 }
 
-    function updateConfeccionTotal(input) {
-        const row = input.closest('tr');
-        const cantidad = parseFloat(row.querySelector('input[name$="[cantidad]"]').value) || 0;
-        const subtotal = row.querySelector('input[name$="[subtotal]"]');
-        subtotal.value = (cantidad * 1).toFixed(2); // Suponiendo que el precio por unidad es 1
-    }
 </script>
 
-<script>
-    // Función para mostrar u ocultar secciones según el tipo de pedido
-    function setOrderType(type) {
-        document.getElementById('lotesSection').style.display = type === 'lote' ? 'block' : 'none';
-        document.getElementById('reparacionesSection').style.display = type === 'reparacion' ? 'block' : 'none';
-        document.getElementById('confeccionesSection').style.display = type === 'confeccion' ? 'block' : 'none';
-    }
-</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const headers = document.querySelectorAll('.sortable'); // Obtener todos los encabezados con la clase "sortable"
@@ -412,41 +556,6 @@
         }
     });
     </script>
-    
-<script>
-    // Función para añadir una nueva fila en una tabla específica
-    function addRow(tableId) {
-        const table = document.getElementById(tableId);
-        const newRow = table.rows[0].cloneNode(true);
-        newRow.querySelectorAll('input').forEach(input => input.value = '');
-        table.appendChild(newRow);
-    }
-
-    // Función para eliminar una fila específica
-    function removeRow(button, tableId) {
-        const table = document.getElementById(tableId);
-        if (table.rows.length > 1) {
-            const row = button.closest('tr');
-            row.remove();
-        }
-    }
-
-    // Funciones para actualizar los totales en las filas de lotes y confecciones
-    function updateLoteTotal(input) {
-        const row = input.closest('tr');
-        const cantidad = row.querySelector('input[name="detalles_lote[0][cantidad]"]').value;
-        const precio = row.querySelector('input[name="detalles_lote[0][precio_por_prenda]"]').value;
-        const anticipo = row.querySelector('input[name="detalles_lote[0][anticipo]"]').value;
-        const subtotal = row.querySelector('input[name="detalles_lote[0][subtotal]"]');
-        subtotal.value = ((cantidad * precio)-anticipo).toFixed(2);
-    }
-
-    function updateConfeccionTotal(input) {
-        const row = input.closest('tr');
-        const cantidad = row.querySelector('input[name="confeccion_cantidades[]"]').value;
-        const subtotal = row.querySelector('input[name="confeccion_subtotales[]"]');
-        subtotal.value = (cantidad * 1).toFixed(2);
-    }
 @endsection 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
