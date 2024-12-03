@@ -82,7 +82,7 @@ class ClienteCatalogoController extends Controller
           'detallesLotes'
       ])->findOrFail($id);
 
-      return view('Cliente.DetallesPedidos', compact('pedido'));
+      return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
 
   public function MostrarPrendasMasVendidas()
