@@ -152,8 +152,7 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
             ]);
             // Asociar el servicio al detalle de reparación
             try {
-                $detalleReparacion->servicios()->syncWithoutDetaching([$detalle['servicio']]);
-
+                $detalleReparacion->servicios()->attach($detalle['servicio']);
             } catch (\Exception $e) {
                 Log::error('Error al asociar servicio con detalle_reparacion: ' . $e->getMessage());
                 dd($e);  // Para ver el error completo
