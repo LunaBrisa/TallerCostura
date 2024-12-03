@@ -238,6 +238,12 @@
         </thead>
         <tbody>
             <tr>
+                <select name="prenda_confeccion" id="prenda_confeccion" class="form-control select2" required>
+                    <option value="">Seleccione una prenda</option>
+                    @foreach($prendas as $prenda)
+                        <option>{{ $prenda->nombre_prenda }}</option>
+                    @endforeach
+                </select>
                 <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
                 <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
                 <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>

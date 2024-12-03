@@ -16,14 +16,20 @@
 <!-- Sección de bienvenida -->
 <section class="servicio d-flex position-relative p-5">
     <div class="overlay"></div>  
-    <div class="contenido text-center justify-content-center d-flex w-100 h-100 position-relative">
-       <div class="d-flex justify-content-center align-items-center" style="width: 500px; height: 400px; margin-top: 10vh;">
-        <h1 class="p-2 display-3" style="z-index: 1; font-size:80px; color: white; font-family: 'Junigarden Swash'; text-shadow: 4px 4px 1px #7e065a; margin-top: 10vh;">
-            ¡Bienvenido<br> al Taller de Costura! <br> Luna Cast.! 
-        </h1>
-     </div>
+    <div class="contenido d-flex justify-content-center align-items-center w-100 h-100">
+        <div class="texto1 col-lg-8 col-md-10 col-sm-12 text-center mx-auto">
+            <h1 class="p-2 display-3 text-white" style="z-index: 1; font-size:60px; color: white; font-family: 'Junigarden Swash'; text-shadow: 4px 4px 1px #7e065a; margin-top: 10vh;">
+                ¡Bienvenido al Taller de Costura!
+            </h1> 
+            <h1 class="p-2 display-4 text-white" style="z-index: 1; font-size:50px; color: white; font-family: 'Junigarden Swash'; text-shadow: 4px 4px 1px #7e065a; ">
+                Luna Cast.! 
+            </h1>
+          
+        </div>
     </div>
+  
 </section>
+
 
 <!-- Historia -->
 <section class="container d-flex justify-content-center align-items-center position-relative p-5">
@@ -45,34 +51,30 @@
         <h2 class="p-2 text-black text-center" style="font-size: 3rem; text-shadow: 2px 2px 0px #f48ed5;">
             Servicios  
         </h2> 
-        <div class="col-12 col-md-6 mt-4">
-            <h3 class="servicios-texto">Confección, reparación y modificación de:</h3>
-            <hr>  
-            <ul>
-                <li>Ropa en general</li>
-                <li>Uniformes empresariales</li>
-                <li>Vestidos de coctel</li>
-                <li>Vestidos de novia</li>
-                <li>Trajes de sastre</li>
-                <li>...y más</li>
-            </ul>
-        </div>
+                <div class="col-12 col-md-6 mt-4">
+                    <h3 class="servicios-texto">Confección, reparación y modificación de:</h3>
+                    <hr>  
+                    <ul>
+                        @foreach ($tiposPrenda as $prenda)
+                            <li>{{ $prenda->tipo_prenda }}</li>
+                        @endforeach
+                        <li>etc...</li>
+                    </ul>
+                </div>
         <div class="col-12 col-md-6 mt-4">
             <h3 class="servicios-texto">Otros servicios</h3>
             <hr>  
             <ul>
-                <li>Bastillas</li>
-                <li>Botones para todo tipo de ropa</li>
-                <li>Cierres para todo tipo de ropa</li>
-                <li>Reparaciones</li>
+                @foreach ($Servicios as $servicio)
+                 <li>{{ $servicio->servicio }}</li>
+                @endforeach
             </ul>
             <h3 class="servicios-texto">Producción por lotes:</h3>
             <hr>  
             <ul>
-                <li>Playeras</li>
-                <li>Pantalones</li>
-                <li>Uniformes</li>
-                <li>etc.</li>
+                @foreach ($DetalleLote as $lote)
+                 <li>{{ $lote->prenda }}</li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -145,16 +147,11 @@
 
 <style>
     .texto1 {
-        background-color: blanchedalmond;
         z-index: 1;
-        opacity: 30%;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         padding: 30px;
         width: 100%;
         max-width: 800px;
         margin: 0 auto;
-        box-sizing: border-box;
     }
     .servicios-texto {
         color: #8A226F;
