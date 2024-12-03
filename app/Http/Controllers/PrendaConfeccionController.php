@@ -55,7 +55,7 @@ class PrendaConfeccionController extends Controller
                 $savePrendaConfeccionRequest->tipoprendita,
                 $filePath, 
                 $savePrendaConfeccionRequest->colorprendita,
-                'pormientras',
+                $filePath,
                 $savePrendaConfeccionRequest->telitas,
                 $savePrendaConfeccionRequest->cantidadsitadetela,
             ]);

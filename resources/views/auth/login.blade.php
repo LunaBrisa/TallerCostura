@@ -80,6 +80,7 @@
     @extends('layouts.nav')
     @section('content')
 <div class="background">
+
     <div class="login-container">
         <h2  style="font-size: 40px; text-shadow: 2px 2px 0px #B5C5D7, -2px -2px 0px #B5C5D7, -2px 2px 0px #B5C5D7;">Iniciar Sesión</h2>
         <form action="{{ route('login') }}" method="post">

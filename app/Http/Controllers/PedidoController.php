@@ -77,8 +77,10 @@ class PedidoController extends Controller
 {
     $pedido = Pedido::with([
         'detallesLotes',
-        'detallesReparaciones',
-        'detallesConfecciones'
+        'detallesReparaciones.reparacion_servicio.servicio',
+        'detallesConfecciones.prendaConfeccion.prendasColor.color', // Relación de colores
+        'detallesConfecciones.prendaConfeccion.prendasTelas.tela.materialTela',   // Relación de telas
+        'detallesConfecciones.medidas'                              // Relación de medidas
     ])->findOrFail($id);
 
     // Guardar la URL previa en la sesión (solo si no está ya configurada)
@@ -88,11 +90,6 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
-
-
-    
-    
-    
     public function store(Request $request)
 {
     $request->validate([

@@ -241,7 +241,7 @@
                 <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
                 <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
                 <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
-                <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
+                <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
                 <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
                 <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
             </tr>
@@ -341,13 +341,18 @@
 
     // Funciones para actualizar los totales en las filas de lotes y confecciones
     function updateLoteTotal(input) {
-        const row = input.closest('tr');
-        const cantidad = parseFloat(row.querySelector('input[name$="[cantidad]"]').value) || 0;
-        const precio = parseFloat(row.querySelector('input[name$="[precio_por_prenda]"]').value) || 0;
-        const anticipo = parseFloat(row.querySelector('input[name$="[anticipo]"]').value) || 0;
-        const subtotal = row.querySelector('input[name$="[subtotal]"]');
-        subtotal.value = ((cantidad * precio) - anticipo).toFixed(2);
-    }
+    const row = input.closest('tr');
+    const cantidad = parseFloat(row.querySelector('input[name$="[cantidad]"]').value) || 0;
+    const precio = parseFloat(row.querySelector('input[name$="[precio_por_prenda]"]').value) || 0;
+    const subtotal = cantidad * precio; // Calcular el subtotal
+
+    // Establecer el anticipo como la mitad del subtotal
+    const anticipo = (subtotal / 2).toFixed(2);
+
+    // Asignar el anticipo y el subtotal en sus respectivos campos
+    row.querySelector('input[name$="[anticipo]"]').value = anticipo;
+    row.querySelector('input[name$="[subtotal]"]').value = subtotal.toFixed(2);
+}
 
     function updateConfeccionTotal(input) {
         const row = input.closest('tr');

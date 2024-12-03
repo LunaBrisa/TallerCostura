@@ -141,6 +141,7 @@
                             <th>Precio por Prenda</th>
                             <th>Cantidad</th>
                             <th>Anticipo</th>
+                            <th>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,6 +151,7 @@
                                 <td>{{ number_format($detalle->precio_por_prenda, 2) }}</td>
                                 <td>{{ $detalle->cantidad }}</td>
                                 <td>{{ number_format($detalle->anticipo, 2) }}</td>
+                                <td>{{ number_format($detalle->subtotal, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -169,18 +171,25 @@
                             <th>Prenda</th>
                             <th>Descripción del Problema</th>
                             <th>Cantidad</th>
-                            <th>Precio por Prenda</th>
+                            <th>Subtotal</th>
+                            <th>Servicio</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($pedido->detallesReparaciones as $detalle)
-                            <tr>
-                                <td>{{ $detalle->prenda }}</td>
-                                <td>{{ $detalle->descripcion_problema }}</td>
-                                <td>{{ $detalle->cantidad_prenda }}</td>
-                                <td>{{ number_format($detalle->subtotal, 2) }}</td>
-                            </tr>
-                        @endforeach
+    <tr>
+        <td>{{ $detalle->prenda }}</td>
+        <td>{{ $detalle->descripcion_problema }}</td>
+        <td>{{ $detalle->cantidad_prenda }}</td>
+        <td>{{ number_format($detalle->subtotal, 2) }}</td>
+        <td>
+            @foreach ($detalle->reparacion_servicio as $reparacion)
+                {{ $reparacion->servicio->servicio ?? 'N/A' }}
+            @endforeach
+        </td>
+    </tr>
+@endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -198,16 +207,64 @@
                             <th>Prenda</th>
                             <th>Cantidad</th>
                             <th>Subtotal</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($pedido->detallesConfecciones as $detalle)
-                            <tr>
-                                <td>{{ $detalle->prendaConfeccion->nombre_prenda ?? 'N/A' }}</td>
-                                <td>{{ $detalle->cantidad_prenda }}</td>
-                                <td>{{ number_format($detalle->subtotal, 2) }}</td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td>{{ $detalle->prendaConfeccion->nombre_prenda ?? 'N/A' }}</td>
+                            <td>{{ $detalle->cantidad_prenda }}</td>
+                            <td>{{ number_format($detalle->subtotal, 2) }}</td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#detalleConfeccionModal{{ $detalle->id }}">
+                                    Ver Detalles
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    @foreach ($pedido->detallesConfecciones as $detalle)
+                    <div class="modal fade" id="detalleConfeccionModal{{ $detalle->id }}" tabindex="-1" aria-labelledby="detalleConfeccionLabel{{ $detalle->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detalleConfeccionLabel{{ $detalle->id }}">Detalles de la Prenda: {{ $detalle->prendaConfeccion->nombre_prenda ?? 'N/A' }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Descripción:</strong> {{ $detalle->prendaConfeccion->descripcion ?? 'No disponible' }}</li>
+                                        <li class="list-group-item"><strong>Tipo de Prenda:</strong> {{ $detalle->prendaConfeccion->tipoPrenda->tipo_prenda ?? 'No especificado' }}</li>
+                                        <li class="list-group-item"><strong>Color:</strong> {{ $detalle->prendaConfeccion->prendasColor->color->color ?? 'No especificado' }}</li>
+                                        <li class="list-group-item"><strong>Tela:</strong> {{ $detalle->prendaConfeccion->prendasTelas->tela->nombre_tela ?? 'No especificado' }}</li>
+                                        <li class="list-group-item"><strong>Material:</strong> {{ $detalle->prendaConfeccion->prendasTelas->tela->materialTela->material_tela ?? 'No especificado' }}</li>
+                                        <li class="list-group-item"><strong>Medidas:</strong>
+                                            <ul>
+                                                <li>Pecho: {{ $detalle->medidas->pecho ?? 'N/A' }} cm</li>
+                                                <li>Cintura: {{ $detalle->medidas->cintura ?? 'N/A' }} cm</li>
+                                                <li>Mangas: {{ $detalle->medidas->mangas ?? 'N/A' }} cm</li>
+                                                <li>Largo: {{ $detalle->medidas->largo ?? 'N/A' }} cm</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="text-center mt-4">
+                                        @if ($detalle->prendaConfeccion->ruta_imagen)
+                                            <img src="{{ asset($detalle->prendaConfeccion->ruta_imagen) }}" alt="Imagen de la prenda" class="img-fluid rounded" style="max-width: 300px;">
+                                        @else
+                                            <p><em>No hay imagen disponible</em></p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    
+
                     </tbody>
                 </table>
             </div>

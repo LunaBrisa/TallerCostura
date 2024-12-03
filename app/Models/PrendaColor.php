@@ -19,7 +19,8 @@ class PrendaColor extends Model
     }
 
     public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
+{
+    return $this->belongsTo(Color::class, 'color_id');
+}
+
 }
