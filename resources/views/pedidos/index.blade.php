@@ -317,20 +317,20 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" name="detalles_reparaciones[0][prenda]" class="form-control"></td>
-<td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
-<td><input type="text" name="detalles_reparaciones[0][descripcion_problema]" class="form-control"></td>
-<td>
-    <select name="detalles_reparaciones[0][servicio]" class="form-control" onchange="updatePrecio(this)" required>
-        <option value="" disabled selected>Seleccione un servicio...</option>
-        @foreach ($servicios as $servicio)
-        <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
-            {{ $servicio->servicio }}
-        </option>
-        @endforeach
-    </select>
-</td>
-<td><input type="number" name="detalles_reparaciones[0][precio_prenda]" class="form-control" readonly></td>
-<td><input type="number" name="detalles_reparaciones[0][subtotal]" class="form-control" readonly></td>
+                                    <td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+                                    <td><input type="text" name="detalles_reparaciones[0][descripcion_problema]" class="form-control"></td>
+                                    <td>
+                                        <select name="detalles_reparaciones[0][servicio]" class="form-control" onchange="updatePrecio(this)" required>
+                                            <option value="" disabled selected>Seleccione un servicio...</option>
+                                            @foreach ($servicios as $servicio)
+                                                <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
+                                                    {{ $servicio->servicio }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td><input type="text" name="detalles_reparaciones[0][precio_prenda]" class="form-control" readonly></td>
+                                    <td><input type="number" name="detalles_reparaciones[0][subtotal]" class="form-control" readonly></td>
                                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
                                 </tr>
                             </tbody>
@@ -346,6 +346,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal para Crear Pedido de Confecciones -->
 <div class="modal fade" id="confeccionModal" tabindex="-1" aria-labelledby="confeccionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -423,23 +424,32 @@
 </div>
 
 <script>
-    // Actualiza el precio de la prenda según el servicio seleccionado
-    function updatePrecio(selectElement) {
-        const row = selectElement.closest('tr');
-        const selectedOption = selectElement.options[selectElement.selectedIndex];
-        const precio = selectedOption.dataset.precio || 0;
-        row.querySelector('input[name*="[precio_prenda]"]').value = precio;
-        updateSubtotal(selectElement);
-    }
+// Función para actualizar el precio y el subtotal
+function updatePrecio(selectElement) {
+    const row = selectElement.closest('tr');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+    const precio = selectedOption.dataset.precio || 0;
+    
+    // Actualiza solo el campo visual del precio_prenda
+    row.querySelector('input[name*="[precio_prenda]"]').value = precio;
+    
+    // Luego calculamos el subtotal basado en el precio y la cantidad
+    updateSubtotal(selectElement);
+}
 
-    // Calcula y actualiza el subtotal
-    function updateSubtotal(element) {
-        const row = element.closest('tr');
-        const cantidad = row.querySelector('input[name*="[cantidad]"]').value || 0;
-        const precio = row.querySelector('input[name*="[precio_prenda]"]').value || 0;
-        const subtotal = cantidad * precio;
-        row.querySelector('input[name*="[subtotal]"]').value = subtotal.toFixed(2);
-    }
+// Función para calcular el subtotal
+function updateSubtotal(element) {
+    const row = element.closest('tr');
+    const cantidad = row.querySelector('input[name*="[cantidad]"]').value || 0;
+    const precio = row.querySelector('input[name*="[precio_prenda]"]').value || 0;
+    const subtotal = cantidad * precio;
+    
+    // Actualiza solo el subtotal visualmente
+    row.querySelector('input[name*="[subtotal]"]').value = subtotal.toFixed(2);
+}
+
+
+
     const loteRowTemplate = `
     <td><input type="text" name="detalles_lote[__rowCount__][prenda]" class="form-control"></td>
     <td><input type="number" name="detalles_lote[__rowCount__][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
