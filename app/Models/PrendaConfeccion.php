@@ -23,11 +23,11 @@ class PrendaConfeccion extends Model
 
     public function prendasTelas()
 {
-    return $this->hasOne(PrendaTela::class, 'prenda_confeccion_id');
+    return $this->hasMany(PrendaTela::class, 'prenda_confeccion_id');
 }
     public function prendasColor()
 {
-    return $this->hasOne(PrendaColor::class, 'prenda_id');
+    return $this->hasMany(PrendaColor::class, 'prenda_id');
 }
 
     public function telas()
