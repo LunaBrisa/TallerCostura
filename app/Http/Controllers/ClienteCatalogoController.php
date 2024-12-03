@@ -85,7 +85,6 @@ class ClienteCatalogoController extends Controller
       return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
 
-
   public function MostrarPrendasMasVendidas()
   {
       $prendasMasVendidas = DB::table('PrendasMasVendidas')->get();
