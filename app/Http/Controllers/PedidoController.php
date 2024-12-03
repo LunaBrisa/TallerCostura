@@ -10,6 +10,7 @@ use App\Models\DetalleReparacion;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\PrendaConfeccion;
 
 class PedidoController extends Controller
 {
@@ -177,5 +178,9 @@ public function cambiarEstado($id)
         ->with('success', 'Estado del pedido actualizado a: ' . $nuevoEstado);
 }
 
-
+public function verprendas()
+{
+    $prendas = PrendaConfeccion::all();
+    return view('pedidos.index', compact('prendas'));
+}
 }

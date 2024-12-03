@@ -83,8 +83,7 @@
         Telefono: +528 715 627 999
         <img src="{{ asset('images/email.jpg') }}" width="30px" height="30px">
         Correo: fatimacastcanelo756@gmail.com
-      <p style="font-size: 20px; font-family: 'Bodoni Moda'; text-align:end; margin-right: 50px;">
-        Taller Costura 2022</p></div>
+   
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
