@@ -150,6 +150,7 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
                 'descripcion_problema' => $detalle['descripcion_problema'] ?? null,
                 'cantidad_prenda' => $detalle['cantidad'],
             ]);
+            dd($detalleReparacion->id, $detalle['servicio']);
 
             // Asociar el servicio al detalle de reparación
             $detalleReparacion->servicios()->attach($detalle['servicio']);
