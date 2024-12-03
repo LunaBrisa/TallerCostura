@@ -102,8 +102,8 @@ public function store(Request $request)
     
     // Validar los datos del formulario
     $request->validate([
-        'cliente' => 'required|exists:clientes,id',
-        'empleado' => 'required|exists:empleados,id',
+        'cliente' => 'required|exists:CLIENTES,id',
+        'empleado' => 'required|exists:EMPLEADOS,id',
         'fecha_pedido' => 'required|date',
         'fecha_entrega' => 'required|date',
         'descripcion' => 'required|string',
