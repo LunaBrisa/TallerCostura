@@ -52,13 +52,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 // Rutas públicas
-    Route::get('/', function () { return view('welcome');});
+
+    Route::get('/', [ClienteCatalogoController::class, 'MostrarPrendasMasVendidas']);
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
     Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
     Route::get('/Cliente/ClienteInfantilesView', [ClienteCatalogoController::class, 'MostrarInfantiles'])->name('Cliente.ClienteInfantilesView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
-
     // Rutas protegidas para admin
 //Route::middleware([AdminMiddleware::class])->group(function () {
      Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
@@ -133,6 +133,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 //Route::middleware([ClienteMiddleware::class])->group(function () {
 Route::get('/Cliente/MisPedidos', [ClienteCatalogoController::class, 'MostrarPedidosClinte'])->name('Cliente.MostrarPedidosClinte');
 Route::get('/detallepedido/{id}', [ClienteCatalogoController::class, 'MostrarDetallesPedido'])->name('Cliente.MostrarDetallesPedido');
+Route::get('/pedido/{id}/detalles', [ClienteCatalogoController::class, 'MostrarDetallesPedidos'])->name('Cliente.MostrarDetallesPedidos');
 //});
 
 //Route::middleware([EmpleadoMiddleware::class, AdminMiddleware::class, ClienteMiddleware::class])->group(function () {

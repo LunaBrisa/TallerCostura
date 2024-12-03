@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
 use App\Models\PrendaConfeccion as prenda;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
@@ -83,4 +84,27 @@ class ClienteCatalogoController extends Controller
 
       return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
+
+
+  
+    public function MostrarDetallesPedidos($id)
+    {
+        // Cargar el pedido con sus relaciones
+        $pedido = Pedido::with([
+            'empleado.persona', 
+            'detallesConfecciones.prendaConfeccion', 
+            'detallesReparaciones.servicios',
+            'detallesLotes'
+        ])->findOrFail($id);  // Buscar el pedido por id, o devolver error 404 si no se encuentra
+
+        // Retornar la vista con los detalles del pedido
+        return view('Cliente.DetallesPedidos', compact('pedido'));
+    }
+
+  public function MostrarPrendasMasVendidas()
+  {
+      $prendasMasVendidas = DB::table('PrendasMasVendidas')->get();
+      return view('welcome', compact('prendasMasVendidas'));
+  }
+
 }

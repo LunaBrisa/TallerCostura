@@ -7,18 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use App\Notifications\VerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles;
-
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmail);
-    }
-
     public function roles()
     {
         return $this->belongsToMany(Rol::class, 'ROLES_USUARIOS', 'user_id', 'rol_id');

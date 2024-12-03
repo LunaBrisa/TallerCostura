@@ -66,10 +66,11 @@
                             <option value="{{$tipoPrenda->id}}">{{$tipoPrenda->tipo_prenda}}</option>
                           @endforeach
                         </select><br>
+
                         <div class="form-group">
                           <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
                           <input class="form-control" type="file" name="ruta_imagen" id="imagencita" accept="image/*" required>
-                        </div>
+                        </div><br>
 
                         <label for="colorprendita"><h3 class="h3-modal">Color de la Prenda</h3></label>
                         <select name="colorprendita" class="form-select" aria-label="Default select example">
