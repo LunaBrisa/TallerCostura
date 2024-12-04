@@ -75,7 +75,7 @@
             @foreach ($misPrendasColores as $prendaColor)
                     <div class="card mb-4 shadow-md card-hover cardsing">
                         <div class="card-body">
-                          <div class="img-div" style="width: 60%; margin: auto;">
+                          <div class="img-div" style="width: 40%; heihgt: 40%; margin: auto;">
                             <img src="{{ asset($prendaColor -> ruta_imagen) }}" class="card-img-top" alt="...">
                           </div>
                             <h1 class="list-title">{{$prendaColor->color}}</h1> 
