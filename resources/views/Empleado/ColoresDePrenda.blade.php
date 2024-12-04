@@ -75,7 +75,7 @@
             @foreach ($misPrendasColores as $prendaColor)
                     <div class="card mb-4 shadow-md card-hover cardsing">
                         <div class="card-body">
-                            <img src="{{$prendaColor -> ruta_imagen}}" class="card-img-top" alt="...">
+                            <img src="{{ asset($prendaColor -> ruta_imagen) }}" class="card-img-top" alt="...">
                             <h1 class="list-title">{{$prendaColor->color}}</h1> 
                             <div class="color-circle" style="background-color: {{ $prendaColor->color }}; margin: auto; text-align: center;" title="{{ $prendaColor->color }}" readonly></div><br>
                         <!-- Button trigger modal -->
