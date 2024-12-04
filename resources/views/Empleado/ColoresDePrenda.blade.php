@@ -75,32 +75,13 @@
             @foreach ($misPrendasColores as $prendaColor)
                     <div class="card mb-4 shadow-md card-hover cardsing">
                         <div class="card-body">
-                            <h1 class="list-title">{{$prendaColor->color->color}}</h1> 
+                            <img src="{{$prendaColor -> ruta_imagen}}" class="card-img-top" alt="...">
+                            <h1 class="list-title">{{$prendaColor->color}}</h1> 
+                            <div class="color-circle" style="background-color: {{ $prendaColor->color }}; margin: auto; text-align: center;" title="{{ $prendaColor->color }}" readonly></div><br>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$prendaColor->id}}">
                           Eliminar
                         </button><br>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}">
-                                <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar este color de la prenda?</p>
-
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                                <a href="/elim/color/prenda/{{$prendaColor->id}}" class="btn btn-intemodal">Eliminar</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         
                       </div>
                     </div>
@@ -136,6 +117,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
 <style>
+
+.color-circle {
+    width: 20px; /* Ancho del círculo */
+    height: 20px; /* Alto del círculo */
+    border-radius: 50%; /* Hace el elemento circular */
+    border: 1px solid #ccc; /* Opcional: borde para visibilidad */
+    display: inline-block; /* Asegura que el círculo sea un bloque en línea */
+}
+
 
 .img-cent { /* Centra la imagen */
         margin: auto !important;

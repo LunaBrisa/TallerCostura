@@ -7,14 +7,22 @@ use App\Http\Requests\SaveColorPrendaRequest;
 use App\Models\Color;
 use App\Models\PrendaColor;
 use App\Models\PrendaConfeccion;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PrendasColoresController extends Controller
 {
     public function getColoresDePrenda($id){
-        $prendasColores = PrendaColor::with('color')->where('prenda_id', $id)->get();
+
         $colores = Color::all();
         $prenda = PrendaConfeccion::find($id);
+        $prendasColores = DB::select('SELECT COLORES.color AS color, PRENDAS_COLORES.ruta_imagen,
+        PRENDAS_COLORES.id AS id FROM COLORES INNER JOIN 
+        PRENDAS_COLORES ON PRENDAS_COLORES.color_id = COLORES.id
+        INNER JOIN PRENDAS_CONFECCIONES ON PRENDAS_CONFECCIONES.id = PRENDAS_COLORES.prenda_id
+        WHERE PRENDAS_CONFECCIONES.id IN (SELECT PRENDAS_COLORES.prenda_id FROM PRENDAS_COLORES WHERE
+        PRENDAS_COLORES.prenda_id = ?)', [$id]);
+
         return view('Empleado.ColoresDePrenda')->with([
             'misPrendasColores' => $prendasColores,
             'misColores' => $colores,
