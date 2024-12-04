@@ -33,7 +33,7 @@ class PrendasColoresController extends Controller
     public function saveColorPrenda(SaveColorPrendaRequest $saveColorPrendaRequest){
         $file = $saveColorPrendaRequest->file('imagencolorsote');
 
-        if ($file->isValid()) {
+        if ($file && $file->isValid()) {
             $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
             $destino = base_path('../images');
             $file->move($destino, $filename);
@@ -42,7 +42,7 @@ class PrendasColoresController extends Controller
             DB::statement('CALL Agregar_Color_Prenda(?, ?, ?)', [
                 $saveColorPrendaRequest -> colorprenda,
                 $saveColorPrendaRequest -> idprenda,
-                $saveColorPrendaRequest -> $filePath
+                $filePath
             ]);
     
             return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
