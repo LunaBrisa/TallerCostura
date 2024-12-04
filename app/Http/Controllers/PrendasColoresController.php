@@ -48,7 +48,7 @@ class PrendasColoresController extends Controller
             $prendaColor -> prenda_id = $saveColorPrendaRequest -> idprenda;
             $prendaColor -> color_id = $saveColorPrendaRequest -> colorprenda;        
             $prendaColor -> save();
-            
+             
             return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
         }else{
             return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo.');
