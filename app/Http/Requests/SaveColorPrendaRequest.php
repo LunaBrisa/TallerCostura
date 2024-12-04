@@ -23,7 +23,7 @@ class SaveColorPrendaRequest extends FormRequest
     {
         return [
             'colorprenda' => ['required', 'exists:COLORES,id', 'numeric'],
-            'imagencolorsote' => ['required', 'max:255', 'mimes:jpeg,jpg,png,gif', 'dimensions:150x150'],
+            'imagencolorsote' => ['required', 'max:255', 'mimes:jpeg,jpg,png,gif'],
             'idprenda' => ['required', 'exists:PRENDAS_CONFECCIONES,id', 'numeric']
         ];
     }
@@ -36,7 +36,6 @@ class SaveColorPrendaRequest extends FormRequest
             'imagencolorsote.required' => 'La imagen de la prenda con el color es obligatoria',
             'imagencolorsote.max' => 'La imagen de la prenda con el color no puede tener mas de 255 caracteres',
             'imagencolorsote.mimes' => 'La imagen de la prenda con el color debe ser de tipo jpeg, jpg, png o gif',
-            'imagencolorsote.dimensions' => 'La imagen de la prenda con el color debe ser de 150x150 pixeles',
             'idprenda.exists' => 'La prenda de la que se trata no existe',
             'idprenda.numeric' => 'La prenda de la que se trata no existe',
         ];
