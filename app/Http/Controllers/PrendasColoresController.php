@@ -33,7 +33,7 @@ class PrendasColoresController extends Controller
     public function saveColorPrenda(SaveColorPrendaRequest $saveColorPrendaRequest){
         $file = $saveColorPrendaRequest->file('imagencolorsote');
 
-        if ($file && $file->isValid()) {
+        if ($file->isValid()) {
             $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
             $destino = base_path('../images');
             $file->move($destino, $filename);
@@ -49,8 +49,6 @@ class PrendasColoresController extends Controller
         }else{
             return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
         }
-
-
     }
 
     public function eliminarColorPrenda($id){
