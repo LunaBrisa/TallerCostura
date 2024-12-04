@@ -31,28 +31,26 @@ class PrendasColoresController extends Controller
     }
 
     public function saveColorPrenda(SaveColorPrendaRequest $saveColorPrendaRequest){
-        $prendaColor = new PrendaColor();
-
-        $file = $saveColorPrendaRequest -> file('imagencolorsillo');
+        $file = $saveColorPrendaRequest->file('imagencolorsote');
 
         if ($file && $file->isValid()) {
             $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
-    
             $destino = base_path('../images');
-    
             $file->move($destino, $filename);
-    
             $filePath = 'images/' . $filename;
+            
+            DB::statement('CALL Agregar_Color_Prenda(?, ?, ?)', [
+                $saveColorPrendaRequest -> colorprenda,
+                $saveColorPrendaRequest -> idprenda,
+                $saveColorPrendaRequest -> $filePath
+            ]);
     
-            $prendaColor -> ruta_imagen = $filePath;
-            $prendaColor -> prenda_id = $saveColorPrendaRequest -> idprenda;
-            $prendaColor -> color_id = $saveColorPrendaRequest -> colorprenda;        
-            $prendaColor -> save();
-             
             return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
         }else{
-            return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo.');
+            return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
         }
+
+
     }
 
     public function eliminarColorPrenda($id){
