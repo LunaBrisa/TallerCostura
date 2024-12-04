@@ -33,7 +33,7 @@ class PrendasColoresController extends Controller
     public function saveColorPrenda(SaveColorPrendaRequest $saveColorPrendaRequest){
         $prendaColor = new PrendaColor();
 
-        $file = $saveColorPrendaRequest -> file('imagencolorsote');
+        $file = $saveColorPrendaRequest -> file('imagencolorsillo');
 
         if ($file && $file->isValid()) {
             $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());

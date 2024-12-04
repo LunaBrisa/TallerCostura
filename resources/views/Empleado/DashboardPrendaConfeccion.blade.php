@@ -150,6 +150,12 @@
       </div>
     @endif
 
+    @if (session('errorColor'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('errorColor') }}         <!-- AL AGREGAR COLOR A UNA PRENDA -->
+        </div>
+    @endif
+
     @if (session('successEliminarColor'))
       <div class="alert alert-success" role="alert">
           {{ session('successEliminarColor') }}         <!-- AL ELIMINAR COLOR DE UNA PRENDA -->

@@ -68,24 +68,6 @@
             {{ $error }}
         </div>
       @endforeach
-
-      @if (session('successColor'))
-        <div class="alert alert-success">
-          {{ session('successColor') }}
-        </div>
-      @endif
-
-      @if (session('errorColor'))
-        <div class="alert alert-danger">
-          {{ session('errorColor') }}
-        </div>
-      @endif
-
-      @if(session('successEliminarColor'))
-        <div class="alert alert-success">
-          {{ session('successEliminarColor') }}
-        </div>
-      @endif
       </div>
     </div>
 
