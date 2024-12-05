@@ -85,7 +85,6 @@
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$prendaColor->id}}">
                           Eliminar
                         </button><br>
-<<<<<<< HEAD
                               
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,11 +106,6 @@
                             </div>
                           </div>
                         </div>
-=======
-                        <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalImg{{$prendaColor->id}}">
-                          Cambiar Imagen
-                        </button>
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
                         
                       </div>
                     </div>
@@ -252,8 +246,6 @@
     }
 }
 
-<<<<<<< HEAD
-=======
 .h3-modal {
     margin: auto;
     text-align: center;
@@ -266,5 +258,4 @@ media (max-width: 576px) {
 }
 
  </style>
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
  
