@@ -74,7 +74,7 @@
     <div class="row" style="padding-top: 25px">
       <div class="col">
         @foreach ($misPrendasColores as $prendaColor)
-                    <div class="card mb-4 shadow-md card-hover cardsing" style="width: 70%; margin: auto;">
+                    <div class="card mb-4 shadow-md card-hover cardsing" style="width: 100%; margin: auto;">
                         <div class="card-body">
                           <div class="img-div" style="width: 45%; heihgt: 40%; margin: auto;">
                             <img src="{{ asset($prendaColor -> ruta_imagen) }}" class="card-img-top" alt="...">
@@ -85,33 +85,9 @@
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$prendaColor->id}}">
                           Eliminar
                         </button><br>
-<<<<<<< HEAD
-                              
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}">
-                                <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar este color de la prenda?</p>
-
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-                                <a href="/elim/color/prenda/{{$prendaColor->id}}" class="btn btn-intemodal">Eliminar</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-=======
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalImg{{$prendaColor->id}}">
                           Cambiar Imagen
-                        </button>
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
+                        </button><br>
                         
                       </div>
                     </div>
@@ -234,7 +210,7 @@
 }
 
 .cardsing {
-    width: 100%; 
+    width: 800px; 
     max-width: 320px; 
     margin: 0 auto; 
     padding: 10px;
@@ -252,8 +228,6 @@
     }
 }
 
-<<<<<<< HEAD
-=======
 .h3-modal {
     margin: auto;
     text-align: center;
@@ -266,5 +240,4 @@ media (max-width: 576px) {
 }
 
  </style>
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
  

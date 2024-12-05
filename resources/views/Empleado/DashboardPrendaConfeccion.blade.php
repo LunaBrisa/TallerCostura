@@ -162,6 +162,18 @@
           {{ session('successEliminarColor') }}         <!-- AL ELIMINAR COLOR DE UNA PRENDA -->
       </div>
     @endif
+
+    @if (session('successImgColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successImgColor') }}         <!-- AL MODIFICAR COLOR DE UNA PRENDA -->
+      </div>
+    @endif
+
+    @if (session('errorImgColor'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('errorImgColor') }}             <!-- AL AGREGAR COLOR A UNA PRENDA -->
+    </div>
+  @endif
   </div>
 </div>
 
