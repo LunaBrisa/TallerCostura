@@ -90,6 +90,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
     Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
+    Route::post('/modif/img-color-prenda', [PrendasColoresController::class, 'modifImgColorPrenda']);
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
     

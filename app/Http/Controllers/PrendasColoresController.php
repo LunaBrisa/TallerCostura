@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ColorImgRequest;
 use App\Http\Requests\SaveColorPrendaRequest;
 use App\Models\Color;
 use App\Models\PrendaColor;
@@ -58,5 +59,27 @@ class PrendasColoresController extends Controller
         $prendaColor = PrendaColor::find($id);
         $prendaColor->delete();
         return redirect('/gestion/prenda-confeccion')->with('successEliminarColor', '¡Se eliminó correctamente el color!');
+    }
+
+    public function modifImgColorPrenda(ColorImgRequest $modifImgColorPrendaRequest){
+        $file = $modifImgColorPrendaRequest->file('imagencolorsillo');
+
+        if ($file && $file->isValid()) {
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
+           
+            $destino = base_path('../images');
+           
+            $file->move($destino, $filename);
+          
+            $filePath = 'images/' . $filename;
+            
+            DB::statement('CALL Cambiar_Img_PC(?, ?)', [
+                $modifImgColorPrendaRequest -> idprenda,
+                $filePath,
+            ]);
+    
+            return redirect('/gestion/prenda-confeccion')->with('successImgColor', '¡Se agregó correctamente la imagen al color!');
+        }
+        return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
     }
 }
