@@ -77,6 +77,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/agg/tela', [TelaController::class, 'saveTela']);
     Route::post('/modif/tela', [TelaController::class, 'modifTela']);
 //RUTAS PARA PRENDAS
+    Route::get('/gestion/prenda-confeccion', [PrendaConfeccionController::class, 'getPrendasConfeccion']);
     Route::post('/agg/prenda-confeccion', [PrendaConfeccionController::class, 'savePrendaConfeccion']);
     Route::get('/modificar/prenda/{id}', [PrendaConfeccionController::class, 'vistaPrendasConfeccion']);
     Route::post('/modifi/prenda', [PrendaConfeccionController::class, 'modifPrendaConfeccion']);
