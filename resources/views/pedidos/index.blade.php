@@ -565,6 +565,7 @@ function updateRowIndices(table) {
             });
         }
     });
+    // no hice cambios
     </script>
 @endsection 
 <!-- Bootstrap CSS -->
