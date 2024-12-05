@@ -47,7 +47,7 @@
                     </select><br>
 
                     <label for="imagencolorsote"><h3 class="h3-modal">Imagen de la Prenda con el Color</h3></label>
-                    <input class="form-control" type="file" name="imagencolorsote" accept="image/*"><br>
+                    <input class="form-control" type="file" name="imagencolorsote" accept="image/*" required><br>
 
                     <div class="btn-div">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">
