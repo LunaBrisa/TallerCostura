@@ -7,6 +7,7 @@ use App\Models\Pedido;
 use App\Models\Cliente;
 use App\Models\Servicio;
 use App\Models\DetalleReparacion;
+use App\Models\ReparacionServicio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -162,8 +163,12 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
             ]);
             // Asociar el servicio al detalle de reparación
             try {
-                $detalleReparacion->servicios()->syncWithoutDetaching([$detalle['servicio']]);
-
+                ReparacionServicio::create([
+                    'detalle_reparacion_id' => $detalleReparacion->id,
+                    'servicio_id' => $detalle['servicio'],
+                ]);
+                
+                
             } catch (\Exception $e) {
                 Log::error('Error al asociar servicio con detalle_reparacion: ' . $e->getMessage());
                 dd($e);  // Para ver el error completo

@@ -45,6 +45,6 @@ class SavePrendaConfeccionRequest extends FormRequest
             'tipoprendita.numeric' => 'El tipo de prenda es invalido',
             'generito.required' => 'El genero de la prenda es invalido',
             'generito.in' => 'El genero de la prenda es invalido',
-];
+        ];
     }
 }
