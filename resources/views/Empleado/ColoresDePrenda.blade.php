@@ -128,13 +128,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <label for="imagencolorsillo"><h3 class="h3-modal">Imagen Nueva de la Prenda con el Color</h3></label><br><br>
-            <input class="form-control" type="file" name="imagencolorsillo"><br>
-  
+            <form action="/modif/img-color-prenda" method="post" enctype="multipart/form-data"> 
+              @csrf
+              <input type="hidden" name="idprenda" value="{{$prendaColor->id}}">
+
+              <label for="imagencolorsillo"><h3 class="h3-modal">Imagen Nueva de la Prenda con el Color</h3></label><br><br>
+              <input class="form-control" type="file" name="imagencolorsillo"><br> 
+              <button type="button" class="btn btn-modal-sub" data-bs-dismiss="modal">Cancelar</button><br>
+              <input type="submit" class="btn btn-modal-sub" value="Guardar">  
+            </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
-            <a href="/cambiar-img/color/prenda/{{$prendaColor->id}}" class="btn btn-intemodal">Guardar</a>
           </div>
         </div>
       </div>
