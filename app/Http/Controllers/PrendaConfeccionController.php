@@ -17,29 +17,21 @@ use Illuminate\Http\Request;
 
 class PrendaConfeccionController extends Controller
 {
-    public function getPrendasConfeccion($tipo = 'visibles') {
-        $query = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']);
-    
-        if ($tipo === 'ocultas') {
-            $prendillas = $query->where('visible', 0)->paginate(3);
-        } else {
-            $prendillas = $query->where('visible', 1)->paginate(3);
-        }
-    
+    public function getPrendasConfeccion(){
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> paginate(3);
+        $prendillasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> paginate(3);
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
         $colorsillos = Color::all();
-    
+
         return view('Empleado/DashboardPrendaConfeccion')->with([
             'misPrendas' => $prendillas,
+            'misPrendasOcultas' => $prendillasOcultas,
             'misTiposPrendas' => $tiposprendilla,
             'misTelas' => $telillas,
-            'misColores' => $colorsillos,
-            'tipo' => $tipo, // Opcional: para mostrar en la vista el tipo actual
+            'misColores' => $colorsillos
         ]);
     }
-    
-    
 
     public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest)
     {
@@ -118,20 +110,17 @@ class PrendaConfeccionController extends Controller
         ]);
     }
 
-    public function ocultaPrenda($id)
-    {
+    public function ocultaPrenda($id){
         $prendaconfeccion = PrendaConfeccion::find($id);
-        $prendaconfeccion->visible = 0;
-        $prendaconfeccion->save();
-        return redirect('/gestion/prenda-confeccion?tipo=ocultas');
+        $prendaconfeccion -> visible = 0;
+        $prendaconfeccion -> save();
+        return redirect('/gestion/prenda-confeccion');
     }
-    
-    public function muestraPrenda($id)
-    {
+
+    public function muestraPrenda($id){
         $prendaconfeccion = PrendaConfeccion::find($id);
-        $prendaconfeccion->visible = 1;
-        $prendaconfeccion->save();
-        return redirect('/gestion/prenda-confeccion?tipo=visibles');
+        $prendaconfeccion -> visible = 1;
+        $prendaconfeccion -> save();
+        return redirect('/gestion/prenda-confeccion');
     }
-    
 }
