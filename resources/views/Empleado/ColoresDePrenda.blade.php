@@ -85,9 +85,33 @@
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalElim{{$prendaColor->id}}">
                           Eliminar
                         </button><br>
+<<<<<<< HEAD
+                              
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalElim{{$prendaColor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Eliminacion de Tela</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <img src="{{ asset('images/warning-sign-icon-transparent-background-free-png.webp') }}">
+                                <p class="advert">Advertencia! ¿Estás seguro de que quieres eliminar este color de la prenda?</p>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-intemodal" data-bs-dismiss="modal">Cancelar</button>
+                                <a href="/elim/color/prenda/{{$prendaColor->id}}" class="btn btn-intemodal">Eliminar</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+=======
                         <button type="button" class="btn btn-modal-sub" data-bs-toggle="modal" data-bs-target="#exampleModalImg{{$prendaColor->id}}">
                           Cambiar Imagen
                         </button>
+>>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
                         
                       </div>
                     </div>
@@ -191,17 +215,16 @@
     }
 
      .btn-modal-sub {
-    margin: 5px auto; /* Centra los botones en todos los tamaños */
-    display: block; /* Asegura que el botón sea un bloque */
-    height: 40px;
-    max-width: 300px; /* Tamaño máximo del botón */
-    width: 100%; /* Ocupa todo el espacio posible */
+    margin: 10px auto; 
+    display: block; 
+    width: 100%; 
+    max-width: 280px; 
+    height: 45px; 
     background-color: #BE5A8C;
-    border: solid 2px;
-    border-color: #F99AAA;
+    border: 2px solid #F99AAA;
     color: #FFCDD4;
+    font-size: 16px;
     text-align: center;
-    font-size: 16px; /* Texto visible en todos los tamaños */
     padding: 0;
 }
 
@@ -210,13 +233,27 @@
     color: #BE5A8C;
 }
 
+.cardsing {
+    width: 100%; 
+    max-width: 320px; 
+    margin: 0 auto; 
+    padding: 10px;
+}
+
 @media (max-width: 576px) {
     .btn-modal-sub {
-        height: 40px; /* Ajusta el alto del botón en pantallas pequeñas */
-        font-size: 14px; /* Tamaño de fuente menor */
+        font-size: 14px; /* Reduce el tamaño del texto en pantallas pequeñas */
+        height: 40px; /* Ajusta la altura del botón */
+        max-width: 100%; /* Se expande al 100% del contenedor */
+    }
+
+    .cardsing {
+        padding: 5px; /* Espaciado más pequeño */
     }
 }
 
+<<<<<<< HEAD
+=======
 .h3-modal {
     margin: auto;
     text-align: center;
@@ -229,4 +266,5 @@ media (max-width: 576px) {
 }
 
  </style>
+>>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
  

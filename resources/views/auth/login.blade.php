@@ -21,16 +21,32 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('/images/F2.png');
+            background-image: url('/images/fLogin.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         .login-container {
-            width: 350px; 
+            width: 90%;
+            max-width: 500px;
             padding: 20px;
             text-align: center;
+            background-color: rgba(237, 226, 233, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-out; /* Animación al cargar */
         }
 
         .login-container h2 {
@@ -38,14 +54,12 @@
             color: #333;
             margin-bottom: 20px;
             font-family: 'Arial', sans-serif;
-            margin-left: 30px;
         }
 
         .login-container label {
             font-size: 1rem;
             color: #555;
             display: block;
-            margin-left: 30px;
             text-align: left;
             margin-bottom: 5px;
         }
@@ -54,9 +68,9 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            margin-left: 30px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: white;
         }
 
         .login-container button {
@@ -68,11 +82,45 @@
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            margin-left: 30px;
         }
 
         .login-container button:hover {
             background-color: #a54c76;
+        }
+
+        @media (max-width: 768px) {
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .login-container {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container h2 {
+                font-size: 1.2rem;
+            }
+
+            .login-container {
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .login-container button {
+                font-size: 0.9rem;
+            }
+
+            .login-container input {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .login-container label {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -80,9 +128,10 @@
     @extends('layouts.nav')
     @section('content')
 <div class="background">
-
     <div class="login-container">
-        <h2  style="font-size: 40px; text-shadow: 2px 2px 0px #B5C5D7, -2px -2px 0px #B5C5D7, -2px 2px 0px #B5C5D7;">Iniciar Sesión</h2>
+        <h2 style="font-size: 40px; text-shadow: 2px 2px 0px #B5C5D7, -2px -2px 0px #B5C5D7, -2px 2px 0px #B5C5D7;">
+            Iniciar Sesión
+        </h2>
         <form action="{{ route('login') }}" method="post">
             @csrf
             <label for="email">Correo:</label>
@@ -100,6 +149,7 @@
             <button type="submit">Iniciar Sesión</button>
         </form>
     </div>
+    
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -115,7 +165,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </div>
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

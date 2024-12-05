@@ -12,13 +12,15 @@ use Illuminate\Http\Request;
 class TelaController extends Controller
 {
     public function getTelas(){
-        $telillas = Tela::with('materialTela')->get();
-        $mate_telas = MaterialTela::all();
-
+      
+        $telillas = Tela::with('materialTela')->paginate(3); 
+        $mate_telas = MaterialTela::all(); 
+    
         return view('Empleado/DashboardTelas')->with([
             'misTelas' => $telillas,
             'misMaterialTela' => $mate_telas
         ]);
+    
     }
 
     public function saveTela(TelasRequest $telasRequest){ //VALIDADO DE Q YA YA TODO PROTEGIDO

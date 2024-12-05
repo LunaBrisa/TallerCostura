@@ -38,12 +38,9 @@ class PrendaConfeccionController extends Controller
         $file = $savePrendaConfeccionRequest->file('ruta_imagen');
 
         if ($file && $file->isValid()) {
-            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
-    
-            $destino = base_path('../images');
-    
-            $file->move($destino, $filename);
-    
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());    
+            $destino = base_path('../images');    
+            $file->move($destino, $filename);    
             $filePath = 'images/' . $filename;
     
     

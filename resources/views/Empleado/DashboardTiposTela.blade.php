@@ -87,7 +87,11 @@
           </div>
         </div>
         @endforeach
-    </div>
+        <div>
+          <div class="d-flex justify-content-center mt-4">
+          {{ $MisMaterialesTela->links() }}
+          </div>
+        </div>
 </div>
 @endsection
 

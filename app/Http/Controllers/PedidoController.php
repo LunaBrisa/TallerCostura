@@ -105,6 +105,7 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
+
 public function store(Request $request)
 {
     // Reindexar arrays para evitar problemas de índices no consecutivos
@@ -217,7 +218,7 @@ public function CrearPedidoConfeccion(Request $request){
     $medidas->largo = $request->largo;
     $medidas->save();
 
-    $detalleInsumos = new DetalleInsumos;
+    $detalleInsumos = new DetalleInsumo;
     $detalleInsumos->pedido_id = $pedido->id;
     $detalleInsumos->insumo_id = $request->insumo;
     $detalleInsumos->cantidad_insumo = $request->cantidad_insumo;
@@ -233,4 +234,8 @@ public function CrearPedidoConfeccion(Request $request){
   return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
 
+public function pedidoconfeccion()
+    {
+        return view('pedidos.pedidoconfeccion');
+    }
 }

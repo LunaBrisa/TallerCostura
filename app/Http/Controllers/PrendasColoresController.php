@@ -35,12 +35,9 @@ class PrendasColoresController extends Controller
         $file = $saveColorPrendaRequest->file('imagencolorsote');
 
         if ($file && $file->isValid()) {
-            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
-           
-            $destino = base_path('../images');
-           
-            $file->move($destino, $filename);
-          
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());          
+            $destino = base_path('../images');          
+            $file->move($destino, $filename);         
             $filePath = 'images/' . $filename;
             
             DB::statement('CALL Agregar_Color_Prenda(?, ?, ?)', [

@@ -2,27 +2,26 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
- 
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+  
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function boot()
     {
-        //
+        // Configurar la paginación 
+        Paginator::useBootstrap();
+    
+        // Personalizar el email de verificación
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
                 ->subject('Verify Email Address"111')
@@ -30,4 +29,6 @@ class AppServiceProvider extends ServiceProvider
                 ->action('Verify Email Address', $url);
         });
     }
-}
+}    
+
+

@@ -91,6 +91,7 @@
                         <label for="cantidadsitadetela"><h3 class="h3-modal">Metros la Tela</h3></label>
                         <input type="number" class="form-control" name="cantidadsitadetela" placeholder="0"><br>
 
+
                         <div class="btn-div">
                           <input type="submit" class="btn btn-modal-sub" value="Guardar">
                         </div>
@@ -246,12 +247,11 @@
             </div>
           </div>
           @endforeach    
-          </div> 
-          
-          <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendasOcultas->links('pagination::default') }}
-        </div>
-      </div>
+          <div>
+            <div class="d-flex justify-content-center mt-4">
+            {{ $misPrendas->links() }}
+            </div>
+          </div>
     </div>
     
   </div>
