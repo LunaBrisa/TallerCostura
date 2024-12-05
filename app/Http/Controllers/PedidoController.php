@@ -218,7 +218,7 @@ public function CrearPedidoConfeccion(Request $request){
     $medidas->largo = $request->largo;
     $medidas->save();
 
-    $detalleInsumos = new DetalleInsumos;
+    $detalleInsumos = new DetalleInsumo;
     $detalleInsumos->pedido_id = $pedido->id;
     $detalleInsumos->insumo_id = $request->insumo;
     $detalleInsumos->cantidad_insumo = $request->cantidad_insumo;

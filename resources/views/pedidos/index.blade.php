@@ -33,19 +33,6 @@
         transform: translateY(-2px);
     }
 
-<<<<<<< HEAD
-/* Fondo de página */
-body {
-    background-color: #f5f5f5;
-    color: #333;
-}
-<style>
-    /* Tus estilos actuales */
-
-</style>
-
-    </style>
-=======
     .btn-success {
         background-color: #dc6381;
         border-color: #d47b8c;
