@@ -38,6 +38,9 @@ class SaveColorPrendaRequest extends FormRequest
             'file.required' => 'Debe subir una imagen',
             'file.mimes' => 'El archivo debe ser de tipo JPG, JPEG, PNG',
             'file.max' => 'El archivo es muy grande',
+            'imagencolorsote.required' => 'Debe subir una imagen',
+            'imagencolorsote.mimes' => 'El archivo debe ser de tipo JPG, JPEG, PNG',
+            'imagencolorsote.max' => 'El archivo es muy grande',
         ];
     }
 }
