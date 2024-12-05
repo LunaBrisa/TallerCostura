@@ -9,6 +9,12 @@
 <body>
 @extends('layouts.nav')
 @section('content')
+<div>
+  <a href="{{ route('prendas.confeccion', ['tipo' => 'visibles']) }}">Visibles</a>
+  <a href="{{ route('prendas.confeccion', ['tipo' => 'ocultas']) }}">Ocultas</a>
+</div>
+
+
 <div class="container2">
   <div class="row" style="padding-top: 20px;">
     <div class="col">
