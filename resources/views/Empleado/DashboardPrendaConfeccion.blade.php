@@ -170,7 +170,7 @@
 
     @if (session('errorImgColor'))
     <div class="alert alert-danger" role="alert">
-        {{ session('errorImgColor') }}         <!-- AL AGREGAR COLOR A UNA PRENDA -->
+        {{ session('errorImgColor') }}             <!-- AL AGREGAR COLOR A UNA PRENDA -->
     </div>
   @endif
   </div>
