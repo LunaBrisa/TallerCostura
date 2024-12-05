@@ -108,7 +108,7 @@
     
         <div>
           <div class="d-flex justify-content-center mt-4">
-          {{ $MisTelas->links() }}
+          {{ $misTelas->links() }}
           </div>
         </div>
 
