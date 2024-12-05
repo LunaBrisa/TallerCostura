@@ -116,11 +116,11 @@
      }
 
      .btn-modal-sub {
-    margin: 10px auto; /* Centra el botón horizontalmente */
-    display: block; /* Garantiza que el botón sea un bloque */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-    max-width: 280px; /* Limita el ancho máximo */
-    height: 45px; /* Alto consistente del botón */
+    margin: 10px auto; 
+    display: block; 
+    width: 100%; 
+    max-width: 280px; 
+    height: 45px; 
     background-color: #BE5A8C;
     border: 2px solid #F99AAA;
     color: #FFCDD4;
@@ -135,9 +135,9 @@
 }
 
 .cardsing {
-    width: 100%; /* La tarjeta ocupará todo el ancho disponible */
-    max-width: 320px; /* Limita el tamaño máximo en pantallas más grandes */
-    margin: 0 auto; /* Centra la tarjeta */
+    width: 100%; 
+    max-width: 320px; 
+    margin: 0 auto; 
     padding: 10px;
 }
 

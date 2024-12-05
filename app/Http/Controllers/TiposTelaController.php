@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class TiposTelaController extends Controller
 {
     public function getTiposTela(){
-        $TipoTelilla = MaterialTela::all();
+        $TipoTelilla = MaterialTela::paginate(3);
         return view('Empleado/DashboardTiposTela')->with('MisMaterialesTela', $TipoTelilla);
     }
 

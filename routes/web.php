@@ -99,7 +99,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     // Nuevas rutas para ocultar y mostrar servicios
     Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
     Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
-   
+
 //});
 
 // Rutas protegidas para Empleados
@@ -112,6 +112,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiarEstado');
+    Route::get('/pedidos/cliente/{id}', [PedidoController::class, 'detalleCliente'])->name('pedidos.detalleCliente');
+
 
 
     

@@ -33,37 +33,7 @@ class PrendaConfeccionController extends Controller
     }
 
     public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest){
-        // $prendaconfeccion = new PrendaConfeccion();
-        // $prendaconfeccion -> nombre_prenda = $savePrendaConfeccionRequest -> nombreprendita;
-        // $prendaconfeccion -> descripcion = $savePrendaConfeccionRequest -> descripcionprendita;
-        // $prendaconfeccion -> precio_obra = $savePrendaConfeccionRequest -> precio_obra_prendita;
-        // $prendaconfeccion -> precio_telas = '100.00'; //Esto es en lo que esta el trigger de calcular el precio de las telas
-        // $prendaconfeccion -> genero = $savePrendaConfeccionRequest -> generito;
-        // $prendaconfeccion -> tp_id = $savePrendaConfeccionRequest -> tipoprendita;
-        // $prendaconfeccion -> ruta_imagen = "pormientras";
-        // $prendaconfeccion -> visible = 1;
-        // $prendaconfeccion -> created_at = date('Y-m-d H:i:s');
-        // $prendaconfeccion -> updated_at = date('Y-m-d H:i:s');
-
-        // $prendaconfeccion -> save();
-
-        // $prendacolor = new PrendaColor();
-        // $prendacolor -> prenda_id = $prendaconfeccion -> id;
-        // $prendacolor -> color_id = $savePrendaConfeccionRequest -> colorprendita;
-        // $prendacolor -> ruta_imagen = "pormientras";
-        // $prendacolor -> created_at = date('Y-m-d H:i:s');
-        // $prendacolor -> updated_at = date('Y-m-d H:i:s');
-        
-        // $prendacolor -> save();
-
-        // $prendatela = new PrendaTela();
-        // $prendatela -> prenda_confeccion_id = $prendaconfeccion -> id;
-        // $prendatela -> tela_id = $savePrendaConfeccionRequest -> telitas;
-        // $prendatela -> cantidad_tela = $savePrendaConfeccionRequest -> cantidadsitadetela;
-        // $prendatela -> created_at = date('Y-m-d H:i:s');
-        // $prendatela -> updated_at = date('Y-m-d H:i:s');
-
-        // $prendatela -> save();
+      
 
         DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
             $savePrendaConfeccionRequest -> nombreprendita,

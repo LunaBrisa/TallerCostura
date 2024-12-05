@@ -105,9 +105,12 @@
             </div>
           </div>
         @endforeach
-    </div>
-</div>
-@endsection
+    
+          <div class="d-flex justify-content-center mt-4">
+              {{ $misTelas->links('pagination::default') }}
+          </div>
+
+        @endsection
 
 @foreach ($misTelas as $tela)
   <!-- Modal -->
@@ -147,6 +150,10 @@
     </div>
   </div>
 @endforeach
+
+
+
+
 
 </body>
 <style>

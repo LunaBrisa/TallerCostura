@@ -52,3 +52,41 @@ body {
 .detalles-pedido .tabla-row:nth-child(even) {
     background-color: #FEE9EC;
 }
+
+
+/*Diseño de l paginador*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-item .page-link {
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.page-item.active .page-link {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.page-item.disabled .page-link {
+    background-color: #e9ecef;
+    color: #6c757d;
+    border-color: #e9ecef;
+    cursor: not-allowed;
+}

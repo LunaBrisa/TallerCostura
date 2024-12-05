@@ -172,6 +172,11 @@ body {
     background-color: #f5f5f5;
     color: #333;
 }
+<style>
+    /* Tus estilos actuales */
+
+</style>
+
     </style>
 </style>
 @if (session('success'))

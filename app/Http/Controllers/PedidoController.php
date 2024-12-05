@@ -94,8 +94,17 @@ class PedidoController extends Controller
 }
 
 
-    
-    
+public function detalleCliente($id)
+{
+    $pedido = Pedido::with([
+        'detallesConfecciones.prendaConfeccion', 
+        'detallesReparaciones.servicios', 
+        'detallesLotes'
+    ])->findOrFail($id);
+
+    return view('detalles-pedido-cliente', compact('pedido'));
+}
+  
     
     public function store(Request $request)
 {

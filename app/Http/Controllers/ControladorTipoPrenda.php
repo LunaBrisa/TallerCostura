@@ -11,10 +11,11 @@ use tidy;
 
 class ControladorTipoPrenda extends Controller
 {
-    public function getTiposPrenda(){
-        $TipoPrendilla = TipoPrenda::all();
-        return view('Empleado/GestionTiposPrenda') -> with("MisTiposPrenda", $TipoPrendilla);
+    public function getTiposPrenda() {
+        $TipoPrendilla = TipoPrenda::paginate(3); 
+        return view('Empleado/GestionTiposPrenda')->with("MisTiposPrenda", $TipoPrendilla);
     }
+    
 
     public function saveTipoPrenda(SaveTipoPrendaRequest $saveTipoPrendaRequest){
         $TipoPrendaNuevo = new TipoPrenda();

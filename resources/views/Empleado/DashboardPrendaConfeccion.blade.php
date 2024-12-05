@@ -88,7 +88,7 @@
 
                         <div class="mb-3">
                           <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencita">
+                          <input class="form-control" type="file" id="imagencita" name="imagencita">
                         </div>
 
                         <div class="btn-div">
