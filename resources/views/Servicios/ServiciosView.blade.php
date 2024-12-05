@@ -6,56 +6,146 @@
     <title>Gestión de Servicios</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .table-container {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
+
+
+/* Estilo general del cuerpo */
+body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
+    
+        .dashboard-btn {
+            background-color: #ffb6b9;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .dashboard-btn:hover {
+            background-color: #ff9295;
+        }
+    
+        /* Contenedor general */
+        .container {
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+    
+        /* Card centrada */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+    
+      
+
+        .card {
+       border-radius: 15px;
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       background-color: #f9f4f4;}
+    
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+    
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4c4c4c;
+        }
+    
+        /* Tabla centrada */
+        .table-container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+        }
+    
         .table-header {
-            background-color: #ef9ee3;
+            background-color: #ff9295;
             color: white;
             text-align: center;
             padding: 10px;
             font-size: 1.5rem;
             border-radius: 10px 10px 0 0;
         }
-        .btn-edit, .btn-delete, .btn-toggle {
-            margin: 0 5px;
+    
+        .table {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-add {
-            background-color: #c1a3f6;
-            color: white;
-            font-weight: bold;
-            border-radius: 20px;
-        }
-        .btn-add:hover {
-            background-color: #ed9df6;
-        }
-        <style>
-        .table-container {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
-        }
-        .table-header {
-            background-color: #ef9ee3;
+    
+        .table th {
+            background-color: #ffb6b9;
             color: white;
             text-align: center;
-            padding: 10px;
-            font-size: 1.5rem;
-            border-radius: 10px 10px 0 0;
+            font-weight: bold;
         }
+    
+        .table tbody tr:nth-child(odd) {
+            background-color: #ffe4e6;
+        }
+    
+        .table tbody tr:nth-child(even) {
+            background-color: #fff5f6;
+        }
+    
+        .table-hover tbody tr:hover {
+            background-color: #ffd6d9;
+            transition: background-color 0.3s ease;
+        }
+    
+        /* Botones */
         .btn-edit, .btn-delete, .btn-toggle {
             margin: 0 5px;
         }
-        .btn-add {
+    
+        .btn-edit {
             background-color: #c1a3f6;
             color: white;
             font-weight: bold;
             border-radius: 20px;
+            padding: 5px 10px;
         }
+    
+        .btn-edit:hover {
+            background-color: #a085e0;
+        }
+    
+        .btn-toggle {
+            background-color: #ffb6b9;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+    
+        .btn-toggle:hover {
+            background-color: #ff9295;
+        }
+    
+        .btn-add {
+            background-color: #4caf50;
+            color: white;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 10px 20px;
+            display: block;
+            margin: 20px auto;
+        }
+    
         .btn-add:hover {
-            background-color: #ed9df6;
+            background-color: #43a047;
         }
         
         :root {
@@ -115,9 +205,80 @@
             display: flex;
             justify-content: flex-end;
         }
-    
-    </style>
-        
+
+        /* Estilos para las pestañas */
+.nav-tabs {
+    border: none;
+    background-color: #f8f9fa;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d;
+    border: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #ff9295;
+    border-color: #ff9295;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #ffffff;
+    background-color: #ff9295;
+    border-color: #ff9295;
+}
+
+/* Estilos para las tablas */
+.table-container {
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px;
+   
+}
+
+.table-header {
+    background-color: #ff9295;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #ffb6b9;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #ffe4e6;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #fff5f6;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #ffd6d9;
+    transition: background-color 0.3s ease;
+}
+
     </style>
 </head>
 <body>
@@ -141,12 +302,46 @@
         </div>
       </nav><br>
     <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Servicios mas usados</h5>
+                        <ul class="list-group">
+                            @forelse($serviciosMasUsados as $servicio)
+                                <li class="list-group-item">
+                                    {{ $servicio['servicio'] }} - Usado {{ $servicio['cantidad_usos'] }} veces
+                                </li>
+                            @empty
+                                <li class="list-group-item">No hay datos disponibles</li>
+                            @endforelse
+                        </ul>
+                    </div>
+                </div>
+            </div>
         <!-- Encabezado -->
         <h1 class="text-center mt-4">Gestión de Servicios</h1>
+        <div class="row" style="padding-top: 25px;">
+            <ul class="nav nav-tabs mb-2 interactive-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="visibles-tab" data-bs-toggle="tab" href="#visibles" role="tab" aria-controls="visibles" aria-selected="true">
+                        Visibles
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="ocultos-tab" data-bs-toggle="tab" href="#ocultos" role="tab" aria-controls="ocultos" aria-selected="false" tabindex="-1">
+                        Ocultos
+                    </a>
+                </li>
+            </ul>
+        </div>
         
-        <!-- Tabla de servicios -->
+      <div class="tab-content" id="myTabContent">
+    <!-- Tab Visibles -->
+    <div class="tab-pane fade show active" id="visibles" role="tabpanel" aria-labelledby="visibles-tab">
         <div class="table-container">
-            <div class="table-header">Listado de Servicios</div>
+            <div class="table-header">Servicios Visibles</div>
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
@@ -158,51 +353,69 @@
                 </thead>
                 <tbody>
                     @foreach ($servicios as $servicio)
-                    @if ($servicio->visible)
-                        <tr>
-                            <td>{{ $servicio->servicio }}</td>
-                            <td>{{ $servicio->descripcion }}</td>
-                            <td>${{ number_format($servicio->precio, 2) }}</td>
+                        @if ($servicio->visible)
+                            <tr>
+                                <td>{{ $servicio->servicio }}</td>
+                                <td>{{ $servicio->descripcion }}</td>
+                                <td>${{ number_format($servicio->precio, 2) }}</td>
                                 <td>
-                                    <!-- Botón para abrir el modal de editar servicio -->
                                     <button class="btn btn-primary btn-sm btn-edit" data-bs-toggle="modal" data-bs-target="#editModal-{{ $servicio->id }}">
                                         Editar
                                     </button>
-                                
-                                    <!-- Mostrar u ocultar servicio -->
-                                    <form action="{{ $servicio->visible ? route('servicios.ocultar', $servicio->id) : route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('servicios.ocultar', $servicio->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('PUT')
-                                        <button class="btn btn-{{ $servicio->visible ? 'warning' : 'success' }} btn-sm btn-toggle" type="submit">
-                                            {{ $servicio->visible ? 'Ocultar' : 'Mostrar' }}
+                                        <button class="btn btn-warning btn-sm btn-toggle" type="submit">
+                                            Ocultar
                                         </button>
                                     </form>
                                 </td>
-                                
-                                </form>
-                            </td>
-                        </tr>
-                    @else
-                        <!-- Si el servicio no es visible, no mostrar la fila -->
-                        <tr style="display:none;">
-                            <td>{{ $servicio->servicio }}</td>
-                            <td>{{ $servicio->descripcion }}</td>
-                            <td>${{ number_format($servicio->precio, 2) }}</td>
-                            <td>
-                                <form action="{{ route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('PUT')
-                                    <button class="btn btn-success btn-sm btn-toggle" type="submit">
-                                        Mostrar
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-                
+                            </tr>
+                        @endif
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Tab Ocultos -->
+    <div class="tab-pane fade" id="ocultos" role="tabpanel" aria-labelledby="ocultos-tab">
+        <div class="table-container">
+            <div class="table-header">Servicios Ocultos</div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($servicios as $servicio)
+                        @if (!$servicio->visible)
+                            <tr>
+                                <td>{{ $servicio->servicio }}</td>
+                                <td>{{ $servicio->descripcion }}</td>
+                                <td>${{ number_format($servicio->precio, 2) }}</td>
+                                <td>
+                                    <form action="{{ route('servicios.mostrar', $servicio->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-success btn-sm btn-toggle" type="submit">
+                                            Mostrar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
             <!-- Botón para agregar un nuevo servicio -->
             <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addModal">Agregar Servicio</button>
@@ -338,7 +551,6 @@
     </div>
 </div>
 @endforeach
-
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

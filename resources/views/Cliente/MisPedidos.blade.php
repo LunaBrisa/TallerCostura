@@ -15,7 +15,7 @@
             @if($pedidos->isEmpty())
                 <p>No tienes pedidos registrados.</p>
             @else
-                <table class="table table-hover">
+                <table class="tabla-flex">
                     <thead class="table-header">
                         <tr>
                             <th scope="col">#Orden</th>
@@ -37,11 +37,16 @@
                             <td>{{ $pedido->total }}</td>
                             <td>{{ $pedido->estado }}</td>
                             <td>
-                                <a href="{{ route('pedidos.show', $pedido->id) }}" class="btn btn-primary">Ver</a>
-                            </td>
-                            
-                        </tr>
+                                <a href="#" 
+                                class="btn btn-info" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalPedido{{ $pedido->id }}">
+                                Ver Detalles
+                             </a>
 
+                            </td>
+
+                        </tr>
                         <!-- Modal para cada pedido -->
                         <div class="modal fade" id="modalPedido{{ $pedido->id }}" tabindex="-1" aria-labelledby="modalPedidoLabel{{ $pedido->id }}" aria-hidden="true">
                             <div class="modal-dialog">
@@ -59,7 +64,6 @@
                                                 <p><strong>Total:</strong> {{ $pedido->total }}</p>
                                             </div>
                                         </div>
-
                                         <!-- Detalles de Confecciones -->
                                         @if($pedido->detallesConfecciones->isNotEmpty())
                                         <div class="card mb-4">
@@ -77,7 +81,6 @@
                                             </div>
                                         </div>
                                         @endif
-
                                         <!-- Detalles de Reparaciones -->
                                         @if($pedido->detallesReparaciones->isNotEmpty())
                                         <div class="card mb-4">
@@ -106,7 +109,6 @@
                                         </div>
                                     @endif
                                     
-
                                         <!-- Detalles de Lotes -->
                                         @if($pedido->detallesLotes->isNotEmpty())
                                         <div class="card mb-4">

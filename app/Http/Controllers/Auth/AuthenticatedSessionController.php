@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -14,7 +15,6 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
-
     // Iniciar sesión
     public function store(Request $request)
     {
@@ -22,6 +22,12 @@ class AuthenticatedSessionController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && !$user->visible) {
+            return redirect()->route('login')->withErrors(['email' => 'Tu cuenta está inactiva. Contacta al administrador.']);
+        }
+
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -32,6 +38,8 @@ class AuthenticatedSessionController extends Controller
         throw ValidationException::withMessages([
             'email' => ['Las credenciales no coinciden con nuestros registros.'],
         ]);
+
+        
     }
 
     // Cerrar sesión

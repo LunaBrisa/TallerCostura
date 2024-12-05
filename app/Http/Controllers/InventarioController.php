@@ -13,7 +13,7 @@ class InventarioController extends Controller
         $insumosMenosStock = Insumo::select('insumo as Insumo', 'cantidad_stock as Cantidad_en_Stock', 'precio_unitario as Precio_Unitario')
         ->where('cantidad_stock', function ($query) {
             $query->selectRaw('MIN(cantidad_stock)')
-                  ->from('insumos');
+                  ->from('INSUMOS');
         })
         ->limit(3)
         ->get();

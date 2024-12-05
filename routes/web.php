@@ -29,6 +29,8 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Auth\VerifiedEmailController;
+
 // Página para pedir verificación
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -50,13 +52,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 // Rutas públicas
-    Route::get('/', function () { return view('welcome');});
+
+    Route::get('/', [ClienteCatalogoController::class, 'MostrarPrendasMasVendidas']);
     Route::get('/Cliente/PcatalogoView', [ClienteCatalogoController::class, 'MostrarCatalogo'])->name('Cliente.PcatalogoView');
     Route::get('/Cliente/ClienteMujeresView', [ClienteCatalogoController::class, 'MostrarMujeres'])->name('Cliente.ClienteMujeresView');
     Route::get('/Cliente/ClienteHombresView', [ClienteCatalogoController::class, 'MostrarHombres'])->name('Cliente.ClienteHombresView');
     Route::get('/Cliente/ClienteInfantilesView', [ClienteCatalogoController::class, 'MostrarInfantiles'])->name('Cliente.ClienteInfantilesView');
     Route::post('/Cliente/DetallePrenda/{id}', [ClienteCatalogoController::class, 'DetallePrenda'])->name('Cliente.DetallePrenda');
-
     // Rutas protegidas para admin
 //Route::middleware([AdminMiddleware::class])->group(function () {
      Route::get('/gestion/catalogo', function(){return view('Empleado/DashboardCatalogo');});
@@ -68,7 +70,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 //RUTAS PARA TIPOS DE PRENDA
     Route::get('/gestion/tipos-prendas', [ControladorTipoPrenda::class, 'getTiposPrenda']);
     Route::post('agg/tipoprenda', [ControladorTipoPrenda::class, 'saveTipoPrenda']);
-    Route::post('/modif/tipo-prenda', [ControladorTipoPrenda::class, 'modifTipoPrenda']);
+
 
 //RUTAS PARA TELAS
     Route::get('/gestion/tela', [TelaController::class, 'getTelas']);   
@@ -88,6 +90,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
     Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
+    Route::post('/modif/img-color-prenda', [PrendasColoresController::class, 'modifImgColorPrenda']);
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
     
@@ -159,4 +162,6 @@ Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
 Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
 Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
+Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedidoConfeccion'])->name('pedidos.CrearPedido');
 
+Route::get('/pedidos/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidos.pedidoconfeccion');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class saveClientesRequest extends FormRequest
+class saveEmpleadosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,13 @@ class saveClientesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:100|min:3',
-            'apellido_p' => 'required|string|max:60|min:3',
-            'apellido_m' => 'required|string|max:60|min:3',
-            'telefono' => 'required|digits:10|unique:personas,telefono',
-            'compania' => 'nullable|string|max:100',
-            'cargo' => 'nullable|min:3|max:100',
+            'nombre' => 'required|string|min:3|max:100',
+            'apellido_p' => 'required|min:3|string|max:60',
+            'apellido_m' => 'nullable|min:3|string|max:60',
+            'telefono' => 'required|string|max:10',
+            'fecha_nacimiento' => 'required|date',
+           'rfc' => 'required|alpha_num|size:13',
+            'nss' => 'required|alpha_num|size:11',
             'name' => 'required|string|max:255',
             'email' => [
                 'required',
@@ -56,12 +57,11 @@ class saveClientesRequest extends FormRequest
             'telefono.required' => 'El telefono es obligatorio. Intente de nuevo',
             'telefono.digits' => 'El telefono solo puede contener numeros y 10 digitos',
             'telefono.unique' => 'El telefono ya ha sido registrado',
-            'compania.nullable' => 'La compañia es obligatoria. Intente de nuevo',
-            'compania.string' => 'La compañia solo puede contener letras y espacios',
-            'compania.max' => 'La compañia no puede tener mas de 100 caracteres',
-            'cargo.nullable' => 'El cargo es obligatorio. Intente de nuevo',
-            'cargo.min' => 'El cargo no puede tener menos de 3 caracteres',
-            'cargo.max' => 'El cargo no puede tener mas de 100 caracteres',
+            'fecha_nacimiento.date' => 'La fecha de nacimiento es incorrecta',
+            'rfc.alpha_num' => 'El RFC solo puede contener letras y numeros',
+            'rfc.size' => 'El RFC no puede tener mas de 13 caracteres',
+            'nss.alpha_num' => 'El NSS solo puede contener letras y numeros',
+            'nss.size' => 'El NSS no puede tener mas de 11 caracteres',
             'name.required' => 'El nombre es obligatorio. Intente de nuevo',
             'name.string' => 'El nombre solo puede contener letras y espacios',
             'name.max' => 'El nombre no puede tener mas de 255 caracteres',

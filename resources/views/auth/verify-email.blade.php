@@ -1,40 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Verificación de correo</title>
 </head>
-<body>
-    @extends('layouts.nav')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verificar tu Correo Electrónico') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('¡Hemos enviado un correo de verificación a tu dirección!') }}
-                        </div>
-                    @endif
-
-                    {{ __('Antes de continuar, por favor verifica tu correo electrónico.') }}
-                    {{ __('Si no recibiste el correo electrónico, puedes') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('haz clic aquí para solicitar otro') }}</button>.
-                    </form>
-                </div>
-            </div>
-        </div>
+<body style="background: #FFCDD4; font-family: 'Roboto', sans-serif;">
+    <div style="text-align: center;">
+        <img src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" alt="Hola" style="max-width: 200px; border-radius: 10px;">
     </div>
-</div>
-@endsection
+    <h1 style="text-align: center; ">✨Hola✨</h1>
 
+    <h1 style="text-align: center; color: #8A226F; font-size: 15px">Haz clic en el botón para verificar tu dirección de correo:</h1>
+    <div style="text-align: center;">
+        <a href="{{ $url }}" style="color: white; background: #BE5A8C; padding: 10px 20px; border-radius: 10px; text-decoration: none;">
+            Verificar Correo
+        </a>
+    </div>
+    <h1 style="text-align: center; ">Si no solicitaste este correo, ignóralo.</h1>
+    <h1 style="text-align: center; color: #8A226F; font-size: 15px">¡Muchas gracias!</h1>
 </body>
 </html>

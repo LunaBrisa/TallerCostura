@@ -22,13 +22,13 @@ class PrendaConfeccion extends Model
     }
 
     public function prendasTelas()
-    {
-        return $this->hasMany(PrendaTela::class);
-    }
-    public function PrendasColor()
-    {
-        return $this->belongsToMany(Color::class, 'PRENDAS_COLORES', 'prenda_id', 'color_id');
-    }
+{
+    return $this->hasMany(PrendaTela::class, 'prenda_confeccion_id');
+}
+    public function prendasColor()
+{
+    return $this->hasMany(PrendaColor::class, 'prenda_id');
+}
 
     public function telas()
 {

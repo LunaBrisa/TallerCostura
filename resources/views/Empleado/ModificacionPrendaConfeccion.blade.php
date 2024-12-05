@@ -12,10 +12,21 @@
 @extends('layouts.nav')
 @section('content')
 {{-- MODIFCACION --}}
-<div class="container">
+<br>
+  <div class="container">
   <div class="row">
     <div class="col">
       <h1 class="Titulo1">Modificacion de Prenda</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+          {{ $error }}
+        </div>
+      @endforeach
     </div>
   </div>
 </div><br>

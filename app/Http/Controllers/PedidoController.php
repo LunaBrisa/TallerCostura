@@ -1,51 +1,57 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\Empleado;
 use App\Models\Pedido;
 use App\Models\Cliente;
+use App\Models\Servicio;
+use App\Models\DetalleReparacion;
+use App\Models\ReparacionServicio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\PrendaConfeccion;
+use App\Models\Medida;
+use App\Models\DetalleInsumo;
+use App\Models\PrendaTela;
+use App\Models\DetalleConfeccion;
+use App\Models\Insumo;
+use App\Models\Tela;
 
 class PedidoController extends Controller
 {
     private function obtenerEstadisticas()
     {
-        $totalPedidos = Pedido::count();
+        $inicioMes = Carbon::now()->startOfMonth(); // Primer día del mes actual
+        $finMes = Carbon::now()->endOfMonth(); // Último día del mes actual
+    
+        // Contar pedidos pendientes sin importar la fecha
         $pedidosEnProceso = Pedido::where('estado', 'pendiente')->count();
-        $pedidosCompletados = Pedido::where('estado', 'completado')->count();
-        $totalEnProceso = Pedido::where('estado', 'pendiente')->sum('total');
-        $totalIngresos = Pedido::where('estado', 'completado')->sum('total');
-
-        // Consultas adicionales
-        $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc')
-            ->limit(3)
-            ->get();
-
-        $pedidosPorEmpleado = Pedido::select('empleado_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('empleado_id')
-            ->orderBy('cantidad_pedidos', 'desc')
-            ->limit(3)
-            ->get();
-
+    
+    
+        // Contar completados solo del mes
+        $pedidosCompletados = Pedido::where('estado', 'completado')
+            ->whereBetween('updated_at', [$inicioMes, $finMes])
+            ->count();
+    
+        // Calcular ingresos solo del mes
+        $totalIngresos = Pedido::where('estado', 'completado')
+            ->whereBetween('updated_at', [$inicioMes, $finMes])
+            ->sum('total');
+    
         $clientes = Cliente::all();
         $empleados = Empleado::all();
-
+    
         return [
-            'totalPedidos' => $totalPedidos,
             'pedidosEnProceso' => $pedidosEnProceso,
             'pedidosCompletados' => $pedidosCompletados,
             'totalIngresos' => $totalIngresos,
-            'totalEnProceso' => $totalEnProceso,
-            'pedidosPorCliente' => $pedidosPorCliente,
-            'pedidosPorEmpleado' => $pedidosPorEmpleado,
             'clientes' => $clientes,
-            'empleados' => $empleados
+            'empleados' => $empleados,
         ];
     }
+
 
     public function index(Request $request)
     {
@@ -70,19 +76,26 @@ class PedidoController extends Controller
             $estado = strtolower($request->estado);
             $query->where('estado', ucfirst($estado));
         }
+        $servicios = Servicio::select('id', 'servicio', 'descripcion', 'precio')
+        ->get();
 
         $pedidos = $query->with(['cliente', 'empleado'])->get();
         $estadisticas = $this->obtenerEstadisticas();
 
-        return view('pedidos.index', compact('pedidos', 'estadisticas'));
+        $prendas = PrendaConfeccion::all();
+        $telas = Tela::all(); 
+    $insumos = Insumo::all();
+        return view('pedidos.index', compact('pedidos', 'estadisticas', 'servicios', 'prendas', 'telas', 'insumos'));
     }
 
     public function show($id)
 {
     $pedido = Pedido::with([
         'detallesLotes',
-        'detallesReparaciones',
-        'detallesConfecciones'
+        'detallesReparaciones.servicios',
+        'detallesConfecciones.prendaConfeccion.prendasColor.color', // Relación de colores
+        'detallesConfecciones.prendaConfeccion.prendasTelas.tela.materialTela',   // Relación de telas
+        'detallesConfecciones.medidas'                              // Relación de medidas
     ])->findOrFail($id);
 
     // Guardar la URL previa en la sesión (solo si no está ya configurada)
@@ -92,6 +105,7 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
+<<<<<<< HEAD
 
 
 public function detalleCliente($id)
@@ -107,25 +121,34 @@ public function detalleCliente($id)
   
     
     public function store(Request $request)
+=======
+public function store(Request $request)
+>>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
 {
+    // Reindexar arrays para evitar problemas de índices no consecutivos
+    $detallesLote = $request->has('detalles_lote') ? $request->input('detalles_lote') : [];
+$detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input('detalles_reparaciones') : [];
+
+    // Validar los datos del formulario
     $request->validate([
-        'cliente' => 'required|exists:clientes,id',
-        'empleado' => 'required|exists:empleados,id',
+        'cliente' => 'required|exists:CLIENTES,id',
+        'empleado' => 'required|exists:EMPLEADOS,id',
         'fecha_pedido' => 'required|date',
         'fecha_entrega' => 'required|date',
         'descripcion' => 'required|string',
         'detalles_lote' => 'nullable|array',
         'detalles_lote.*.prenda' => 'required|string',
-        'detalles_lote.*.precio_por_prenda' => 'required|numeric',
-        'detalles_lote.*.cantidad' => 'required|numeric',
-        'detalles_lote.*.anticipo' => 'required|numeric',
-        'reparacion_prendas' => 'nullable|array',
-        'reparacion_descripciones' => 'nullable|array',
-        'reparacion_cantidades' => 'nullable|array',
-        'confeccion_prendas' => 'nullable|array',
-        'confeccion_cantidades' => 'nullable|array',
+        'detalles_lote.*.precio_por_prenda' => 'required|numeric|min:0',
+        'detalles_lote.*.cantidad' => 'required|integer|min:1',
+        'detalles_lote.*.anticipo' => 'required|numeric|min:0',
+        'detalles_reparaciones' => 'nullable|array',
+        'detalles_reparaciones.*.prenda' => 'required|string|max:100',
+        'detalles_reparaciones.*.cantidad' => 'required|integer|min:1',
+        'detalles_reparaciones.*.descripcion_problema' => 'nullable|string|max:500',
+        'detalles_reparaciones.*.servicio' => 'required|exists:SERVICIOS,id',
     ]);
 
+    // Crear el pedido principal
     $pedido = Pedido::create([
         'cliente_id' => $request->cliente,
         'empleado_id' => $request->empleado,
@@ -135,50 +158,46 @@ public function detalleCliente($id)
         'estado' => 'Pendiente',
     ]);
 
-    // Verificación para agregar detalles_lote solo si no están vacíos
-    if ($request->filled('detalles_lote')) {
-        foreach ($request->detalles_lote as $detalle) {
-            logger($detalle); 
-            if (!empty($detalle['prenda']) && !empty($detalle['precio_por_prenda']) && !empty($detalle['cantidad']) && !empty($detalle['anticipo'])) {
-                $pedido->detallesLotes()->create([
-                    'prenda' => $detalle['prenda'],
-                    'precio_por_prenda' => $detalle['precio_por_prenda'],
-                    'cantidad' => $detalle['cantidad'],
-                    'anticipo' => $detalle['anticipo'],
-                ]);
-            }
-        }
-    }
-    
-
-    // Verificación para agregar detallesReparaciones solo si no están vacíos
-    if ($request->filled('reparacion_prendas')) {
-        foreach ($request->reparacion_prendas as $key => $reparacion) {
-            if (!empty($reparacion) && !empty($request->reparacion_descripciones[$key])) {
-                $pedido->detallesReparaciones()->create([
-                    'prenda' => $reparacion,
-                    'descripcion_problema' => $request->reparacion_descripciones[$key],
-                    'cantidad_prenda' => $request->reparacion_cantidades[$key] ?? 1,
-                ]);
-            }
+    // Procesar detalles de lotes
+    foreach ($detallesLote as $detalle) {
+        if (!empty($detalle['prenda']) && isset($detalle['precio_por_prenda'], $detalle['cantidad'], $detalle['anticipo'])) {
+            $pedido->detallesLotes()->create([
+                'prenda' => $detalle['prenda'],
+                'precio_por_prenda' => $detalle['precio_por_prenda'],
+                'cantidad' => $detalle['cantidad'],
+                'anticipo' => $detalle['anticipo'],
+            ]);
         }
     }
 
-    // Verificación para agregar detallesConfecciones solo si no están vacíos
-    if ($request->filled('confeccion_prendas')) {
-        foreach ($request->confeccion_prendas as $key => $prenda) {
-            if (!empty($prenda) && !empty($request->confeccion_cantidades[$key])) {
-                $pedido->detallesConfecciones()->create([
-                    'prenda_confeccion_id' => $prenda,
-                    'cantidad_prenda' => $request->confeccion_cantidades[$key],
-                    'subtotal' => $request->confeccion_cantidades[$key], // Ajustar si se necesita cálculo de precio
+    // Procesar detalles de reparaciones
+    foreach ($detallesReparaciones as $detalle) {
+        if (!empty($detalle['prenda']) && isset($detalle['cantidad'], $detalle['servicio'])) {
+            $detalleReparacion = DetalleReparacion::create([
+                'pedido_id' => $pedido->id,
+                'prenda' => $detalle['prenda'],
+                'descripcion_problema' => $detalle['descripcion_problema'] ?? null,
+                'cantidad_prenda' => $detalle['cantidad'],
+            ]);
+            // Asociar el servicio al detalle de reparación
+            try {
+                ReparacionServicio::create([
+                    'detalle_reparacion_id' => $detalleReparacion->id,
+                    'servicio_id' => $detalle['servicio'],
                 ]);
+                
+                
+            } catch (\Exception $e) {
+                Log::error('Error al asociar servicio con detalle_reparacion: ' . $e->getMessage());
+                dd($e);  // Para ver el error completo
             }
+            
         }
     }
 
     return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
+
 public function cambiarEstado($id)
 {
     $pedido = Pedido::findOrFail($id);
@@ -193,5 +212,47 @@ public function cambiarEstado($id)
         ->with('success', 'Estado del pedido actualizado a: ' . $nuevoEstado);
 }
 
+public function CrearPedidoConfeccion(Request $request){
+    $pedido = new Pedido;
+    $pedido->cliente_id = $request->cliente;
+    $pedido->empleado_id = $request->empleado;
+    $pedido->fecha_pedido = $request->fecha_pedido;
+    $pedido->fecha_entrega = $request->fecha_entrega;
+    $pedido->descripcion = $request->descripcion;
+    $pedido->save();
+    
+    $detalleConfeccion = new DetalleConfeccion;
+    $detalleConfeccion->pedido_id = $pedido->id;
+    $detalleConfeccion->prenda_confeccion_id = $request->prenda_confeccion;
+    $detalleConfeccion->cantidad = $request->cantidad;
+    $detalleConfeccion->save();
 
+    $medidas = new Medida;
+    $medidas->detalle_confeccion_id = $detalleConfeccion->id;
+    $medidas->pecho = $request->pecho;
+    $medidas->cintura = $request->cintura;
+    $medidas->mangas = $request->mangas;
+    $medidas->largo = $request->largo;
+    $medidas->save();
+
+    $detalleInsumos = new DetalleInsumos;
+    $detalleInsumos->pedido_id = $pedido->id;
+    $detalleInsumos->insumo_id = $request->insumo;
+    $detalleInsumos->cantidad_insumo = $request->cantidad_insumo;
+    $detalleInsumos->save();
+
+    $prendasTelas = new PrendaTela;
+    $prendasTelas->prenda_confeccion_id = $request->prenda_confeccion;
+    $prendasTelas->tela_id = $request->tela;
+    $prendasTelas->cantidad_tela = $request->cantidad_tela;
+    $prendasTelas->save();
+
+
+  return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
+}
+
+public function pedidoconfeccion()
+    {
+        return view('pedidos.pedidoconfeccion');
+    }
 }

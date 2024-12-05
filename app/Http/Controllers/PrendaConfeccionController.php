@@ -12,13 +12,14 @@ use App\Models\TipoPrenda;
 use App\Models\Tela;
 use App\Models\Color;
 use App\Http\Requests\SavePrendaConfeccionRequest;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class PrendaConfeccionController extends Controller
 {
     public function getPrendasConfeccion(){
-        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> get();
-        $prendillasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> get();
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> paginate(3);
+        $prendillasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> paginate(3);
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
         $colorsillos = Color::all();
@@ -32,6 +33,7 @@ class PrendaConfeccionController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest){
       
 
@@ -49,7 +51,36 @@ class PrendaConfeccionController extends Controller
         ]);
 
         return redirect('/gestion/prenda-confeccion')->with('success', '¡Se agregó la prenda correctamente!');
+=======
+    public function savePrendaConfeccion(SavePrendaConfeccionRequest $savePrendaConfeccionRequest)
+    {
+        $file = $savePrendaConfeccionRequest->file('ruta_imagen');
+
+        if ($file && $file->isValid()) {
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());    
+            $destino = base_path('../images');    
+            $file->move($destino, $filename);    
+            $filePath = 'images/' . $filename;
+    
+    
+            DB::statement('CALL Crear_Prenda(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                $savePrendaConfeccionRequest->nombreprendita,
+                $savePrendaConfeccionRequest->descripcionprendita,
+                $savePrendaConfeccionRequest->precio_obra_prendita,
+                $savePrendaConfeccionRequest->generito,
+                $savePrendaConfeccionRequest->tipoprendita,
+                $filePath,
+                $savePrendaConfeccionRequest->colorprendita,
+                $filePath,
+                $savePrendaConfeccionRequest->telitas,
+                $savePrendaConfeccionRequest->cantidadsitadetela,
+            ]);
+            return redirect('/gestion/prenda-confeccion')->with('success', '¡Se agregó la prenda correctamente!');
+        }
+        return redirect()->back()->with('error', 'Hubo un problema al subir la imagen.');
+>>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
     }
+    
 
     public function vistaPrendasConfeccion($id){
         return view('Empleado/ModificacionPrendaConfeccion')->with([
@@ -71,7 +102,7 @@ class PrendaConfeccionController extends Controller
         }
 
         if ($modifPrendaRequest -> precioprendota != null){
-            $prendaconfeccion -> precio = $modifPrendaRequest -> precioprendota;
+            $prendaconfeccion -> precio_obra = $modifPrendaRequest -> precioprendota;
         }
 
         if ($modifPrendaRequest -> generote != null){
@@ -89,6 +120,7 @@ class PrendaConfeccionController extends Controller
         $prenditasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> get();
         $colores = Color::all();
         $telas = Tela::all();
+        session()->flash('successmodif', '¡Se modificaron correctamente los datos!');
         return view('Empleado.DashboardPrendaConfeccion') -> with([
             'misPrendas' => $prenditas,
             'misPrendasOcultas' => $prenditasOcultas,

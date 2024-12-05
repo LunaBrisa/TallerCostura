@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
 use App\Models\PrendaConfeccion as prenda;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
 USE App\Models\TipoPrenda;
-
+use App\Models\Servicio;
+use App\Models\DetalleLote;
 
 class ClienteCatalogoController extends Controller
 {
@@ -83,4 +85,16 @@ class ClienteCatalogoController extends Controller
 
       return view('MisPedidos.DetallesPedido', compact('pedido'));
   }
+
+  public function MostrarPrendasMasVendidas()
+  {
+      $prendasMasVendidas = DB::table('PrendasMasVendidas')->get();
+
+      $tiposPrenda = TipoPrenda::all();
+      $Servicios = Servicio::all();
+      $DetalleLote = DetalleLote::all();
+      return view('welcome', compact('prendasMasVendidas','tiposPrenda','Servicios', 'DetalleLote'));
+
+  }
+
 }

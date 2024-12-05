@@ -9,14 +9,25 @@ use App\Models\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use App\Http\Requests\saveClientesRequest;
+ 
 
 class ClientesController extends Controller
 {
     public function index(Request $request)
     {
-        $pedidosPorCliente = Pedido::select('cliente_id', DB::raw('count(*) as cantidad_pedidos'))
-            ->groupBy('cliente_id')
-            ->orderBy('cantidad_pedidos', 'desc') 
+            $pedidosPorCliente = DB::table('PEDIDOS')
+            ->join('CLIENTES', 'PEDIDOS.cliente_id', '=', 'CLIENTES.id')
+            ->join('PERSONAS', 'CLIENTES.persona_id', '=', 'PERSONAS.id')
+            ->select(
+                DB::raw("PERSONAS.nombre AS cliente"),
+                DB::raw('COUNT(PEDIDOS.id) as cantidad_pedidos')
+            )
+            ->whereMonth('PEDIDOS.fecha_pedido', now()->month)   
+            ->whereYear('PEDIDOS.fecha_pedido', now()->year)    
+            ->groupBy('cliente')
+            ->orderBy('cantidad_pedidos', 'desc')
             ->limit(3)
             ->get();
         
@@ -34,36 +45,26 @@ class ClientesController extends Controller
         $clientes = $query->with('persona')->get();
         return view('clientes.index', compact('clientes', 'pedidosPorCliente'));
     }
-    public function store(Request $request)
+    public function store(saveClientesRequest $saveClientesRequest)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:100',
-            'apellido_p' => 'required|string|max:60',
-            'apellido_m' => 'required|string|max:60',
-            'telefono' => 'required|string|max:10',
-            'compania' => 'nullable|string|max:100',
-            'cargo' => 'nullable|min:3|max:100',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
 
         $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'name' => $saveClientesRequest->input('name'),
+            'email' => $saveClientesRequest->input('email'),
+            'password' => bcrypt($saveClientesRequest->input('password')),
+            'visible' => false,
         ]);
 
         $user->sendEmailVerificationNotification();
 
         $user_id = $user->id;
     
-        $nombre = $request->input('nombre');
-        $apellido_p = $request->input('apellido_p');
-        $apellido_m = $request->input('apellido_m');
-        $telefono = $request->input('telefono');
-        $compania = $request->input('compania');
-        $cargo = $request->input('cargo');
+        $nombre = $saveClientesRequest->input('nombre');
+        $apellido_p = $saveClientesRequest->input('apellido_p');
+        $apellido_m = $saveClientesRequest->input('apellido_m');
+        $telefono = $saveClientesRequest->input('telefono');
+        $compania = $saveClientesRequest->input('compania');
+        $cargo = $saveClientesRequest->input('cargo');
     
         try {
             DB::statement('CALL crear_cliente(?, ?, ?, ?, ?, ?, ?)', [
@@ -75,6 +76,7 @@ class ClientesController extends Controller
                 $compania,
                 $cargo,
             ]);
+            event(new Registered($user));
             return redirect()->route('clientes.index')
                 ->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
         } catch (\Exception $e) {
@@ -83,7 +85,7 @@ class ClientesController extends Controller
         }
     }
 
-public function update(Request $request, $id)
+public function update(saveClientesRequest $saveClientesRequest, $id)
 {
     $request->validate([
         'nombre' => 'required|string|max:100',
@@ -102,24 +104,24 @@ public function update(Request $request, $id)
         $persona = $cliente->persona; 
         $user = $persona->user; 
 
-        $user->name = $request->input('name'); 
-        $user->email = $request->input('email'); 
+        $user->name = $saveClientesRequest->input('name'); 
+        $user->email = $saveClientesRequest->input('email'); 
 
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password')); 
+        if ($saveClientesRequest->filled('password')) {
+            $user->password = bcrypt($saveClientesRequest->input('password')); 
         }
 
         $user->save(); 
 
-        $persona->nombre = $request->input('nombre');
-        $persona->apellido_p = $request->input('apellido_p');
-        $persona->apellido_m = $request->input('apellido_m');
-        $persona->telefono = $request->input('telefono');
+        $persona->nombre = $saveClientesRequest->input('nombre');
+        $persona->apellido_p = $saveClientesRequest->input('apellido_p');
+        $persona->apellido_m = $saveClientesRequest->input('apellido_m');
+        $persona->telefono = $saveClientesRequest->input('telefono');
         $persona->save();
 
 
-        $cliente->compania = $request->input('compania');
-        $cliente->cargo = $request->input('cargo');
+        $cliente->compania = $saveClientesRequest->input('compania');
+        $cliente->cargo = $saveClientesRequest->input('cargo');
         $cliente->save();
 
         return redirect()->route('clientes.index')->with('success', 'Cliente y usuario actualizados exitosamente.');

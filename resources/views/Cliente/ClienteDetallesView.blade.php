@@ -9,7 +9,7 @@
 
     <title>Detalle Prenda</title> 
 </head> 
-<body>
+<body style="background-color: #f9f7f6">
  @extends('layouts.nav')
   @section('content')
   <div class="container mt-4">
