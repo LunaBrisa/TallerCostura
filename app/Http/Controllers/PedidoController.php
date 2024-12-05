@@ -233,4 +233,8 @@ public function CrearPedidoConfeccion(Request $request){
   return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
 
+public function pedidoconfeccion()
+    {
+        return view('pedidos.pedidoconfeccion');
+    }
 }

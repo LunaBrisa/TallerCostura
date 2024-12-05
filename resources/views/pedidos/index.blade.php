@@ -85,7 +85,6 @@
         color: #6c757d;
         font-weight: bold;
     }
-
 </style>
 
 @if (session('success'))
@@ -356,9 +355,10 @@
                 <h5 class="modal-title" id="confeccionModalLabel">Crear Pedido de Confecciones</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('pedidos.CrearPedido') }}" method="POST">
+            <form action="{{ route('pedidos.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
+                    <!-- Información del Pedido -->
                     <div class="mb-3">
                         <label for="cliente" class="form-label">Cliente</label>
                         <select name="cliente" id="cliente" class="form-control select2" required>
@@ -390,7 +390,6 @@
                         <label for="descripcion" class="form-label">Descripción</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
                     </div>
-
                     <!-- Detalles de Confecciones -->
                     <div id="confeccionesSection">
                         <h5>Detalles de Confecciones</h5>
@@ -399,99 +398,32 @@
                                 <tr>
                                     <th>Prenda</th>
                                     <th>Cantidad</th>
-                                    <th>Tela</th>
-                                    <th>Medidas</th>
-                                    <th>Insumos</th>
                                     <th>Subtotal</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <select name="prenda_confeccion[]" class="form-control select2" required>
-                                            <option value="">Seleccione una prenda</option>
-                                            @foreach($prendas as $prenda)
-                                                <option value="{{ $prenda->id }}">{{ $prenda->nombre_prenda }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td><input type="number" name="cantidad_prenda[]" class="form-control" required></td>
+                                    <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
+                                    <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
                                     <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#telasModal"> Agregar </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medidasModal"> Agregar </button>                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insumoModal"> Agregar </button>
-                                    </td>
                                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
                                 </tr>
                             </tbody>
-                        </table>          
+                        </table>
+                        <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
+                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Modal para Telas -->
-<div class="modal fade" id="telasModal" tabindex="-1" aria-labelledby="telasModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="telasModalLabel">Modal para Telas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="tela" class="form-label">Tela</label>
-                    <select name="tela" id="tela" class="form-control select2" required>
-                        <option value="">Seleccione una tela</option>
-                        @foreach($telas as $tela)
-                            <option value="{{ $tela->id }}">{{ $tela->nombre_tela }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="cantidad_tela" class="form-label">Cantidad en metros</label>
-                    <input type="number" name="cantidad_tela" id="cantidad_tela" class="form-control" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <script>
-    // Reabrir confeccionModal al cerrar telasModal
-    document.getElementById('telasModal').addEventListener('hidden.bs.modal', function () {
-        const confeccionModal = document.getElementById('confeccionModal');
-        const modalInstance = bootstrap.Modal.getInstance(confeccionModal);
-        modalInstance.show(); // Volver a mostrar el modal de confecciones
-    });
-
-    // Asegurarse de que confeccionModal permanezca abierto al abrir telasModal
-    document.getElementById('telasModal').addEventListener('shown.bs.modal', function () {
-        const confeccionModal = document.getElementById('confeccionModal');
-        const modalInstance = bootstrap.Modal.getInstance(confeccionModal);
-        modalInstance._backdrop._config.isVisible = false; // Ocultar el backdrop del primer modal
-    });
-</script>
-
-<script>
-
 // Función para actualizar el precio y el subtotal
 function updatePrecio(selectElement) {
     const row = selectElement.closest('tr');
@@ -633,9 +565,11 @@ function updateRowIndices(table) {
             });
         }
     });
+    // no hice cambios
     </script>
 @endsection 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Bundle con Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
