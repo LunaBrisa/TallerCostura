@@ -46,9 +46,9 @@ class PrendasColoresController extends Controller
             ]);
     
             return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
-        }else{
-            return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
         }
+        return redirect('/gestion/prenda-confeccion')->with('errorColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
+        
     }
 
     public function eliminarColorPrenda($id){
