@@ -34,7 +34,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form action="/agreg/color-prenda" method="post">
+                  <form action="/agreg/color-prenda" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="idprenda" value="{{$miPrenda->id}}">
                     

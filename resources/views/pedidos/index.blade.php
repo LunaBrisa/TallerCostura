@@ -359,7 +359,6 @@
             <form action="{{ route('pedidos.CrearPedido') }}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <!-- Información del Pedido -->
                     <div class="mb-3">
                         <label for="cliente" class="form-label">Cliente</label>
                         <select name="cliente" id="cliente" class="form-control select2" required>
@@ -443,57 +442,26 @@
 </div>
 
 <!-- Modal para Telas -->
-<div class="modal fade" id="telasModal" tabindex="-1" aria-labelledby="telasModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="telasModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="mb-3">
-                <label for="tela" class="form-label">Tela</label>
-                <select name="tela" id="tela" class="form-control select2" required>
-                    <option value="">Seleccione una tela</option>
-                    @foreach($telas as $tela)
-                        <option value="{{ $tela->id }}">{{ $tela->nombre_tela }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="cantidad_tela" class="form-label">Cantidad en metros</label>
-                <input type="number" name="cantidad_tela" id="cantidad_tela" class="form-control" required>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Modal para Insumos -->
-<div class="modal fade" id="insumoModal" tabindex="-1" aria-labelledby="insumoModalLabel" aria-hidden="true">
+<div class="modal fade" id="telasModal" tabindex="-1" aria-labelledby="telasModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="insumoModalLabel">Seleccionar Insumos</h5>
+                <h1 class="modal-title fs-5" id="telasModalLabel">Modal para Telas</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label for="insumo" class="form-label">Insumo</label>
-                    <select name="insumo" id="insumo" class="form-control select2" required>
-                        <option value="">Seleccione un insumo</option>
-                        @foreach($insumos as $insumo)
-                            <option value="{{ $insumo->id }}">{{ $insumo->insumo }}</option>
+                    <label for="tela" class="form-label">Tela</label>
+                    <select name="tela" id="tela" class="form-control select2" required>
+                        <option value="">Seleccione una tela</option>
+                        @foreach($telas as $tela)
+                            <option value="{{ $tela->id }}">{{ $tela->nombre_tela }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="cantidad_insumo" class="form-label">Cantidad</label>
-                    <input type="number" name="cantidad_insumo" id="cantidad_insumo" class="form-control" required>
+                    <label for="cantidad_tela" class="form-label">Cantidad en metros</label>
+                    <input type="number" name="cantidad_tela" id="cantidad_tela" class="form-control" required>
                 </div>
             </div>
             <div class="modal-footer">
@@ -504,39 +472,23 @@
     </div>
 </div>
 
-<!-- Modal para Medidas -->
-<div class="modal fade" id="medidasModal" tabindex="-1" aria-labelledby="medidasModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="medidasModalLabel">Registrar Medidas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="pecho" class="form-label">Pecho</label>
-                    <input type="text" name="pecho" id="pecho" class="form-control" placeholder="Pecho" required>
-                </div>
-                <div class="mb-3">
-                    <label for="cintura" class="form-label">Cintura</label>
-                    <input type="text" name="cintura" id="cintura" class="form-control" placeholder="Cintura" required>
-                </div>
-                <div class="mb-3">
-                    <label for="mangas" class="form-label">Mangas</label>
-                    <input type="text" name="mangas" id="mangas" class="form-control" placeholder="Mangas" required>
-                </div>
-                <div class="mb-3">
-                    <label for="largo" class="form-label">Largo</label>
-                    <input type="text" name="largo" id="largo" class="form-control" placeholder="Largo" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+<script>
+    // Reabrir confeccionModal al cerrar telasModal
+    document.getElementById('telasModal').addEventListener('hidden.bs.modal', function () {
+        const confeccionModal = document.getElementById('confeccionModal');
+        const modalInstance = bootstrap.Modal.getInstance(confeccionModal);
+        modalInstance.show(); // Volver a mostrar el modal de confecciones
+    });
+
+    // Asegurarse de que confeccionModal permanezca abierto al abrir telasModal
+    document.getElementById('telasModal').addEventListener('shown.bs.modal', function () {
+        const confeccionModal = document.getElementById('confeccionModal');
+        const modalInstance = bootstrap.Modal.getInstance(confeccionModal);
+        modalInstance._backdrop._config.isVisible = false; // Ocultar el backdrop del primer modal
+    });
+</script>
 
 <script>
 

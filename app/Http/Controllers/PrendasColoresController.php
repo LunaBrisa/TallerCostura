@@ -35,14 +35,17 @@ class PrendasColoresController extends Controller
 
         if ($file && $file->isValid()) {
             $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
+           
             $destino = base_path('../images');
+           
             $file->move($destino, $filename);
+          
             $filePath = 'images/' . $filename;
             
             DB::statement('CALL Agregar_Color_Prenda(?, ?, ?)', [
                 $saveColorPrendaRequest -> colorprenda,
                 $saveColorPrendaRequest -> idprenda,
-                $filePath
+                $filePath,
             ]);
     
             return redirect('/gestion/prenda-confeccion')->with('successColor', '¡Se agregó correctamente el color!');
