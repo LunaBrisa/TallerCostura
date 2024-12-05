@@ -105,25 +105,8 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
-<<<<<<< HEAD
 
-
-public function detalleCliente($id)
-{
-    $pedido = Pedido::with([
-        'detallesConfecciones.prendaConfeccion', 
-        'detallesReparaciones.servicios', 
-        'detallesLotes'
-    ])->findOrFail($id);
-
-    return view('detalles-pedido-cliente', compact('pedido'));
-}
-  
-    
-    public function store(Request $request)
-=======
 public function store(Request $request)
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
 {
     // Reindexar arrays para evitar problemas de índices no consecutivos
     $detallesLote = $request->has('detalles_lote') ? $request->input('detalles_lote') : [];
