@@ -54,39 +54,26 @@ body {
 }
 
 
-/*Diseño de l paginador*/
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+/*Diseño del paginador*/
+.pagination li a {
+    font-size: 12px; /* Ajusta el tamaño del texto */
+    padding: 5px 10px; /* Reduce el padding */
 }
 
-.page-item {
-    margin: 0 5px;
+.pagination li {
+    margin: 0 2px; /* Reduce el espacio entre los elementos */
 }
 
-.page-item .page-link {
-    color: #ffffff;
-    background-color: #007bff;
-    border: 1px solid #007bff;
-    border-radius: 5px;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.pagination li a:hover {
+    background-color: #f0f0f0; /* Estilo al pasar el mouse */
 }
 
-.page-item .page-link:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
+.pagination .page-link[aria-hidden="true"] {
+    font-size: 12px; /* Reduce solo las flechas */
+    padding: 3px 8px; /* Reduce el espacio interno de las flechas */
 }
 
-.page-item.active .page-link {
-    background-color: #28a745;
-    border-color: #28a745;
+.pagination .page-item.disabled .page-link[aria-hidden="true"] {
+    opacity: 0.5; /* Opcional: estilo más tenue para flechas deshabilitadas */
 }
 
-.page-item.disabled .page-link {
-    background-color: #e9ecef;
-    color: #6c757d;
-    border-color: #e9ecef;
-    cursor: not-allowed;
-}

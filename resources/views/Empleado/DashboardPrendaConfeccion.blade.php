@@ -428,29 +428,6 @@
 </body>
 <style>
 
-.pagination li a {
-        font-size: 12px; /* Ajusta el tamaño del texto */
-        padding: 5px 10px; /* Reduce el padding */
-    }
-
-    .pagination li {
-        margin: 0 2px; /* Reduce el espacio entre los elementos */
-    }
-
-    .pagination li a:hover {
-        background-color: #f0f0f0; /* Estilo al pasar el mouse */
-    }
-
-    .pagination .page-link[aria-hidden="true"] {
-        font-size: 12px; /* Reduce solo las flechas */
-        padding: 3px 8px; /* Reduce el espacio interno de las flechas */
-    }
-
-    .pagination .page-item.disabled .page-link[aria-hidden="true"] {
-        opacity: 0.5; /* Opcional: estilo más tenue para flechas deshabilitadas */
-    }
-
-
 
 .h3-modal {
   text-align: center;
