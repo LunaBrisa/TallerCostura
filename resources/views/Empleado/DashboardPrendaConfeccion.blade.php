@@ -91,14 +91,7 @@
                         <label for="cantidadsitadetela"><h3 class="h3-modal">Metros la Tela</h3></label>
                         <input type="number" class="form-control" name="cantidadsitadetela" placeholder="0"><br>
 
-<<<<<<< HEAD
-                        <div class="mb-3">
-                          <label for="imagencita" class="form-label"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                          <input class="form-control" type="file" id="imagencita" name="imagencita">
-                        </div>
 
-=======
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
                         <div class="btn-div">
                           <input type="submit" class="btn btn-modal-sub" value="Guardar">
                         </div>
@@ -242,12 +235,11 @@
             </div>
           </div>
           @endforeach    
-          </div> 
-          
-          <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendasOcultas->links('pagination::default') }}
-        </div>
-      </div>
+          <div>
+            <div class="d-flex justify-content-center mt-4">
+            {{ $MisTiposPrenda->links() }}
+            </div>
+          </div>
     </div>
     
   </div>

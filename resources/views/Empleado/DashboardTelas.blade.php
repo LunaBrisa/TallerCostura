@@ -106,9 +106,11 @@
           </div>
         @endforeach
     
+        <div>
           <div class="d-flex justify-content-center mt-4">
-              {{ $misTelas->links('pagination::default') }}
+          {{ $MisTiposPrenda->links() }}
           </div>
+        </div>
 
         @endsection
 
