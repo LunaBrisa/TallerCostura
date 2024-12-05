@@ -85,6 +85,7 @@
         color: #6c757d;
         font-weight: bold;
     }
+
 </style>
 
 @if (session('success'))
@@ -355,7 +356,7 @@
                 <h5 class="modal-title" id="confeccionModalLabel">Crear Pedido de Confecciones</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('pedidos.store') }}" method="POST">
+            <form action="{{ route('pedidos.CrearPedido') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <!-- Información del Pedido -->
@@ -390,6 +391,7 @@
                         <label for="descripcion" class="form-label">Descripción</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
                     </div>
+
                     <!-- Detalles de Confecciones -->
                     <div id="confeccionesSection">
                         <h5>Detalles de Confecciones</h5>
@@ -398,32 +400,146 @@
                                 <tr>
                                     <th>Prenda</th>
                                     <th>Cantidad</th>
+                                    <th>Tela</th>
+                                    <th>Medidas</th>
+                                    <th>Insumos</th>
                                     <th>Subtotal</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
-                                    <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
+                                    <td>
+                                        <select name="prenda_confeccion[]" class="form-control select2" required>
+                                            <option value="">Seleccione una prenda</option>
+                                            @foreach($prendas as $prenda)
+                                                <option value="{{ $prenda->id }}">{{ $prenda->nombre_prenda }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td><input type="number" name="cantidad_prenda[]" class="form-control" required></td>
                                     <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#telasModal"> Agregar </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medidasModal"> Agregar </button>                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insumoModal"> Agregar </button>
+                                    </td>
                                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
+                        </table>          
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+                    <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<!-- Modal para Telas -->
+<div class="modal fade" id="telasModal" tabindex="-1" aria-labelledby="telasModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="telasModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="tela" class="form-label">Tela</label>
+                <select name="tela" id="tela" class="form-control select2" required>
+                    <option value="">Seleccione una tela</option>
+                    @foreach($telas as $tela)
+                        <option value="{{ $tela->id }}">{{ $tela->nombre_tela }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="cantidad_tela" class="form-label">Cantidad en metros</label>
+                <input type="number" name="cantidad_tela" id="cantidad_tela" class="form-control" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal para Insumos -->
+<div class="modal fade" id="insumoModal" tabindex="-1" aria-labelledby="insumoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insumoModalLabel">Seleccionar Insumos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="insumo" class="form-label">Insumo</label>
+                    <select name="insumo" id="insumo" class="form-control select2" required>
+                        <option value="">Seleccione un insumo</option>
+                        @foreach($insumos as $insumo)
+                            <option value="{{ $insumo->id }}">{{ $insumo->insumo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="cantidad_insumo" class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad_insumo" id="cantidad_insumo" class="form-control" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Medidas -->
+<div class="modal fade" id="medidasModal" tabindex="-1" aria-labelledby="medidasModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="medidasModalLabel">Registrar Medidas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="pecho" class="form-label">Pecho</label>
+                    <input type="text" name="pecho" id="pecho" class="form-control" placeholder="Pecho" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cintura" class="form-label">Cintura</label>
+                    <input type="text" name="cintura" id="cintura" class="form-control" placeholder="Cintura" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mangas" class="form-label">Mangas</label>
+                    <input type="text" name="mangas" id="mangas" class="form-control" placeholder="Mangas" required>
+                </div>
+                <div class="mb-3">
+                    <label for="largo" class="form-label">Largo</label>
+                    <input type="text" name="largo" id="largo" class="form-control" placeholder="Largo" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+
 // Función para actualizar el precio y el subtotal
 function updatePrecio(selectElement) {
     const row = selectElement.closest('tr');
@@ -451,20 +567,20 @@ function updateSubtotal(element) {
 
 
     const loteRowTemplate = `
-    <td><input type="text" name="detalles_lote[__rowCount__][prenda]" class="form-control"></td>
-    <td><input type="number" name="detalles_lote[__rowCount__][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-    <td><input type="number" name="detalles_lote[__rowCount__][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
-    <td><input type="number" name="detalles_lote[__rowCount__][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
-    <td><input type="number" name="detalles_lote[__rowCount__][subtotal]" class="form-control" readonly></td>
+    <td><input type="text" name="detalles_lote[_rowCount_][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_lote[_rowCount_][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[_rowCount_][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[_rowCount_][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
+    <td><input type="number" name="detalles_lote[_rowCount_][subtotal]" class="form-control" readonly></td>
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
 `;
 
 const reparacionRowTemplate = `
-    <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
-    <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
-    <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>
+    <td><input type="text" name="detalles_reparaciones[_rowCount_][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_reparaciones[_rowCount_][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+    <td><input type="text" name="detalles_reparaciones[_rowCount_][descripcion_problema]" class="form-control"></td>
     <td>
-        <select name="detalles_reparaciones[__rowCount__][servicio]" class="form-control" onchange="updatePrecio(this)" required>
+        <select name="detalles_reparaciones[_rowCount_][servicio]" class="form-control" onchange="updatePrecio(this)" required>
             <option value="" disabled selected>Seleccione un servicio...</option>
             @foreach ($servicios as $servicio)
             <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
@@ -473,8 +589,8 @@ const reparacionRowTemplate = `
             @endforeach
         </select>
     </td>
-    <td><input type="number" name="detalles_reparaciones[__rowCount__][precio_prenda]" class="form-control" readonly></td>
-    <td><input type="number" name="detalles_reparaciones[__rowCount__][subtotal]" class="form-control" readonly></td>
+    <td><input type="number" name="detalles_reparaciones[_rowCount_][precio_prenda]" class="form-control" readonly></td>
+    <td><input type="number" name="detalles_reparaciones[_rowCount_][subtotal]" class="form-control" readonly></td>
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
 `;
 
@@ -484,7 +600,7 @@ const reparacionRowTemplate = `
     const table = document.getElementById(tableId);
     const rowCount = table.rows.length; // Número de filas existentes
     const newRow = table.insertRow(); // Crear nueva fila
-    newRow.innerHTML = rowTemplate.replace(/__rowCount__/g, rowCount); // Reemplaza el marcador
+    newRow.innerHTML = rowTemplate.replace(/_rowCount_/g, rowCount); // Reemplaza el marcador
 }
 
 function removeRow(button, tableId) {
@@ -501,7 +617,7 @@ function updateRowIndices(table) {
         const inputs = row.querySelectorAll('input, select');
         inputs.forEach(input => {
             const name = input.name; // Obtener el nombre original
-            const newName = name.replace(/\[\d+\]/, `[${index}]`); // Reemplazar el índice actual por el nuevo
+            const newName = name.replace(/\[\d+\]/, [${index}]); // Reemplazar el índice actual por el nuevo
             input.name = newName; // Asignar el nuevo nombre
         });
     });
