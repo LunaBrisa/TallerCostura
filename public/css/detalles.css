@@ -56,24 +56,24 @@ body {
 
 /*Diseño del paginador*/
 .pagination li a {
-    font-size: 12px; /* Ajusta el tamaño del texto */
-    padding: 5px 10px; /* Reduce el padding */
+    font-size: 12px; 
+    padding: 5px 10px; 
 }
 
 .pagination li {
-    margin: 0 2px; /* Reduce el espacio entre los elementos */
+    margin: 0 2px; 
 }
 
 .pagination li a:hover {
-    background-color: #f0f0f0; /* Estilo al pasar el mouse */
+    background-color: #f0f0f0;
 }
 
 .pagination .page-link[aria-hidden="true"] {
-    font-size: 12px; /* Reduce solo las flechas */
-    padding: 3px 8px; /* Reduce el espacio interno de las flechas */
+    font-size: 12px;
+    padding: 3px 8px; 
 }
 
 .pagination .page-item.disabled .page-link[aria-hidden="true"] {
-    opacity: 0.5; /* Opcional: estilo más tenue para flechas deshabilitadas */
+    opacity: 0.5; 
 }
 

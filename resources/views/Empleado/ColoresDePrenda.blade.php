@@ -210,11 +210,12 @@
 }
 
 .cardsing {
-    width: 800px; 
-    max-width: 320px; 
-    margin: 0 auto; 
+    width: 100%; 
+    max-width: 320px;
+    margin: 10px auto; 
     padding: 10px;
 }
+
 
 @media (max-width: 576px) {
     .btn-modal-sub {
@@ -233,7 +234,7 @@
     text-align: center;
 }
 
-media (max-width: 576px) {
+@media (max-width: 576px) {
     .card{
         width: 70vw;
     }

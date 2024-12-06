@@ -259,14 +259,10 @@
           @endforeach    
           <div>
             <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendas->links() }}
+             {{ $misPrendas->links() }}
             </div>
           </div>
-    </div>
-    
-  </div>
-
-</div>
+ </div>
 @endsection
 
 @foreach ($misPrendas as $prenda)
