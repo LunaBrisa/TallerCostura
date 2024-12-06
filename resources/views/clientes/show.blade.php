@@ -97,6 +97,11 @@
     .row.mb-4 {
         margin-bottom: 20px;
     }
+    .table-responsive {
+    margin: 20px 0;
+    border: 1px solid #dee2e6;
+}
+
 </style>
 
 <div class="container">
@@ -120,6 +125,7 @@
             @if ($cliente->pedidos->isEmpty())
                 <p>Este cliente no tiene pedidos registrados.</p>
             @else
+            <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="table-dark">
                         <tr>
@@ -149,6 +155,7 @@
                     </tbody>
                     
                 </table>
+            </div>
             @endif
         </div>
     </div>
