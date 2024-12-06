@@ -75,7 +75,7 @@ class PrendasColoresController extends Controller
                 $filePath,
             ]);
     
-            return redirect('/gestion/prenda-confeccion')->with('successImgColor', '¡Se agregó correctamente la imagen al color!');
+            return redirect('/gestion/prenda-confeccion')->with('successImgColor', '¡Se cambio correctamente la imagen del color!');
         }
         return redirect('/gestion/prenda-confeccion')->with('errorImgColor', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
     }

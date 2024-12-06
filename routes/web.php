@@ -93,6 +93,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/modif/img-color-prenda', [PrendasColoresController::class, 'modifImgColorPrenda']);
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+
+    Route::post('/cambiar/img-prenda', [PrendasTelasController::class, 'cambiarImgPrenda']);
     
     Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
     Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');

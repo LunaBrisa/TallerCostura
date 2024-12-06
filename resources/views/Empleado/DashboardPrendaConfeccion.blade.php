@@ -209,6 +209,11 @@
                       <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{ $prenda->id }}">Ver Más</button>
                       <a href="/ocultar/prenda/{{ $prenda->id }}"><button class="btn btn-intemodal">Ocultar</button></a>
                   </div>
+                  <div class="btn-div2">
+                    <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalIMG{{$prenda -> id}}" style="width: 150px !important">
+                      Cambiar Imagen
+                    </button>
+                  </div>
               </div>
           </div>
           @endforeach
@@ -243,6 +248,11 @@
                 </button>
       
                 <a href="/mostrar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Mostrar</button></a>
+              </div>
+              <div class="btn-div2">
+                <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalIMG{{$prenda -> id}}" style="width: 150px !important">
+                  Cambiar Imagen
+                </button>
               </div>
             </div>
           </div>
@@ -435,6 +445,32 @@
                     </div>
                   </div>
                 </div>
+@endforeach
+
+@foreach ($misPrendas as $prenda)
+              <!-- Modal -->
+              <div class="modal fade modal-prendas" id="exampleModalIMG{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Datos de la Prenda</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="conteform">
+                        <form action="/cambiar/img-prenda" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="idprenda" value="{{$prenda -> id}}">
+
+                          <label for="imagensonaprenda" style="text-align: center;"><h3 class="h3-modal">Cambiar Imagen de la Prenda</h3></label>
+                          <input class="form-control" type="file" name="imagensonaprenda" id="imagensonaprenda" accept="image/*" required><br>
+
+                          <input type="submit" class="btn btn-modal-sub" value="Guardar">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 @endforeach
 
 </body>

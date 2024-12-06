@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\cambiarImgPrendaRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\modifPrendaRequest;
 use App\Models\PrendaConfeccion;
@@ -122,5 +123,24 @@ class PrendaConfeccionController extends Controller
         $prendaconfeccion -> visible = 1;
         $prendaconfeccion -> save();
         return redirect('/gestion/prenda-confeccion');
+    }
+
+    public function cambiarImgPrenda(cambiarImgPrendaRequest $cambiarImgPrendaRequest){
+        $file = $cambiarImgPrendaRequest->file('imagensonaprenda');
+
+        if ($file && $file->isValid()) {
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());          
+            $destino = base_path('../images');          
+            $file->move($destino, $filename);         
+            $filePath = 'images/' . $filename;
+            
+            $prendaconfeccion = PrendaConfeccion::find($cambiarImgPrendaRequest -> idprenda);
+
+            $prendaconfeccion -> ruta_imagen = $filePath;
+            $prendaconfeccion -> save();
+            
+            return redirect('/gestion/prenda-confeccion')->with('successImgPrenda', '¡Se cambio correctamente la imagen del prenda!');
+        }
+        return redirect('/gestion/prenda-confeccion')->with('errorImgPrenda', 'Hubo un problema al subir la imagen. Intente de nuevo. Si el problema persiste, contacte con nosotros.');
     }
 }
