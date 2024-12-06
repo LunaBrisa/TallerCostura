@@ -154,9 +154,6 @@
 @endforeach
 
 
-
-
-
 </body>
 <style>
     .card {
