@@ -103,6 +103,7 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
+
 public function store(Request $request)
 {
     // Reindexar arrays para evitar problemas de índices no consecutivos
@@ -195,7 +196,6 @@ public function cambiarEstado($id)
 
 public function CrearPedido(Request $request)
 {
-
         // Crear el pedido
         $pedido = Pedido::create([
             'cliente_id' => $request->cliente,
@@ -209,6 +209,12 @@ public function CrearPedido(Request $request)
             'prenda_confeccion_id' => $request->prenda_confeccion,
             'cantidad_prenda' => $request->cantidad_prenda,
         ]);
+
+    $detalleInsumos = new DetalleInsumo;
+    $detalleInsumos->pedido_id = $pedido->id;
+    $detalleInsumos->insumo_id = $request->insumo;
+    $detalleInsumos->cantidad_insumo = $request->cantidad_insumo;
+    $detalleInsumos->save();
 
             TelaPedido::create([
                 'pedido_id' => $pedido->id,

@@ -110,6 +110,11 @@ input.form-control:focus {
     border-color: #a3d2ca;
     box-shadow: 0 0 5px rgba(163, 210, 202, 0.4);
 }
+.table-responsive {
+    margin: 20px 0;
+    border: 1px solid #dee2e6;
+}
+
 </style>
 
 @if (session('success'))
@@ -145,6 +150,7 @@ input.form-control:focus {
     <div class="d-flex justify-content-between align-items-center mb-4">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarEmpleadoModal">Agregar Empleado</button>
     </div>
+    <div class="table-responsive">
     <!-- Tabla de empleados -->
     <table class="table table-hover table-bordered">
         <thead class="table-dark">
@@ -224,6 +230,7 @@ input.form-control:focus {
             @endforeach
         </tbody>
     </table>
+    </div>
 <!-- Modal para Agregar Empleado -->
 <div class="modal fade" id="agregarEmpleadoModal" tabindex="-1" aria-labelledby="agregarEmpleadoLabel">
     <div class="modal-dialog">
@@ -329,3 +336,7 @@ input.form-control:focus {
     </div>
 </div>
 @endsection
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

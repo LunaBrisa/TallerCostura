@@ -1,4 +1,5 @@
-@extends('layouts.MisPedidos')
+@extends('Cliente.MisPedidos')
+
 
 @section('content')
 <div class="container">

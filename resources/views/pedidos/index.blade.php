@@ -85,6 +85,7 @@
         color: #6c757d;
         font-weight: bold;
     }
+>>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
 </style>
 
 @if (session('success'))
