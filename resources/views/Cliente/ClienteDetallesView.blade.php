@@ -21,8 +21,8 @@
   <div class="col-md-6 col-12">
      <h2>{{ $prenda->nombre_prenda }}</h2>
      <p>Género: {{ $prenda->genero }}</p>
-     <p> @foreach ($prenda->prendasColor as $color)
-    <button class="circle" style="background-color: {{ $color->color }}" title="{{ $color->color }}"></button>
+     <p> @foreach ($prenda -> prendasColor as $color)
+    <button class="circle" style="background-color: {{ $color -> color -> color }};" title="{{ $color -> color -> color }}"></button>
 @endforeach</p>
      <p id="precio">Precio: $ {{ $prenda->precio }}</p>
 
@@ -55,6 +55,10 @@
              </div>
           </div>
       </div>
+      <h1 class="text-black text-center p-2" style="text-shadow: 2px 2px 0px #f48ed5;">
+      Para brindarte una mejor atención, puedes acudir a nuestras instalaciones.
+    </h1>
+    <button type="submit" class="btn" style="width: 400px; height: 50px; background-color: #BE5A8C; border-color: #F99AAA;" onclick="window.location.href='https://maps.app.goo.gl/i9iexWbPueJu5XNz7'" >Ubicación</button>
      </div>
   </div>
 </div>

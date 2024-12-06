@@ -134,7 +134,7 @@
             <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#reparacionModal">
                 Crear Pedido de Reparaciones
             </button>
-            <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#confeccionModal">
+            <button type="button" class="btn btn-warning mx-1" onclick="location.href='/pedidoconfeccion'">
                 Crear Pedido de Confecciones
             </button>
         </div>
@@ -336,82 +336,6 @@
                             </tbody>
                         </table>
                         <button type="button" class="btn btn-secondary" onclick="addRow('reparacionesDetailsTable', reparacionRowTemplate);">Agregar Reparación</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Pedido</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para Crear Pedido de Confecciones -->
-<div class="modal fade" id="confeccionModal" tabindex="-1" aria-labelledby="confeccionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confeccionModalLabel">Crear Pedido de Confecciones</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ route('pedidos.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <!-- Información del Pedido -->
-                    <div class="mb-3">
-                        <label for="cliente" class="form-label">Cliente</label>
-                        <select name="cliente" id="cliente" class="form-control select2" required>
-                            <option value="">Seleccione un Cliente</option>
-                            @foreach($estadisticas['clientes'] as $cliente)
-                                <option value="{{ $cliente->id }}">{{ $cliente->persona->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="empleado" class="form-label">Empleado</label>
-                        <select name="empleado" id="empleado" class="form-control select2" required>
-                            <option value="">Seleccione un Empleado</option>
-                            @foreach($estadisticas['empleados'] as $empleado)
-                                <option value="{{ $empleado->id }}">{{ $empleado->persona->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
-                        <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
-                        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
-                    </div>
-                    <!-- Detalles de Confecciones -->
-                    <div id="confeccionesSection">
-                        <h5>Detalles de Confecciones</h5>
-                        <table class="table table-bordered" id="confeccionesDetailsTable">
-                            <thead>
-                                <tr>
-                                    <th>Prenda</th>
-                                    <th>Cantidad</th>
-                                    <th>Subtotal</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text" name="confeccion_prendas[]" class="form-control"></td>
-                                    <td><input type="number" name="confeccion_cantidades[]" class="form-control" oninput="updateConfeccionTotal(this)"></td>
-                                    <td><input type="number" name="confeccion_subtotales[]" class="form-control" readonly></td>
-                                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button type="button" class="btn btn-secondary" onclick="addRow('confeccionesDetailsTable')">Agregar Confección</button>
                     </div>
                 </div>
                 <div class="modal-footer">

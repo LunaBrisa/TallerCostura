@@ -58,7 +58,7 @@ class ClienteCatalogoController extends Controller
   }
   public function mostrarPrendasConColores()
   {
-      $prenda = PrendaConfeccion::with('colores')->get(); 
+      $prenda = PrendaConfeccion::with('colores')->get();
       return view('Cliente.ClienteDetallesView', compact('prenda'));
   }
   public function mostrarTelasYTipos(){

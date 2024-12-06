@@ -160,6 +160,6 @@ Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
 Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
 Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
-Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedidoConfeccion'])->name('pedidos.CrearPedido');
+Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedido'])->name('pedidos.CrearPedido');
 
-Route::get('/pedidos/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidos.pedidoconfeccion');
+Route::get('/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidoconfeccion');
