@@ -47,10 +47,67 @@
     border: 2px solid #333;
 }
 
-/* Tarjetas */
-.cardsing {
-    padding: 10px;
-    border: 1px solid #ddd;
+/* Contenedor de las tarjetas */
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre tarjetas */
+    flex-wrap: wrap; /* Para que las tarjetas se ajusten en pantallas pequeñas */
+    padding: 20px;
+}
+
+/* Estilo para las tarjetas */
+.tarjeta {
+    background-color: #ffe4ec; /* Rosa claro */
+    border: 2px solid #f2a2c5; /* Borde rosado */
     border-radius: 10px;
-    background-color: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Imagen dentro de la tarjeta */
+.tarjeta img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #f2a2c5;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Texto */
+.tarjeta h3 {
+    font-size: 1.2rem;
+    color: #d42a5c;
+    margin: 10px 0;
+}
+
+/* Botones */
+.tarjeta button {
+    background-color: #d42a5c; /* Rosa oscuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    width: 90%;
+    font-size: 0.9rem;
+}
+
+.tarjeta button:hover {
+    background-color: #b2244d; /* Más oscuro al pasar el mouse */
+}
+
+/* Ajustar para pantallas pequeñas */
+@media (max-width: 768px) {
+    .tarjetas {
+        flex-direction: column;
+        align-items: center;
+    }
 }
