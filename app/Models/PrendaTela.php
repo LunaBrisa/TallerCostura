@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrendaTela extends Model
 {
     protected $table = 'PRENDAS_TELAS';
-    protected $fillable = ['tela_id', 'prenda_id', 'cantidad_tela'];
+    protected $fillable = ['tela_id', 'prenda_confeccion_id', 'cantidad_tela'];
 
     public function tela()
     {

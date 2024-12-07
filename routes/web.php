@@ -165,3 +165,14 @@ Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPren
 Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedido'])->name('pedidos.CrearPedido');
 
 Route::get('/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidoconfeccion');
+
+Route::get('/colores-de-prenda/{id}', function($id) {
+    $colores = DB::table('prendas_confecciones')
+                ->join('prendas_colores', 'prendas_confecciones.id', '=', 'prendas_colores.prenda_id')
+                ->join('colores', 'prendas_colores.color_id', '=', 'colores.id')
+                ->where('prendas_confecciones.id', $id)
+                ->select('colores.id', 'colores.color')  // Seleccionamos el id y color
+                ->get();
+
+    return response()->json(['colores' => $colores]);
+});
