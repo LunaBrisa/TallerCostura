@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\PrendaConfeccion;
+use App\Models\Medida;
+use App\Models\DetalleInsumo;
+use App\Models\PrendaTela;
+use App\Models\DetalleConfeccion;
+use App\Models\Insumo;
+use App\Models\Tela;
 
 class PedidoController extends Controller
 {
