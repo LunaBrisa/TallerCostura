@@ -86,6 +86,11 @@
     form {
         margin-bottom: 1.5rem; /* Espaciado entre formularios */
     }
+    .table-responsive {
+    margin: 20px 0;
+    border: 1px solid #dee2e6;
+}
+
     </style>
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -119,7 +124,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarClienteModal">Agregar Cliente</button>
     </div>
-    
+    <div class="table-responsive">
     <table class="table table-hover table-bordered">
         <thead class="table-dark">
             <tr>
@@ -255,6 +260,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
 <!-- Modal para Agregar Cliente -->
 <div class="modal fade" id="agregarClienteModal" tabindex="-1" aria-labelledby="agregarClienteLabel">

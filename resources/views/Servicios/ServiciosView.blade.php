@@ -6,8 +6,6 @@
     <title>Gestión de Servicios</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-
-
 /* Estilo general del cuerpo */
 body {
             font-family: 'Roboto', sans-serif;
@@ -70,7 +68,7 @@ body {
         }
     
         .table-header {
-            background-color: #ff9295;
+            background-color: #292929;
             color: white;
             text-align: center;
             padding: 10px;
@@ -86,7 +84,7 @@ body {
         }
     
         .table th {
-            background-color: #ffb6b9;
+            background-color: #666565;
             color: white;
             text-align: center;
             font-weight: bold;
@@ -111,7 +109,7 @@ body {
         }
     
         .btn-edit {
-            background-color: #c1a3f6;
+            background-color: #8843ff;
             color: white;
             font-weight: bold;
             border-radius: 20px;
@@ -119,11 +117,11 @@ body {
         }
     
         .btn-edit:hover {
-            background-color: #a085e0;
+            background-color: #a786f4;
         }
     
         .btn-toggle {
-            background-color: #ffb6b9;
+            background-color: #fe62d7;
             color: white;
             font-weight: bold;
             border-radius: 20px;
@@ -131,11 +129,11 @@ body {
         }
     
         .btn-toggle:hover {
-            background-color: #ff9295;
+            background-color: #f70090;
         }
     
         .btn-add {
-            background-color: #4caf50;
+            background-color: #ff4193;
             color: white;
             font-weight: bold;
             border-radius: 20px;
@@ -145,7 +143,7 @@ body {
         }
     
         .btn-add:hover {
-            background-color: #43a047;
+            background-color: #fd42a3;
         }
         
         :root {
@@ -246,7 +244,7 @@ body {
 }
 
 .table-header {
-    background-color: #ff9295;
+    background-color: #3a3a3a;
     color: white;
     text-align: center;
     font-size: 1.5rem;
@@ -260,7 +258,7 @@ body {
 }
 
 .table th {
-    background-color: #ffb6b9;
+    background-color: #676767;
     color: white;
     text-align: center;
     font-weight: bold;

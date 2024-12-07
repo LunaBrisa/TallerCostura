@@ -90,6 +90,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/modificar/colores-prenda/{id}', [PrendasColoresController::class, 'getColoresDePrenda']);
     Route::post('/agreg/color-prenda', [PrendasColoresController::class, 'saveColorPrenda']);
     Route::get('/elim/color/prenda/{id}', [PrendasColoresController::class, 'eliminarColorPrenda']); 
+    Route::post('/modif/img-color-prenda', [PrendasColoresController::class, 'modifImgColorPrenda']);
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
     
@@ -101,7 +102,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     // Nuevas rutas para ocultar y mostrar servicios
     Route::put('/servicios/ocultar/{id}', [ServiciosController::class, 'ocultaServicio'])->name('servicios.ocultar');
     Route::put('/servicios/mostrar/{id}', [ServiciosController::class, 'muestraServicio'])->name('servicios.mostrar');
-   
+
 //});
 
 // Rutas protegidas para Empleados
@@ -114,6 +115,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/pedidos', [PedidoController::class, 'store'])->name('pedidos.store');
     Route::get('/pedidos/{id}', [PedidoController::class, 'show'])->name('pedidos.show');
     Route::post('/pedidos/{id}/cambiar-estado', [PedidoController::class, 'cambiarEstado'])->name('pedidos.cambiarEstado');
+    Route::get('/pedidos/cliente/{id}', [PedidoController::class, 'detalleCliente'])->name('pedidos.detalleCliente');
+
 
 
     
@@ -159,4 +162,17 @@ Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
 Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
 Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
+Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedido'])->name('pedidos.CrearPedido');
 
+Route::get('/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidoconfeccion');
+
+Route::get('/colores-de-prenda/{id}', function($id) {
+    $colores = DB::table('prendas_confecciones')
+                ->join('prendas_colores', 'prendas_confecciones.id', '=', 'prendas_colores.prenda_id')
+                ->join('colores', 'prendas_colores.color_id', '=', 'colores.id')
+                ->where('prendas_confecciones.id', $id)
+                ->select('colores.id', 'colores.color')  // Seleccionamos el id y color
+                ->get();
+
+    return response()->json(['colores' => $colores]);
+});

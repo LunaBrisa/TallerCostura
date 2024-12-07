@@ -52,3 +52,28 @@ body {
 .detalles-pedido .tabla-row:nth-child(even) {
     background-color: #FEE9EC;
 }
+
+
+/*Diseño del paginador*/
+.pagination li a {
+    font-size: 12px; 
+    padding: 5px 10px; 
+}
+
+.pagination li {
+    margin: 0 2px; 
+}
+
+.pagination li a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .page-link[aria-hidden="true"] {
+    font-size: 12px;
+    padding: 3px 8px; 
+}
+
+.pagination .page-item.disabled .page-link[aria-hidden="true"] {
+    opacity: 0.5; 
+}
+

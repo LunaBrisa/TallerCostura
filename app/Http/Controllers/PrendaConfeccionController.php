@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 class PrendaConfeccionController extends Controller
 {
     public function getPrendasConfeccion(){
-        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1)->whereHas('PrendasColor') -> paginate(3);
+        $prendillas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> paginate(3);
         $prendillasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> paginate(3);
         $tiposprendilla = TipoPrenda::all();
         $telillas = Tela::all();
@@ -38,12 +38,9 @@ class PrendaConfeccionController extends Controller
         $file = $savePrendaConfeccionRequest->file('ruta_imagen');
 
         if ($file && $file->isValid()) {
-            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
-    
-            $destino = base_path('../images');
-    
-            $file->move($destino, $filename);
-    
+            $filename = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());    
+            $destino = base_path('../images');    
+            $file->move($destino, $filename);    
             $filePath = 'images/' . $filename;
     
     
@@ -53,7 +50,7 @@ class PrendaConfeccionController extends Controller
                 $savePrendaConfeccionRequest->precio_obra_prendita,
                 $savePrendaConfeccionRequest->generito,
                 $savePrendaConfeccionRequest->tipoprendita,
-                $filePath, 
+                $filePath,
                 $savePrendaConfeccionRequest->colorprendita,
                 $filePath,
                 $savePrendaConfeccionRequest->telitas,

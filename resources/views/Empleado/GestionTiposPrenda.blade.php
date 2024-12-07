@@ -87,6 +87,11 @@
         </div>
       </div>
   @endforeach
+    <!-- Paginador -->
+    <div>
+      <div class="d-flex justify-content-center mt-4">
+      {{ $MisTiposPrenda->links() }}
+      </div>
     </div>
 </div>
 @endsection 

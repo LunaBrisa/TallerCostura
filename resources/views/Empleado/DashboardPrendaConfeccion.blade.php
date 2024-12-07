@@ -91,6 +91,7 @@
                         <label for="cantidadsitadetela"><h3 class="h3-modal">Metros la Tela</h3></label>
                         <input type="number" class="form-control" name="cantidadsitadetela" placeholder="0"><br>
 
+
                         <div class="btn-div">
                           <input type="submit" class="btn btn-modal-sub" value="Guardar">
                         </div>
@@ -150,11 +151,29 @@
       </div>
     @endif
 
+    @if (session('errorColor'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('errorColor') }}         <!-- AL AGREGAR COLOR A UNA PRENDA -->
+        </div>
+    @endif
+
     @if (session('successEliminarColor'))
       <div class="alert alert-success" role="alert">
           {{ session('successEliminarColor') }}         <!-- AL ELIMINAR COLOR DE UNA PRENDA -->
       </div>
     @endif
+
+    @if (session('successImgColor'))
+      <div class="alert alert-success" role="alert">
+          {{ session('successImgColor') }}         <!-- AL MODIFICAR COLOR DE UNA PRENDA -->
+      </div>
+    @endif
+
+    @if (session('errorImgColor'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('errorImgColor') }}             <!-- AL AGREGAR COLOR A UNA PRENDA -->
+    </div>
+  @endif
   </div>
 </div>
 
@@ -228,17 +247,12 @@
             </div>
           </div>
           @endforeach    
-          </div> 
-          
-          <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendasOcultas->links('pagination::default') }}
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-</div>
+          <div>
+            <div class="d-flex justify-content-center mt-4">
+             {{ $misPrendas->links() }}
+            </div>
+          </div>
+ </div>
 @endsection
 
 @foreach ($misPrendas as $prenda)
@@ -279,23 +293,31 @@
       
                           <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                           @foreach ($prenda -> prendasColor as $color)
-                            <input class='form-control' style="background-color: {{ $color->color }}; margin: auto; width: 70%; text-align: center;" title="{{ $color->color }}" readonly><br>
-                          @endforeach 
+                          <input class='form-control' style="background-color: {{ $color -> color -> color }}; margin: auto; width: 70%; text-align: center;" title="{{ $color -> color -> color }}" readonly><br>
+                          @endforeach
       
                           <div class="row">
                             <div class="col">
                               <label for="telotas"><h3 class="h3-modal">Telas de la Prenda</h3></label>
                               @foreach ($prenda -> prendasTelas as $tela)
-                                <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
+
+                              @php
+                              $nombreTela = $tela->tela->nombre_tela ?? 'Sin tela';
+                              @endphp
+                              <input type="text" class="form-control" name="telotas" placeholder="{{ $nombreTela }}" readonly><br>
+                          
                               @endforeach
                             </div>
       
                             <div class="col">
                               <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
                               @foreach ($prenda -> prendasTelas as $tela)
-                                <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}" readonly><br>
+                                @php
+                                  $cantidadTela = $tela->cantidad_tela ?? 'Sin tela';
+                                @endphp
+                                <input type="number" class="form-control" name="cantidadsota" placeholder="{{$cantidadTela}}" readonly><br>
                               @endforeach
-                            </div>
+                            </div> 
                           </div>
                         </form>
                       </div>
@@ -361,21 +383,27 @@
         
                             <label for="colorprenda"><h3 class="h3-modal">Colores Disponibles de la Prenda</h3></label>
                             @foreach ($prenda -> prendasColor as $color)
-                              <input class="form-control" style="background-color: {{ $color->color }}; margin: auto; width: 70%; text-align: center;" title="{{ $color->color }}" readonly><br>
-                            @endforeach        
+                              <input class="form-control" style="background-color: {{ $color -> color -> color}}; margin: auto; width: 70%; text-align: center;" title="{{ $color -> color -> color }}" readonly><br>
+                            @endforeach
         
                             <div class="row">
-                              <div class="col">
+                             <div class="col">
                                 <label for="telotas"><h3 class="h3-modal">Telas de la Prenda</h3></label>
                                 @foreach ($prenda -> prendasTelas as $tela)
-                                  <input type="text" class="form-control" name="telotas" placeholder="{{$tela -> tela->nombre_tela}}" readonly><br>
+                                @php
+                                  $nombreTela = $tela->tela->nombre_tela ?? 'Sin tela';
+                                  @endphp
+                                  <input type="text" class="form-control" name="telotas" placeholder="{{ $nombreTela }}" readonly><br>
                                 @endforeach
                               </div>
         
                               <div class="col">
                                 <label for="cantidadsota"><h3 class="h3-modal">Metros de la Tela</h3></label>
                                 @foreach ($prenda -> prendasTelas as $tela)
-                                  <input type="number" class="form-control" name="cantidadsota" placeholder="{{$tela -> cantidad_tela}}" readonly><br>
+                                  @php
+                                      $cantidadTela = $tela->cantidad_tela ?? 'Sin tela';
+                                  @endphp
+                                  <input type="number" class="form-control" name="cantidadsota" placeholder="{{$cantidadTela}}" readonly><br>
                                 @endforeach
                               </div>
                             </div>
@@ -407,29 +435,6 @@
 
 </body>
 <style>
-
-.pagination li a {
-        font-size: 12px; /* Ajusta el tamaño del texto */
-        padding: 5px 10px; /* Reduce el padding */
-    }
-
-    .pagination li {
-        margin: 0 2px; /* Reduce el espacio entre los elementos */
-    }
-
-    .pagination li a:hover {
-        background-color: #f0f0f0; /* Estilo al pasar el mouse */
-    }
-
-    .pagination .page-link[aria-hidden="true"] {
-        font-size: 12px; /* Reduce solo las flechas */
-        padding: 3px 8px; /* Reduce el espacio interno de las flechas */
-    }
-
-    .pagination .page-item.disabled .page-link[aria-hidden="true"] {
-        opacity: 0.5; /* Opcional: estilo más tenue para flechas deshabilitadas */
-    }
-
 
 
 .h3-modal {

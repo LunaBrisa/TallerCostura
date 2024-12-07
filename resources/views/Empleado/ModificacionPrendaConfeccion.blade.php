@@ -12,7 +12,8 @@
 @extends('layouts.nav')
 @section('content')
 {{-- MODIFCACION --}}
-<div class="container">
+<br>
+  <div class="container">
   <div class="row">
     <div class="col">
       <h1 class="Titulo1">Modificacion de Prenda</h1>

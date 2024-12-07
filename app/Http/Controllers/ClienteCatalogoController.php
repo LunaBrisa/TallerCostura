@@ -58,7 +58,7 @@ class ClienteCatalogoController extends Controller
   }
   public function mostrarPrendasConColores()
   {
-      $prenda = PrendaConfeccion::with('colores')->get(); 
+      $prenda = PrendaConfeccion::with('colores')->get();
       return view('Cliente.ClienteDetallesView', compact('prenda'));
   }
   public function mostrarTelasYTipos(){
@@ -72,7 +72,7 @@ class ClienteCatalogoController extends Controller
   }
   public function MostrarDetallesPedido($id)
   {  
-      $pedido = Pedido::with([
+ $pedido = Pedido::with([
           'cliente.persona',
           'empleado.persona',
           'detallesConfecciones.prendaConfeccion',
@@ -81,9 +81,10 @@ class ClienteCatalogoController extends Controller
           'detallesReparaciones.servicios',
           'detallesReparaciones.insumos',
           'detallesLotes'
-      ])->findOrFail($id);
+      ])->findOrFail($id); 
 
-      return view('MisPedidos.DetallesPedido', compact('pedido'));
+      return view('Cliente.Index', compact('pedidos'));
+
   }
 
   public function MostrarPrendasMasVendidas()

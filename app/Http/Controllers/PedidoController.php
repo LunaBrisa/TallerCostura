@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\PrendaConfeccion;
+use App\Models\Medida;
+use App\Models\DetalleInsumo;
+use App\Models\PrendaTela;
+use App\Models\DetalleConfeccion;
+use App\Models\Insumo;
+use App\Models\Tela;
 
 class PedidoController extends Controller
 {
@@ -189,4 +195,62 @@ public function verprendas()
     $prendas = PrendaConfeccion::all();
     return view('pedidos.index', compact('prendas'));
 }
+
+
+public function CrearPedido(Request $request)
+{
+    DB::beginTransaction();
+
+    try {
+        // Crear el pedido
+        $pedido = Pedido::create([
+            'empleado_id' => $request->empleado,
+            'cliente_id' => $request->cliente,
+            'fecha_pedido' => $request->fecha_pedido,
+            'fecha_entrega' => $request->fecha_entrega,
+            'descripcion' => $request->descripcion, // Actualizaremos luego con el subtotal
+        ]);
+
+        // Procesar detalles de confecciones
+        foreach ($request->detalles_confecciones as $detalle) {
+            $detalleConfeccion = DetalleConfeccion::create([
+                'pedido_id' => $pedido->id,
+                'prenda_confeccion_id' => $detalle['prenda_confeccion'],
+                'cantidad_prenda' => $detalle['cantidad_prenda'],
+            ]);
+
+            // Guardar medidas
+            if (!empty($detalle['medidas'])) {
+                Medida::create([
+                    'detalle_confeccion_id' => $detalleConfeccion->id,
+                    'pecho' => $detalle['medidas']['pecho'],
+                    'cintura' => $detalle['medidas']['cintura'],
+                    'mangas' => $detalle['medidas']['mangas'],
+                    'largo' => $detalle['medidas']['largo'],
+                ]);
+            }
+
+ 
+        }
+
+        DB::commit();
+        return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->withErrors('Error al crear el pedido: ' . $e->getMessage());
+    }
+}
+
+public function pedidoconfeccion()
+{
+    $prendas = PrendaConfeccion::where('visible', true)->get(); 
+    $telas = Tela::all();
+    $insumos = Insumo::all();
+    $clientes = Cliente::all();
+    $empleados = Empleado::all();
+    $prendas = PrendaConfeccion::with('prendasColor')->get(); 
+    return view('pedidos.pedidoconfeccion', compact('prendas', 'telas', 'insumos', 'clientes', 'empleados', 'prendas'));
+}
+
 }
