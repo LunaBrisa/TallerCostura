@@ -175,7 +175,7 @@
     </div>
   @endif
 
-  @if (session('succesImgPrenda'))
+  @if (session('successImgPrenda'))
       {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMNAGEN DE UNA PRENDA -->
   @endif
 
