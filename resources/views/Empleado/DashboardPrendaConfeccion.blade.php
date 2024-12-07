@@ -176,7 +176,9 @@
   @endif
 
   @if (session('successImgPrenda'))
-      {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMNAGEN DE UNA PRENDA -->
+  <div class="alert alert-danger" role="alert">
+      {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMAGEN DE UNA PRENDA -->
+    </div>    
   @endif
 
   @if (session('errorImgPrenda'))
