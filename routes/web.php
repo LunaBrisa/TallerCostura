@@ -30,6 +30,7 @@ use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\VerifiedEmailController;
+use Illuminate\Support\Facades\DB;
 
 // Página para pedir verificación
 Route::get('/email/verify', function () {
@@ -94,7 +95,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
 
-    Route::post('/cambiar/img-prenda', [PrendasTelasController::class, 'cambiarImgPrenda']);
+    Route::post('/cambiar/img-prenda', [PrendaConfeccionController::class, 'cambiarImgPrenda']);
     
     Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
     Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
