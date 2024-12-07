@@ -174,6 +174,16 @@
         {{ session('errorImgColor') }}             <!-- AL AGREGAR COLOR A UNA PRENDA -->
     </div>
   @endif
+
+  @if (session('succesImgPrenda'))
+      {{ session('succesImgPrenda') }}         <!-- AL MODIFICAR IMNAGEN DE UNA PRENDA -->
+  @endif
+
+  @if (session('errorImgPrenda'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('errorImgPrenda') }}             <!-- AL AGREGAR IMAGEN A UNA PRENDA -->
+    </div>
+  @endif
   </div>
 </div>
 
