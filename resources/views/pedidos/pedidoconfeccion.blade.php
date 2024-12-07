@@ -63,7 +63,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select id="prenda_select" name="prenda_id" class="form-control select2">
+                            <select name="detalles_confecciones[0][prenda_confeccion]"  class="form-control select2" required>
                                 <option value="">Seleccione una prenda</option>
                                 @foreach($prendas as $prenda)
                                     <option value="{{ $prenda->id }}">{{ $prenda->nombre_prenda }}</option>
@@ -215,3 +215,5 @@ document.getElementById('prenda_select').addEventListener('change', function() {
 
 </body>
 </html>
+
+ 
