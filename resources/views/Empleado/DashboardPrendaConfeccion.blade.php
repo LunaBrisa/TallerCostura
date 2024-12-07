@@ -271,7 +271,7 @@
           @endforeach    
           <div>
             <div class="d-flex justify-content-center mt-4">
-             {{ $misPrendas->links() }}
+             {{ $misPrendasOcultas->links(pagination::default()) }}
             </div>
           </div>
  </div>
