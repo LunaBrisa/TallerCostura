@@ -96,19 +96,7 @@ class PrendaConfeccionController extends Controller
 
         $prendaconfeccion -> save();
 
-        $tiposPrendas = TipoPrenda::all();
-        $prenditas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 1) -> paginate(3);
-        $prenditasOcultas = PrendaConfeccion::with(['tipoPrenda', 'prendasTelas', 'prendasTelas.tela', 'PrendasColor.color']) -> where('visible', 0) -> paginate(3);
-        $colores = Color::all();
-        $telas = Tela::all();
-        session()->flash('successmodif', '¡Se modificaron correctamente los datos!');
-        return view('Empleado.DashboardPrendaConfeccion') -> with([
-            'misPrendas' => $prenditas,
-            'misPrendasOcultas' => $prenditasOcultas,
-            'misTiposPrendas' => $tiposPrendas,
-            'misColores' => $colores,
-            'misTelas' => $telas
-        ]);
+        return redirect('/gestion/prenda-confeccion')->with('successmodif', '¡Se modificaron correctamente los datos de la prenda!');
     }
 
     public function ocultaPrenda($id){
