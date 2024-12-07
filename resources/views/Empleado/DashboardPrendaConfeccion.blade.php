@@ -176,7 +176,7 @@
   @endif
 
   @if (session('succesImgPrenda'))
-      {{ session('succesImgPrenda') }}         <!-- AL MODIFICAR IMNAGEN DE UNA PRENDA -->
+      {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMNAGEN DE UNA PRENDA -->
   @endif
 
   @if (session('errorImgPrenda'))
