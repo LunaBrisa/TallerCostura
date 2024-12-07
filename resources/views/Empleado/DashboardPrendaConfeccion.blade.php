@@ -234,7 +234,7 @@
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendas->links('pagination::default') }}
+            {{ $misPrendas->links() }}
           </div>
         </div>
     </div>
@@ -271,7 +271,7 @@
           @endforeach    
           <div>
             <div class="d-flex justify-content-center mt-4">
-             {{ $misPrendasOcultas->links(pagination::default()) }}
+             {{ $misPrendasOcultas->links() }}
             </div>
           </div>
  </div>
