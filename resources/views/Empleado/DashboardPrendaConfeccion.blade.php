@@ -455,6 +455,7 @@
                     <div class="modal-body">
                       <div class="conteform">
                         <form action="/cambiar/img-prenda" method="post" enctype="multipart/form-data">
+                          @csrf
                           <input type="hidden" name="idprenda" value="{{$prenda -> id}}">
 
                           <label for="imagensonaprenda" style="text-align: center;"><h3 class="h3-modal">Cambiar Imagen de la Prenda</h3></label>
