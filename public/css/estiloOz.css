@@ -1,360 +1,113 @@
-
-h1.Titulo1{
-    color: #E57D90;
-    font-size: 50px;
+/* Centrado de las tarjetas */
+.card-hover {
+    transition: transform 0.3s ease;
 }
 
-h1.Titulo2{
-    color: #E57D90;
-    font-style: italic;
-    font-size: 35px;
-    padding-top: 15px;
+.card-hover:hover {
+    transform: scale(1.05);
 }
 
-@media (max-width: 576px) {
-    h1.Titulo2{
-        color: #E57D90;
-        font-style: italic;
-        font-size: 30px;
-        padding-top: 5px;
-    }
-}
-
-.row{
-    text-align: center;
-}
-
-
-.container2 {
+/* Imagen dentro de las tarjetas */
+.img-div img {
+    object-fit: cover;
     width: 100%;
-    max-width: 1200px;
-    margin: auto; 
-    padding: 15px; 
+    height: 200px; /* Ajusta según lo necesario */
 }
 
-.cuadradito{
-    height: 30vh;
-    width: 100%;
-    background-color: #FFCDD4;
-    margin: auto;
-    border-radius: 20%;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.cuadradito-solo{
-    height: 30vh;
-    width: 50%;
-    background-color: #FFCDD4;
-    margin: auto;
-    border-radius: 20%;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.btn-div{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 90%;
-}
-
-.btn-div2{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10%;
-    width: 90%;
-    padding: 0%;
-}
-
-.btn-gest{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 250px;
-    padding-top: 20px;
-    background-color: #F6B2DB;
-    border: solid 2px;
-    border-color: #BE5A8C ;
-    text-align: center;
-    padding: 0%;
-}
-
-.btn-gest:hover{
-    background-color: #BE5A8C;
-    border-color: #F6B2DB;
-    color:#F6B2DB;
-}
-
-.p-btn {
-    margin: 0;
-    font-style: italic;
-    font-size: 25px;
-    text-align: center;
-}
-
-@media (max-width: 576px) {
-    .p-btn {
-        margin: 0;
-        font-style: italic;
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .btn-gest{
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        width: 250px;
-        padding-top: 20px;
-        background-color: #F6B2DB;
-        border: solid 2px;
-        border-color: #BE5A8C ;
-        text-align: center;
-        padding: 0%;
-    }
-}
-
-.p-btn-agg {
-    margin: 0;
-    font-style: italic;
-    font-size: 18px;
-    text-align: center;
-}
-
+/* Botones */
 .btn-agregprenda {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 40px;
-    width: 280px;
-    background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0;
-}
-
-.btn-agregprenda:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
-}
- 
-a {
-    color: black;
-    text-decoration: none; 
-}
-
-a:visited {
-    color:unset; 
-}
-
-a:hover,
-a:active {
-    color: black; 
-}
-
-.modal-header,.modal-footer{
-    background-color: #F99AAA;
-}
-
-.modal-body{
-    background-color: #FFCDD4;
-}
-
-h1.Titulomodal{
-    color: #FFE0E6;
-    font-style: italic;
-}
-
-.h3-modal{
-    color: #BE5A8C;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
 .btn-modal-sub {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 40px;
-    width: 280px;
-    background-color: #BE5A8C;
-    border: solid 2px;
-    border-color: #F99AAA;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
-}
-
-.btn-modal-sub:hover{
-    background-color: #F99AAA;
-    color: #b9437e;
-}
-
-.card-reg{
-    background-color: #E4BCD4;
-    border: solid 2px;
-    border-color: #BE5A8C;
-}
-
-.card-title{
-    color: #8A226F;
+    background-color: #28A745;
+    color: white;
 }
 
 .btn-intemodal {
-    margin: 0 4px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    height: 40px;
-    width: 100px !important;
-    background-color: #8A226F;
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
+    background-color: #FFC107;
+    color: white;
 }
 
-.btn-intemodal:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
+/* Encabezado del título */
+.Titulo1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
 }
 
-.btn-elim {
-    margin: auto;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 40px;
-    width: 150px;
-    background-color: #8A226F;  
-    border: solid 2px;
-    border-color: #FFCDD4;
-    color: #FFCDD4;
-    text-align: center; 
-    padding: 0; 
-}
-
-.btn-elim:hover{
-    background-color: #FFCDD4;
-    border-color: #8A226F;
-    color:#8A226F;
-}
-
-.list-title{
-    color: #BE5A8C;
-    font-weight: 700;
-    font-size: 25px;
-    text-align: center;
-}
-
-.cardsing{
-    background-color:#ffe2f3;
-    border: none;
-}
-
-.card-det{
-    color: #BE5A8C;
-    font-weight: 500;
-    font-size: 18px;
-}
-
-.radio-text{
-    font-size: 20px;
-    color: #BE5A8C;
-}
-
-.p-card{
-    color: #BE5A8C;
+/* Círculo de color */
+.color-circle {
+    width: 50px;
     height: 50px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
+    border-radius: 50%;
+    border: 2px solid #333;
 }
 
-.img-div {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 25px;
-    border: solid 2px;
-    border-color:#8A226F ;
-    margin-top: auto;
+/* Contenedor de las tarjetas */
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre tarjetas */
+    flex-wrap: wrap; /* Para que las tarjetas se ajusten en pantallas pequeñas */
+    padding: 20px;
 }
 
-.img-div img {
-    width: 100%;
-    height: auto;
-    object-fit: cover; 
-}
-
-
-.card{
-    padding: 10px;
-}
-.card-body {
+/* Estilo para las tarjetas */
+.tarjeta {
+    background-color: #ffe4ec; /* Rosa claro */
+    border: 2px solid #f2a2c5; /* Borde rosado */
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    height: 10%;
 }
 
-.containerModif{
-    margin: auto;
-    width: 70vw;
-    background-color: #FFCDD4;
-    padding-top: 25px;
-    border: solid 2px;
-    border-color: #8A226F;  
-    border-radius: 40px;
+/* Imagen dentro de la tarjeta */
+.tarjeta img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #f2a2c5;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.h1-modif{
-    color:#8A226F;
-    font-size: 35px;
-}   
-
-.conteform{
-    margin: auto;
-    width: 80%;
-    background-color: #FFCDD4;  
-    padding-top: 25px;
+/* Texto */
+.tarjeta h3 {
+    font-size: 1.2rem;
+    color: #d42a5c;
+    margin: 10px 0;
 }
 
-.advert{
-    color: #BE5A8C;
-    font-size: 20px;
-    text-align: center;
-    font-style: italic;
-    font-weight: bold;
+/* Botones */
+.tarjeta button {
+    background-color: #d42a5c; /* Rosa oscuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    width: 90%;
+    font-size: 0.9rem;
 }
 
-
-.nav-pills .nav-link.active {
-  background-color: #8A226F;
-  color: #F6B2DB;           
-}
-.nav-pills .nav-link {
-  background-color: #f8f9fa; 
-  color: #8A226F;            
-}
-.nav-pills .nav-link:hover {
-  background-color: #bc2e96; 
-  color: #F99AAA;
+.tarjeta button:hover {
+    background-color: #b2244d; /* Más oscuro al pasar el mouse */
 }
 
+/* Ajustar para pantallas pequeñas */
+@media (max-width: 768px) {
+    .tarjetas {
+        flex-direction: column;
+        align-items: center;
+    }
+}

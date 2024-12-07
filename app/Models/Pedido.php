@@ -33,4 +33,5 @@ class Pedido extends Model
     {
         return $this->hasMany(DetalleLote::class, 'pedido_id');
     }
+
 }
