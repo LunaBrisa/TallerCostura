@@ -176,14 +176,14 @@
   @endif
 
   @if (session('successImgPrenda'))
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-success" role="alert">
       {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMAGEN DE UNA PRENDA -->
     </div>    
   @endif
 
   @if (session('errorImgPrenda'))
     <div class="alert alert-danger" role="alert">
-        {{ session('errorImgPrenda') }}             <!-- AL AGREGAR IMAGEN A UNA PRENDA -->
+        {{ session('errorImgPrenda') }}             <!-- AL MODIFICAR IMAGEN A UNA PRENDA -->
     </div>
   @endif
   </div>
