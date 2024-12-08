@@ -233,7 +233,7 @@
     text-align: center;
 }
 
-media (max-width: 576px) {
+@media (max-width: 576px) {
     .card{
         width: 70vw;
     }
