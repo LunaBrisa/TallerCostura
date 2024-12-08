@@ -447,9 +447,6 @@ function updateSubtotal(element) {
     // Actualiza solo el subtotal visualmente
     row.querySelector('input[name*="[subtotal]"]').value = subtotal.toFixed(2);
 }
-
-
-
     const loteRowTemplate = `
     <td><input type="text" name="detalles_lote[__rowCount__][prenda]" class="form-control"></td>
     <td><input type="number" name="detalles_lote[__rowCount__][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
@@ -459,7 +456,7 @@ function updateSubtotal(element) {
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
 `;
 
-const reparacionRowTemplate = `
+    const reparacionRowTemplate = `
     <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
     <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
     <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>

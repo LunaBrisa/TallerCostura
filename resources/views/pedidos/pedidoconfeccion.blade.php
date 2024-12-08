@@ -82,9 +82,6 @@
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insumoModal"> Agregar </button>
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#telasModal"> Agregar </button>  
-                        </td>
                         <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
                     </tr>
                 </tbody>
@@ -122,15 +119,38 @@
                     <input type="text" name="detalles_confecciones[0][medidas][largo]" id="largo" class="form-control" placeholder="Largo" required>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" >Guardar</button>
-
-            </div>
+          
         </div>
     </div>
 </div>
 
+<!-- Modal para Insumos -->
+<div class="modal fade" id="insumoModal" tabindex="-1" aria-labelledby="insumoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insumoModalLabel">Seleccionar Insumos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="insumo" class="form-label">Insumo</label>
+                    <select name="insumo" id="insumo" class="form-control select2" required>
+                        <option value="">Seleccione un insumo</option>
+                        @foreach($insumos as $insumo)
+                         <option value="{{ $insumo->id }}">{{ $insumo->insumo }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="cantidad_insumo" class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad_insumo" id="cantidad_insumo" class="form-control" required>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
 
 </form>
 <!-- Bootstrap Bundle con Popper.js -->
@@ -168,48 +188,16 @@ function addConfeccionRow() {
     $('#confeccionesDetailsTable tbody').append(row);
 }
 
-// Agregar una fila de medida, insumo o tela
-function setMedidasIndex(index) {
-    // Aquí puedes establecer el índice adecuado para las medidas, similar a los insumos
-    // y luego insertar en el formulario correspondiente
-}
-
 function setInsumosIndex(index) {
     // Establecer el índice y gestionar los insumos
 }
 
-function setTelasIndex(index) {
-    // Establecer el índice y gestionar las telas
-}
 
 // Eliminar fila de detalle de confección
 function removeRow(button, tableId) {
     $(button).closest('tr').remove();
 }
 
-document.getElementById('prenda_select').addEventListener('change', function() {
-    var prendaId = this.value;
-    var colorSelect = document.getElementById('color_select');
-
-    // Limpiar los colores actuales
-    colorSelect.innerHTML = '<option value="">Seleccione un color</option>';
-
-    if (prendaId) {
-        fetch(`/colores-de-prenda/${prendaId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Agregar los colores al select
-                data.colores.forEach(color => {
-                    var option = document.createElement('option');
-                    option.value = color.id;
-                    option.style.backgroundColor = color.color;
-                    option.title = color.color;
-                    colorSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error fetching colores:', error));
-    }
-});
 
 </script>
 

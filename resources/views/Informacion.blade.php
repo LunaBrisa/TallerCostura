@@ -54,7 +54,7 @@
                         <tr>
                             <td><strong>Nombre de Usuario:</strong></td>
                             <td>{{ $dato->NombreUsuario }}</td>
-                            <td><a href=""><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
+                            <td><a><img src="{{ asset('images/flecha-bnt.jpg') }}" width="30" height="30"></a></td>
                         </tr>
                         <tr>
                             <td><strong>Correo:</strong></td>
@@ -109,6 +109,7 @@
             </div>
         @endif
     </div>
+
     @endsection
 </body>
 </html>

@@ -15,6 +15,7 @@ use App\Models\PrendaConfeccion;
 use App\Models\Medida;
 use App\Models\DetalleInsumo;
 use App\Models\PrendaTela;
+use App\Models\PrendasColores;
 use App\Models\DetalleConfeccion;
 use App\Models\Insumo;
 use App\Models\Tela;
@@ -229,8 +230,16 @@ public function CrearPedido(Request $request)
                     'largo' => $detalle['medidas']['largo'],
                 ]);
             }
-
- 
+            // Guardar insumos asociados
+            if (!empty($detalle['insumos'])) {
+                foreach ($detalle['insumos'] as $insumo) {
+                    DetalleInsumo::create([
+                        'detalle_confeccion_id' => $detalleConfeccion->id,
+                        'insumo_id' => $insumo['id'],
+                        'cantidad_insumo' => $insumo['cantidad_insumo'],
+                    ]);
+                }
+            }
         }
 
         DB::commit();
