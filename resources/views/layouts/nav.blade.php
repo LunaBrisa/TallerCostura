@@ -50,6 +50,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auditorias">Auditorias</a>
+                        </li>
                     @endif
 
                     <li class="nav-item">
