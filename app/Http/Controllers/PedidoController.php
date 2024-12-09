@@ -18,6 +18,7 @@ use App\Models\PrendaTela;
 use App\Models\PrendasColores;
 use App\Models\DetalleConfeccion;
 use App\Models\Insumo;
+use App\Models\PrendaColor;
 use App\Models\Tela;
 
 class PedidoController extends Controller
@@ -253,12 +254,14 @@ public function CrearPedido(Request $request)
 
 public function pedidoconfeccion()
 {
-    $prendas = PrendaConfeccion::where('visible', true)->get(); 
+    $prendas = PrendaColor::whereHas('prenda', function ($query) {
+        $query->where('visible', true);
+    })->with('prenda', 'color')->get();
+
     $telas = Tela::all();
     $insumos = Insumo::all();
     $clientes = Cliente::all();
     $empleados = Empleado::all();
-    $prendas = PrendaConfeccion::with('prendasColor')->get(); 
     return view('pedidos.pedidoconfeccion', compact('prendas', 'telas', 'insumos', 'clientes', 'empleados', 'prendas'));
 }
 

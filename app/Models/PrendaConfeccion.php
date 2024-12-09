@@ -16,11 +16,6 @@ class PrendaConfeccion extends Model
         return $this->belongsTo(TipoPrenda::class, 'tp_id');
     }
 
-    public function detallesConfeccion()
-    {
-        return $this->hasMany(DetalleConfeccion::class);
-    }
-
     public function prendasTelas()
 {
     return $this->hasMany(PrendaTela::class, 'prenda_confeccion_id');

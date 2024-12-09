@@ -11,6 +11,6 @@ class Color extends Model
 
     public function Color()
     {
-        return $this->hasMany(PrendaColor::class);
+        return $this->hasMany(PrendaColor::class, 'color_id');
     }
 }

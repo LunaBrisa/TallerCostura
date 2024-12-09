@@ -52,28 +52,23 @@
                 <thead>
                     <tr>
                         <th>Prenda</th>
-                        <th>Color</th>
                         <th>Cantidad</th>
                         <th>Medidas</th>
                         <th>Insumos</th>
-                        <th>Telas</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <select name="detalles_confecciones[0][prenda_confeccion]"  class="form-control select2" required>
+                            <select name="detalles_confecciones[0][prenda_confeccion]" class="form-control select2" required>
                                 <option value="">Seleccione una prenda</option>
-                                @foreach($prendas as $prenda)
-                                    <option value="{{ $prenda->id }}">{{ $prenda->nombre_prenda }}</option>
+                                @foreach($prendas as $prendaColor)
+                                    <option value="{{ $prendaColor->prenda->id }}_{{ $prendaColor->color->id }}">
+                                        {{ $prendaColor->prenda->nombre_prenda }} - {{ $prendaColor->color->color }}
+                                    </option>
                                 @endforeach
-                            </select>
-                        </td>
-                        <td>  
-                            <select id="color_select" name="color_id" class="form-control select2">
-                            <option value="">Seleccione un color</option>
-                        </select>
+                            </select>                            
                         </td>
                         <td><input type="number" name="detalles_confecciones[0][cantidad_prenda]" class="form-control" required></td>
                      
@@ -87,7 +82,8 @@
                 </tbody>
             </table>  
             </div>
-            <button type="submit" class="btn btn-primary" >Agregar Pedido</button>
+            <button type="submit" class="btn btn-primary" >Guardar Pedido</button>
+            <button type="button" class="btn btn-secondary" onclick="addConfeccionRow()">Agregar Detalle de Confección</button>
             </div>
          </div>
     </div>
@@ -155,6 +151,7 @@
 </form>
 <!-- Bootstrap Bundle con Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 let confeccionesIndex = 0;
 let insumosIndex = 0;
@@ -165,23 +162,21 @@ function addConfeccionRow() {
     confeccionesIndex++;
     let row = `<tr>
         <td>
-            <select name="detalles_confecciones[${confeccionesIndex}][prenda_confeccion]" class="form-control select2" required>
-                <option value="">Seleccione una prenda</option>
-                @foreach($prendas as $prenda)
-                    <option value="{{ $prenda->id }}">{{ $prenda->nombre_prenda }}</option>
-                @endforeach
-            </select>
-        </td>
+                            <select name="detalles_confecciones[0][prenda_confeccion]" class="form-control select2" required>
+                                <option value="">Seleccione una prenda</option>
+                                @foreach($prendas as $prendaColor)
+                                    <option value="{{ $prendaColor->prenda->id }}_{{ $prendaColor->color->id }}">
+                                        {{ $prendaColor->prenda->nombre_prenda }} - {{ $prendaColor->color->color }}
+                                    </option>
+                                @endforeach
+                            </select>                            
+                        </td>
         <td><input type="number" name="detalles_confecciones[${confeccionesIndex}][cantidad_prenda]" class="form-control" required></td>
-        <td><input type="number" name="detalles_confecciones[${confeccionesIndex}][subtotal]" class="form-control" readonly></td>
         <td>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medidasModal" onclick="setMedidasIndex(${confeccionesIndex})">Agregar</button>
         </td>
         <td>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insumoModal" onclick="setInsumosIndex(${confeccionesIndex})">Agregar</button>
-        </td>
-        <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#telasModal" onclick="setTelasIndex(${confeccionesIndex})">Agregar</button>
         </td>
         <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'confeccionesDetailsTable')">Eliminar</button></td>
     </tr>`;
