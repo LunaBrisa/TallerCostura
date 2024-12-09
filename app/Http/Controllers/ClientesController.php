@@ -52,7 +52,6 @@ class ClientesController extends Controller
             'name' => $saveClientesRequest->input('name'),
             'email' => $saveClientesRequest->input('email'),
             'password' => bcrypt($saveClientesRequest->input('password')),
-            'visible' => false,
         ]);
 
         $user->sendEmailVerificationNotification();

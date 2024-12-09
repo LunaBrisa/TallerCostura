@@ -25,7 +25,7 @@ class saveClientesRequest extends FormRequest
             'nombre' => 'required|string|max:100|min:3',
             'apellido_p' => 'required|string|max:60|min:3',
             'apellido_m' => 'required|string|max:60|min:3',
-            'telefono' => 'required|digits:10|unique:personas,telefono',
+            'telefono' => 'required|digits:10|unique:PERSONAS,telefono',
             'compania' => 'nullable|string|max:100',
             'cargo' => 'nullable|min:3|max:100',
             'name' => 'required|string|max:255',
