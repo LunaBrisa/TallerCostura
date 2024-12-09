@@ -84,9 +84,9 @@ class ClientesController extends Controller
         }
     }
 
-public function update(saveClientesRequest $saveClientesRequest, $id)
+public function update(Request $request, $id)
 {
-    $saveClientesRequest->validate([
+    $request->validate([
         'nombre' => 'required|string|max:100',
         'apellido_p' => 'required|string|max:60',
         'apellido_m' => 'nullable|string|max:60',
@@ -103,24 +103,24 @@ public function update(saveClientesRequest $saveClientesRequest, $id)
         $persona = $cliente->persona; 
         $user = $persona->user; 
 
-        $user->name = $saveClientesRequest->input('name'); 
-        $user->email = $saveClientesRequest->input('email'); 
+        $user->name = $request->input('name'); 
+        $user->email = $request->input('email'); 
 
-        if ($saveClientesRequest->filled('password')) {
-            $user->password = bcrypt($saveClientesRequest->input('password')); 
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password')); 
         }
 
         $user->save(); 
 
-        $persona->nombre = $saveClientesRequest->input('nombre');
-        $persona->apellido_p = $saveClientesRequest->input('apellido_p');
-        $persona->apellido_m = $saveClientesRequest->input('apellido_m');
-        $persona->telefono = $saveClientesRequest->input('telefono');
+        $persona->nombre = $request->input('nombre');
+        $persona->apellido_p = $request->input('apellido_p');
+        $persona->apellido_m = $request->input('apellido_m');
+        $persona->telefono = $request->input('telefono');
         $persona->save();
 
 
-        $cliente->compania = $saveClientesRequest->input('compania');
-        $cliente->cargo = $saveClientesRequest->input('cargo');
+        $cliente->compania = $request->input('compania');
+        $cliente->cargo = $request->input('cargo');
         $cliente->save();
 
         return redirect()->route('clientes.index')->with('success', 'Cliente y usuario actualizados exitosamente.');
