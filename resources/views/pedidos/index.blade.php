@@ -187,6 +187,8 @@
             </div>
             <form action="{{ route('pedidos.store') }}" method="POST">
                 @csrf
+
+    <input type="hidden" id="modalToShow" name="modalToShow" value="loteModal">
                 <div class="modal-body">
                     <!-- Información del Pedido -->
                     <div class="mb-3">
@@ -211,10 +213,16 @@
                     <div class="mb-3">
                         <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
                         <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                        @error('fecha_pedido')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
                         <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                        @error('fecha_entrega')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -237,8 +245,8 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
-                                    <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-                                    <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" min="0" step="0.01" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" min="0" oninput="updateLoteTotal(this)"></td>
                                     <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
                                     <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
                                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
@@ -266,6 +274,8 @@
             </div>
             <form action="{{ route('pedidos.store') }}" method="POST">
                 @csrf
+
+    <input type="hidden" id="modalToShow" name="modalToShow" value="reparacionModal">
                 <div class="modal-body">
                     <!-- Información del Pedido -->
                     <div class="mb-3">
@@ -290,10 +300,16 @@
                     <div class="mb-3">
                         <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
                         <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                        @error('fecha_pedido')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
                         <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                        @error('fecha_entrega')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -317,7 +333,7 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" name="detalles_reparaciones[0][prenda]" class="form-control"></td>
-                                    <td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+                                    <td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" min="0" onchange="updateSubtotal(this)"></td>
                                     <td><input type="text" name="detalles_reparaciones[0][descripcion_problema]" class="form-control"></td>
                                     <td>
                                         <select name="detalles_reparaciones[0][servicio]" class="form-control" onchange="updatePrecio(this)" required>
@@ -456,7 +472,7 @@ function updateSubtotal(element) {
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
 `;
 
-    const reparacionRowTemplate = `
+const reparacionRowTemplate = `
     <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
     <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
     <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>
@@ -564,6 +580,27 @@ function updateRowIndices(table) {
     });
     // hola
     </script>
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verificar si hay errores de validación
+            var errorsExist = '{{ $errors->any() }}'; // Verifica si hay errores de validación
+    
+            // Verificar qué modal debe abrirse
+            var modalToShow = document.getElementById('modalToShow') ? document.getElementById('modalToShow').value : null;
+    
+            // Si hay errores y el campo hidden está presente, se abre el modal correspondiente
+            if (errorsExist && modalToShow) {
+                var modalElement = document.getElementById(modalToShow);
+                if (modalElement) {
+                    var modalInstance = new bootstrap.Modal(modalElement);
+                    modalInstance.show();
+                }
+            }
+        });
+    </script>
+@endif
+
 @endsection 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
