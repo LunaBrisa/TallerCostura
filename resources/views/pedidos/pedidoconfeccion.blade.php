@@ -79,6 +79,7 @@
                      
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medidasModal"> Agregar </button>  
+                        </td>
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insumoModal"> Agregar </button>
                         </td>
@@ -87,6 +88,7 @@
                 </tbody>
             </table>  
             </div>
+            <button type="button" class="btn btn-secondary" onclick="addConfeccionRow()">Agregar Reparación</button>
             <button type="submit" class="btn btn-primary" >Agregar Pedido</button>
             </div>
          </div>
@@ -150,8 +152,8 @@
            
         </div>
     </div>
-</div>
 
+</div>
 </form>
 <!-- Bootstrap Bundle con Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -200,7 +202,12 @@ function removeRow(button, tableId) {
 
 
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 </body>
 </html>
 
