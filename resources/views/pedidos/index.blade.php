@@ -196,7 +196,9 @@
             </table>
             
         </div>
-
+        <div class="d-flex justify-content-center my-3">
+            {{ $pedidos->links() }}
+        </div>
     @endif
         <!-- Modal para Crear Pedido de Lotes -->
 <div class="modal fade" id="loteModal" tabindex="-1" aria-labelledby="loteModalLabel" aria-hidden="true">

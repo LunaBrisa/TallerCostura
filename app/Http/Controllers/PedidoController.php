@@ -100,7 +100,9 @@ class PedidoController extends Controller
         $servicios = Servicio::select('id', 'servicio', 'descripcion', 'precio')
         ->get();
 
-        $pedidos = $query->with(['cliente', 'empleado'])->get();
+        $pedidos = $query->with(['cliente', 'empleado'])->paginate(30);
+
+    $pedidos->appends($request->except('page'));
         $estadisticas = $this->obtenerEstadisticas();
 
         return view('pedidos.index', compact('pedidos', 'estadisticas', 'servicios'));
