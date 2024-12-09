@@ -113,8 +113,8 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
     $request->validate([
         'cliente' => 'required|exists:CLIENTES,id',
         'empleado' => 'required|exists:EMPLEADOS,id',
-        'fecha_pedido' => 'required|date',
-        'fecha_entrega' => 'required|date',
+        'fecha_pedido' => 'required|date|after_or_equal:today',
+        'fecha_entrega' => 'required|date|after_or_equal:fecha_pedido',
         'descripcion' => 'required|string',
         'detalles_lote' => 'nullable|array',
         'detalles_lote.*.prenda' => 'required|string',
@@ -126,6 +126,9 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
         'detalles_reparaciones.*.cantidad' => 'required|integer|min:1',
         'detalles_reparaciones.*.descripcion_problema' => 'nullable|string|max:500',
         'detalles_reparaciones.*.servicio' => 'required|exists:SERVICIOS,id',
+    ],[
+        'fecha_pedido.after_or_equal' => 'La fecha de pedido no puede ser en el pasado.',
+        'fecha_entrega.after_or_equal' => 'La fecha de entrega debe ser igual o posterior a la fecha de pedido.',
     ]);
 
     // Crear el pedido principal

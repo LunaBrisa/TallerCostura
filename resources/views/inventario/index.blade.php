@@ -209,6 +209,8 @@
                                 <div class="modal-body">
                                     <form action="{{ route('inventario.update', $insumo->id) }}" method="POST">
                                         @csrf
+                                        
+    <input type="hidden" id="modalToShow" name="modalToShow" value="editarInsumoModal{{ $insumo->id }}">
                                         @method('PUT')
 
                                         <div class="mb-3">
@@ -264,6 +266,8 @@
             <div class="modal-body">
                 <form action="{{ route('inventario.store') }}" method="POST">
                     @csrf
+                    
+    <input type="hidden" id="modalToShow" name="modalToShow" value="agregarInsumoModal">
                     <div class="mb-3">
                         <label for="insumo" class="form-label">Insumo</label>
                         <input type="text" class="form-control" id="insumo" name="insumo" value="{{ old('insumo') }}" required>
@@ -291,15 +295,6 @@
         </div>
     </div>
 </div>
-<!-- Script para mostrar el modal automáticamente si hay errores -->
-@if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var agregarInsumoModal = new bootstrap.Modal(document.getElementById('agregarInsumoModal'));
-            agregarInsumoModal.show();
-        });
-    </script>
-@endif
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             let currentSort = { column: null, order: 'asc' };
@@ -345,4 +340,24 @@
             }
         });
         </script>
+        @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Verificar si hay errores de validación
+                var errorsExist = '{{ $errors->any() }}'; // Verifica si hay errores de validación
+        
+                // Verificar qué modal debe abrirse
+                var modalToShow = document.getElementById('modalToShow') ? document.getElementById('modalToShow').value : null;
+        
+                // Si hay errores y el campo hidden está presente, se abre el modal correspondiente
+                if (errorsExist && modalToShow) {
+                    var modalElement = document.getElementById(modalToShow);
+                    if (modalElement) {
+                        var modalInstance = new bootstrap.Modal(modalElement);
+                        modalInstance.show();
+                    }
+                }
+            });
+        </script>
+    @endif
         @endsection
