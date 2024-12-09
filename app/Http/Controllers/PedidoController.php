@@ -55,8 +55,16 @@ class PedidoController extends Controller
 
 
     public function index(Request $request)
-    {
-        $query = Pedido::query();
+    {// Validación de fechas en el controlador
+        $request->validate([
+            'fecha_inicio' => 'nullable|date',  // fecha_inicio es opcional pero debe ser una fecha válida si está presente
+            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio', // fecha_fin es opcional y solo se valida si fecha_inicio está presente
+        ], [
+            'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser posterior a la fecha de fin.',
+            'fecha_fin.after_or_equal' => 'La fecha de fin no puede ser anterior a la fecha de inicio.',
+        ]);
+
+    $query = Pedido::query();
 
         // Filtro por ID de orden
         if ($request->filled('orden')) {
@@ -71,7 +79,18 @@ class PedidoController extends Controller
                 $query->where('nombre', 'like', '%' . $cliente . '%');
             });
         }
-
+        // Filtro por fecha
+        if ($request->filled('fecha_inicio') && $request->filled('fecha_fin')) {
+            $fechaInicio = $request->fecha_inicio;
+            $fechaFin = $request->fecha_fin;
+            $query->whereBetween('fecha_pedido', [$fechaInicio, $fechaFin]);
+        } elseif ($request->filled('fecha_inicio')) {
+            $fechaInicio = $request->fecha_inicio;
+            $query->where('fecha_pedido', '>=', $fechaInicio);
+        } elseif ($request->filled('fecha_fin')) {
+            $fechaFin = $request->fecha_fin;
+            $query->where('fecha_pedido', '<=', $fechaFin);
+        }
         // Filtro por estado
         if ($request->filled('estado')) {
             $estado = strtolower($request->estado);

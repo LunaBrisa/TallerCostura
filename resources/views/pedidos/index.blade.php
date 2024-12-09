@@ -117,16 +117,35 @@
                 <div class="form-group">
                     <label for="orden">Buscar por Orden</label>
                     <input type="text" id="orden" class="form-control" name="orden" placeholder="Buscar por Orden" value="{{ request()->input('orden') }}">
-                    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
                 </div>
                 <div class="form-group">
                     <label for="cliente">Buscar por Cliente</label>
                     <input type="text" id="cliente" class="form-control" name="cliente" placeholder="Buscar por Cliente" value="{{ request()->input('cliente') }}">
+                    <div class="form-group">
+                        <label for="fecha_inicio">Fecha Inicio</label>
+                        <input type="date" id="fecha_inicio" class="form-control" name="fecha_inicio" value="{{ request()->input('fecha_inicio') }}">
+                        @error('fecha_inicio')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_fin">Fecha Fin</label>
+                        <input type="date" id="fecha_fin" class="form-control" name="fecha_fin" value="{{ request()->input('fecha_fin') }}">
+                        @error('fecha_fin')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <button type="submit" class="btn btn-primary mt-2">Buscar</button>
                 </div>
-            </form>
         </div>
-        
+        <div class="d-flex mb-4">
+            <button type="submit" class="btn btn-secondary mx-1" name="estado" value="Completado">Pedidos Completados</button>
+            <button type="submit" class="btn btn-warning mx-1" name="estado" value="Pendiente">Pedidos Pendientes</button>
+        </form>
+        </div>
+        <form action="{{ route('pedidos.index') }}" method="GET" class="d-flex">
+            <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Borrar Filtros</button>
+        </form>
         <div class="d-flex mb-4">
             <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#loteModal">
                 Crear Pedido de Lotes
@@ -138,12 +157,12 @@
                 Crear Pedido de Confecciones
             </button>
         </div>
-        <form action="{{ route('pedidos.index') }}" method="GET" class="d-flex">
-            <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
-            <button type="submit" class="btn btn-secondary mx-1" name="estado" value="Completado">Pedidos Completados</button>
-            <button type="submit" class="btn btn-warning mx-1" name="estado" value="Pendiente">Pedidos Pendientes</button>
-        </form>
         <!-- Pedidos Table -->
+        @if($pedidos->isEmpty())
+        <div class="alert alert-info m-5">
+            No se encontraron pedidos que coincidan con los criterios de búsqueda.
+        </div>
+    @else
         <div class="table-responsive my-4">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
@@ -177,6 +196,8 @@
             </table>
             
         </div>
+
+    @endif
         <!-- Modal para Crear Pedido de Lotes -->
 <div class="modal fade" id="loteModal" tabindex="-1" aria-labelledby="loteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -585,21 +606,28 @@ function updateRowIndices(table) {
         document.addEventListener('DOMContentLoaded', function () {
             // Verificar si hay errores de validación
             var errorsExist = '{{ $errors->any() }}'; // Verifica si hay errores de validación
-    
-            // Verificar qué modal debe abrirse
-            var modalToShow = document.getElementById('modalToShow') ? document.getElementById('modalToShow').value : null;
-    
-            // Si hay errores y el campo hidden está presente, se abre el modal correspondiente
-            if (errorsExist && modalToShow) {
-                var modalElement = document.getElementById(modalToShow);
-                if (modalElement) {
-                    var modalInstance = new bootstrap.Modal(modalElement);
-                    modalInstance.show();
+
+            // Verificar si hay errores de fecha
+            var hasDateErrors = {{ $errors->has('fecha_inicio') || $errors->has('fecha_fin') ? 'true' : 'false' }};
+            
+            // Si hay errores y no son solo errores de fecha, se abre el modal
+            if (errorsExist && !hasDateErrors) {
+                // Verificar qué modal debe abrirse
+                var modalToShow = document.getElementById('modalToShow') ? document.getElementById('modalToShow').value : null;
+
+                // Si el campo hidden 'modalToShow' está presente y hay errores, se abre el modal correspondiente
+                if (modalToShow) {
+                    var modalElement = document.getElementById(modalToShow);
+                    if (modalElement) {
+                        var modalInstance = new bootstrap.Modal(modalElement);
+                        modalInstance.show();
+                    }
                 }
             }
         });
     </script>
 @endif
+
 
 @endsection 
 <!-- Bootstrap CSS -->
