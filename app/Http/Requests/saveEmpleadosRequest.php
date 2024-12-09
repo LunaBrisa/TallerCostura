@@ -22,12 +22,12 @@ class saveEmpleadosRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|min:3|max:100',
-            'apellido_p' => 'required|min:3|string|max:60',
-            'apellido_m' => 'nullable|min:3|string|max:60',
-            'telefono' => 'required|string|max:10',
+            'nombre' => 'required|string|max:100|min:3',
+            'apellido_p' => 'required|string|max:60|min:3',
+            'apellido_m' => 'required|string|max:60|min:3',
+            'telefono' => 'required|digits:10|unique:PERSONAS,telefono',
             'fecha_nacimiento' => 'required|date',
-           'rfc' => 'required|alpha_num|size:13',
+            'rfc' => 'required|alpha_num|size:13',
             'nss' => 'required|alpha_num|size:11',
             'name' => 'required|string|max:255',
             'email' => [

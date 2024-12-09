@@ -56,7 +56,6 @@ class saveClientesRequest extends FormRequest
             'telefono.required' => 'El telefono es obligatorio. Intente de nuevo',
             'telefono.digits' => 'El telefono solo puede contener numeros y 10 digitos',
             'telefono.unique' => 'El telefono ya ha sido registrado',
-            'compania.nullable' => 'La compañia es obligatoria. Intente de nuevo',
             'compania.string' => 'La compañia solo puede contener letras y espacios',
             'compania.max' => 'La compañia no puede tener mas de 100 caracteres',
             'cargo.nullable' => 'El cargo es obligatorio. Intente de nuevo',
