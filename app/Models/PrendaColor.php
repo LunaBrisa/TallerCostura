@@ -15,12 +15,17 @@ class PrendaColor extends Model
 
     public function prenda()
     {
-        return $this->belongsTo(PrendaConfeccion::class);
+        return $this->belongsTo(PrendaConfeccion::class, 'prenda_id');
     }
 
     public function color()
     {
     return $this->belongsTo(Color::class, 'color_id');
+    }
+
+    public function detallesConfeccion()
+    {
+        return $this->hasMany(DetalleConfeccion::class);
     }
 
 }

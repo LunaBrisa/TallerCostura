@@ -18,6 +18,7 @@ use App\Models\PrendaTela;
 use App\Models\PrendasColores;
 use App\Models\DetalleConfeccion;
 use App\Models\Insumo;
+use App\Models\PrendaColor;
 use App\Models\Tela;
 
 class PedidoController extends Controller
@@ -55,8 +56,16 @@ class PedidoController extends Controller
 
 
     public function index(Request $request)
-    {
-        $query = Pedido::query();
+    {// Validación de fechas en el controlador
+        $request->validate([
+            'fecha_inicio' => 'nullable|date',  // fecha_inicio es opcional pero debe ser una fecha válida si está presente
+            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio', // fecha_fin es opcional y solo se valida si fecha_inicio está presente
+        ], [
+            'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser posterior a la fecha de fin.',
+            'fecha_fin.after_or_equal' => 'La fecha de fin no puede ser anterior a la fecha de inicio.',
+        ]);
+
+    $query = Pedido::query();
 
         // Filtro por ID de orden
         if ($request->filled('orden')) {
@@ -71,7 +80,18 @@ class PedidoController extends Controller
                 $query->where('nombre', 'like', '%' . $cliente . '%');
             });
         }
-
+        // Filtro por fecha
+        if ($request->filled('fecha_inicio') && $request->filled('fecha_fin')) {
+            $fechaInicio = $request->fecha_inicio;
+            $fechaFin = $request->fecha_fin;
+            $query->whereBetween('fecha_pedido', [$fechaInicio, $fechaFin]);
+        } elseif ($request->filled('fecha_inicio')) {
+            $fechaInicio = $request->fecha_inicio;
+            $query->where('fecha_pedido', '>=', $fechaInicio);
+        } elseif ($request->filled('fecha_fin')) {
+            $fechaFin = $request->fecha_fin;
+            $query->where('fecha_pedido', '<=', $fechaFin);
+        }
         // Filtro por estado
         if ($request->filled('estado')) {
             $estado = strtolower($request->estado);
@@ -80,7 +100,9 @@ class PedidoController extends Controller
         $servicios = Servicio::select('id', 'servicio', 'descripcion', 'precio')
         ->get();
 
-        $pedidos = $query->with(['cliente', 'empleado'])->get();
+        $pedidos = $query->with(['cliente', 'empleado'])->paginate(30);
+
+    $pedidos->appends($request->except('page'));
         $estadisticas = $this->obtenerEstadisticas();
 
         return view('pedidos.index', compact('pedidos', 'estadisticas', 'servicios'));
@@ -113,8 +135,8 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
     $request->validate([
         'cliente' => 'required|exists:CLIENTES,id',
         'empleado' => 'required|exists:EMPLEADOS,id',
-        'fecha_pedido' => 'required|date',
-        'fecha_entrega' => 'required|date',
+        'fecha_pedido' => 'required|date|after_or_equal:today',
+        'fecha_entrega' => 'required|date|after_or_equal:fecha_pedido',
         'descripcion' => 'required|string',
         'detalles_lote' => 'nullable|array',
         'detalles_lote.*.prenda' => 'required|string',
@@ -126,6 +148,9 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
         'detalles_reparaciones.*.cantidad' => 'required|integer|min:1',
         'detalles_reparaciones.*.descripcion_problema' => 'nullable|string|max:500',
         'detalles_reparaciones.*.servicio' => 'required|exists:SERVICIOS,id',
+    ],[
+        'fecha_pedido.after_or_equal' => 'La fecha de pedido no puede ser en el pasado.',
+        'fecha_entrega.after_or_equal' => 'La fecha de entrega debe ser igual o posterior a la fecha de pedido.',
     ]);
 
     // Crear el pedido principal
@@ -253,12 +278,14 @@ public function CrearPedido(Request $request)
 
 public function pedidoconfeccion()
 {
-    $prendas = PrendaConfeccion::where('visible', true)->get(); 
+    $prendas = PrendaColor::whereHas('prenda', function ($query) {
+        $query->where('visible', true);
+    })->with('prenda', 'color')->get();
+
     $telas = Tela::all();
     $insumos = Insumo::all();
     $clientes = Cliente::all();
     $empleados = Empleado::all();
-    $prendas = PrendaConfeccion::with('prendasColor')->get(); 
     return view('pedidos.pedidoconfeccion', compact('prendas', 'telas', 'insumos', 'clientes', 'empleados', 'prendas'));
 }
 

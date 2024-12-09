@@ -117,16 +117,35 @@
                 <div class="form-group">
                     <label for="orden">Buscar por Orden</label>
                     <input type="text" id="orden" class="form-control" name="orden" placeholder="Buscar por Orden" value="{{ request()->input('orden') }}">
-                    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
                 </div>
                 <div class="form-group">
                     <label for="cliente">Buscar por Cliente</label>
                     <input type="text" id="cliente" class="form-control" name="cliente" placeholder="Buscar por Cliente" value="{{ request()->input('cliente') }}">
+                    <div class="form-group">
+                        <label for="fecha_inicio">Fecha Inicio</label>
+                        <input type="date" id="fecha_inicio" class="form-control" name="fecha_inicio" value="{{ request()->input('fecha_inicio') }}">
+                        @error('fecha_inicio')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_fin">Fecha Fin</label>
+                        <input type="date" id="fecha_fin" class="form-control" name="fecha_fin" value="{{ request()->input('fecha_fin') }}">
+                        @error('fecha_fin')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <button type="submit" class="btn btn-primary mt-2">Buscar</button>
                 </div>
-            </form>
         </div>
-        
+        <div class="d-flex mb-4">
+            <button type="submit" class="btn btn-secondary mx-1" name="estado" value="Completado">Pedidos Completados</button>
+            <button type="submit" class="btn btn-warning mx-1" name="estado" value="Pendiente">Pedidos Pendientes</button>
+        </form>
+        </div>
+        <form action="{{ route('pedidos.index') }}" method="GET" class="d-flex">
+            <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Borrar Filtros</button>
+        </form>
         <div class="d-flex mb-4">
             <button type="button" class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#loteModal">
                 Crear Pedido de Lotes
@@ -138,12 +157,12 @@
                 Crear Pedido de Confecciones
             </button>
         </div>
-        <form action="{{ route('pedidos.index') }}" method="GET" class="d-flex">
-            <button type="submit" class="btn btn-primary mx-1" name="estado" value="">Ver todos</button>
-            <button type="submit" class="btn btn-secondary mx-1" name="estado" value="Completado">Pedidos Completados</button>
-            <button type="submit" class="btn btn-warning mx-1" name="estado" value="Pendiente">Pedidos Pendientes</button>
-        </form>
         <!-- Pedidos Table -->
+        @if($pedidos->isEmpty())
+        <div class="alert alert-info m-5">
+            No se encontraron pedidos que coincidan con los criterios de búsqueda.
+        </div>
+    @else
         <div class="table-responsive my-4">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
@@ -177,6 +196,10 @@
             </table>
             
         </div>
+        <div class="d-flex justify-content-center my-3">
+            {{ $pedidos->links() }}
+        </div>
+    @endif
         <!-- Modal para Crear Pedido de Lotes -->
 <div class="modal fade" id="loteModal" tabindex="-1" aria-labelledby="loteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -187,6 +210,8 @@
             </div>
             <form action="{{ route('pedidos.store') }}" method="POST">
                 @csrf
+
+    <input type="hidden" id="modalToShow" name="modalToShow" value="loteModal">
                 <div class="modal-body">
                     <!-- Información del Pedido -->
                     <div class="mb-3">
@@ -211,10 +236,16 @@
                     <div class="mb-3">
                         <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
                         <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                        @error('fecha_pedido')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
                         <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                        @error('fecha_entrega')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -237,8 +268,8 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" name="detalles_lote[0][prenda]" class="form-control"></td>
-                                    <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-                                    <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][precio_por_prenda]" class="form-control" min="0" step="0.01" oninput="updateLoteTotal(this)"></td>
+                                    <td><input type="number" name="detalles_lote[0][cantidad]" class="form-control" min="0" oninput="updateLoteTotal(this)"></td>
                                     <td><input type="number" name="detalles_lote[0][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
                                     <td><input type="number" name="detalles_lote[0][subtotal]" class="form-control" readonly></td>
                                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
@@ -266,6 +297,8 @@
             </div>
             <form action="{{ route('pedidos.store') }}" method="POST">
                 @csrf
+
+    <input type="hidden" id="modalToShow" name="modalToShow" value="reparacionModal">
                 <div class="modal-body">
                     <!-- Información del Pedido -->
                     <div class="mb-3">
@@ -290,10 +323,16 @@
                     <div class="mb-3">
                         <label for="fecha_pedido" class="form-label">Fecha de Pedido</label>
                         <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" required>
+                        @error('fecha_pedido')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="fecha_entrega" class="form-label">Fecha de Entrega</label>
                         <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
+                        @error('fecha_entrega')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
@@ -317,7 +356,7 @@
                             <tbody>
                                 <tr>
                                     <td><input type="text" name="detalles_reparaciones[0][prenda]" class="form-control"></td>
-                                    <td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+                                    <td><input type="number" name="detalles_reparaciones[0][cantidad]" class="form-control" min="0" onchange="updateSubtotal(this)"></td>
                                     <td><input type="text" name="detalles_reparaciones[0][descripcion_problema]" class="form-control"></td>
                                     <td>
                                         <select name="detalles_reparaciones[0][servicio]" class="form-control" onchange="updatePrecio(this)" required>
@@ -456,7 +495,7 @@ function updateSubtotal(element) {
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
 `;
 
-    const reparacionRowTemplate = `
+const reparacionRowTemplate = `
     <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
     <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
     <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>
@@ -564,6 +603,34 @@ function updateRowIndices(table) {
     });
     // hola
     </script>
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Verificar si hay errores de validación
+            var errorsExist = '{{ $errors->any() }}'; // Verifica si hay errores de validación
+
+            // Verificar si hay errores de fecha
+            var hasDateErrors = {{ $errors->has('fecha_inicio') || $errors->has('fecha_fin') ? 'true' : 'false' }};
+            
+            // Si hay errores y no son solo errores de fecha, se abre el modal
+            if (errorsExist && !hasDateErrors) {
+                // Verificar qué modal debe abrirse
+                var modalToShow = document.getElementById('modalToShow') ? document.getElementById('modalToShow').value : null;
+
+                // Si el campo hidden 'modalToShow' está presente y hay errores, se abre el modal correspondiente
+                if (modalToShow) {
+                    var modalElement = document.getElementById(modalToShow);
+                    if (modalElement) {
+                        var modalInstance = new bootstrap.Modal(modalElement);
+                        modalInstance.show();
+                    }
+                }
+            }
+        });
+    </script>
+@endif
+
+
 @endsection 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">

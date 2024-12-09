@@ -16,7 +16,7 @@ class DetalleConfeccion extends Model
 
     public function prendaConfeccion()
     {
-        return $this->belongsTo(PrendaConfeccion::class, 'prenda_confeccion_id');
+        return $this->belongsTo(PrendaColor::class, 'prenda_confeccion_id');
     }
 
     public function medidas()

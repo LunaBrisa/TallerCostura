@@ -46,8 +46,10 @@ class InventarioController extends Controller
     {
         $request->validate([
             'insumo' => 'required|string|max:100',
-            'cantidad_stock' => 'required|integer',
+            'cantidad_stock' => 'required|integer|min:0',
             'precio_unitario' => 'required|numeric',
+        ],[
+            'cantidad_stock.min' => 'El stock debe ser mayor o igual a 0.',
         ]);
     
         
@@ -56,7 +58,7 @@ class InventarioController extends Controller
             'cantidad_stock' => $request->cantidad_stock,
             'precio_unitario' => $request->precio_unitario,
         ]);
-        return redirect()->route('inventario.index')->with('success', 'Cliente y usuario agregado exitosamente con rol de Cliente.');
+        return redirect()->route('inventario.index')->with('success', 'Insumo agregado correctamente.');
     }
     public function update(Request $request, $id)
 {
