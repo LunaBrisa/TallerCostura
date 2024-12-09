@@ -174,6 +174,18 @@
         {{ session('errorImgColor') }}             <!-- AL AGREGAR COLOR A UNA PRENDA -->
     </div>
   @endif
+
+  @if (session('successImgPrenda'))
+  <div class="alert alert-success" role="alert">
+      {{ session('successImgPrenda') }}         <!-- AL MODIFICAR IMAGEN DE UNA PRENDA -->
+    </div>    
+  @endif
+
+  @if (session('errorImgPrenda'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('errorImgPrenda') }}             <!-- AL MODIFICAR IMAGEN A UNA PRENDA -->
+    </div>
+  @endif
   </div>
 </div>
 
@@ -209,6 +221,11 @@
                       <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalvermas{{ $prenda->id }}">Ver Más</button>
                       <a href="/ocultar/prenda/{{ $prenda->id }}"><button class="btn btn-intemodal">Ocultar</button></a>
                   </div>
+                  <div class="btn-div2">
+                    <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalIMG{{$prenda -> id}}" style="width: 150px !important">
+                      Cambiar Imagen
+                    </button>
+                  </div>
               </div>
           </div>
           @endforeach
@@ -217,7 +234,7 @@
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendas->links('pagination::default') }}
+            {{ $misPrendas->links() }}
           </div>
         </div>
     </div>
@@ -244,19 +261,20 @@
       
                 <a href="/mostrar/prenda/{{$prenda -> id}}"><button class="btn btn-intemodal">Mostrar</button></a>
               </div>
+              <div class="btn-div2">
+                <button type="button" class="btn btn-intemodal" data-bs-toggle="modal" data-bs-target="#exampleModalIMG{{$prenda -> id}}" style="width: 150px !important">
+                  Cambiar Imagen
+                </button>
+              </div>
             </div>
           </div>
           @endforeach    
           <div>
             <div class="d-flex justify-content-center mt-4">
-            {{ $misPrendas->links() }}
+             {{ $misPrendasOcultas->links() }}
             </div>
           </div>
-    </div>
-    
-  </div>
-
-</div>
+ </div>
 @endsection
 
 @foreach ($misPrendas as $prenda)
@@ -435,6 +453,33 @@
                     </div>
                   </div>
                 </div>
+@endforeach
+
+@foreach ($misPrendas as $prenda)
+              <!-- Modal -->
+              <div class="modal fade modal-prendas" id="exampleModalIMG{{$prenda -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5 Titulomodal" id="exampleModalLabel">Datos de la Prenda</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="conteform">
+                        <form action="/cambiar/img-prenda" method="post" enctype="multipart/form-data">
+                          @csrf
+                          <input type="hidden" name="idprenda" value="{{$prenda -> id}}">
+
+                          <label for="imagensonaprenda" style="text-align: center;"><h3 class="h3-modal">Cambiar Imagen de la Prenda</h3></label>
+                          <input class="form-control" type="file" name="imagensonaprenda" id="imagensonaprenda" accept="image/*" required><br>
+
+                          <input type="submit" class="btn btn-modal-sub" value="Guardar">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 @endforeach
 
 </body>

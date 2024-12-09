@@ -30,6 +30,7 @@ use App\Http\Controllers\UsuarioInformacion;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\VerifiedEmailController;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\AuditoriaController;
 
@@ -95,6 +96,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     Route::post('/modif/img-color-prenda', [PrendasColoresController::class, 'modifImgColorPrenda']);
     Route::get('/pedidos', [PedidoController::class, 'index'])->name('pedido.index');
     Route::post('/agg/tela-prenda', [PrendasTelasController::class, 'saveTelaPrenda']);
+
+    Route::post('/cambiar/img-prenda', [PrendaConfeccionController::class, 'cambiarImgPrenda']);
     
     Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
     Route::post('Servicios', [ServiciosController::class, 'store'])->name('servicios.store');
@@ -164,10 +167,14 @@ Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController
 Route::get('/telas/vista', [TelaController::class, 'mostrarVistaTelas'])->name('telas.vista');
 Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMateriales'])->name('materiales.vista');
 Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
-Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedidoConfeccion'])->name('pedidos.CrearPedido');
+Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedido'])->name('pedidos.CrearPedido');
 
+<<<<<<< HEAD
 Route::get('/pedidos/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidos.pedidoconfeccion');
 
 
 // Ruta para visualizar las auditorías
 Route::get('/auditorias', [AuditoriaController::class, 'index'])->name('Auditorias.Auditorias');
+=======
+Route::get('/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidoconfeccion');
+>>>>>>> db4d39bfc109531eb6270a221fac40b32814db26

@@ -85,7 +85,6 @@
         color: #6c757d;
         font-weight: bold;
     }
->>>>>>> 51c56f78b371845e08e503a1345fe618db601af4
 </style>
 
 @if (session('success'))
@@ -135,7 +134,7 @@
             <button type="button" class="btn btn-success mx-1" data-bs-toggle="modal" data-bs-target="#reparacionModal">
                 Crear Pedido de Reparaciones
             </button>
-            <button type="button" class="btn btn-warning mx-1" data-bs-toggle="modal" data-bs-target="#confeccionModal">
+            <button type="button" class="btn btn-warning mx-1" onclick="location.href='/pedidoconfeccion'">
                 Crear Pedido de Confecciones
             </button>
         </div>
@@ -448,24 +447,21 @@ function updateSubtotal(element) {
     // Actualiza solo el subtotal visualmente
     row.querySelector('input[name*="[subtotal]"]').value = subtotal.toFixed(2);
 }
-
-
-
     const loteRowTemplate = `
-    <td><input type="text" name="detalles_lote[_rowCount_][prenda]" class="form-control"></td>
-    <td><input type="number" name="detalles_lote[_rowCount_][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
-    <td><input type="number" name="detalles_lote[_rowCount_][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
-    <td><input type="number" name="detalles_lote[_rowCount_][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
-    <td><input type="number" name="detalles_lote[_rowCount_][subtotal]" class="form-control" readonly></td>
+    <td><input type="text" name="detalles_lote[__rowCount__][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][precio_por_prenda]" class="form-control" step="0.01" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][cantidad]" class="form-control" oninput="updateLoteTotal(this)"></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][anticipo]" class="form-control" oninput="updateLoteTotal(this)" readonly></td>
+    <td><input type="number" name="detalles_lote[__rowCount__][subtotal]" class="form-control" readonly></td>
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'lotesDetailsTable')">Eliminar</button></td>
 `;
 
-const reparacionRowTemplate = `
-    <td><input type="text" name="detalles_reparaciones[_rowCount_][prenda]" class="form-control"></td>
-    <td><input type="number" name="detalles_reparaciones[_rowCount_][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
-    <td><input type="text" name="detalles_reparaciones[_rowCount_][descripcion_problema]" class="form-control"></td>
+    const reparacionRowTemplate = `
+    <td><input type="text" name="detalles_reparaciones[__rowCount__][prenda]" class="form-control"></td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][cantidad]" class="form-control" onchange="updateSubtotal(this)"></td>
+    <td><input type="text" name="detalles_reparaciones[__rowCount__][descripcion_problema]" class="form-control"></td>
     <td>
-        <select name="detalles_reparaciones[_rowCount_][servicio]" class="form-control" onchange="updatePrecio(this)" required>
+        <select name="detalles_reparaciones[__rowCount__][servicio]" class="form-control" onchange="updatePrecio(this)" required>
             <option value="" disabled selected>Seleccione un servicio...</option>
             @foreach ($servicios as $servicio)
             <option value="{{ $servicio->id }}" data-precio="{{ $servicio->precio }}">
@@ -474,8 +470,8 @@ const reparacionRowTemplate = `
             @endforeach
         </select>
     </td>
-    <td><input type="number" name="detalles_reparaciones[_rowCount_][precio_prenda]" class="form-control" readonly></td>
-    <td><input type="number" name="detalles_reparaciones[_rowCount_][subtotal]" class="form-control" readonly></td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][precio_prenda]" class="form-control" readonly></td>
+    <td><input type="number" name="detalles_reparaciones[__rowCount__][subtotal]" class="form-control" readonly></td>
     <td><button type="button" class="btn btn-danger" onclick="removeRow(this, 'reparacionesDetailsTable')">Eliminar</button></td>
 `;
 
@@ -485,7 +481,7 @@ const reparacionRowTemplate = `
     const table = document.getElementById(tableId);
     const rowCount = table.rows.length; // Número de filas existentes
     const newRow = table.insertRow(); // Crear nueva fila
-    newRow.innerHTML = rowTemplate.replace(/_rowCount_/g, rowCount); // Reemplaza el marcador
+    newRow.innerHTML = rowTemplate.replace(/__rowCount__/g, rowCount); // Reemplaza el marcador
 }
 
 function removeRow(button, tableId) {
@@ -502,7 +498,7 @@ function updateRowIndices(table) {
         const inputs = row.querySelectorAll('input, select');
         inputs.forEach(input => {
             const name = input.name; // Obtener el nombre original
-            const newName = name.replace(/\[\d+\]/, [${index}]); // Reemplazar el índice actual por el nuevo
+            const newName = name.replace(/\[\d+\]/, `[${index}]`); // Reemplazar el índice actual por el nuevo
             input.name = newName; // Asignar el nuevo nombre
         });
     });
@@ -566,11 +562,10 @@ function updateRowIndices(table) {
             });
         }
     });
-    // no hice cambios
+    // hola
     </script>
 @endsection 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap Bundle con Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-

@@ -234,11 +234,11 @@
                                 <div class="modal-body">
                                     <ul class="list-group">
                                         <li class="list-group-item"><strong>Descripción:</strong> {{ $detalle->prendaConfeccion->descripcion ?? 'No disponible' }}</li>
-                                        <li class="list-group-item"><strong>Tipo de Prenda:</strong> {{ $detalle->prendaConfeccion->tipoPrenda->tipo_prenda ?? 'No especificado' }}</li>
-                                        <li class="list-group-item"><strong>Color:</strong> {{ $detalle->prendaConfeccion->prendasColor->color->color ?? 'No especificado' }}</li>
-                                        <li class="list-group-item"><strong>Tela:</strong> {{ $detalle->prendaConfeccion->prendasTelas->tela->nombre_tela ?? 'No especificado' }}</li>
+                                        <li class="list-group-item"><strong>Tipo de Prenda:</strong> {{ $detalle->prendaConfeccion->nombre_prenda }}</li>
+                                         {{--   <li class="list-group-item"><strong>Color:</strong> {{ $detalle->prendaConfeccion ->prendasColor ->color-> color ?? 'No especificado' }}</li>>
+                                      <li class="list-group-item"><strong>Tela:</strong> {{ $detalle->prendaConfeccion->prendasTelas->tela->nombre_tela ?? 'No especificado' }}</li>
                                         <li class="list-group-item"><strong>Material:</strong> {{ $detalle->prendaConfeccion->prendasTelas->tela->materialTela->material_tela ?? 'No especificado' }}</li>
-                                        <li class="list-group-item"><strong>Medidas:</strong>
+                                        <li class="list-group-item"><strong>Medidas:</strong> --}}
                                             <ul>
                                                 <li>Pecho: {{ $detalle->medidas->pecho ?? 'N/A' }} cm</li>
                                                 <li>Cintura: {{ $detalle->medidas->cintura ?? 'N/A' }} cm</li>

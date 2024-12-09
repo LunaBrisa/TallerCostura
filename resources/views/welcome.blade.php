@@ -162,7 +162,7 @@
 
     .servicio {
         background-image: url('/images/Fondo2.png');
-        min-height: 100vh; /* Asegura que siempre cubra la vista completa */
+        min-height: 80vh; /* Asegura que siempre cubra la vista completa */
         background-size: cover;
         background-position: center;
         display: flex;

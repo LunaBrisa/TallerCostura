@@ -41,7 +41,7 @@
   <div class="row">
     <div class="col">
         <div class="conteform">
-            <form action="/modifi/prenda" method="post">
+            <form action="/modifi/prenda" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="idesote" value="{{$misPrendas -> id}}">
 
@@ -77,9 +77,6 @@
                     <label class="form-check-label" for="Infantil"><h2 class="radio-text">Infantil</h2></label>
                   </div><br><br>
                   
-                  <label for="imagensotaprenda"><h3 class="h3-modal">Imagen de la Prenda</h3></label>
-                  <input class="form-control" type="file" name="imagensotaprenda"><br>
-
                   <div class="row text-center">
                     <div class="col-12 col-md-6 mb-3">
                       <input type="submit" class="btn btn-modal-sub" value="Guardar">

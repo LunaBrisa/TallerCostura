@@ -87,7 +87,7 @@ class ClientesController extends Controller
 
 public function update(saveClientesRequest $saveClientesRequest, $id)
 {
-    $request->validate([
+    $saveClientesRequest->validate([
         'nombre' => 'required|string|max:100',
         'apellido_p' => 'required|string|max:60',
         'apellido_m' => 'nullable|string|max:60',

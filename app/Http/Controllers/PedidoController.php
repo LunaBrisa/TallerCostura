@@ -15,6 +15,7 @@ use App\Models\PrendaConfeccion;
 use App\Models\Medida;
 use App\Models\DetalleInsumo;
 use App\Models\PrendaTela;
+use App\Models\PrendasColores;
 use App\Models\DetalleConfeccion;
 use App\Models\Insumo;
 use App\Models\Tela;
@@ -82,10 +83,7 @@ class PedidoController extends Controller
         $pedidos = $query->with(['cliente', 'empleado'])->get();
         $estadisticas = $this->obtenerEstadisticas();
 
-        $prendas = PrendaConfeccion::all();
-        $telas = Tela::all(); 
-    $insumos = Insumo::all();
-        return view('pedidos.index', compact('pedidos', 'estadisticas', 'servicios', 'prendas', 'telas', 'insumos'));
+        return view('pedidos.index', compact('pedidos', 'estadisticas', 'servicios'));
     }
 
     public function show($id)
@@ -105,7 +103,6 @@ class PedidoController extends Controller
 
     return view('pedidos.show', compact('pedido'));
 }
-
 public function store(Request $request)
 {
     // Reindexar arrays para evitar problemas de índices no consecutivos
@@ -177,7 +174,6 @@ $detallesReparaciones = $request->has('detalles_reparaciones') ? $request->input
             
         }
     }
-
     return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
 }
 
@@ -195,47 +191,75 @@ public function cambiarEstado($id)
         ->with('success', 'Estado del pedido actualizado a: ' . $nuevoEstado);
 }
 
-public function CrearPedidoConfeccion(Request $request){
-    $pedido = new Pedido;
-    $pedido->cliente_id = $request->cliente;
-    $pedido->empleado_id = $request->empleado;
-    $pedido->fecha_pedido = $request->fecha_pedido;
-    $pedido->fecha_entrega = $request->fecha_entrega;
-    $pedido->descripcion = $request->descripcion;
-    $pedido->save();
-    
-    $detalleConfeccion = new DetalleConfeccion;
-    $detalleConfeccion->pedido_id = $pedido->id;
-    $detalleConfeccion->prenda_confeccion_id = $request->prenda_confeccion;
-    $detalleConfeccion->cantidad = $request->cantidad;
-    $detalleConfeccion->save();
-
-    $medidas = new Medida;
-    $medidas->detalle_confeccion_id = $detalleConfeccion->id;
-    $medidas->pecho = $request->pecho;
-    $medidas->cintura = $request->cintura;
-    $medidas->mangas = $request->mangas;
-    $medidas->largo = $request->largo;
-    $medidas->save();
-
-    $detalleInsumos = new DetalleInsumo;
-    $detalleInsumos->pedido_id = $pedido->id;
-    $detalleInsumos->insumo_id = $request->insumo;
-    $detalleInsumos->cantidad_insumo = $request->cantidad_insumo;
-    $detalleInsumos->save();
-
-    $prendasTelas = new PrendaTela;
-    $prendasTelas->prenda_confeccion_id = $request->prenda_confeccion;
-    $prendasTelas->tela_id = $request->tela;
-    $prendasTelas->cantidad_tela = $request->cantidad_tela;
-    $prendasTelas->save();
+public function verprendas()
+{
+    $prendas = PrendaConfeccion::all();
+    return view('pedidos.index', compact('prendas'));
+}
 
 
-  return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
+public function CrearPedido(Request $request)
+{
+    DB::beginTransaction();
+
+    try {
+        // Crear el pedido
+        $pedido = Pedido::create([
+            'empleado_id' => $request->empleado,
+            'cliente_id' => $request->cliente,
+            'fecha_pedido' => $request->fecha_pedido,
+            'fecha_entrega' => $request->fecha_entrega,
+            'descripcion' => $request->descripcion, // Actualizaremos luego con el subtotal
+        ]);
+
+        // Procesar detalles de confecciones
+        foreach ($request->detalles_confecciones as $detalle) {
+            $detalleConfeccion = DetalleConfeccion::create([
+                'pedido_id' => $pedido->id,
+                'prenda_confeccion_id' => $detalle['prenda_confeccion'],
+                'cantidad_prenda' => $detalle['cantidad_prenda'],
+            ]);
+
+            // Guardar medidas
+            if (!empty($detalle['medidas'])) {
+                Medida::create([
+                    'detalle_confeccion_id' => $detalleConfeccion->id,
+                    'pecho' => $detalle['medidas']['pecho'],
+                    'cintura' => $detalle['medidas']['cintura'],
+                    'mangas' => $detalle['medidas']['mangas'],
+                    'largo' => $detalle['medidas']['largo'],
+                ]);
+            }
+            // Guardar insumos asociados
+            if (!empty($detalle['insumos'])) {
+                foreach ($detalle['insumos'] as $insumo) {
+                    DetalleInsumo::create([
+                        'detalle_confeccion_id' => $detalleConfeccion->id,
+                        'insumo_id' => $insumo['id'],
+                        'cantidad_insumo' => $insumo['cantidad_insumo'],
+                    ]);
+                }
+            }
+        }
+
+        DB::commit();
+        return redirect()->route('pedidos.index')->with('success', 'Pedido creado exitosamente.');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->withErrors('Error al crear el pedido: ' . $e->getMessage());
+    }
 }
 
 public function pedidoconfeccion()
-    {
-        return view('pedidos.pedidoconfeccion');
-    }
+{
+    $prendas = PrendaConfeccion::where('visible', true)->get(); 
+    $telas = Tela::all();
+    $insumos = Insumo::all();
+    $clientes = Cliente::all();
+    $empleados = Empleado::all();
+    $prendas = PrendaConfeccion::with('prendasColor')->get(); 
+    return view('pedidos.pedidoconfeccion', compact('prendas', 'telas', 'insumos', 'clientes', 'empleados', 'prendas'));
+}
+
 }
