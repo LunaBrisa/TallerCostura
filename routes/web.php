@@ -169,12 +169,9 @@ Route::get('/materiales-telas/vista', [TelaController::class, 'mostrarVistaMater
 Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPrenda'])->name('tipos-prenda.vista');
 Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedido'])->name('pedidos.CrearPedido');
 
-<<<<<<< HEAD
 Route::get('/pedidos/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidos.pedidoconfeccion');
 
 
 // Ruta para visualizar las auditorías
 Route::get('/auditorias', [AuditoriaController::class, 'index'])->name('Auditorias.Auditorias');
-=======
 Route::get('/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidoconfeccion');
->>>>>>> db4d39bfc109531eb6270a221fac40b32814db26
