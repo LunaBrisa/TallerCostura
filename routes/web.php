@@ -31,6 +31,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\VerifiedEmailController;
 
+use App\Http\Controllers\AuditoriaController;
+
 // Página para pedir verificación
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -165,3 +167,7 @@ Route::get('/tipos-prenda/vista', [TelaController::class, 'mostrarVistaTiposPren
 Route::post('/pedidos/Crear_Pedido', [PedidoController::class, 'CrearPedidoConfeccion'])->name('pedidos.CrearPedido');
 
 Route::get('/pedidos/pedidoconfeccion', [PedidoController::class, 'pedidoconfeccion'])->name('pedidos.pedidoconfeccion');
+
+
+// Ruta para visualizar las auditorías
+Route::get('/auditorias', [AuditoriaController::class, 'index'])->name('Auditorias.Auditorias');
